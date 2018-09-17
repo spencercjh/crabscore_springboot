@@ -1,7 +1,7 @@
 #  中华绒螯蟹评比管理系统服务端
 
 #### 项目介绍
-基于SpringBoot 2.x和Spring 5.x的SSM框架的Android App服务端
+基于SpringBoot 2.x和Spring 5.x的SSM框架的Restful风格的Android App服务端
 
 #### 软件架构
 Spring Boot 2.0.5
