@@ -5,12 +5,19 @@
 
 #### 软件架构
 Spring Boot 2.0.5
+
 Spring 5.0.9
+
 Mybatis 1.3.2
+
 Druid 1.1.10
+
 lombok 1.16.22
+
 Swagger 2.7.0
+
 Jasypt 1.18
+
 还会尝试使用更多时下最流行的产品……
 
 #### 总结
