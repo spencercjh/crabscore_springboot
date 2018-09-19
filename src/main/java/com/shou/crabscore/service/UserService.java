@@ -2,12 +2,29 @@ package com.shou.crabscore.service;
 
 import com.shou.crabscore.entity.User;
 
+import java.util.List;
+
 /**
  * 用户接口
  *
  * @author spencercjh
  */
 public interface UserService {
+    /**
+     * 查找所有用户
+     *
+     * @return 所有用户记录
+     */
+    List<User> selectAllUser();
+
+    /**
+     * 通过用户名查找
+     *
+     * @param username 用户名
+     * @return 用户记录
+     */
+    User selectByUserName(String username);
+
     /**
      * 通过主键删除
      *

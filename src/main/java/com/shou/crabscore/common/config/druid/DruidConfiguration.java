@@ -1,5 +1,6 @@
-package com.shou.crabscore.common.config;
+package com.shou.crabscore.common.config.druid;
 
+import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
@@ -31,62 +32,69 @@ public class DruidConfiguration {
     @Bean(destroyMethod = "close", initMethod = "init")
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource druidDataSource() {
+        log.debug("加载DruidDataSource");
         return new DruidDataSource();
     }
 
     @Value("${spring.datasource.druid.stat-view-servlet.enabled}")
-    private String enabled;
+    private String statViewServletEnabled;
     @Value("${spring.datasource.druid.stat-view-servlet.url-pattern}")
-    private String urlPattern;
+    private String statViewServletUrlPattern;
     @Value("${spring.datasource.druid.stat-view-servlet.reset-enable}")
-    private String resetEnable;
+    private String statViewServletResetEnable;
     @Value("${spring.datasource.druid.stat-view-servlet.login-username}")
-    private String loginUsername;
+    private String statViewServletLoginUsername;
     @Value("${spring.datasource.druid.stat-view-servlet.login-password}")
-    private String loginPassword;
+    private String statViewServletLoginPassword;
     @Value("${spring.datasource.druid.stat-view-servlet.allow}")
-    private String allow;
+    private String statViewServletAllow;
     @Value("${spring.datasource.druid.stat-view-servlet.deny}")
-    private String deny;
-
+    private String statViewServletDeny;
     @Value("${jasypt.encryptor.password}")
-    private String password;
+    private String jasyptPassword;
 
     /**
-     * 注册一个StatViewServlet
+     * 注册一个StatViewServlet 对应配置中spring.datasource.druid.stat-view-servlet的相关配置
      *
      * @return ServletRegistrationBean<StatViewServlet>
      */
     @Bean
-
     public ServletRegistrationBean<StatViewServlet> druidStatViewServlet() {
-        //org.springframework.boot.context.embedded.ServletRegistrationBean提供类的进行注册.
         ServletRegistrationBean<StatViewServlet> servletRegistrationBean = new ServletRegistrationBean<>(
-                new StatViewServlet(), urlPattern);
-        servletRegistrationBean.addInitParameter("enabled", enabled);
-        servletRegistrationBean.addInitParameter("allow", allow);
-        servletRegistrationBean.addInitParameter("deny", deny);
-        servletRegistrationBean.addInitParameter("loginUsername", loginUsername);
-        servletRegistrationBean.addInitParameter("loginPassword", JasyptUtil.decryptPwd(password, loginPassword));
-        servletRegistrationBean.addInitParameter("resetEnable", resetEnable);
+                new StatViewServlet(), statViewServletUrlPattern);
+        log.debug("加载Druid监视Servlet");
+        servletRegistrationBean.addInitParameter("enabled", statViewServletEnabled);
+        servletRegistrationBean.addInitParameter("allow", statViewServletAllow);
+        servletRegistrationBean.addInitParameter("deny", statViewServletDeny);
+        servletRegistrationBean.addInitParameter("loginUsername", statViewServletLoginUsername);
+        servletRegistrationBean.addInitParameter("loginPassword", JasyptUtil.decryptPwd(jasyptPassword, statViewServletLoginPassword));
+        servletRegistrationBean.addInitParameter("resetEnable", statViewServletResetEnable);
         return servletRegistrationBean;
     }
 
+    @Value("${spring.datasource.druid.web-stat-filter.url-pattern}")
+    private String webStatFilterUrlPattern;
+    @Value("${spring.datasource.druid.web-stat-filter.exclusions}")
+    private String webStatFilterExclusions;
+    @Value("${spring.datasource.druid.web-stat-filter.enabled}")
+    private String webStatFilterEnabled;
+    @Value("${spring.datasource.druid.web-stat-filter.profile-enable}")
+    private String webStatFilterProfileEnable;
+
     /**
-     * 注册一个：filterRegistrationBean
+     * 注册一个：filterRegistrationBean 对应配置中spring.datasource.druid.web-stat-filter的相关配置
      *
      * @return FilterRegistrationBean<WebStatFilter>
      */
     @Bean
     public FilterRegistrationBean<WebStatFilter> druidStatFilter() {
-
         FilterRegistrationBean<WebStatFilter> filterRegistrationBean = new FilterRegistrationBean<>(new WebStatFilter());
-
-        //添加过滤规则.
-        filterRegistrationBean.addUrlPatterns("/*");
-
-        //添加不需要忽略的格式信息.
-        filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
+        log.debug("加载Druid过滤器Filter");
+        filterRegistrationBean.addUrlPatterns(webStatFilterUrlPattern);
+        filterRegistrationBean.addInitParameter("exclusions", webStatFilterExclusions);
+        filterRegistrationBean.addInitParameter("enabled", webStatFilterEnabled);
+        filterRegistrationBean.addInitParameter("profile-enable", webStatFilterProfileEnable);
         return filterRegistrationBean;
     }
+
 }

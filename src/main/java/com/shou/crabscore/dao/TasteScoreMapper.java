@@ -1,6 +1,7 @@
 package com.shou.crabscore.dao;
 
 import com.shou.crabscore.entity.TasteScore;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
  * @author spencercjh
  */
 @Repository
+@Mapper
 public interface TasteScoreMapper {
     /**
      * 通过主键删除

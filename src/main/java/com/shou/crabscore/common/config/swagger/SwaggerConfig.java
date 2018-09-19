@@ -1,8 +1,7 @@
-package com.shou.crabscore.common.config;
+package com.shou.crabscore.common.config.swagger;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +20,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Log4j2
 @Configuration
 @EnableSwagger2
-public class Swagger2Config {
+public class SwaggerConfig {
 
     @Value("${swagger.title}")
     private String title;
@@ -46,12 +45,9 @@ public class Swagger2Config {
 
     @Bean
     public Docket createRestApi() {
-
         log.info("加载Swagger2");
-
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo()).select()
-                //扫描所有有注解的api，用这种方式更灵活
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build();

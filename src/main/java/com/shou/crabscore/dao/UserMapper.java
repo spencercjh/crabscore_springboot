@@ -1,7 +1,10 @@
 package com.shou.crabscore.dao;
 
 import com.shou.crabscore.entity.User;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * 用户数据层
@@ -9,7 +12,23 @@ import org.springframework.stereotype.Repository;
  * @author spencercjh
  */
 @Repository
+@Mapper
 public interface UserMapper {
+    /**
+     * 查找所有用户
+     *
+     * @return 所有用户记录
+     */
+    List<User> selectAllUser();
+
+    /**
+     * 通过用户名查找
+     *
+     * @param username 用户名
+     * @return 用户记录
+     */
+    User selectByUserName(String username);
+
     /**
      * 通过主键删除
      *
