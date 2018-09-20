@@ -4,6 +4,9 @@
 基于SpringBoot 2.x和Spring 5.x的SSM框架的Restful风格的Android App服务端
 
 #### 软件架构
+
+REST：增POST 删DELETE 改PUT 查GET
+
 Spring Boot 2.0.5
 
 Spring 5.0.9
@@ -25,6 +28,10 @@ Swagger 2.7.0
 Jasypt 1.18
 
 配置使用指南：https://my.oschina.net/ChinaHaoYuFei/blog/1606360
+
+JJWT 0.9.0
+
+配置使用指南：https://blog.csdn.net/qq_37636695/article/details/79265711
 
 还会尝试使用更多时下最流行的产品……
 

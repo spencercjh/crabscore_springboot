@@ -38,13 +38,13 @@ public class SecurityServiceImpl implements SecurityService {
             Integer roleId = jsonObject.getInteger("roleId");
             User searchResult = this.userMapper.selectByUserName(username);
             if (searchResult == null) {
-                log.error(request.getRemoteAddr() + "试图越界访问" + request.getRequestURI());
+                log.error(request.getRemoteAddr() + "试图越界访问（查不到对应用户）" + request.getRequestURI());
                 return false;
             } else if (!roleId.equals(searchResult.getRoleId())) {
-                log.error(request.getRemoteAddr() + "试图越界访问" + request.getRequestURI());
+                log.error(request.getRemoteAddr() + "试图越界访问（用户组不正确）" + request.getRequestURI());
                 return false;
-            } else if (claims.get(CommonConstant.MYKEY, String.class).equals(CommonConstant.MYKEY_VALUE)) {
-                log.error(request.getRemoteAddr() + "试图越界访问" + request.getRequestURI());
+            } else if (!claims.get(CommonConstant.MYKEY, String.class).equals(CommonConstant.MYKEY_VALUE)) {
+                log.error(request.getRemoteAddr() + "试图越界访问（MYKEY不正确）" + request.getRequestURI());
                 return false;
             } else {
                 return true;
@@ -52,7 +52,7 @@ public class SecurityServiceImpl implements SecurityService {
         } catch (ExpiredJwtException | UnsupportedJwtException |
                 MalformedJwtException | SignatureException | IllegalArgumentException e) {
             /*parseClaimsJws抛出的种种异常*/
-            log.error(request.getRemoteAddr() + "试图越界访问" + request.getRequestURI());
+            log.error(request.getRemoteAddr() + "试图越界访问（JWT有问题）" + request.getRequestURI());
             return false;
         }
     }

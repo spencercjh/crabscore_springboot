@@ -93,7 +93,7 @@ public class JwtUtil {
         System.out.println("issued" + c.getIssuedAt());
         System.out.println("subject" + c.getSubject());
         System.out.println("issuer" + c.getIssuer());
-        System.out.println(CommonConstant.MYKEY + c.get("mykey", String.class));
+        System.out.println(CommonConstant.MYKEY + c.get(CommonConstant.MYKEY, String.class));
     }
 
 }
