@@ -4,6 +4,15 @@ package com.shou.crabscore.common.constant;
  * @author spencercjh
  */
 public interface CommonConstant {
+
+    /**
+     * JWT中自定义校验值的变量名
+     */
+    String MYKEY = "MYKEY";
+    /**
+     * JWT中自定义校验值
+     */
+    String MYKEY_VALUE = "mykeymCPuT5IHaZ628q5f91Ok5Sv13f1bfh5z";
     /**
      * 全部大赛 0
      */

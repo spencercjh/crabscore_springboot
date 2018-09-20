@@ -7,9 +7,7 @@ import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.User;
 import com.shou.crabscore.service.UserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,16 +35,21 @@ public class LoginController {
 
     @GetMapping("/login")
     @ApiOperation(value = "用户登录", notes = "参数检查交给Android端完成")
+    @ApiResponses({@ApiResponse(code = 200, message = "登录成功"),
+            @ApiResponse(code = 501, message = "用户组参数错误"),
+            @ApiResponse(code = 502, message = "用户名不存在"),
+            @ApiResponse(code = 503, message = "用户组选择错误"),
+            @ApiResponse(code = 504, message = "密码错误")})
     public Result<Object> login(@ApiParam(name = "username", value = "用户名", type = "String") @RequestParam String username,
                                 @ApiParam(name = "password", value = "密码", type = "String") @RequestParam String password,
                                 @ApiParam(name = "roleId", value = "用户组", type = "Integer") @RequestParam Integer roleId) {
         User searchResult = this.userService.selectByUserName(username);
         if (searchResult == null) {
-            return new ResultUtil<>().setErrorMsg("用户名不存在");
+            return new ResultUtil<>().setErrorMsg(502, "用户名不存在");
         } else if (!searchResult.getRoleId().equals(roleId)) {
-            return new ResultUtil<>().setErrorMsg("用户组选择错误");
+            return new ResultUtil<>().setErrorMsg(503, "用户组选择错误");
         } else if (!searchResult.getPassword().equals(password)) {
-            return new ResultUtil<>().setErrorMsg("密码错误");
+            return new ResultUtil<>().setErrorMsg(504, "密码错误");
         } else if (searchResult.getUserName().equals(username) &&
                 searchResult.getPassword().equals(password) &&
                 searchResult.getRoleId().equals(roleId)) {
@@ -54,12 +57,15 @@ public class LoginController {
             String jwt = JwtUtil.createJWT(String.valueOf(subject.hashCode()), JSON.toJSONString(subject));
             return new ResultUtil<>().setData(jwt, "登录成功");
         } else {
-            return new ResultUtil<>().setErrorMsg("用户组参数错误");
+            return new ResultUtil<>().setErrorMsg(501, "用户组参数错误");
         }
     }
 
     @PostMapping("/creation")
     @ApiOperation(value = "用户注册", notes = "参数检查交给Android端完成")
+    @ApiResponses({@ApiResponse(code = 200, message = "注册成功"),
+            @ApiResponse(code = 500, message = "注册失败"),
+            @ApiResponse(code = 501, message = "用户名已存在")})
     public Result<Object> register(@ApiParam(name = "username", value = "用户名", type = "String") @RequestParam String username,
                                    @ApiParam(name = "password", value = "密码", type = "String") @RequestParam String password,
                                    @ApiParam(name = "roleId", value = "用户组", type = "Integer") @RequestParam Integer roleId,
@@ -73,7 +79,7 @@ public class LoginController {
             int insertResult = this.userService.insert(newUser);
             return insertResult == 0 ? new ResultUtil<>().setSuccessMsg("注册成功") : new ResultUtil<>().setErrorMsg("注册失败");
         } else {
-            return new ResultUtil<>().setErrorMsg("用户名已存在");
+            return new ResultUtil<>().setErrorMsg(501, "用户名已存在");
         }
     }
 }

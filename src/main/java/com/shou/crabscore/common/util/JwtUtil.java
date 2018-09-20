@@ -7,7 +7,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.log4j.Log4j2;
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -35,7 +34,7 @@ public class JwtUtil {
         Date now = new Date(nowMillis);
         /*创建payload的私有声明（根据特定的业务需要添加，如果要拿这个做验证，一般是需要和jwt的接收方提前沟通好验证方式的）*/
         Map<String, Object> claims = new HashMap<>(3);
-        claims.put("mykey", "mCPuT5IHaZ628q5f91Ok5Sv13f1bfh5z");
+        claims.put(CommonConstant.MYKEY, CommonConstant.MYKEY_VALUE);
         /*生成签名的时候使用的秘钥secret,这个方法本地封装了的，一般可以从本地配置文件中读取，切记这个秘钥不能外露哦。
         它就是你服务端的私钥，在任何场景都不应该流露出去。一旦客户端得知这个secret, 那就意味着客户端是可以自我签发jwt了。*/
         SecretKey key = generalKey();
@@ -87,14 +86,14 @@ public class JwtUtil {
     }
 
     public static void main(String[] args) {
-        JwtUtil util = new JwtUtil();
-        String ab = util.createJWT("jwt", "{username:admin,password:fafafsafsafsafsafsaf}");
+        String ab = createJWT("jwt", "{\"username\":\"admin\",\"roleId\":1}");
         System.out.println(ab);
-        Claims c = util.parseJWT(ab);
+        Claims c = parseJWT(ab);
         System.out.println("id" + c.getId());
         System.out.println("issued" + c.getIssuedAt());
         System.out.println("subject" + c.getSubject());
         System.out.println("issuer" + c.getIssuer());
-        System.out.println("uid" + c.get("uid", String.class));
+        System.out.println(CommonConstant.MYKEY + c.get("mykey", String.class));
     }
+
 }
