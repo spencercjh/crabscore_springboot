@@ -49,4 +49,23 @@ public class User {
 
     @ApiModelProperty(value = "更新用户")
     private String updateUser;
+
+
+    public User() {
+    }
+
+    public User(String userName, String password, String displayName, Integer roleId, Integer status,
+                String email, Integer competitionId, Date createDate, String createUser, Date updateDate, String updateUser) {
+        this.userName = userName;
+        this.password = password;
+        this.displayName = displayName;
+        this.roleId = roleId;
+        this.status = status;
+        this.email = email;
+        this.competitionId = competitionId;
+        this.createDate = createDate;
+        this.createUser = createUser;
+        this.updateDate = updateDate;
+        this.updateUser = updateUser;
+    }
 }

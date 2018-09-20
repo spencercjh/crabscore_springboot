@@ -71,7 +71,7 @@ public class UserAdminController {
         }
     }
 
-    @PostMapping(value = "/property")
+    @PutMapping(value = "/property")
     @ApiOperation("修改用户资料")
     @ApiImplicitParam(name = "user", value = "单个用户信息", dataType = "User")
     public Result<Object> updateUserProperty(@ApiParam("用户信息Json") @RequestBody User user) {

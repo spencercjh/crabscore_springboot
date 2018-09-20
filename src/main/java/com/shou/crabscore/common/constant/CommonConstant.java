@@ -4,7 +4,14 @@ package com.shou.crabscore.common.constant;
  * @author spencercjh
  */
 public interface CommonConstant {
-
+    /**
+     * 全部大赛 0
+     */
+    Integer USER_COMPETITION_ALL = 0;
+    /**
+     * JWT过期时间 30分钟
+     */
+    Long TTLMILLIS = 1800000L;
     /**
      * 用户默认头像
      */

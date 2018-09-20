@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 口感分数接口实现
  *
@@ -20,6 +22,11 @@ public class TasteScoreServiceImpl implements TasteScoreService {
     @Autowired
     public TasteScoreServiceImpl(TasteScoreMapper tasteScoreMapper) {
         this.tasteScoreMapper = tasteScoreMapper;
+    }
+
+    @Override
+    public List<TasteScore> selectByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex) {
+        return tasteScoreMapper.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
     }
 
     @Override

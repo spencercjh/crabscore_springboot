@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 种质分数接口实现
  *
@@ -20,6 +22,11 @@ public class QualityScoreServiceImpl implements QualityScoreService {
     @Autowired
     public QualityScoreServiceImpl(QualityScoreMapper qualityScoreMapper) {
         this.qualityScoreMapper = qualityScoreMapper;
+    }
+
+    @Override
+    public List<QualityScore> selectByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex) {
+        return qualityScoreMapper.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
     }
 
     @Override

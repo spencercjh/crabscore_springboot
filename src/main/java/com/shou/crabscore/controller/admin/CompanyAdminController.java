@@ -40,7 +40,7 @@ public class CompanyAdminController {
     @GetMapping(value = "/{companyId}")
     @ApiOperation("查询单个参选单位")
     public Result<Object> singleCompany(@ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
-                                            @PathVariable("companyId") Integer companyId) {
+                                        @PathVariable("companyId") Integer companyId) {
         if (NumberUtil.isBlankChar(companyId)) {
             return new ResultUtil<>().setErrorMsg("主键为空");
         } else {
@@ -64,7 +64,7 @@ public class CompanyAdminController {
     @GetMapping(value = "/group/{competitionId}/{companyId}")
     @ApiOperation("查询在某一届大赛中某一参选单位的所有组")
     public Result<Object> allGroup(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
-                                       @PathVariable("competitionId") Integer competitionId,
+                                   @PathVariable("competitionId") Integer competitionId,
                                    @ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
                                    @PathVariable("companyId") Integer companyId) {
         if (NumberUtil.isBlankChar(competitionId) || NumberUtil.isBlankChar(companyId)) {
@@ -79,7 +79,7 @@ public class CompanyAdminController {
         }
     }
 
-    @PostMapping(value = "/property")
+    @PutMapping(value = "/property")
     @ApiOperation("修改参选单位资料")
     @ApiImplicitParam(name = "company", value = "单个参选单位信息", dataType = "Company")
     public Result<Object> updateCompanyProperty(@ApiParam("参选单位信息Json") @RequestBody Company company) {
@@ -108,7 +108,7 @@ public class CompanyAdminController {
     @DeleteMapping(value = "/{companyId}")
     @ApiOperation("删除参选单位")
     public Result<Object> deleteCompany(@ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
-                                            @PathVariable("companyId") Integer companyId) {
+                                        @PathVariable("companyId") Integer companyId) {
         if (NumberUtil.isBlankChar(companyId)) {
             return new ResultUtil<>().setErrorMsg("主键为空");
         } else {

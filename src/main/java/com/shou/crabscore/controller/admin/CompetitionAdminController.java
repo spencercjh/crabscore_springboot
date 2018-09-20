@@ -58,7 +58,7 @@ public class CompetitionAdminController {
         }
     }
 
-    @PostMapping(value = "/property")
+    @PutMapping(value = "/property")
     @ApiOperation("修改大赛资料")
     @ApiImplicitParam(name = "competition", value = "大赛信息", dataType = "Competition")
     public Result<Object> updateCompetitionProperty(@ApiParam("大赛信息Json") @RequestBody Competition competition) {
@@ -76,7 +76,7 @@ public class CompetitionAdminController {
         return new ResultUtil<>().setData(this.competitionConfigService.selectByPrimaryKey(1));
     }
 
-    @PostMapping(value = "/present")
+    @PutMapping(value = "/present")
     @ApiOperation("修改当前大赛配置(大赛id)")
     @ApiImplicitParam(name = "competitionConfig", value = "大赛配置", dataType = "CompetitionConfig")
     public Result<Object> updatePresentCompetitionId(@ApiParam("大赛配置Json") @RequestBody CompetitionConfig competitionConfig) {
