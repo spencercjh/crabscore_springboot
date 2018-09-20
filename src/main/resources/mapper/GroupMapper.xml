@@ -29,6 +29,39 @@
         fatness_score_f, quality_score_f, taste_score_f, create_date, create_user, update_date,
         update_user
     </sql>
+    <!-- 2018年9月20日17:43:27 -->
+    <select id="selectAllGroupOneCompetitionOrderByFatnessScore" resultMap="BaseResultMap"
+            parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from rxpb_group_info
+        where competition_id=#{competitionId,jdbcType=INTEGER}
+        order by fatness_score_m desc ,fatness_score_f desc
+    </select>
+    <select id="selectAllGroupOneCompetitionOrderByQualityScore" resultMap="BaseResultMap"
+            parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from rxpb_group_info
+        where competition_id=#{competitionId,jdbcType=INTEGER}
+        order by quality_score_m desc,quality_score_f desc
+    </select>
+    <select id="selectAllGroupOneCompetitionOrderByTasteScore" resultMap="BaseResultMap"
+            parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from rxpb_group_info
+        where competition_id=#{competitionId,jdbcType=INTEGER}
+        order by taste_score_m desc,taste_score_f desc
+    </select>
+    <!-- 2018年9月20日10:29:42 -->
+    <select id="selectAllGroupOneCompetitionOneCompany" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from rxpb_group_info
+        where company_id=#{companyId,jdbcType=INTEGER}
+        and competition_id=#{competitionId,jdbcType=INTEGER}
+    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         <!--
           WARNING - @mbggenerated

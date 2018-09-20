@@ -22,6 +22,12 @@
         company_id, company_name, competition_id, create_date, create_user, update_date,
         update_user
     </sql>
+    <!-- 2018年9月20日17:14:49 -->
+    <select id="selectAllCompany" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from rxpb_company_info
+    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         <!--
           WARNING - @mbggenerated

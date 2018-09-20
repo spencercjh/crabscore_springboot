@@ -11,6 +11,13 @@ import java.util.List;
  */
 public interface UserService {
     /**
+     * 查找所有符合条件的用户
+     *
+     * @return 所有用户记录
+     */
+    List<User> selectAllUserSelective(Integer status);
+
+    /**
      * 查找所有用户
      *
      * @return 所有用户记录

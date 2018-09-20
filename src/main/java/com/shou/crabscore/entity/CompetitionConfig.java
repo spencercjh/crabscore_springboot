@@ -32,4 +32,7 @@ public class CompetitionConfig {
     @ApiModelProperty(value = "更新用户")
     private String updateUser;
 
+    public CompetitionConfig() {
+    }
+
 }

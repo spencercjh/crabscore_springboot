@@ -1,4 +1,4 @@
-package com.shou.crabscore.exception;
+package com.shou.crabscore.common.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

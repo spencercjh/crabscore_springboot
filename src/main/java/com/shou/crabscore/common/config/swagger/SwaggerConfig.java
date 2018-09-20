@@ -57,6 +57,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title(title)
                 .description(description)
+                .termsOfServiceUrl(termsOfServiceUrl)
                 .contact(new Contact(name, url, email))
                 .version(version)
                 .build();

@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 参选单位接口实现
  *
@@ -21,6 +23,11 @@ public class CompanyServiceImpl implements CompanyService {
     @Autowired
     public CompanyServiceImpl(CompanyMapper companyMapper) {
         this.companyMapper = companyMapper;
+    }
+
+    @Override
+    public List<Company> selectAllCompany() {
+        return companyMapper.selectAllCompany();
     }
 
     @Override

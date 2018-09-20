@@ -2,12 +2,21 @@ package com.shou.crabscore.service;
 
 import com.shou.crabscore.entity.Company;
 
+import java.util.List;
+
 /**
  * 参选单位接口
  *
  * @author spencercjh
  */
 public interface CompanyService {
+    /**
+     * 查找所有参选单位
+     *
+     * @return 所有参选单位记录
+     */
+    List<Company> selectAllCompany();
+
     /**
      * 通过主键删除
      *

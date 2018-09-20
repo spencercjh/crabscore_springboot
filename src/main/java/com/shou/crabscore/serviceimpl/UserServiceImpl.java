@@ -26,6 +26,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> selectAllUserSelective(Integer status) {
+        return userMapper.selectAllUserSelective(status);
+    }
+
+    @Override
     public List<User> selectAllUser() {
         return userMapper.selectAllUser();
     }

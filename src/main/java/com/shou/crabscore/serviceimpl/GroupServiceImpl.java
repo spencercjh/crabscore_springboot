@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 小组接口实现
  *
@@ -20,6 +22,26 @@ public class GroupServiceImpl implements GroupService {
     @Autowired
     public GroupServiceImpl(GroupMapper groupMapper) {
         this.groupMapper = groupMapper;
+    }
+
+    @Override
+    public List<Group> selectAllGroupOneCompetitionOrderByQualityScore(Integer competitionId) {
+        return groupMapper.selectAllGroupOneCompetitionOrderByQualityScore(competitionId);
+    }
+
+    @Override
+    public List<Group> selectAllGroupOneCompetitionOrderByTasteScore(Integer competitionId) {
+        return groupMapper.selectAllGroupOneCompetitionOrderByTasteScore(competitionId);
+    }
+
+    @Override
+    public List<Group> selectAllGroupOneCompetitionOrderByFatnessScore(Integer competitionId) {
+        return groupMapper.selectAllGroupOneCompetitionOrderByFatnessScore(competitionId);
+    }
+
+    @Override
+    public List<Group> selectAllGroupOneCompetitionOneCompany(Integer competitionId, Integer companyId) {
+        return groupMapper.selectAllGroupOneCompetitionOneCompany(competitionId, companyId);
     }
 
     @Override

@@ -1,77 +1,77 @@
 package com.shou.crabscore.dao;
 
-import com.shou.crabscore.entity.Company;
+import com.shou.crabscore.entity.Competition;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * 参选单位数据处理层
+ * 大赛信息数据层
  *
  * @author spencercjh
  */
 @Repository
 @Mapper
-public interface CompanyMapper {
+public interface CompetitionMapper {
     /**
-     * 查找所有参选单位
+     * 查询所有大赛信息记录
      *
-     * @return 所有参选单位记录
+     * @return 所有大赛信息记录
      */
-    List<Company> selectAllCompany();
+    List<Competition> selectAllCompetition();
 
     /**
      * 通过主键删除
      *
-     * @param companyId 参选单位id
+     * @param competitionId 大赛id
      * @return 删除记录条数
      * @mbggenerated
      */
-    int deleteByPrimaryKey(Integer companyId);
+    int deleteByPrimaryKey(Integer competitionId);
 
     /**
      * 通过记录插入
      *
-     * @param record 参选单位记录
+     * @param record 大赛信息记录
      * @return 插入记录条数
      * @mbggenerated
      */
-    int insert(Company record);
+    int insert(Competition record);
 
     /**
      * 选择性地通过记录插入
      *
-     * @param record 参选单位记录
+     * @param record 大赛信息记录
      * @return 插入记录条数
      * @mbggenerated
      */
-    int insertSelective(Company record);
+    int insertSelective(Competition record);
 
     /**
      * 通过主键查找
      *
-     * @param companyId 参选单位id
-     * @return 参选单位记录
+     * @param competitionId 大赛配置id
+     * @return 大赛信息记录
      * @mbggenerated
      */
-    Company selectByPrimaryKey(Integer companyId);
+    Competition selectByPrimaryKey(Integer competitionId);
 
     /**
      * 通过主键选择性地更新
      *
-     * @param record 参选单位记录
+     * @param record 大赛信息记录
      * @return 更新记录条数
      * @mbggenerated
      */
-    int updateByPrimaryKeySelective(Company record);
+    int updateByPrimaryKeySelective(Competition record);
 
     /**
      * 通过主键更新
      *
-     * @param record 参选单位记录
+     * @param record 大赛信息记录
      * @return 更新记录条数
      * @mbggenerated
      */
-    int updateByPrimaryKey(Company record);
+    int updateByPrimaryKey(Competition record);
 }

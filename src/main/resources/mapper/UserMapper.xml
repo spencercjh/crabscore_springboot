@@ -27,6 +27,13 @@
         user_id, user_name, password, display_name, role_id, status, email, competition_id,
         create_date, create_user, update_date, update_user
     </sql>
+    <!-- 2018年9月20日09:42:59 -->
+    <select id="selectAllUserSelective" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from rxpb_user_info
+        where status =#{status,jdbcType=INTEGER}
+    </select>
     <!-- 2018年9月19日12:33:35 -->
     <select id="selectAllUser" resultMap="BaseResultMap">
         select

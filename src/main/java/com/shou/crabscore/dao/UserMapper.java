@@ -14,6 +14,15 @@ import java.util.List;
 @Repository
 @Mapper
 public interface UserMapper {
+
+    /**
+     * 查找所有符合条件的用户
+     *
+     * @param status 用户状态 1：可用 0：禁用
+     * @return 所有用户记录
+     */
+    List<User> selectAllUserSelective(Integer status);
+
     /**
      * 查找所有用户
      *
