@@ -29,30 +29,36 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     @Override
-    public boolean verify(String jwt, HttpServletRequest request) {
+    public boolean verify(String jwt, Integer roleId, HttpServletRequest request) {
         try {
             Claims claims = parseJWT(jwt);
             String subjectJson = claims.getSubject();
             JSONObject jsonObject = JSON.parseObject(subjectJson);
-            String username = jsonObject.getString("username");
-            Integer roleId = jsonObject.getInteger("roleId");
-            User searchResult = this.userMapper.selectByUserName(username);
+            String jwtUserName = jsonObject.getString("username");
+            Integer jwtRoleId = jsonObject.getInteger("roleId");
+            User searchResult = this.userMapper.selectByUserName(jwtUserName);
             if (searchResult == null) {
-                log.error(request.getRemoteAddr() + "试图越界访问（查不到对应用户）" + request.getRequestURI());
+                log.error(request.getRemoteAddr() + "试图越界访问（仿冒用户）" + request.getRequestURI());
                 return false;
-            } else if (!roleId.equals(searchResult.getRoleId())) {
-                log.error(request.getRemoteAddr() + "试图越界访问（用户组不正确）" + request.getRequestURI());
+            } else if (!jwtRoleId.equals(searchResult.getRoleId())) {
+                log.error(request.getRemoteAddr() + "试图越界访问（仿冒用户组）" + request.getRequestURI());
                 return false;
             } else if (!claims.get(CommonConstant.MYKEY, String.class).equals(CommonConstant.MYKEY_VALUE)) {
                 log.error(request.getRemoteAddr() + "试图越界访问（MYKEY不正确）" + request.getRequestURI());
                 return false;
+            } else if (!jwtRoleId.equals(roleId) && !roleId.equals(CommonConstant.USER_TYPE_COMMON)) {
+                log.error(request.getRemoteAddr() + "试图越界访问（数据正常）" + request.getRequestURI());
+                return false;
             } else {
                 return true;
             }
-        } catch (ExpiredJwtException | UnsupportedJwtException |
-                MalformedJwtException | SignatureException | IllegalArgumentException e) {
-            /*parseClaimsJws抛出的种种异常*/
-            log.error(request.getRemoteAddr() + "试图越界访问（JWT有问题）" + request.getRequestURI());
+        } catch (ExpiredJwtException e) {
+            e.printStackTrace();
+            log.error(request.getRemoteAddr() + "试图越界访问（JWT过期）" + request.getRequestURI());
+            return false;
+        } catch (UnsupportedJwtException | MalformedJwtException | SignatureException | IllegalArgumentException e) {
+            e.printStackTrace();
+            log.error(request.getRemoteAddr() + "试图越界访问（JWT本身有其他问题）" + request.getRequestURI());
             return false;
         }
     }

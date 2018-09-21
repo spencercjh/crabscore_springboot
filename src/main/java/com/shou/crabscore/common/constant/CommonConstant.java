@@ -42,6 +42,10 @@ public interface CommonConstant {
     Integer USER_TYPE_NORMAL = 0;
 
     /**
+     * 公共权限
+     */
+    Integer USER_TYPE_COMMON = 999;
+    /**
      * 管理员
      */
     Integer USER_TYPE_ADMIN = 1;

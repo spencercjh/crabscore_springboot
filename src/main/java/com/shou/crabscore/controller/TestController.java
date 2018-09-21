@@ -1,5 +1,6 @@
 package com.shou.crabscore.controller;
 
+import com.shou.crabscore.common.constant.CommonConstant;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.service.SecurityService;
@@ -33,7 +34,7 @@ public class TestController {
     @ApiResponses({@ApiResponse(code = 200, message = "success"), @ApiResponse(code = 500, message = "beyond")})
     public Result<Object> test(@ApiParam(name = "jwt", value = "JWT串", type = "String") @RequestParam String jwt,
                                HttpServletRequest request) {
-        if (this.securityService.verify(jwt, request)) {
+        if (this.securityService.verify(jwt, CommonConstant.USER_TYPE_COMMON, request)) {
             return new ResultUtil<>().setSuccessMsg("success");
         } else {
             return new ResultUtil<>().setErrorMsg("beyond");
