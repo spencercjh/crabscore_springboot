@@ -34,7 +34,7 @@ public class TestController {
     @ApiResponses({@ApiResponse(code = 200, message = "success"), @ApiResponse(code = 500, message = "beyond")})
     public Result<Object> test(@ApiParam(name = "jwt", value = "JWT串", type = "String") @RequestParam String jwt,
                                HttpServletRequest request) {
-        if (this.securityService.verify(jwt, CommonConstant.USER_TYPE_COMMON, request)) {
+        if (this.securityService.verify(jwt, CommonConstant.USER_TYPE_COMMON, request).getCode().equals(CommonConstant.SUCCESS)) {
             return new ResultUtil<>().setSuccessMsg("success");
         } else {
             return new ResultUtil<>().setErrorMsg("beyond");

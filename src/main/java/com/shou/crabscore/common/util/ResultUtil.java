@@ -59,4 +59,12 @@ public class ResultUtil<T> {
         this.result.setCode(code);
         return this.result;
     }
+
+    public Result<T> setData(T t, String msg, Integer code, Boolean status) {
+        this.result.setCode(code);
+        this.result.setMessage(msg);
+        this.result.setSuccess(status);
+        this.result.setResult(t);
+        return this.result;
+    }
 }

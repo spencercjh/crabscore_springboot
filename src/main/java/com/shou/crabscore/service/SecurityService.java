@@ -1,5 +1,7 @@
 package com.shou.crabscore.service;
 
+import com.shou.crabscore.common.vo.Result;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -16,5 +18,5 @@ public interface SecurityService {
      * @param request 记录IP地址
      * @return 是否符合接口访问要求
      */
-    boolean verify(String jwt, Integer roleId, HttpServletRequest request);
+    Result<Object> verify(String jwt, Integer roleId, HttpServletRequest request);
 }

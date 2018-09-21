@@ -6,6 +6,10 @@ package com.shou.crabscore.common.constant;
 public interface CommonConstant {
 
     /**
+     * 成功
+     */
+    Integer SUCCESS = 200;
+    /**
      * JWT中自定义校验值的变量名
      */
     String MYKEY = "MYKEY";

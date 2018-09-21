@@ -3,6 +3,8 @@ package com.shou.crabscore.serviceimpl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.shou.crabscore.common.constant.CommonConstant;
+import com.shou.crabscore.common.util.ResultUtil;
+import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.dao.UserMapper;
 import com.shou.crabscore.entity.User;
 import com.shou.crabscore.service.SecurityService;
@@ -29,7 +31,7 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     @Override
-    public boolean verify(String jwt, Integer roleId, HttpServletRequest request) {
+    public Result<Object> verify(String jwt, Integer roleId, HttpServletRequest request) {
         try {
             Claims claims = parseJWT(jwt);
             String subjectJson = claims.getSubject();
@@ -38,28 +40,34 @@ public class SecurityServiceImpl implements SecurityService {
             Integer jwtRoleId = jsonObject.getInteger("roleId");
             User searchResult = this.userMapper.selectByUserName(jwtUserName);
             if (searchResult == null) {
-                log.error(request.getRemoteAddr() + "试图越界访问（仿冒用户）" + request.getRequestURI());
-                return false;
+                String errorMessage = request.getRemoteAddr() + "试图越界访问（仿冒用户）" + jwtUserName + " IP:" + request.getRequestURI();
+                log.error(errorMessage);
+                return new ResultUtil<>().setData(false, errorMessage, 401, false);
             } else if (!jwtRoleId.equals(searchResult.getRoleId())) {
-                log.error(request.getRemoteAddr() + "试图越界访问（仿冒用户组）" + request.getRequestURI());
-                return false;
+                String errorMessage = request.getRemoteAddr() + "试图越界访问（仿冒用户组）" + roleId + " IP:" + request.getRequestURI();
+                log.error(errorMessage);
+                return new ResultUtil<>().setData(false, errorMessage, 401, false);
             } else if (!claims.get(CommonConstant.MYKEY, String.class).equals(CommonConstant.MYKEY_VALUE)) {
-                log.error(request.getRemoteAddr() + "试图越界访问（MYKEY不正确）" + request.getRequestURI());
-                return false;
+                String errorMessage = request.getRemoteAddr() + "试图越界访问（MYKEY不正确）" + claims.get(CommonConstant.MYKEY, String.class) + " IP:" + request.getRequestURI();
+                log.error(errorMessage);
+                return new ResultUtil<>().setData(false, errorMessage, 401, false);
             } else if (!jwtRoleId.equals(roleId) && !roleId.equals(CommonConstant.USER_TYPE_COMMON)) {
-                log.error(request.getRemoteAddr() + "试图越界访问（数据正常）" + request.getRequestURI());
-                return false;
+                String errorMessage = request.getRemoteAddr() + "试图越界访问（数据正常）" + request.getRequestURI();
+                log.error(errorMessage);
+                return new ResultUtil<>().setData(false, errorMessage, 401, false);
             } else {
-                return true;
+                return new ResultUtil<>().setData(true, "访问成功", 200, true);
             }
         } catch (ExpiredJwtException e) {
             e.printStackTrace();
-            log.error(request.getRemoteAddr() + "试图越界访问（JWT过期）" + request.getRequestURI());
-            return false;
+            String errorMessage = request.getRemoteAddr() + "试图越界访问（JWT过期）" + request.getRequestURI();
+            log.error(errorMessage);
+            return new ResultUtil<>().setData(false, errorMessage, 401, false);
         } catch (UnsupportedJwtException | MalformedJwtException | SignatureException | IllegalArgumentException e) {
             e.printStackTrace();
-            log.error(request.getRemoteAddr() + "试图越界访问（JWT本身有其他问题）" + request.getRequestURI());
-            return false;
+            String errorMessage = request.getRemoteAddr() + "试图越界访问（JWT本身有其他问题）" + request.getRequestURI();
+            log.error(errorMessage);
+            return new ResultUtil<>().setData(false, errorMessage, 401, false);
         }
     }
 }

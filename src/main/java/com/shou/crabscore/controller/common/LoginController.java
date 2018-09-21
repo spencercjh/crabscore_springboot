@@ -54,6 +54,8 @@ public class LoginController {
                 searchResult.getPassword().equals(password) &&
                 searchResult.getRoleId().equals(roleId)) {
             Map<String, Object> subject = new HashMap<>(2);
+            subject.put("username", username);
+            subject.put("roleId", roleId);
             String jwt = JwtUtil.createJWT(String.valueOf(subject.hashCode()), JSON.toJSONString(subject));
             return new ResultUtil<>().setData(jwt, "登录成功");
         } else {
