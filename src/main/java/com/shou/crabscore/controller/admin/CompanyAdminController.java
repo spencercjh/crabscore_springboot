@@ -51,7 +51,7 @@ public class CompanyAdminController {
         }
     }
 
-    @GetMapping(value = "/allcompany")
+    @GetMapping(value = "/companys")
     @ApiOperation("查询所有参选单位")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有参选单位成功"),
             @ApiResponse(code = 201, message = "companyList列表为空")})
@@ -64,7 +64,7 @@ public class CompanyAdminController {
         }
     }
 
-    @GetMapping(value = "/group/{competitionId}/{companyId}")
+    @GetMapping(value = "/groups/{competitionId}/{companyId}")
     @ApiOperation("查询在某一届大赛中某一参选单位的所有组")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有比赛组成功"),
             @ApiResponse(code = 200, message = "查询所有比赛组成功"),

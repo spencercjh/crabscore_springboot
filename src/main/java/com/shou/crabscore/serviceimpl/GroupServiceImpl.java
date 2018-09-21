@@ -25,6 +25,11 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
+    public List<Group> selectAllGroupOneCompetition(Integer competitionId) {
+        return groupMapper.selectAllGroupOneCompetition(competitionId);
+    }
+
+    @Override
     public List<Group> selectAllGroupOneCompetitionOrderByQualityScore(Integer competitionId) {
         return groupMapper.selectAllGroupOneCompetitionOrderByQualityScore(competitionId);
     }

@@ -35,7 +35,7 @@ public class CompanyCheckScoreController {
         this.tasteScoreService = tasteScoreService;
     }
 
-    @GetMapping("/quality/{competitionId}/{groupId}/{crabSex}")
+    @GetMapping("/qualities/{competitionId}/{groupId}/{crabSex}")
     @ApiOperation("查询某一年的某一组的某一性别的所有螃蟹种质成绩")
     @ApiResponses({@ApiResponse(code = 200, message = "查询种质成绩信息成功"),
             @ApiResponse(code = 201, message = "没有种质成绩信息")})
@@ -50,7 +50,7 @@ public class CompanyCheckScoreController {
                 new ResultUtil<>().setData(qualityScoreList, "查询种质成绩信息成功");
     }
 
-    @GetMapping("/taste/{competitionId}/{groupId}/{crabSex}")
+    @GetMapping("/tastes/{competitionId}/{groupId}/{crabSex}")
     @ApiOperation("查询某一年的某一组的某一性别的所有螃蟹口感成绩")
     @ApiResponses({@ApiResponse(code = 200, message = "查询口感成绩信息成功"),
             @ApiResponse(code = 201, message = "没有口感成绩信息")})

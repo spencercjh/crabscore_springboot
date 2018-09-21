@@ -1,6 +1,9 @@
 package com.shou.crabscore.service;
 
 import com.shou.crabscore.entity.Crab;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 螃蟹接口
@@ -8,6 +11,26 @@ import com.shou.crabscore.entity.Crab;
  * @author spencercjh
  */
 public interface CrabService {
+    /**
+     * 根据唯一标签来查找螃蟹信息
+     *
+     * @param label 标签
+     * @return 螃蟹信息记录
+     */
+    Crab selectByLabel(String label);
+
+    /**
+     * 根据大赛Id,小组Id和螃蟹性别来查询螃蟹信息
+     *
+     * @param competitionId 大赛Id
+     * @param groupId       小组Id
+     * @param crabSex       性别，1:雄 2：雌
+     * @return 所有符合条件的螃蟹信息记录
+     */
+    List<Crab> selectByCompetitionIdAndGroupIdAndCrabSex(@Param("competitionId") Integer competitionId,
+                                                         @Param("groupId") Integer groupId,
+                                                         @Param("crabSex") Integer crabSex);
+
     /**
      * 通过主键删除
      *

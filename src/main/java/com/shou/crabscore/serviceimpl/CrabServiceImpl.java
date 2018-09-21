@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 螃蟹接口实现
  *
@@ -21,6 +23,16 @@ public class CrabServiceImpl implements CrabService {
     @Autowired
     public CrabServiceImpl(CrabMapper crabMapper) {
         this.crabMapper = crabMapper;
+    }
+
+    @Override
+    public Crab selectByLabel(String label) {
+        return crabMapper.selectByLabel(label);
+    }
+
+    @Override
+    public List<Crab> selectByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex) {
+        return crabMapper.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
     }
 
     @Override

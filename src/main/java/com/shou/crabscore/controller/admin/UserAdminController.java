@@ -47,7 +47,7 @@ public class UserAdminController {
         }
     }
 
-    @GetMapping(value = "/alluser")
+    @GetMapping(value = "/users")
     @ApiOperation("查询所有用户")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有用户成功"),
             @ApiResponse(code = 201, message = "没有用户")})
@@ -60,7 +60,7 @@ public class UserAdminController {
         }
     }
 
-    @GetMapping(value = "/partuser/{status}")
+    @GetMapping(value = "/users/{status}")
     @ApiOperation("查询所有符合某一状态的用户")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有用户成功"),
             @ApiResponse(code = 201, message = "没有找到可用/禁用用户")})

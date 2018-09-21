@@ -24,9 +24,9 @@ public class JwtUtil {
     /**
      * 创建jwt
      *
-     * @param id
-     * @param subject
-     * @return
+     * @param id      JWT唯一标识ID
+     * @param subject 含有业务逻辑的JSON
+     * @return JWT串
      */
     public static String createJWT(String id, String subject) {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
@@ -63,8 +63,8 @@ public class JwtUtil {
     /**
      * 解密jwt
      *
-     * @param jwt
-     * @return
+     * @param jwt JWT串
+     * @return claims
      */
     public static Claims parseJWT(String jwt) {
         SecretKey key = generalKey();
@@ -77,7 +77,7 @@ public class JwtUtil {
      * 由字符串生成加密key
      * jasypt.encryptor.password
      *
-     * @return
+     * @return 加密key
      */
     private static SecretKey generalKey() {
         String stringKey = "spencercjh";

@@ -12,6 +12,14 @@ import java.util.List;
  */
 public interface GroupService {
     /**
+     * 查询在某一届大赛中的所有组
+     *
+     * @param competitionId 大赛Id
+     * @return 所有符合条件的组记录
+     */
+    List<Group> selectAllGroupOneCompetition(@Param("competitionId") Integer competitionId);
+
+    /**
      * 查询在某一届大赛中的所有组并按照种质成绩从大到小排列
      *
      * @param competitionId 大赛Id

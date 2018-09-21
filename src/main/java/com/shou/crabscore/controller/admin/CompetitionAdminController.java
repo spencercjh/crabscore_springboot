@@ -50,7 +50,7 @@ public class CompetitionAdminController {
         }
     }
 
-    @GetMapping(value = "/allcompetition")
+    @GetMapping(value = "/competitions")
     @ApiOperation("查询所有大赛")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有大赛成功"),
             @ApiResponse(code = 201, message = "没有大赛")})
