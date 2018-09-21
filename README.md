@@ -5,35 +5,41 @@
 
 #### 软件架构
 
-REST：增POST 删DELETE 改PUT 查GET
+REST (增POST 删DELETE 改PUT 查GET)
 
-Spring Boot 2.0.5
+Spring Boot 2.0.5 (快速构建SSM)
 
-Spring 5.0.9
+Spring 5.0.9 
 
-Mybatis 1.3.2
+Mybatis 1.3.2 (ORM)
 
-Druid 1.1.10
+Druid 1.1.10 (数据库连接池)
 
 配置使用指南：https://blog.csdn.net/saytime/article/details/78963121
 
-lombok 1.16.22
+lombok 1.16.22 (代码注释生成)
 
 配置使用指南：https://blog.csdn.net/motui/article/details/79012846
 
-Swagger 2.7.0
+Swagger 2.7.0 (Api的文档与测试)
 
 配置使用指南：https://blog.csdn.net/sanyaoxu_2/article/details/80555328
 
-Jasypt 1.18
+Jasypt 1.18 (配置信息的加密)
 
 配置使用指南：https://my.oschina.net/ChinaHaoYuFei/blog/1606360
 
-JJWT 0.9.0
+JJWT 0.9.0 (设置Api访问权限)
 
 配置使用指南：https://blog.csdn.net/qq_37636695/article/details/79265711
 
 还会尝试使用更多时下最流行的产品……
+
+plan:
+
+阿里云短信 (手机短信验证登陆/注册)
+
+七牛云存储 (照片等文件存储)
 
 #### 参考 
 参考项目：https://gitee.com/Exrick/x-boot
