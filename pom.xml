@@ -205,6 +205,18 @@
             <artifactId>hutool-all</artifactId>
             <version>4.0.5</version>
         </dependency>
+
+        <!-- 发送网络请求用到的apace http包 -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.6</version>
+        </dependency>
     </dependencies>
 
     <build>

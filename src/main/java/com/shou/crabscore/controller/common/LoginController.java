@@ -1,9 +1,12 @@
 package com.shou.crabscore.controller.common;
 
+import cn.hutool.core.util.NumberUtil;
 import com.alibaba.fastjson.JSON;
 import com.shou.crabscore.common.constant.CommonConstant;
 import com.shou.crabscore.common.util.JwtUtil;
 import com.shou.crabscore.common.util.ResultUtil;
+import com.shou.crabscore.common.util.UsernameUtil;
+import com.shou.crabscore.common.util.netease.MessageUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.User;
 import com.shou.crabscore.service.UserService;
@@ -13,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -76,7 +80,7 @@ public class LoginController {
                                    @ApiParam(name = "password", value = "密码", type = "String") @RequestParam String password,
                                    @ApiParam(name = "roleId", value = "用户组", type = "Integer") @RequestParam Integer roleId,
                                    @ApiParam(name = "email", value = "邮箱(其实是手机)", type = "String") @RequestParam String email,
-                                   @ApiParam(name = "displayName", value = "显示名", type = "Stirng") @RequestParam String displayName) {
+                                   @ApiParam(name = "displayName", value = "显示名", type = "String") @RequestParam String displayName) {
         User searchResult = this.userService.selectByUserName(username);
         if (searchResult == null) {
             User newUser = new User(username, password, displayName, roleId, CommonConstant.USER_STATUS_LOCK, email,
@@ -86,6 +90,50 @@ public class LoginController {
             return insertResult == 0 ? new ResultUtil<>().setSuccessMsg("注册成功") : new ResultUtil<>().setErrorMsg("注册失败");
         } else {
             return new ResultUtil<>().setErrorMsg(501, "用户名已存在");
+        }
+    }
+
+    @GetMapping("/code")
+    @ApiOperation(value = "请求发送验证码短信")
+    @ApiResponses({@ApiResponse(code = 200, message = "验证码发送成功"),
+            @ApiResponse(code = 500, message = "验证码发送失败"),
+            @ApiResponse(code = 501, message = "手机号格式有误")})
+    public Result<Object> sendCode(@ApiParam(name = "mobile", value = "手机号", type = "String") @RequestParam String mobile) {
+        if (UsernameUtil.mobile(mobile)) {
+            try {
+                if (MessageUtil.sendCode(mobile)) {
+                    return new ResultUtil<>().setSuccessMsg("验证码发送成功");
+                } else {
+                    return new ResultUtil<>().setErrorMsg("验证码发送失败");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                log.error("短信发送请求错误");
+                return new ResultUtil<>().setErrorMsg("验证码发送失败");
+            }
+        } else {
+            return new ResultUtil<>().setErrorMsg(501, "手机号格式有误");
+        }
+    }
+
+    @PostMapping("/code")
+    @ApiOperation(value = "请求校验验证码")
+    @ApiResponses({@ApiResponse(code = 200, message = ""),})
+    public Result<Object> verifyCode(@ApiParam(name = "mobile", value = "手机号", type = "String") @RequestParam String mobile,
+                                     @ApiParam(name = "code", value = "验证码", type = "String") @RequestParam String code) {
+        if (UsernameUtil.mobile(mobile) && NumberUtil.isNumber(code)) {
+            try {
+                if (MessageUtil.verifyCode(mobile, code)) {
+                    return new ResultUtil<>().setSuccessMsg("验证码校验成功");
+                } else {
+                    return new ResultUtil<>().setErrorMsg(502, "验证码无效");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return new ResultUtil<>().setErrorMsg(500, "验证码校验失败");
+            }
+        } else {
+            return new ResultUtil<>().setErrorMsg(501, "手机号或验证码格式有误");
         }
     }
 }

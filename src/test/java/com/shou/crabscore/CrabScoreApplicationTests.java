@@ -1,5 +1,7 @@
 package com.shou.crabscore;
 
+import com.shou.crabscore.common.util.netease.MessageUtil;
+import com.shou.crabscore.common.util.JasyptUtil;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +24,16 @@ public class CrabScoreApplicationTests {
 
     @Test
     public void testJasypt() {
+        log.info("secret:" + JasyptUtil.encryptPwd(password, "123"));
+        log.info("key:" + JasyptUtil.encryptPwd(password, "123"));
+    }
 
+    @Test
+    public void testCode() {
+        try {
+            MessageUtil.sendCode("");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
