@@ -12,7 +12,6 @@ import java.util.List;
  * @author spencercjh
  */
 @Repository
-@Mapper
 public interface UserMapper {
 
     /**

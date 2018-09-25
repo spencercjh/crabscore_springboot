@@ -29,6 +29,13 @@
         fatness_score_f, quality_score_f, taste_score_f, create_date, create_user, update_date,
         update_user
     </sql>
+    <!-- 2018年9月25日14:27:24 -->
+    <select id="selectAllGroupOneCompetition" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from rxpb_group_info
+        where competition_id=#{competitionId,jdbcType=INTEGER}
+    </select>
     <!-- 2018年9月20日17:43:27 -->
     <select id="selectAllGroupOneCompetitionOrderByFatnessScore" resultMap="BaseResultMap"
             parameterType="java.lang.Integer">

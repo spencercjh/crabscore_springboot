@@ -27,6 +27,50 @@
         crab_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
         create_date, create_user, update_date, update_user, competition_id
     </sql>
+    <!-- 2018年9月24日23:44:37 -->
+    <select id="sdFatnessByCompetitionIdAndGroupIdAndCrabSex">
+        select STDDEV(crab_fatness)
+        from rxpb_crab_info
+        where competition_id = #{competitionId,jdbcType=INTEGER}
+          and group_id = #{groupId,jdbcType=INTEGER}
+          and crab_sex = #{crabSex,jdbcType=INTEGER}
+    </select>
+    <select id="sdWeightByCompetitionIdAndGroupIdAndCrabSex">
+        select STDDEV(crab_weight)
+        from rxpb_crab_info
+        where competition_id = #{competitionId,jdbcType=INTEGER}
+          and group_id = #{groupId,jdbcType=INTEGER}
+          and crab_sex = #{crabSex,jdbcType=INTEGER}
+    </select>
+    <!-- 2018年9月21日15:12:23 -->
+    <select id="averageFatnessByCompetitionIdAndGroupIdAndCrabSex">
+        select AVG(crab_fatness)
+        from rxpb_crab_info
+        where competition_id = #{competitionId,jdbcType=INTEGER}
+          and group_id = #{groupId,jdbcType=INTEGER}
+          and crab_sex = #{crabSex,jdbcType=INTEGER}
+    </select>
+    <!-- 2018年9月21日15:08:50 -->
+    <select id="averageWeightByCompetitionIdAndGroupIdAndCrabSex">
+        select AVG(crab_weight)
+        from rxpb_crab_info
+        where competition_id = #{competitionId,jdbcType=INTEGER}
+          and group_id = #{groupId,jdbcType=INTEGER}
+          and crab_sex = #{crabSex,jdbcType=INTEGER}
+    </select>
+    <!-- 2018年9月21日14:24:17 -->
+    <update id="updateCrabFatness">
+        update rxpb_crab_info
+        <set>
+            <if test="crab_sex == 1">
+                crab_fatness=(#{varFatnessM,jdbcType=REAL}*crab_weight*100)/(crab_length*crab_length*crab_length),
+            </if>
+            <if test="crab_sex ==2">
+                crab_fatness=(#{varFatnessF,jdbcType=REAL}*crab_weight*100)/(crab_length*crab_length*crab_length),
+            </if>
+        </set>
+        where competition_id=#{competitionId,jdbcType=INTEGER}
+    </update>
     <!-- 2018年9月21日09:28:25 -->
     <select id="selectByLabel" resultMap="BaseResultMap" parameterType="java.lang.String">
         select

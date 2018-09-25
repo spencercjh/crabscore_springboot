@@ -12,7 +12,6 @@ import java.util.List;
  * @author spencercjh
  */
 @Repository
-@Mapper
 public interface CompanyMapper {
     /**
      * 查找所有参选单位

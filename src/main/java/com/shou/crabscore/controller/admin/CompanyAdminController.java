@@ -20,6 +20,7 @@ import java.util.List;
  *
  * @author spencercjh
  */
+@SuppressWarnings("unused")
 @Log4j2
 @RestController
 @Api(description = "参选单位后台管理接口")
@@ -40,7 +41,8 @@ public class CompanyAdminController {
             @ApiResponse(code = 501, message = "companyId为空"),
             @ApiResponse(code = 502, message = "查找单个参选单位失败")})
     public Result<Object> singleCompany(@ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
-                                        @PathVariable("companyId") Integer companyId) {
+                                        @PathVariable("companyId") Integer companyId,
+                                        @RequestHeader("jwt") String jwt) {
         if (NumberUtil.isBlankChar(companyId)) {
             return new ResultUtil<>().setErrorMsg(501, "companyId为空");
         } else {
@@ -55,7 +57,7 @@ public class CompanyAdminController {
     @ApiOperation("查询所有参选单位")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有参选单位成功"),
             @ApiResponse(code = 201, message = "companyList列表为空")})
-    public Result<Object> allCompany() {
+    public Result<Object> allCompany(@RequestHeader("jwt") String jwt) {
         List<Company> companyList = this.companyService.selectAllCompany();
         if (companyList.size() == 0) {
             return new ResultUtil<>().setSuccessMsg(201, "companyList列表为空");
@@ -73,7 +75,8 @@ public class CompanyAdminController {
     public Result<Object> allGroup(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
                                    @PathVariable("competitionId") Integer competitionId,
                                    @ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
-                                   @PathVariable("companyId") Integer companyId) {
+                                   @PathVariable("companyId") Integer companyId,
+                                   @RequestHeader("jwt") String jwt) {
         if (NumberUtil.isBlankChar(competitionId) || NumberUtil.isBlankChar(companyId)) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId或者companyId为空");
         } else {
@@ -92,7 +95,8 @@ public class CompanyAdminController {
     @ApiResponses({@ApiResponse(code = 200, message = "修改参选单位资料成功"),
             @ApiResponse(code = 500, message = "修改参选单位资料失败"),
             @ApiResponse(code = 501, message = "主键CompanyId为空")})
-    public Result<Object> updateCompanyProperty(@ApiParam("参选单位信息Json") @RequestBody Company company) {
+    public Result<Object> updateCompanyProperty(@ApiParam("参选单位信息Json") @RequestBody Company company,
+                                                @RequestHeader("jwt") String jwt) {
         if (NumberUtil.isBlankChar(company.getCompanyId())) {
             return new ResultUtil<>().setErrorMsg(501, "主键CompanyId为空");
         } else {
@@ -108,7 +112,8 @@ public class CompanyAdminController {
     @ApiResponses({@ApiResponse(code = 200, message = "创建参选单位成功"),
             @ApiResponse(code = 500, message = "创建参选单位失败"),
             @ApiResponse(code = 501, message = "主键CompanyId为空为空")})
-    public Result<Object> insertCompanyProperty(@ApiParam("参选单位信息Json") @RequestBody Company company) {
+    public Result<Object> insertCompanyProperty(@ApiParam("参选单位信息Json") @RequestBody Company company,
+                                                @RequestHeader("jwt") String jwt) {
         if (NumberUtil.isBlankChar(company.getCompanyId())) {
             return new ResultUtil<>().setErrorMsg(501, "主键CompanyId为空为空");
         } else {
@@ -124,7 +129,8 @@ public class CompanyAdminController {
             @ApiResponse(code = 500, message = "删除参选单位失败"),
             @ApiResponse(code = 501, message = "companyId为空")})
     public Result<Object> deleteCompany(@ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
-                                        @PathVariable("companyId") Integer companyId) {
+                                        @PathVariable("companyId") Integer companyId,
+                                        @RequestHeader("jwt") String jwt) {
         if (NumberUtil.isBlankChar(companyId)) {
             return new ResultUtil<>().setErrorMsg("companyId为空");
         } else {

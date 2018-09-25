@@ -9,10 +9,7 @@ import com.shou.crabscore.service.TasteScoreService;
 import io.swagger.annotations.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +18,7 @@ import java.util.List;
  *
  * @author spencercjh
  */
+@SuppressWarnings("unused")
 @Log4j2
 @RestController
 @Api(description = "参选单位查分接口")
@@ -44,7 +42,8 @@ public class CompanyCheckScoreController {
                                               @ApiParam(name = "groupId", value = "小组Id", type = "Integer")
                                               @PathVariable("groupId") Integer groupId,
                                               @ApiParam(name = "crabSex", value = "性别，1:雄 2：雌", type = "Integer")
-                                              @PathVariable("crabSex") Integer crabSex) {
+                                              @PathVariable("crabSex") Integer crabSex,
+                                              @RequestHeader("jwt") String jwt) {
         List<QualityScore> qualityScoreList = this.qualityScoreService.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
         return qualityScoreList.size() == 0 ? new ResultUtil<>().setSuccessMsg(201, "没有种质成绩信息") :
                 new ResultUtil<>().setData(qualityScoreList, "查询种质成绩信息成功");
@@ -59,7 +58,8 @@ public class CompanyCheckScoreController {
                                             @ApiParam(name = "groupId", value = "小组Id", type = "Integer")
                                             @PathVariable("groupId") Integer groupId,
                                             @ApiParam(name = "crabSex", value = "性别，1:雄 2：雌", type = "Integer")
-                                            @PathVariable("crabSex") Integer crabSex) {
+                                            @PathVariable("crabSex") Integer crabSex,
+                                            @RequestHeader("jwt") String jwt) {
         List<TasteScore> tasteScoreList = this.tasteScoreService.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
         return tasteScoreList.size() == 0 ? new ResultUtil<>().setSuccessMsg(201, "没有口感成绩信息") :
                 new ResultUtil<>().setData(tasteScoreList, "查询口感成绩信息成功");

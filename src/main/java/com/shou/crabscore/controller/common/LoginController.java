@@ -12,6 +12,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +36,7 @@ public class LoginController {
 
     @GetMapping("/login")
     @ApiOperation(value = "用户登录", notes = "参数检查交给Android端完成")
+    @ResponseHeader(name = "jwt", description = "JWT串")
     @ApiResponses({@ApiResponse(code = 200, message = "登录成功"),
             @ApiResponse(code = 501, message = "用户组参数错误"),
             @ApiResponse(code = 502, message = "用户名不存在"),
@@ -42,7 +44,8 @@ public class LoginController {
             @ApiResponse(code = 504, message = "密码错误")})
     public Result<Object> login(@ApiParam(name = "username", value = "用户名", type = "String") @RequestParam String username,
                                 @ApiParam(name = "password", value = "密码", type = "String") @RequestParam String password,
-                                @ApiParam(name = "roleId", value = "用户组", type = "Integer") @RequestParam Integer roleId) {
+                                @ApiParam(name = "roleId", value = "用户组", type = "Integer") @RequestParam Integer roleId,
+                                HttpServletResponse response) {
         User searchResult = this.userService.selectByUserName(username);
         if (searchResult == null) {
             return new ResultUtil<>().setErrorMsg(502, "用户名不存在");
@@ -57,7 +60,8 @@ public class LoginController {
             subject.put("username", username);
             subject.put("roleId", roleId);
             String jwt = JwtUtil.createJWT(String.valueOf(subject.hashCode()), JSON.toJSONString(subject));
-            return new ResultUtil<>().setData(jwt, "登录成功");
+            response.addHeader("jwt", jwt);
+            return new ResultUtil<>().setSuccessMsg("登录成功");
         } else {
             return new ResultUtil<>().setErrorMsg(501, "用户组参数错误");
         }

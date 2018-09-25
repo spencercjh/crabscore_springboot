@@ -26,6 +26,31 @@ public class CrabServiceImpl implements CrabService {
     }
 
     @Override
+    public Float sdFatnessByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex) {
+        return crabMapper.sdFatnessByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
+    }
+
+    @Override
+    public Float sdWeightByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex) {
+        return crabMapper.sdWeightByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
+    }
+
+    @Override
+    public Float averageFatnessByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex) {
+        return crabMapper.averageFatnessByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
+    }
+
+    @Override
+    public Float averageWeightByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex) {
+        return crabMapper.averageWeightByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
+    }
+
+    @Override
+    public int updateCrabFatness(Integer competitionId, Float varFatnessM, Float varFatnessF) {
+        return crabMapper.updateCrabFatness(competitionId, varFatnessM, varFatnessF);
+    }
+
+    @Override
     public Crab selectByLabel(String label) {
         return crabMapper.selectByLabel(label);
     }

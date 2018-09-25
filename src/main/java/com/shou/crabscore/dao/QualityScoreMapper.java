@@ -13,7 +13,6 @@ import java.util.List;
  * @author spencercjh
  */
 @Repository
-@Mapper
 public interface QualityScoreMapper {
     /**
      * 通过大赛Id，小组Id和螃蟹性别来查找种质分数信息

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
  * @author spencercjh
  */
 @Repository
-@Mapper
 public interface RoleMapper {
     /**
      * 通过主键删除

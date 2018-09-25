@@ -13,7 +13,6 @@ import java.util.List;
  * @author spencercjh
  */
 @Repository
-@Mapper
 public interface GroupMapper {
     /**
      * 查询在某一届大赛中的所有组

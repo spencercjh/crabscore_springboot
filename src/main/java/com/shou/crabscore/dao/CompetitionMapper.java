@@ -12,7 +12,6 @@ import java.util.List;
  * @author spencercjh
  */
 @Repository
-@Mapper
 public interface CompetitionMapper {
     /**
      * 查询所有大赛信息记录

@@ -12,6 +12,66 @@ import java.util.List;
  */
 public interface CrabService {
     /**
+     * 计算某一年大赛的某一组的某一性别的螃蟹的肥满度标准差
+     *
+     * @param competitionId 大赛Id
+     * @param groupId       小组Id
+     * @param crabSex       性别 1雄 2雌
+     * @return 肥满度标准差
+     */
+    Float sdFatnessByCompetitionIdAndGroupIdAndCrabSex(@Param("competitionId") Integer competitionId,
+                                                       @Param("groupId") Integer groupId,
+                                                       @Param("crabSex") Integer crabSex);
+
+    /**
+     * 计算某一年大赛的某一组的某一性别的螃蟹的体重标准差
+     *
+     * @param competitionId 大赛Id
+     * @param groupId       小组Id
+     * @param crabSex       性别 1雄 2雌
+     * @return 体重标准差
+     */
+    Float sdWeightByCompetitionIdAndGroupIdAndCrabSex(@Param("competitionId") Integer competitionId,
+                                                      @Param("groupId") Integer groupId,
+                                                      @Param("crabSex") Integer crabSex);
+
+    /**
+     * 计算某一年大赛的某一组的某一性别螃蟹的平均肥满度
+     *
+     * @param competitionId 大赛Id
+     * @param groupId       小组Id
+     * @param crabSex       性别 1雄 2雌
+     * @return 平均肥满度
+     */
+    Float averageFatnessByCompetitionIdAndGroupIdAndCrabSex(@Param("competitionId") Integer competitionId,
+                                                            @Param("groupId") Integer groupId,
+                                                            @Param("crabSex") Integer crabSex);
+
+    /**
+     * 计算某一年大赛的某一组的某一性别螃蟹的平均体重
+     *
+     * @param competitionId 大赛Id
+     * @param groupId       小组Id
+     * @param crabSex       性别 1雄 2雌
+     * @return 平均体重
+     */
+    Float averageWeightByCompetitionIdAndGroupIdAndCrabSex(@Param("competitionId") Integer competitionId,
+                                                           @Param("groupId") Integer groupId,
+                                                           @Param("crabSex") Integer crabSex);
+
+    /**
+     * 按照计算公式，修改某一年全部螃蟹的肥满度
+     *
+     * @param competitionId 大赛Id
+     * @param varFatnessM   雄蟹肥满度参数
+     * @param varFatnessF   雌蟹肥满度参数
+     * @return 修改记录条数
+     */
+    int updateCrabFatness(@Param("competitionId") Integer competitionId,
+                          @Param("varFatnessM") Float varFatnessM,
+                          @Param("varFatnessF") Float varFatnessF);
+
+    /**
      * 根据唯一标签来查找螃蟹信息
      *
      * @param label 标签

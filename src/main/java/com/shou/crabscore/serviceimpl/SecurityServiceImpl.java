@@ -33,6 +33,11 @@ public class SecurityServiceImpl implements SecurityService {
     @Override
     public Result<Object> verify(String jwt, Integer roleId, HttpServletRequest request) {
         try {
+            if (jwt == null) {
+                String errorMessage = request.getRemoteAddr() + "试图越界访问（JWT为空）" + request.getRequestURI();
+                log.error(errorMessage);
+                return new ResultUtil<>().setData(false, errorMessage, 403, false);
+            }
             Claims claims = parseJWT(jwt);
             String subjectJson = claims.getSubject();
             JSONObject jsonObject = JSON.parseObject(subjectJson);
@@ -42,11 +47,11 @@ public class SecurityServiceImpl implements SecurityService {
             if (searchResult == null) {
                 String errorMessage = request.getRemoteAddr() + "试图越界访问（仿冒用户）" + jwtUserName + " IP:" + request.getRequestURI();
                 log.error(errorMessage);
-                return new ResultUtil<>().setData(false, errorMessage, 401, false);
+                return new ResultUtil<>().setData(false, errorMessage, 403, false);
             } else if (!jwtRoleId.equals(searchResult.getRoleId())) {
                 String errorMessage = request.getRemoteAddr() + "试图越界访问（仿冒用户组）" + roleId + " IP:" + request.getRequestURI();
                 log.error(errorMessage);
-                return new ResultUtil<>().setData(false, errorMessage, 401, false);
+                return new ResultUtil<>().setData(false, errorMessage, 403, false);
             } else if (!claims.get(CommonConstant.MYKEY, String.class).equals(CommonConstant.MYKEY_VALUE)) {
                 String errorMessage = request.getRemoteAddr() + "试图越界访问（MYKEY不正确）" + claims.get(CommonConstant.MYKEY, String.class) + " IP:" + request.getRequestURI();
                 log.error(errorMessage);
@@ -54,7 +59,7 @@ public class SecurityServiceImpl implements SecurityService {
             } else if (!jwtRoleId.equals(roleId) && !roleId.equals(CommonConstant.USER_TYPE_COMMON)) {
                 String errorMessage = request.getRemoteAddr() + "试图越界访问（数据正常）" + request.getRequestURI();
                 log.error(errorMessage);
-                return new ResultUtil<>().setData(false, errorMessage, 401, false);
+                return new ResultUtil<>().setData(false, errorMessage, 403, false);
             } else {
                 return new ResultUtil<>().setData(true, "访问成功", 200, true);
             }
@@ -62,12 +67,12 @@ public class SecurityServiceImpl implements SecurityService {
             e.printStackTrace();
             String errorMessage = request.getRemoteAddr() + "试图越界访问（JWT过期）" + request.getRequestURI();
             log.error(errorMessage);
-            return new ResultUtil<>().setData(false, errorMessage, 401, false);
+            return new ResultUtil<>().setData(false, errorMessage, 403, false);
         } catch (UnsupportedJwtException | MalformedJwtException | SignatureException | IllegalArgumentException e) {
             e.printStackTrace();
             String errorMessage = request.getRemoteAddr() + "试图越界访问（JWT本身有其他问题）" + request.getRequestURI();
             log.error(errorMessage);
-            return new ResultUtil<>().setData(false, errorMessage, 401, false);
+            return new ResultUtil<>().setData(false, errorMessage, 403, false);
         }
     }
 }
