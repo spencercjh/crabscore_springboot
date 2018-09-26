@@ -34,14 +34,18 @@ JJWT 0.9.0 (设置Api访问权限)
 配置使用指南：https://blog.csdn.net/qq_37636695/article/details/79265711
 
 网易云短信 (手机短信验证登陆/注册)
-https://dev.yunxin.163.com/docs/product/%E7%9F%AD%E4%BF%A1/%E7%9F%AD%E4%BF%A1%E6%8E%A5%E5%85%A5%E7%A4%BA%E4%BE%8B
+
+官方指南：https://dev.yunxin.163.com/docs/product/%E7%9F%AD%E4%BF%A1/%E7%9F%AD%E4%BF%A1%E6%8E%A5%E5%85%A5%E7%A4%BA%E4%BE%8B
+
+七牛云存储 (照片等文件存储)
+
+配置直接参考x-boot中的相关代码和官方指南
 
 还会尝试使用更多时下最流行的产品……
 
 plan:
 
-
-七牛云存储 (照片等文件存储)
+Redis
 
 #### 参考 
 参考项目：https://gitee.com/Exrick/x-boot
