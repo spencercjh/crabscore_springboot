@@ -1,4 +1,4 @@
-package com.shou.crabscore.common.util.netease;
+package com.shou.crabscore.common.util;
 
 import java.security.MessageDigest;
 

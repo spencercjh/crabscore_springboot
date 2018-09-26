@@ -6,7 +6,7 @@ import com.shou.crabscore.common.constant.CommonConstant;
 import com.shou.crabscore.common.util.JwtUtil;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.util.UsernameUtil;
-import com.shou.crabscore.common.util.netease.MessageUtil;
+import com.shou.crabscore.common.util.MessageUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.User;
 import com.shou.crabscore.service.UserService;
@@ -32,10 +32,12 @@ import java.util.Map;
 @RequestMapping("/api/common")
 public class LoginController {
     private final UserService userService;
+    private final MessageUtil messageUtil;
 
     @Autowired
-    public LoginController(UserService userService) {
+    public LoginController(UserService userService, MessageUtil messageUtil) {
         this.userService = userService;
+        this.messageUtil = messageUtil;
     }
 
     @GetMapping("/login")
@@ -93,6 +95,7 @@ public class LoginController {
         }
     }
 
+    @SuppressWarnings("Duplicates")
     @GetMapping("/code")
     @ApiOperation(value = "请求发送验证码短信")
     @ApiResponses({@ApiResponse(code = 200, message = "验证码发送成功"),
@@ -101,7 +104,7 @@ public class LoginController {
     public Result<Object> sendCode(@ApiParam(name = "mobile", value = "手机号", type = "String") @RequestParam String mobile) {
         if (UsernameUtil.mobile(mobile)) {
             try {
-                if (MessageUtil.sendCode(mobile)) {
+                if (messageUtil.sendCode(mobile)) {
                     return new ResultUtil<>().setSuccessMsg("验证码发送成功");
                 } else {
                     return new ResultUtil<>().setErrorMsg("验证码发送失败");
@@ -116,6 +119,7 @@ public class LoginController {
         }
     }
 
+    @SuppressWarnings("Duplicates")
     @PostMapping("/code")
     @ApiOperation(value = "请求校验验证码")
     @ApiResponses({@ApiResponse(code = 200, message = ""),})
@@ -123,7 +127,7 @@ public class LoginController {
                                      @ApiParam(name = "code", value = "验证码", type = "String") @RequestParam String code) {
         if (UsernameUtil.mobile(mobile) && NumberUtil.isNumber(code)) {
             try {
-                if (MessageUtil.verifyCode(mobile, code)) {
+                if (messageUtil.verifyCode(mobile, code)) {
                     return new ResultUtil<>().setSuccessMsg("验证码校验成功");
                 } else {
                     return new ResultUtil<>().setErrorMsg(502, "验证码无效");
