@@ -4,15 +4,20 @@ import com.shou.crabscore.common.util.JasyptUtil;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
+import redis.clients.jedis.Jedis;
 
 @Log4j2
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CrabScoreApplicationTests {
 
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Test
     public void contextLoads() {
@@ -27,4 +32,11 @@ public class CrabScoreApplicationTests {
         log.info("appsecret:" + JasyptUtil.encryptPwd(password, "123"));
     }
 
+    @Test
+    public void testRedis() {
+        Jedis jedis = new Jedis("47.98.114.197");
+        jedis.auth("ldd");
+        jedis.set("age", "1");
+      log.info(jedis.get("age"));
+    }
 }
