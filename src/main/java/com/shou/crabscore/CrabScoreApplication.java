@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 /**
  * @author spencercjh
  */
-@SpringBootApplication(scanBasePackages = {"com.shou.crabscore"},exclude={DataSourceAutoConfiguration.class})
+@SpringBootApplication(scanBasePackages = {"com.shou.crabscore"})
 @MapperScan(basePackages = {"com.shou.crabscore.dao"}, annotationClass = Repository.class)
 @EntityScan(basePackages = {"com.shou.crabscore.entity"})
 @ComponentScan(basePackages = {"com.shou.crabscore.*"})
