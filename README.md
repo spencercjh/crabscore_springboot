@@ -1,4 +1,4 @@
-#  / 基于Spring Boot2.x 的REST特色河蟹大赛评比管理系统
+#  基于Spring Boot2.x 的REST特色河蟹大赛评比管理系统
 
 ## 项目介绍
 基于SpringBoot 2.x和Spring 5.x的SSM框架的Restful Android App服务端
