@@ -152,6 +152,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+            <version>1.18.2</version>
         </dependency>
 
         <!--Spring Boot log4j2 -->
@@ -195,7 +196,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.1.41</version>
+            <version>1.2.51</version>
         </dependency>
 
         <!-- Jasypt加密 -->
@@ -209,14 +210,14 @@
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-            <version>0.9.0</version>
+            <version>0.9.1</version>
         </dependency>
 
         <!-- Hutool工具包 -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>4.1.12</version>
+            <version>4.1.18</version>
         </dependency>
 
         <!-- 发送网络请求用到的apace http包 -->
