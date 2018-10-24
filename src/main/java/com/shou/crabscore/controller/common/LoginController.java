@@ -48,9 +48,12 @@ public class LoginController {
             @ApiResponse(code = 502, message = "用户名不存在"),
             @ApiResponse(code = 503, message = "用户组选择错误"),
             @ApiResponse(code = 504, message = "密码错误")})
-    public Result<Object> login(@ApiParam(name = "username", value = "用户名", type = "String") @RequestParam String username,
-                                @ApiParam(name = "password", value = "密码", type = "String") @RequestParam String password,
-                                @ApiParam(name = "roleId", value = "用户组", type = "Integer") @RequestParam Integer roleId,
+    public Result<Object> login(@ApiParam(name = "username", value = "用户名", type = "String")
+                                @RequestParam String username,
+                                @ApiParam(name = "password", value = "密码", type = "String")
+                                @RequestParam String password,
+                                @ApiParam(name = "roleId", value = "用户组", type = "Integer")
+                                @RequestParam Integer roleId,
                                 HttpServletResponse response) {
         User searchResult = this.userService.selectByUserName(username);
         if (searchResult == null) {
