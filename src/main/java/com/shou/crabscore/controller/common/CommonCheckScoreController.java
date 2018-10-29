@@ -1,6 +1,6 @@
 package com.shou.crabscore.controller.common;
 
-import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.CharUtil;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.Group;
@@ -39,7 +39,7 @@ public class CommonCheckScoreController {
             @ApiResponse(code = 501, message = "competitionId为空")})
     public Result<Object> fatnessPrize(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
                                        @PathVariable("competitionId") Integer competitionId) {
-        if (NumberUtil.isBlankChar(competitionId)) {
+        if (CharUtil.isBlankChar(competitionId)) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
             List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOrderByFatnessScore(competitionId);
@@ -55,7 +55,7 @@ public class CommonCheckScoreController {
             @ApiResponse(code = 501, message = "competitionId为空")})
     public Result<Object> qualityPrize(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
                                        @PathVariable("competitionId") Integer competitionId) {
-        if (NumberUtil.isBlankChar(competitionId)) {
+        if (CharUtil.isBlankChar(competitionId)) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
             List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOrderByQualityScore(competitionId);
@@ -71,7 +71,7 @@ public class CommonCheckScoreController {
             @ApiResponse(code = 501, message = "competitionId为空")})
     public Result<Object> tastePrize(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
                                      @PathVariable("competitionId") Integer competitionId) {
-        if (NumberUtil.isBlankChar(competitionId)) {
+        if (CharUtil.isBlankChar(competitionId)) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
             List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOrderByTasteScore(competitionId);

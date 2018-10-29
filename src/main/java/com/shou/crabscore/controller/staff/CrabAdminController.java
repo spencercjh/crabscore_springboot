@@ -1,6 +1,6 @@
 package com.shou.crabscore.controller.staff;
 
-import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.StrUtil;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
@@ -39,7 +39,7 @@ public class CrabAdminController {
             @ApiResponse(code = 501, message = "crabId为空")})
     public Result<Object> deleteCrabInfo(@ApiParam(name = "crabId", value = "螃蟹Id", type = "Integer")
                                          @PathVariable("crabId") Integer crabId, @RequestHeader("jwt") String jwt) {
-        if (NumberUtil.isBlankChar(crabId)) {
+        if (CharUtil.isBlankChar(crabId)) {
             return new ResultUtil<>().setErrorMsg(501, "crabId为空");
         } else {
             int deleteResult = this.crabService.deleteByPrimaryKey(crabId);
@@ -55,7 +55,7 @@ public class CrabAdminController {
             @ApiResponse(code = 501, message = "crabId为空")})
     public Result<Object> insertCrabInfo(@ApiParam(name = "crabInfo", value = "螃蟹信息Json", type = "String")
                                          @RequestBody Crab crab, @RequestHeader("jwt") String jwt) {
-        if (NumberUtil.isBlankChar(crab.getCrabId())) {
+        if (CharUtil.isBlankChar(crab.getCrabId())) {
             return new ResultUtil<>().setErrorMsg(501, "crabId为空");
         } else {
             return this.crabService.insert(crab) <= 0 ? new ResultUtil<>().setErrorMsg("插入螃蟹信息失败") :
@@ -74,7 +74,7 @@ public class CrabAdminController {
                                   @PathVariable("groupId") Integer groupId,
                                   @ApiParam(name = "crabSex", value = "性别，1:雄 2：雌", type = "Integer")
                                   @PathVariable("crabSex") Integer crabSex, @RequestHeader("jwt") String jwt) {
-        if (NumberUtil.isBlankChar(competitionId) || NumberUtil.isBlankChar(groupId) || NumberUtil.isBlankChar(crabSex)) {
+        if (CharUtil.isBlankChar(competitionId) || CharUtil.isBlankChar(groupId) || CharUtil.isBlankChar(crabSex)) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId或groupId或crabSex为空");
         } else {
             List<Crab> crabList = this.crabService.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
@@ -90,7 +90,7 @@ public class CrabAdminController {
             @ApiResponse(code = 501, message = "crabId为空")})
     public Result<Object> updateCrabInfo(@ApiParam(name = "crabInfo", value = "螃蟹信息Json", type = "String")
                                          @RequestBody Crab crab, @RequestHeader("jwt") String jwt) {
-        if (NumberUtil.isBlankChar(crab.getCrabId())) {
+        if (CharUtil.isBlankChar(crab.getCrabId())) {
             return new ResultUtil<>().setErrorMsg(501, "crabId为空");
         } else {
             return this.crabService.updateByPrimaryKey(crab) <= 0 ? new ResultUtil<>().setErrorMsg("更新螃蟹信息失败") :
@@ -109,7 +109,7 @@ public class CrabAdminController {
             return new ResultUtil<>().setErrorMsg(501, "label为空");
         } else {
             Crab crab = this.crabService.selectByLabel(label);
-            return NumberUtil.isBlankChar(crab.getCrabId()) ? new ResultUtil<>().setErrorMsg("查找螃蟹信息失败") :
+            return CharUtil.isBlankChar(crab.getCrabId()) ? new ResultUtil<>().setErrorMsg("查找螃蟹信息失败") :
                     new ResultUtil<>().setData(crab, "查找螃蟹信息成功");
         }
     }

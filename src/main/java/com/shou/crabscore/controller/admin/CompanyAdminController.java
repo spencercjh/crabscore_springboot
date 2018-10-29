@@ -1,6 +1,6 @@
 package com.shou.crabscore.controller.admin;
 
-import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.StrUtil;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
@@ -43,7 +43,7 @@ public class CompanyAdminController {
     public Result<Object> singleCompany(@ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
                                         @PathVariable("companyId") Integer companyId,
                                         @RequestHeader("jwt") String jwt) {
-        if (NumberUtil.isBlankChar(companyId)) {
+        if (CharUtil.isBlankChar(companyId)) {
             return new ResultUtil<>().setErrorMsg(501, "companyId为空");
         } else {
             Company company = this.companyService.selectByPrimaryKey(companyId);
@@ -77,7 +77,7 @@ public class CompanyAdminController {
                                    @ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
                                    @PathVariable("companyId") Integer companyId,
                                    @RequestHeader("jwt") String jwt) {
-        if (NumberUtil.isBlankChar(competitionId) || NumberUtil.isBlankChar(companyId)) {
+        if (CharUtil.isBlankChar(competitionId) || CharUtil.isBlankChar(companyId)) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId或者companyId为空");
         } else {
             List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOneCompany(competitionId, companyId);
@@ -97,7 +97,7 @@ public class CompanyAdminController {
             @ApiResponse(code = 501, message = "主键CompanyId为空")})
     public Result<Object> updateCompanyProperty(@ApiParam("参选单位信息Json") @RequestBody Company company,
                                                 @RequestHeader("jwt") String jwt) {
-        if (NumberUtil.isBlankChar(company.getCompanyId())) {
+        if (CharUtil.isBlankChar(company.getCompanyId())) {
             return new ResultUtil<>().setErrorMsg(501, "主键CompanyId为空");
         } else {
             int updateResult = this.companyService.updateByPrimaryKeySelective(company);
@@ -114,7 +114,7 @@ public class CompanyAdminController {
             @ApiResponse(code = 501, message = "主键CompanyId为空为空")})
     public Result<Object> insertCompanyProperty(@ApiParam("参选单位信息Json") @RequestBody Company company,
                                                 @RequestHeader("jwt") String jwt) {
-        if (NumberUtil.isBlankChar(company.getCompanyId())) {
+        if (CharUtil.isBlankChar(company.getCompanyId())) {
             return new ResultUtil<>().setErrorMsg(501, "主键CompanyId为空为空");
         } else {
             int updateResult = this.companyService.insert(company);
@@ -131,7 +131,7 @@ public class CompanyAdminController {
     public Result<Object> deleteCompany(@ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
                                         @PathVariable("companyId") Integer companyId,
                                         @RequestHeader("jwt") String jwt) {
-        if (NumberUtil.isBlankChar(companyId)) {
+        if (CharUtil.isBlankChar(companyId)) {
             return new ResultUtil<>().setErrorMsg("companyId为空");
         } else {
             int deleteResult = this.companyService.deleteByPrimaryKey(companyId);

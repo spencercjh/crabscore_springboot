@@ -18,6 +18,7 @@ import redis.clients.jedis.JedisPoolConfig;
  */
 @Log4j2
 //@Configuration
+@Deprecated
 public class RedisConfig {
     @Value("${spring.redis.host}")
     private String host;
@@ -87,7 +88,7 @@ public class RedisConfig {
         //通过构造器来构造jedis客户端配置
         JedisClientConfiguration jedisClientConfiguration = jpcb.build();
         //单机配置 + 客户端配置 = jedis连接工厂
-        log.info("redis:" + host + ":" + port+" password:"+password);
+        log.info("redis:" + host + ":" + port + " password:" + password);
         return new JedisConnectionFactory(redisStandaloneConfiguration, jedisClientConfiguration);
     }
 

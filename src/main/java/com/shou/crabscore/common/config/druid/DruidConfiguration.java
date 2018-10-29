@@ -67,7 +67,7 @@ public class DruidConfiguration {
         servletRegistrationBean.addInitParameter("allow", statViewServletAllow);
         servletRegistrationBean.addInitParameter("deny", statViewServletDeny);
         servletRegistrationBean.addInitParameter("loginUsername", statViewServletLoginUsername);
-        servletRegistrationBean.addInitParameter("loginPassword", JasyptUtil.decryptPwd(jasyptPassword, statViewServletLoginPassword));
+        servletRegistrationBean.addInitParameter("loginPassword", statViewServletLoginPassword);
         servletRegistrationBean.addInitParameter("resetEnable", statViewServletResetEnable);
         return servletRegistrationBean;
     }

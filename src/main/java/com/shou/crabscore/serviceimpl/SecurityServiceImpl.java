@@ -63,6 +63,11 @@ public class SecurityServiceImpl implements SecurityService {
             } else {
                 return new ResultUtil<>().setData(true, "访问成功", 200, true);
             }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            String errorMessage = request.getRemoteAddr() + "权限参数为空" + request.getRequestURI();
+            log.error(errorMessage);
+            return new ResultUtil<>().setData(false, errorMessage, 403, false);
         } catch (ExpiredJwtException e) {
             e.printStackTrace();
             String errorMessage = request.getRemoteAddr() + "试图越界访问（JWT过期）" + request.getRequestURI();

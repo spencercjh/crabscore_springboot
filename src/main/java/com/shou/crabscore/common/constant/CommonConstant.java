@@ -54,18 +54,23 @@ public interface CommonConstant {
      */
     Integer USER_TYPE_ADMIN = 1;
 
+    String ADMIN = "admin";
     /**
      * 评委
      */
     Integer USER_TYPE_JUDGE = 2;
 
+    String JUDGE = "judge";
     /**
      * 工作人员
      */
     Integer USER_TYPE_STAFF = 3;
 
+    String STAFF = "staff";
     /**
      * 参选单位
      */
     Integer USER_TYPE_COMPANY = 4;
+
+    String COMPANY = "company";
 }

@@ -1,4 +1,4 @@
-# Characteristic Rive Crab Tournament Rating Management System 's Sever Based On Spring Boot 2.x Framework
+# Characteristic River Crab Tournament Rating Management System 's Sever Based On Spring Boot 2.x Framework
 
 ## Project Introduce
 A Android app's restful Sever based on Spring Boot 2.x and Spring 5.x
@@ -14,7 +14,7 @@ Sever：REST (add:POST delete:DELETE update:PUT select:GET)
 ## Using Package and Library 
 
 Spring Boot 2.0.5
-
+ 
 Spring 5.0.9 
 
 Mybatis 1.3.2 (ORM)

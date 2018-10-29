@@ -1,6 +1,6 @@
 package com.shou.crabscore.controller.admin;
 
-import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.StrUtil;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
@@ -43,7 +43,7 @@ public class CompetitionAdminController {
     public Result<Object> singleCompetition(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
                                             @PathVariable("competitionId") Integer competitionId,
                                             @RequestHeader("jwt") String jwt) {
-        if (NumberUtil.isBlankChar(competitionId)) {
+        if (CharUtil.isBlankChar(competitionId)) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
             Competition competition = this.competitionService.selectByPrimaryKey(competitionId);
@@ -73,7 +73,7 @@ public class CompetitionAdminController {
             @ApiResponse(code = 501, message = "CompetitionId为空")})
     public Result<Object> updateCompetitionProperty(@ApiParam("大赛信息Json") @RequestBody Competition competition,
                                                     @RequestHeader("jwt") String jwt) {
-        if (NumberUtil.isBlankChar(competition.getCompetitionId())) {
+        if (CharUtil.isBlankChar(competition.getCompetitionId())) {
             return new ResultUtil<>().setErrorMsg(501, "CompetitionId为空");
         } else {
             return this.competitionService.updateByPrimaryKeySelective(competition) == 0 ?
@@ -87,7 +87,7 @@ public class CompetitionAdminController {
             @ApiResponse(code = 500, message = "查询当前大赛Id失败")})
     public Result<Object> presentCompetitionId(@RequestHeader("jwt") String jwt) {
         CompetitionConfig competitionConfig = this.competitionConfigService.selectByPrimaryKey(1);
-        return NumberUtil.isBlankChar(competitionConfig.getCompetitionId()) ?
+        return CharUtil.isBlankChar(competitionConfig.getCompetitionId()) ?
                 new ResultUtil<>().setData(competitionConfig.getCompetitionId(), "查询当前大赛Id成功") :
                 new ResultUtil<>().setErrorMsg("查询当前大赛Id失败");
     }
@@ -100,7 +100,7 @@ public class CompetitionAdminController {
             @ApiResponse(code = 501, message = "CompetitionId为空")})
     public Result<Object> updatePresentCompetitionId(@ApiParam("大赛配置Json") @RequestBody CompetitionConfig competitionConfig,
                                                      @RequestHeader("jwt") String jwt) {
-        if (NumberUtil.isBlankChar(competitionConfig.getCompetitionId()) || NumberUtil.isBlankChar(competitionConfig.getId())) {
+        if (CharUtil.isBlankChar(competitionConfig.getCompetitionId()) || CharUtil.isBlankChar(competitionConfig.getId())) {
             return new ResultUtil<>().setErrorMsg(501, "CompetitionId为空");
         } else {
             return this.competitionConfigService.updateByPrimaryKey(competitionConfig) == 0 ?
