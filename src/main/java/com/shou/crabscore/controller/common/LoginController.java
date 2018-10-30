@@ -12,6 +12,8 @@ import com.shou.crabscore.entity.User;
 import com.shou.crabscore.service.UserService;
 import io.swagger.annotations.*;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +43,7 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    @ApiOperation(value = "用户登录", notes = "参数检查交给Android端完成")
+    @ApiOperation(value = "用户登录,这个接口会在body里返回JWT！！！", notes = "参数检查交给Android端完成")
     @ResponseHeader(name = "jwt", description = "JWT串")
     @ApiResponses({@ApiResponse(code = 200, message = "登录成功"),
             @ApiResponse(code = 501, message = "用户组参数错误"),
@@ -53,8 +55,7 @@ public class LoginController {
                                 @ApiParam(name = "password", value = "密码", type = "String")
                                 @RequestParam String password,
                                 @ApiParam(name = "roleId", value = "用户组", type = "Integer")
-                                @RequestParam Integer roleId,
-                                HttpServletResponse response) {
+                                @RequestParam Integer roleId) {
         User searchResult = this.userService.selectByUserName(username);
         if (searchResult == null) {
             return new ResultUtil<>().setErrorMsg(502, "用户名不存在");
@@ -69,8 +70,7 @@ public class LoginController {
             subject.put("username", username);
             subject.put("roleId", roleId);
             String jwt = JwtUtil.createJWT(String.valueOf(subject.hashCode()), JSON.toJSONString(subject));
-            response.addHeader("jwt", jwt);
-            return new ResultUtil<>().setSuccessMsg("登录成功");
+            return new ResultUtil<>().setData(jwt, "登录成功");
         } else {
             return new ResultUtil<>().setErrorMsg(501, "用户组参数错误");
         }
@@ -125,7 +125,10 @@ public class LoginController {
     @SuppressWarnings("Duplicates")
     @PostMapping("/code")
     @ApiOperation(value = "请求校验验证码")
-    @ApiResponses({@ApiResponse(code = 200, message = ""),})
+    @ApiResponses({@ApiResponse(code = 200, message = "验证码校验成功"),
+            @ApiResponse(code = 501, message = "手机号或验证码格式有误"),
+            @ApiResponse(code = 502, message = "验证码无效"),
+            @ApiResponse(code = 500, message = "验证码校验失败")})
     public Result<Object> verifyCode(@ApiParam(name = "mobile", value = "手机号", type = "String") @RequestParam String mobile,
                                      @ApiParam(name = "code", value = "验证码", type = "String") @RequestParam String code) {
         if (UsernameUtil.mobile(mobile) && NumberUtil.isNumber(code)) {
@@ -141,6 +144,48 @@ public class LoginController {
             }
         } else {
             return new ResultUtil<>().setErrorMsg(501, "手机号或验证码格式有误");
+        }
+    }
+
+    @PostMapping("/direct")
+    @ApiOperation(value = "输入手机号直接登陆或者注册，注册完自动完成登陆，这个接口会在body里返回JWT！！！")
+    @ApiResponses({@ApiResponse(code = 200, message = "直接登陆成功（新注册用户）/直接登陆成功（老用户）"),
+            @ApiResponse(code = 500, message = "直接登陆失败（新用户注册失败）"),
+            @ApiResponse(code = 501, message = "手机号有误")})
+    public Result<Object> directLogin(@ApiParam(name = "mobile", value = "手机号", type = "String") @RequestParam String mobile) {
+        if (UsernameUtil.mobile(mobile)) {
+            User searchResult = this.userService.selectByUserName(mobile);
+            if (searchResult == null) {
+                String password = new String(Hex.encodeHex(DigestUtils.md5(mobile))).toUpperCase();
+                User newUser = new User(mobile, password,
+                        "用户" + mobile, CommonConstant.USER_TYPE_COMPANY, CommonConstant.USER_STATUS_LOCK, mobile,
+                        CommonConstant.USER_COMPETITION_ALL, new Date(System.currentTimeMillis()), mobile,
+                        new Date(System.currentTimeMillis()), mobile);
+                int insertResult = this.userService.insert(newUser);
+                if (insertResult > 0) {
+                    Map<String, Object> subject = new HashMap<>(2);
+                    subject.put("username", mobile);
+                    subject.put("roleId", CommonConstant.USER_TYPE_COMPANY);
+                    String jwt = JwtUtil.createJWT(String.valueOf(subject.hashCode()), JSON.toJSONString(subject));
+                    Map<String, Object> result = new HashMap<>(2);
+                    result.put("jwt", jwt);
+                    result.put("roleId", CommonConstant.USER_TYPE_COMPANY);
+                    return new ResultUtil<>().setData(result, "直接登陆成功（新注册用户）");
+                } else {
+                    return new ResultUtil<>().setErrorMsg(500, "直接注册失败");
+                }
+            } else {
+                Map<String, Object> subject = new HashMap<>(2);
+                subject.put("username", searchResult.getUserName());
+                subject.put("roleId", searchResult.getRoleId());
+                String jwt = JwtUtil.createJWT(String.valueOf(subject.hashCode()), JSON.toJSONString(subject));
+                Map<String, Object> result = new HashMap<>(2);
+                result.put("jwt", jwt);
+                result.put("roleId", searchResult.getRoleId());
+                return new ResultUtil<>().setData(result, "直接登陆成功（老用户）");
+            }
+        } else {
+            return new ResultUtil<>().setErrorMsg(501, "手机号有误");
         }
     }
 }
