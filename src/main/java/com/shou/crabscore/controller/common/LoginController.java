@@ -92,7 +92,7 @@ public class LoginController {
                     CommonConstant.USER_COMPETITION_ALL, new Date(System.currentTimeMillis()), username,
                     new Date(System.currentTimeMillis()), username);
             int insertResult = this.userService.insert(newUser);
-            return insertResult == 0 ? new ResultUtil<>().setSuccessMsg("注册成功") : new ResultUtil<>().setErrorMsg("注册失败");
+            return insertResult > 0 ? new ResultUtil<>().setSuccessMsg("注册成功") : new ResultUtil<>().setErrorMsg("注册失败");
         } else {
             return new ResultUtil<>().setErrorMsg(501, "用户名已存在");
         }
