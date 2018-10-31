@@ -4,9 +4,9 @@ import cn.hutool.core.util.NumberUtil;
 import com.alibaba.fastjson.JSON;
 import com.shou.crabscore.common.constant.CommonConstant;
 import com.shou.crabscore.common.util.JwtUtil;
+import com.shou.crabscore.common.util.MessageUtil;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.util.UsernameUtil;
-import com.shou.crabscore.common.util.MessageUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.User;
 import com.shou.crabscore.service.UserService;
@@ -17,7 +17,6 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
