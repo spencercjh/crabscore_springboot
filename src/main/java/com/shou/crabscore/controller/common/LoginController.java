@@ -188,4 +188,27 @@ public class LoginController {
             return new ResultUtil<>().setErrorMsg(501, "手机号有误");
         }
     }
+
+    @PutMapping("/password")
+    @ApiResponses({@ApiResponse(code = 200, message = "修改密码成功"),
+            @ApiResponse(code = 500, message = "没有对应的用户"),
+            @ApiResponse(code = 501, message = "修改密码失败")})
+    @ApiOperation(value = "忘记密码的用户通过手机号校验后修改自己的密码")
+    public Result<Object> forgetPassword(@ApiParam(name = "mobile", value = "手机号", type = "String") @RequestParam String mobile,
+                                         @ApiParam(name = "newPassword", value = "新密码", type = "String") @RequestParam String password) {
+        User searchResult = this.userService.selectByUserName(mobile);
+        if (searchResult == null) {
+            return new ResultUtil<>().setErrorMsg(500, "没有对应的用户");
+        } else {
+            searchResult.setPassword(password);
+            searchResult.setUpdateUser(searchResult.getUserName());
+            searchResult.setUpdateDate(new Date(System.currentTimeMillis()));
+            int updateResult = this.userService.updateByPrimaryKeySelective(searchResult);
+            if (updateResult <= 0) {
+                return new ResultUtil<>().setErrorMsg(501, "修改密码失败");
+            } else {
+                return new ResultUtil<>().setSuccessMsg("修改密码成功");
+            }
+        }
+    }
 }
