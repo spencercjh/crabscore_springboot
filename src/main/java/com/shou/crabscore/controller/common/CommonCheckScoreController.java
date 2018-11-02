@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Log4j2
 @RestController
-@Api(description = "公共三大奖查分接口")
+@Api(description = "公共用户组-公共三大奖查分接口")
 @RequestMapping("/api/common/score")
 public class CommonCheckScoreController {
     private final GroupService groupService;

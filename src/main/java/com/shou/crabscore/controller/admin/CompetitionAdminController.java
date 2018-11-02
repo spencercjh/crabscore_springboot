@@ -23,7 +23,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Log4j2
 @RestController
-@Api(description = "大赛后台管理接口")
+@Api(description = "管理员用户组-大赛后台管理接口")
 @RequestMapping("/api/admin/competition")
 public class CompetitionAdminController {
     private final CompetitionConfigService competitionConfigService;

@@ -24,7 +24,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Log4j2
 @RestController
-@Api(description = "评委评分接口")
+@Api(description = "评委用户组-评委评分接口")
 @RequestMapping("/api/judge")
 public class JudgeController {
     private final GroupService groupService;

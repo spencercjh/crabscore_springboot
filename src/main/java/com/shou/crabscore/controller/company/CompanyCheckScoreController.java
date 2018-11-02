@@ -21,7 +21,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Log4j2
 @RestController
-@Api(description = "参选单位查分接口")
+@Api(description = "参选单位用户组-参选单位查分接口")
 @RequestMapping("/api/company/score")
 public class CompanyCheckScoreController {
     private final QualityScoreService qualityScoreService;

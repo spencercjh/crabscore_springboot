@@ -20,7 +20,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Log4j2
-@Api(description = "工作人员接口")
+@Api(description = "工作人员用户组-工作人员接口")
 @RestController
 @RequestMapping("/api/staff")
 public class CrabAdminController {

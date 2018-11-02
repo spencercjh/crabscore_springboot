@@ -23,7 +23,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Log4j2
 @RestController
-@Api(description = "参选单位后台管理接口")
+@Api(description = "管理员用户组-参选单位后台管理接口")
 @RequestMapping("/api/admin/company")
 public class CompanyAdminController {
     private final CompanyService companyService;

@@ -22,7 +22,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Log4j2
 @RestController
-@Api(description = "用户后台管理接口")
+@Api(description = "管理员用户组-用户后台管理接口")
 @RequestMapping("/api/admin/user")
 public class UserAdminController {
     private final UserService userService;
