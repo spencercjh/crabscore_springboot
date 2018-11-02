@@ -63,7 +63,7 @@ public class CrabAdminController {
         }
     }
 
-    @GetMapping("/crabs/{competitionId}/{groupId}/{crabSex}")
+    @GetMapping("/crabs/{competitionId}/{groupId}/{crabSex}/{pageNum}/{pageSize}")
     @ApiOperation("查询某一年某一组某一性别的螃蟹信息")
     @ApiResponses({@ApiResponse(code = 200, message = "查询螃蟹信息成功"),
             @ApiResponse(code = 201, message = "crabList为空"),
@@ -73,11 +73,17 @@ public class CrabAdminController {
                                   @ApiParam(name = "groupId", value = "小组Id", type = "Integer")
                                   @PathVariable("groupId") Integer groupId,
                                   @ApiParam(name = "crabSex", value = "性别，1:雄 2：雌", type = "Integer")
-                                  @PathVariable("crabSex") Integer crabSex, @RequestHeader("jwt") String jwt) {
+                                  @PathVariable("crabSex") Integer crabSex,
+                                  @RequestHeader("jwt") String jwt,
+                                  @ApiParam(name = "pageNum", value = "页数", type = "Integer")
+                                  @PathVariable("pageNum") Integer pageNum,
+                                  @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
+                                  @PathVariable("pageSize") Integer pageSize) {
         if (CharUtil.isBlankChar(competitionId) || CharUtil.isBlankChar(groupId) || CharUtil.isBlankChar(crabSex)) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId或groupId或crabSex为空");
         } else {
-            List<Crab> crabList = this.crabService.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
+            List<Crab> crabList = this.crabService.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId,
+                    crabSex, pageNum, pageSize);
             return crabList.size() == 0 ? new ResultUtil<>().setSuccessMsg(201, "crabList为空") :
                     new ResultUtil<>().setData(crabList, "查询螃蟹信息成功");
         }

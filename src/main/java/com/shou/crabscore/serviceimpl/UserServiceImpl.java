@@ -1,5 +1,6 @@
 package com.shou.crabscore.serviceimpl;
 
+import com.github.pagehelper.PageHelper;
 import com.shou.crabscore.dao.UserMapper;
 import com.shou.crabscore.entity.User;
 import com.shou.crabscore.service.UserService;
@@ -26,12 +27,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> selectAllUserSelective(Integer status) {
+    public List<User> selectAllUserSelective(Integer status, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return userMapper.selectAllUserSelective(status);
     }
 
     @Override
-    public List<User> selectAllUser() {
+    public List<User> selectAllUser(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return userMapper.selectAllUser();
     }
 

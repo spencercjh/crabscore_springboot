@@ -1,5 +1,6 @@
 package com.shou.crabscore.serviceimpl;
 
+import com.github.pagehelper.PageHelper;
 import com.shou.crabscore.dao.GroupMapper;
 import com.shou.crabscore.entity.Group;
 import com.shou.crabscore.service.GroupService;
@@ -25,27 +26,32 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public List<Group> selectAllGroupOneCompetition(Integer competitionId) {
+    public List<Group> selectAllGroupOneCompetition(Integer competitionId, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return groupMapper.selectAllGroupOneCompetition(competitionId);
     }
 
     @Override
-    public List<Group> selectAllGroupOneCompetitionOrderByQualityScore(Integer competitionId) {
+    public List<Group> selectAllGroupOneCompetitionOrderByQualityScore(Integer competitionId, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return groupMapper.selectAllGroupOneCompetitionOrderByQualityScore(competitionId);
     }
 
     @Override
-    public List<Group> selectAllGroupOneCompetitionOrderByTasteScore(Integer competitionId) {
+    public List<Group> selectAllGroupOneCompetitionOrderByTasteScore(Integer competitionId, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return groupMapper.selectAllGroupOneCompetitionOrderByTasteScore(competitionId);
     }
 
     @Override
-    public List<Group> selectAllGroupOneCompetitionOrderByFatnessScore(Integer competitionId) {
+    public List<Group> selectAllGroupOneCompetitionOrderByFatnessScore(Integer competitionId, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return groupMapper.selectAllGroupOneCompetitionOrderByFatnessScore(competitionId);
     }
 
     @Override
-    public List<Group> selectAllGroupOneCompetitionOneCompany(Integer competitionId, Integer companyId) {
+    public List<Group> selectAllGroupOneCompetitionOneCompany(Integer competitionId, Integer companyId, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return groupMapper.selectAllGroupOneCompetitionOneCompany(competitionId, companyId);
     }
 

@@ -17,11 +17,15 @@ public interface QualityScoreService {
      * @param competitionId 大赛Id
      * @param groupId       小组Id
      * @param crabSex       性别，1:雄 2：雌
+     * @param pageNum       pageNum
+     * @param pageSize      pageSize
      * @return 所有符合条件的种质分数信息记录
      */
     List<QualityScore> selectByCompetitionIdAndGroupIdAndCrabSex(@Param("competitionId") Integer competitionId,
                                                                  @Param("groupId") Integer groupId,
-                                                                 @Param("crabSex") Integer crabSex);
+                                                                 @Param("crabSex") Integer crabSex,
+                                                                 @Param("pageNum") int pageNum,
+                                                                 @Param("pageSize") int pageSize);
 
     /**
      * 通过主键删除

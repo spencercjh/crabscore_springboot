@@ -1,5 +1,6 @@
 package com.shou.crabscore.serviceimpl;
 
+import com.github.pagehelper.PageHelper;
 import com.shou.crabscore.dao.CrabMapper;
 import com.shou.crabscore.entity.Crab;
 import com.shou.crabscore.service.CrabService;
@@ -56,7 +57,9 @@ public class CrabServiceImpl implements CrabService {
     }
 
     @Override
-    public List<Crab> selectByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex) {
+    public List<Crab> selectByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex,
+                                                                int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return crabMapper.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
     }
 

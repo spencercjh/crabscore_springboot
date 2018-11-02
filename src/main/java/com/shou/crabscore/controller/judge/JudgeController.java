@@ -38,17 +38,22 @@ public class JudgeController {
         this.qualityScoreService = qualityScoreService;
     }
 
-    @GetMapping("/groups/{competitionId}")
+    @GetMapping("/groups/{competitionId}/{pageNum}/{pageSize}")
     @ApiOperation("查看所有比赛组")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有比赛组成功"),
             @ApiResponse(code = 201, message = "groupList为空"),
             @ApiResponse(code = 501, message = "competitionId为空")})
     public Result<Object> allGroup(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
-                                   @PathVariable("competitionId") Integer competitionId, @RequestHeader("jwt") String jwt) {
+                                   @PathVariable("competitionId") Integer competitionId,
+                                   @RequestHeader("jwt") String jwt,
+                                   @ApiParam(name = "pageNum", value = "页数", type = "Integer")
+                                   @PathVariable("pageNum") Integer pageNum,
+                                   @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
+                                   @PathVariable("pageSize") Integer pageSize) {
         if (CharUtil.isBlankChar(competitionId)) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
-            List<Group> groupList = this.groupService.selectAllGroupOneCompetition(competitionId);
+            List<Group> groupList = this.groupService.selectAllGroupOneCompetition(competitionId, pageNum, pageSize);
             if (groupList.size() == 0) {
                 return new ResultUtil<>().setSuccessMsg(201, "groupList为空");
             } else {

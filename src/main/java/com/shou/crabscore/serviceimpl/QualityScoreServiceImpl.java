@@ -1,5 +1,6 @@
 package com.shou.crabscore.serviceimpl;
 
+import com.github.pagehelper.PageHelper;
 import com.shou.crabscore.dao.QualityScoreMapper;
 import com.shou.crabscore.entity.QualityScore;
 import com.shou.crabscore.service.QualityScoreService;
@@ -25,7 +26,8 @@ public class QualityScoreServiceImpl implements QualityScoreService {
     }
 
     @Override
-    public List<QualityScore> selectByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex) {
+    public List<QualityScore> selectByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return qualityScoreMapper.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
     }
 

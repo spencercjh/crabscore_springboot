@@ -15,42 +15,63 @@ public interface GroupService {
      * 查询在某一届大赛中的所有组
      *
      * @param competitionId 大赛Id
+     * @param pageNum       pageNum
+     * @param pageSize      pageSize
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetition(@Param("competitionId") Integer competitionId);
+    List<Group> selectAllGroupOneCompetition(@Param("competitionId") Integer competitionId,
+                                             @Param("pageNum") int pageNum,
+                                             @Param("pageSize") int pageSize);
 
     /**
      * 查询在某一届大赛中的所有组并按照种质成绩从大到小排列
      *
      * @param competitionId 大赛Id
+     * @param pageNum       pageNum
+     * @param pageSize      pageSize
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetitionOrderByQualityScore(@Param("competitionId") Integer competitionId);
+    List<Group> selectAllGroupOneCompetitionOrderByQualityScore(@Param("competitionId") Integer competitionId,
+                                                                @Param("pageNum") int pageNum,
+                                                                @Param("pageSize") int pageSize);
 
     /**
      * 查询在某一届大赛中的所有组并按照口感成绩从大到小排列
      *
      * @param competitionId 大赛Id
+     * @param pageNum       pageNum
+     * @param pageSize      pageSize
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetitionOrderByTasteScore(@Param("competitionId") Integer competitionId);
+    List<Group> selectAllGroupOneCompetitionOrderByTasteScore(@Param("competitionId") Integer competitionId,
+                                                              @Param("pageNum") int pageNum,
+                                                              @Param("pageSize") int pageSize);
 
     /**
      * 查询在某一届大赛中的所有组并按照肥满度成绩从大到小排列
      *
      * @param competitionId 大赛Id
+     * @param pageNum       pageNum
+     * @param pageSize      pageSize
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetitionOrderByFatnessScore(@Param("competitionId") Integer competitionId);
+    List<Group> selectAllGroupOneCompetitionOrderByFatnessScore(@Param("competitionId") Integer competitionId,
+                                                                @Param("pageNum") int pageNum,
+                                                                @Param("pageSize") int pageSize);
 
     /**
      * 查询在某一届大赛中某一参选单位的所有组
      *
      * @param competitionId 大赛Id
      * @param companyId     参选单位Id
+     * @param pageNum       pageNum
+     * @param pageSize      pageSize
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetitionOneCompany(@Param("competitionId") Integer competitionId, @Param("companyId") Integer companyId);
+    List<Group> selectAllGroupOneCompetitionOneCompany(@Param("competitionId") Integer competitionId,
+                                                       @Param("companyId") Integer companyId,
+                                                       @Param("pageNum") int pageNum,
+                                                       @Param("pageSize") int pageSize);
 
     /**
      * 通过主键删除

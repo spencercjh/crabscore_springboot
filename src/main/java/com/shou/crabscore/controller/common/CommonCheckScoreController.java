@@ -32,49 +32,64 @@ public class CommonCheckScoreController {
         this.groupService = groupService;
     }
 
-    @GetMapping(value = "/fatnesses/{competitionId}")
+    @GetMapping(value = "/fatnesses/{competitionId}/{pageNum}/{pageSize}")
     @ApiOperation(value = "查询金蟹奖成绩", notes = "已在SQL中按照从大到小顺序排列")
     @ApiResponses({@ApiResponse(code = 200, message = "查找所有金蟹奖成绩成功"),
             @ApiResponse(code = 201, message = "没有金蟹奖成绩相关成绩"),
             @ApiResponse(code = 501, message = "competitionId为空")})
     public Result<Object> fatnessPrize(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
-                                       @PathVariable("competitionId") Integer competitionId) {
+                                       @PathVariable("competitionId") Integer competitionId,
+                                       @ApiParam(name = "pageNum", value = "页数", type = "Integer")
+                                       @PathVariable("pageNum") Integer pageNum,
+                                       @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
+                                       @PathVariable("pageSize") Integer pageSize) {
         if (CharUtil.isBlankChar(competitionId)) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
-            List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOrderByFatnessScore(competitionId);
+            List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOrderByFatnessScore(competitionId,
+                    pageNum, pageSize);
             return groupList.size() == 0 ? (new ResultUtil<>().setSuccessMsg(201, "没有金蟹奖成绩")) :
                     (new ResultUtil<>().setData(groupList, "查找所有金蟹奖成绩成功"));
         }
     }
 
-    @GetMapping(value = "/qualities/{competitionId}")
+    @GetMapping(value = "/qualities/{competitionId}/{pageNum}/{pageSize}")
     @ApiOperation(value = "查询种质奖成绩", notes = "已在SQL中按照从大到小顺序排列")
     @ApiResponses({@ApiResponse(code = 200, message = "查找所有种质奖成绩成功"),
             @ApiResponse(code = 201, message = "没有种质奖成绩"),
             @ApiResponse(code = 501, message = "competitionId为空")})
     public Result<Object> qualityPrize(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
-                                       @PathVariable("competitionId") Integer competitionId) {
+                                       @PathVariable("competitionId") Integer competitionId,
+                                       @ApiParam(name = "pageNum", value = "页数", type = "Integer")
+                                       @PathVariable("pageNum") Integer pageNum,
+                                       @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
+                                       @PathVariable("pageSize") Integer pageSize) {
         if (CharUtil.isBlankChar(competitionId)) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
-            List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOrderByQualityScore(competitionId);
+            List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOrderByQualityScore(competitionId,
+                    pageNum, pageSize);
             return groupList.size() == 0 ? (new ResultUtil<>().setSuccessMsg(201, "没有种质奖成绩")) :
                     (new ResultUtil<>().setData(groupList, "查找所有种质奖成绩成功"));
         }
     }
 
-    @GetMapping(value = "/tastes/{competitionId}")
+    @GetMapping(value = "/tastes/{competitionId}/{pageNum}/{pageSize}")
     @ApiOperation(value = "查询口感奖成绩", notes = "已在SQL中按照从大到小顺序排列")
     @ApiResponses({@ApiResponse(code = 200, message = "查找所有口感奖成绩成功"),
             @ApiResponse(code = 201, message = "没有口感奖成绩"),
             @ApiResponse(code = 501, message = "competitionId为空")})
     public Result<Object> tastePrize(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
-                                     @PathVariable("competitionId") Integer competitionId) {
+                                     @PathVariable("competitionId") Integer competitionId,
+                                     @ApiParam(name = "pageNum", value = "页数", type = "Integer")
+                                     @PathVariable("pageNum") Integer pageNum,
+                                     @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
+                                     @PathVariable("pageSize") Integer pageSize) {
         if (CharUtil.isBlankChar(competitionId)) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
-            List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOrderByTasteScore(competitionId);
+            List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOrderByTasteScore(competitionId,
+                    pageNum, pageSize);
             return groupList.size() == 0 ? (new ResultUtil<>().setSuccessMsg(201, "没有口感奖成绩")) :
                     (new ResultUtil<>().setData(groupList, "查找所有口感奖成绩成功"));
         }

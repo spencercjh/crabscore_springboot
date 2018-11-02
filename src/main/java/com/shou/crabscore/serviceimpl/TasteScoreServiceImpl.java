@@ -1,5 +1,6 @@
 package com.shou.crabscore.serviceimpl;
 
+import com.github.pagehelper.PageHelper;
 import com.shou.crabscore.dao.TasteScoreMapper;
 import com.shou.crabscore.entity.TasteScore;
 import com.shou.crabscore.service.TasteScoreService;
@@ -25,7 +26,8 @@ public class TasteScoreServiceImpl implements TasteScoreService {
     }
 
     @Override
-    public List<TasteScore> selectByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex) {
+    public List<TasteScore> selectByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return tasteScoreMapper.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
     }
 

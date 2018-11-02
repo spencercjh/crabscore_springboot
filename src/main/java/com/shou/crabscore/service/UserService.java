@@ -1,6 +1,7 @@
 package com.shou.crabscore.service;
 
 import com.shou.crabscore.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,20 +11,25 @@ import java.util.List;
  * @author spencercjh
  */
 public interface UserService {
+
     /**
      * 查找所有符合条件的用户
      *
-     * @param status 用户状态 1：可用 0：禁用
+     * @param status   用户状态 1：可用 0：禁用
+     * @param pageNum  pageNum
+     * @param pageSize pageSize
      * @return 所有用户记录
      */
-    List<User> selectAllUserSelective(Integer status);
+    List<User> selectAllUserSelective(Integer status, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 
     /**
      * 查找所有用户
      *
+     * @param pageNum  pageNum
+     * @param pageSize pageSize
      * @return 所有用户记录
      */
-    List<User> selectAllUser();
+    List<User> selectAllUser(@Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 
     /**
      * 通过用户名查找

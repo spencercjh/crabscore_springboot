@@ -33,7 +33,7 @@ public class CompanyCheckScoreController {
         this.tasteScoreService = tasteScoreService;
     }
 
-    @GetMapping("/qualities/{competitionId}/{groupId}/{crabSex}")
+    @GetMapping("/qualities/{competitionId}/{groupId}/{crabSex}/{pageNum}/{pageSize}")
     @ApiOperation("查询某一年的某一组的某一性别的所有螃蟹种质成绩")
     @ApiResponses({@ApiResponse(code = 200, message = "查询种质成绩信息成功"),
             @ApiResponse(code = 201, message = "没有种质成绩信息")})
@@ -43,13 +43,18 @@ public class CompanyCheckScoreController {
                                               @PathVariable("groupId") Integer groupId,
                                               @ApiParam(name = "crabSex", value = "性别，1:雄 2：雌", type = "Integer")
                                               @PathVariable("crabSex") Integer crabSex,
-                                              @RequestHeader("jwt") String jwt) {
-        List<QualityScore> qualityScoreList = this.qualityScoreService.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
+                                              @RequestHeader("jwt") String jwt,
+                                              @ApiParam(name = "pageNum", value = "页数", type = "Integer")
+                                              @PathVariable("pageNum") Integer pageNum,
+                                              @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
+                                              @PathVariable("pageSize") Integer pageSize) {
+        List<QualityScore> qualityScoreList = this.qualityScoreService.selectByCompetitionIdAndGroupIdAndCrabSex(
+                competitionId, groupId, crabSex, pageNum, pageSize);
         return qualityScoreList.size() == 0 ? new ResultUtil<>().setSuccessMsg(201, "没有种质成绩信息") :
                 new ResultUtil<>().setData(qualityScoreList, "查询种质成绩信息成功");
     }
 
-    @GetMapping("/tastes/{competitionId}/{groupId}/{crabSex}")
+    @GetMapping("/tastes/{competitionId}/{groupId}/{crabSex}/{pageNum}/{pageSize}")
     @ApiOperation("查询某一年的某一组的某一性别的所有螃蟹口感成绩")
     @ApiResponses({@ApiResponse(code = 200, message = "查询口感成绩信息成功"),
             @ApiResponse(code = 201, message = "没有口感成绩信息")})
@@ -59,8 +64,13 @@ public class CompanyCheckScoreController {
                                             @PathVariable("groupId") Integer groupId,
                                             @ApiParam(name = "crabSex", value = "性别，1:雄 2：雌", type = "Integer")
                                             @PathVariable("crabSex") Integer crabSex,
-                                            @RequestHeader("jwt") String jwt) {
-        List<TasteScore> tasteScoreList = this.tasteScoreService.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);
+                                            @RequestHeader("jwt") String jwt,
+                                            @ApiParam(name = "pageNum", value = "页数", type = "Integer")
+                                            @PathVariable("pageNum") Integer pageNum,
+                                            @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
+                                            @PathVariable("pageSize") Integer pageSize) {
+        List<TasteScore> tasteScoreList = this.tasteScoreService.selectByCompetitionIdAndGroupIdAndCrabSex(
+                competitionId, groupId, crabSex, pageNum, pageSize);
         return tasteScoreList.size() == 0 ? new ResultUtil<>().setSuccessMsg(201, "没有口感成绩信息") :
                 new ResultUtil<>().setData(tasteScoreList, "查询口感成绩信息成功");
     }

@@ -1,5 +1,6 @@
 package com.shou.crabscore.serviceimpl;
 
+import com.github.pagehelper.PageHelper;
 import com.shou.crabscore.dao.CompanyMapper;
 import com.shou.crabscore.entity.Company;
 import com.shou.crabscore.service.CompanyService;
@@ -26,7 +27,8 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public List<Company> selectAllCompany() {
+    public List<Company> selectAllCompany(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         return companyMapper.selectAllCompany();
     }
 

@@ -1,5 +1,6 @@
 package com.shou.crabscore.serviceimpl;
 
+import com.github.pagehelper.PageHelper;
 import com.shou.crabscore.dao.CompetitionMapper;
 import com.shou.crabscore.entity.Competition;
 import com.shou.crabscore.service.CompetitionService;
@@ -25,8 +26,10 @@ public class CompetitionServiceImpl implements CompetitionService {
         this.competitionMapper = competitionMapper;
     }
 
+
     @Override
-    public List<Competition> selectAllCompetition() {
+    public List<Competition> selectAllCompetition(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
         return competitionMapper.selectAllCompetition();
     }
 

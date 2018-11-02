@@ -77,7 +77,7 @@ public interface CrabService {
      * @param label 标签
      * @return 螃蟹信息记录
      */
-    Crab selectByLabel(String label);
+    Crab selectByLabel(@Param("label") String label);
 
     /**
      * 根据大赛Id,小组Id和螃蟹性别来查询螃蟹信息
@@ -85,11 +85,15 @@ public interface CrabService {
      * @param competitionId 大赛Id
      * @param groupId       小组Id
      * @param crabSex       性别，1:雄 2：雌
+     * @param pageNum       pageNum
+     * @param pageSize      pageSize
      * @return 所有符合条件的螃蟹信息记录
      */
     List<Crab> selectByCompetitionIdAndGroupIdAndCrabSex(@Param("competitionId") Integer competitionId,
                                                          @Param("groupId") Integer groupId,
-                                                         @Param("crabSex") Integer crabSex);
+                                                         @Param("crabSex") Integer crabSex,
+                                                         @Param("pageNum") int pageNum,
+                                                         @Param("pageSize") int pageSize);
 
     /**
      * 通过主键删除

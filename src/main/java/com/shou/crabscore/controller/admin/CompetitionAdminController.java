@@ -52,12 +52,16 @@ public class CompetitionAdminController {
         }
     }
 
-    @GetMapping(value = "/competitions")
+    @GetMapping(value = "/competitions/{pageNum}/{pageSize}")
     @ApiOperation("查询所有大赛")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有大赛成功"),
             @ApiResponse(code = 201, message = "没有大赛")})
-    public Result<Object> allCompetition(@RequestHeader("jwt") String jwt) {
-        List<Competition> competitionList = this.competitionService.selectAllCompetition();
+    public Result<Object> allCompetition(@RequestHeader("jwt") String jwt,
+                                         @ApiParam(name = "pageNum", value = "页数", type = "Integer")
+                                         @PathVariable("pageNum") Integer pageNum,
+                                         @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
+                                         @PathVariable("pageSize") Integer pageSize) {
+        List<Competition> competitionList = this.competitionService.selectAllCompetition(pageNum, pageSize);
         if (competitionList.size() == 0) {
             return new ResultUtil<>().setSuccessMsg(201, "没有大赛");
         } else {

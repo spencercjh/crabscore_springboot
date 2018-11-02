@@ -53,12 +53,16 @@ public class CompanyAdminController {
         }
     }
 
-    @GetMapping(value = "/companys")
+    @GetMapping(value = "/companys/{pageNum}/{pageSize}")
     @ApiOperation("查询所有参选单位")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有参选单位成功"),
             @ApiResponse(code = 201, message = "companyList列表为空")})
-    public Result<Object> allCompany(@RequestHeader("jwt") String jwt) {
-        List<Company> companyList = this.companyService.selectAllCompany();
+    public Result<Object> allCompany(@RequestHeader("jwt") String jwt,
+                                     @ApiParam(name = "pageNum", value = "页数", type = "Integer")
+                                     @PathVariable("pageNum") Integer pageNum,
+                                     @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
+                                     @PathVariable("pageSize") Integer pageSize) {
+        List<Company> companyList = this.companyService.selectAllCompany(pageNum, pageSize);
         if (companyList.size() == 0) {
             return new ResultUtil<>().setSuccessMsg(201, "companyList列表为空");
         } else {
@@ -66,7 +70,7 @@ public class CompanyAdminController {
         }
     }
 
-    @GetMapping(value = "/groups/{competitionId}/{companyId}")
+    @GetMapping(value = "/groups/{competitionId}/{companyId}/{pageNum}/{pageSize}")
     @ApiOperation("查询在某一届大赛中某一参选单位的所有组")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有比赛组成功"),
             @ApiResponse(code = 200, message = "查询所有比赛组成功"),
@@ -76,11 +80,16 @@ public class CompanyAdminController {
                                    @PathVariable("competitionId") Integer competitionId,
                                    @ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
                                    @PathVariable("companyId") Integer companyId,
-                                   @RequestHeader("jwt") String jwt) {
+                                   @RequestHeader("jwt") String jwt,
+                                   @ApiParam(name = "pageNum", value = "页数", type = "Integer")
+                                   @PathVariable("pageNum") Integer pageNum,
+                                   @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
+                                   @PathVariable("pageSize") Integer pageSize) {
         if (CharUtil.isBlankChar(competitionId) || CharUtil.isBlankChar(companyId)) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId或者companyId为空");
         } else {
-            List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOneCompany(competitionId, companyId);
+            List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOneCompany(competitionId, companyId,
+                    pageNum, pageSize);
             if (groupList.size() == 0) {
                 return new ResultUtil<>().setSuccessMsg(201, "groupList为空");
             } else {

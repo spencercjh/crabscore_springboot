@@ -1,6 +1,7 @@
 package com.shou.crabscore.service;
 
 import com.shou.crabscore.entity.Company;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -13,9 +14,11 @@ public interface CompanyService {
     /**
      * 查找所有参选单位
      *
+     * @param pageNum  pageNum
+     * @param pageSize pageSize
      * @return 所有参选单位记录
      */
-    List<Company> selectAllCompany();
+    List<Company> selectAllCompany(@Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 
     /**
      * 通过主键删除
