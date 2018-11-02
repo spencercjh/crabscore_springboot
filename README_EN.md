@@ -37,6 +37,8 @@ com.alibaba.fastjson(JSON)
 
 commons-codec(encryption)
 
+PageHelper Pagination(Pagination)
+
 ## reference
 [reference project](https://gitee.com/Exrick/x-boot)
 

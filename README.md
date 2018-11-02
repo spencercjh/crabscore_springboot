@@ -33,12 +33,11 @@ Mybatis 1.3.2 (ORM)
 
 七牛云存储 (照片等文件存储)_配置直接参考x-boot中的相关代码和官方指南_
 
-
-
 [com.alibaba.fastjson(JSON)](https://www.cnblogs.com/cdf-opensource-007/p/7106018.html)
 
 [commons-codec(加密、编码)](https://blog.csdn.net/yaomingyang/article/details/80653593)
 
+[PageHelper(分页插件)](https://blog.csdn.net/qq_36952874/article/details/80986945)
 
 ## 参考 
 [参考项目](https://gitee.com/Exrick/x-boot)
