@@ -53,7 +53,7 @@ public class CompanyAdminController {
         }
     }
 
-    @GetMapping(value = "/companys/{pageNum}/{pageSize}")
+    @GetMapping(value = "/companies/{pageNum}/{pageSize}")
     @ApiOperation("查询所有参选单位")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有参选单位成功"),
             @ApiResponse(code = 201, message = "companyList列表为空")})

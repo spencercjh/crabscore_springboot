@@ -32,7 +32,7 @@ public class CommonCheckScoreController {
         this.groupService = groupService;
     }
 
-    @GetMapping(value = "/fatnesses/{competitionId}/{pageNum}/{pageSize}")
+    @GetMapping(value = "/fatness/{competitionId}/{pageNum}/{pageSize}")
     @ApiOperation(value = "查询金蟹奖成绩", notes = "已在SQL中按照从大到小顺序排列")
     @ApiResponses({@ApiResponse(code = 200, message = "查找所有金蟹奖成绩成功"),
             @ApiResponse(code = 201, message = "没有金蟹奖成绩相关成绩"),
