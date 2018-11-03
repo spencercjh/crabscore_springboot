@@ -91,7 +91,7 @@ public class CompetitionAdminController {
             @ApiResponse(code = 500, message = "查询当前大赛Id失败")})
     public Result<Object> presentCompetitionId(@RequestHeader("jwt") String jwt) {
         CompetitionConfig competitionConfig = this.competitionConfigService.selectByPrimaryKey(1);
-        return CharUtil.isBlankChar(competitionConfig.getCompetitionId()) ?
+        return !CharUtil.isBlankChar(competitionConfig.getCompetitionId()) ?
                 new ResultUtil<>().setData(competitionConfig.getCompetitionId(), "查询当前大赛Id成功") :
                 new ResultUtil<>().setErrorMsg("查询当前大赛Id失败");
     }
