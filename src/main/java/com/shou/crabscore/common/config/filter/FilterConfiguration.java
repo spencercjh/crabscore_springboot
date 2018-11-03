@@ -1,4 +1,4 @@
-package com.shou.crabscore.common.config;
+package com.shou.crabscore.common.config.filter;
 
 import com.shou.crabscore.filter.*;
 import lombok.extern.log4j.Log4j2;

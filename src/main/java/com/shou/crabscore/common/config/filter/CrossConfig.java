@@ -1,4 +1,4 @@
-package com.shou.crabscore.common.config;
+package com.shou.crabscore.common.config.filter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
