@@ -20,10 +20,11 @@ import java.io.IOException;
 @Component
 public class SecurityFilter implements Filter {
 
-    @Autowired
-    private SecurityService securityService;
+    private final SecurityService securityService;
 
-    public SecurityFilter() {
+    @Autowired
+    public SecurityFilter(SecurityService securityService) {
+        this.securityService = securityService;
     }
 
     @Override
