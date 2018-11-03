@@ -50,7 +50,7 @@ public class UserAdminController {
     }
 
     @GetMapping(value = "/users/{pageNum}/{pageSize}")
-    @ApiOperation("查询所有用户")
+    @ApiOperation("查询所有用户，只返回状态为启用的用户")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有用户成功"),
             @ApiResponse(code = 201, message = "没有用户")})
     public Result<Object> allUser(@RequestHeader("jwt") String jwt,
