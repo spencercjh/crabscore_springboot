@@ -39,7 +39,7 @@
         select
         <include refid="Base_Column_List"/>
         from rxpb_user_info
-        where status =1;
+        where status =1
     </select>
     <!-- 2018年9月18日21:59:00 新增 -->
     <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
