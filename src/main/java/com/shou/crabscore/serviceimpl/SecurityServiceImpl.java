@@ -3,6 +3,9 @@ package com.shou.crabscore.serviceimpl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.shou.crabscore.common.constant.CommonConstant;
+import com.shou.crabscore.common.util.AesUtil;
+import com.shou.crabscore.common.util.Base64Util;
+import com.shou.crabscore.common.util.JwtUtil;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.dao.UserMapper;
@@ -14,8 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
-import static com.shou.crabscore.common.util.JwtUtil.*;
+import static com.shou.crabscore.common.util.JwtUtil.parseJWT;
 
 /**
  * @author spencercjh
@@ -28,6 +34,40 @@ public class SecurityServiceImpl implements SecurityService {
     @Autowired
     public SecurityServiceImpl(UserMapper userMapper) {
         this.userMapper = userMapper;
+    }
+
+    @Override
+    public Result<Object> login(String encryptedJson, String base64Key) {
+        String key = Base64Util.decodeStr(base64Key);
+        String json = "";
+        try {
+            json = new String(AesUtil.decrypt(encryptedJson.getBytes(StandardCharsets.UTF_8),
+                    key.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        JSONObject jsonObject = JSON.parseObject(json);
+        String username = jsonObject.getString("username");
+        String password = jsonObject.getString("password");
+        Integer roleId = jsonObject.getInteger("roleId");
+        User searchResult = this.userMapper.selectByUserName(username);
+        if (searchResult == null) {
+            return new ResultUtil<>().setErrorMsg(502, "用户名不存在");
+        } else if (!searchResult.getRoleId().equals(roleId)) {
+            return new ResultUtil<>().setErrorMsg(503, "用户组选择错误");
+        } else if (!searchResult.getPassword().equals(password)) {
+            return new ResultUtil<>().setErrorMsg(504, "密码错误");
+        } else if (searchResult.getUserName().equals(username) &&
+                searchResult.getPassword().equals(password) &&
+                searchResult.getRoleId().equals(roleId)) {
+            Map<String, Object> subject = new HashMap<>(2);
+            subject.put("username", username);
+            subject.put("roleId", roleId);
+            String jwt = JwtUtil.createJWT(String.valueOf(subject.hashCode()), JSON.toJSONString(subject));
+            return new ResultUtil<>().setData(jwt, "登录成功");
+        } else {
+            return new ResultUtil<>().setErrorMsg(501, "用户组参数错误");
+        }
     }
 
     @Override

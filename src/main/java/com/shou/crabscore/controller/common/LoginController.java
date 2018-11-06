@@ -9,6 +9,7 @@ import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.util.UsernameUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.User;
+import com.shou.crabscore.service.SecurityService;
 import com.shou.crabscore.service.UserService;
 import io.swagger.annotations.*;
 import lombok.extern.log4j.Log4j2;
@@ -34,14 +35,16 @@ import java.util.Map;
 public class LoginController {
     private final UserService userService;
     private final MessageUtil messageUtil;
+    private final SecurityService securityService;
 
     @Autowired
-    public LoginController(UserService userService, MessageUtil messageUtil) {
+    public LoginController(UserService userService, MessageUtil messageUtil, SecurityService securityService) {
         this.userService = userService;
         this.messageUtil = messageUtil;
+        this.securityService = securityService;
     }
 
-    @GetMapping("/login")
+    @GetMapping("/login/{json}/{key}")
     @ApiOperation(value = "用户登录,这个接口会在body里返回JWT！！！", notes = "参数检查交给Android端完成")
     @ResponseHeader(name = "jwt", description = "JWT串")
     @ApiResponses({@ApiResponse(code = 200, message = "登录成功"),
@@ -49,30 +52,11 @@ public class LoginController {
             @ApiResponse(code = 502, message = "用户名不存在"),
             @ApiResponse(code = 503, message = "用户组选择错误"),
             @ApiResponse(code = 504, message = "密码错误")})
-    public Result<Object> login(@ApiParam(name = "username", value = "用户名", type = "String")
-                                @RequestParam String username,
-                                @ApiParam(name = "password", value = "密码", type = "String")
-                                @RequestParam String password,
-                                @ApiParam(name = "roleId", value = "用户组", type = "Integer")
-                                @RequestParam Integer roleId) {
-        User searchResult = this.userService.selectByUserName(username);
-        if (searchResult == null) {
-            return new ResultUtil<>().setErrorMsg(502, "用户名不存在");
-        } else if (!searchResult.getRoleId().equals(roleId)) {
-            return new ResultUtil<>().setErrorMsg(503, "用户组选择错误");
-        } else if (!searchResult.getPassword().equals(password)) {
-            return new ResultUtil<>().setErrorMsg(504, "密码错误");
-        } else if (searchResult.getUserName().equals(username) &&
-                searchResult.getPassword().equals(password) &&
-                searchResult.getRoleId().equals(roleId)) {
-            Map<String, Object> subject = new HashMap<>(2);
-            subject.put("username", username);
-            subject.put("roleId", roleId);
-            String jwt = JwtUtil.createJWT(String.valueOf(subject.hashCode()), JSON.toJSONString(subject));
-            return new ResultUtil<>().setData(jwt, "登录成功");
-        } else {
-            return new ResultUtil<>().setErrorMsg(501, "用户组参数错误");
-        }
+    public Result<Object> login(@ApiParam(name = "json", value = "加密后的JSON串", type = "String")
+                                @PathVariable("json") String json,
+                                @ApiParam(name = "key", value = "编码后的key", type = "String")
+                                @PathVariable("key") String key) {
+        return this.securityService.login(json, key);
     }
 
     @PostMapping("/creation")
