@@ -86,7 +86,6 @@ public class UserAdminController {
         }
     }
 
-    //FIXME BUG 415
     @PutMapping(value = "/property", consumes = "application/json")
     @ApiOperation("修改用户资料")
     @ApiImplicitParam(name = "user", value = "单个用户信息", dataType = "User")

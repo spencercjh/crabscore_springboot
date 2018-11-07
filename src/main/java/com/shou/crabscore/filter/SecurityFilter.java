@@ -36,14 +36,11 @@ public class SecurityFilter implements Filter {
         log.info("进入Security Filter");
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        //设置允许跨域的配置
-        // 这里填写你允许进行跨域的主机ip（正式上线时可以动态配置具体允许的域名和IP）
         response.setHeader("Access-Control-Allow-Origin", "*");
-        // 允许的访问方法
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE");
-        // Access-Control-Max-Age 用于 CORS 相关配置的缓存
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "token,Origin, X-Requested-With, Content-Type, Accept");
+        response.setHeader("content-type", "application/json");
         response.setCharacterEncoding("UTF-8");
         String jwt = request.getHeader("jwt");
         String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/crabscore";
@@ -66,7 +63,6 @@ public class SecurityFilter implements Filter {
             }
         } else if (this.securityService.verify(jwt, requestApiRoleId, request).getCode().equals(CommonConstant.SUCCESS)) {
             try {
-                response.addHeader("content-type", "application/json;charset=UTF-8");
                 filterChain.doFilter(request, response);
             } catch (IOException | ServletException e) {
                 e.printStackTrace();
