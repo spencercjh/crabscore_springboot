@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.shou.crabscore.common.constant.CommonConstant;
 import com.shou.crabscore.common.util.AesUtil;
-import com.shou.crabscore.common.util.Base64Util;
 import com.shou.crabscore.common.util.JwtUtil;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
@@ -13,6 +12,7 @@ import com.shou.crabscore.entity.User;
 import com.shou.crabscore.service.SecurityService;
 import io.jsonwebtoken.*;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,19 +37,27 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     @Override
-    public Result<Object> login(String encryptedJson, String base64Key) {
-        String key = Base64Util.decodeStr(base64Key);
-        String json = "";
+    public Result<Object> login(String encryptedJson) {
+        String json;
         try {
-            json = new String(AesUtil.decrypt(encryptedJson.getBytes(StandardCharsets.UTF_8),
-                    key.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
-        } catch (Exception e) {
+            json = new String(AesUtil.decrypt(Base64.decodeBase64(encryptedJson), CommonConstant.AES_KEY),
+                    StandardCharsets.UTF_8);
+        } catch (Exception | Error e) {
             e.printStackTrace();
+            return new ResultUtil<>().setErrorMsg(502, "AES解密错误");
         }
         JSONObject jsonObject = JSON.parseObject(json);
-        String username = jsonObject.getString("username");
-        String password = jsonObject.getString("password");
-        Integer roleId = jsonObject.getInteger("roleId");
+        String username;
+        String password;
+        Integer roleId;
+        try {
+            username = jsonObject.getString("username");
+            password = jsonObject.getString("password");
+            roleId = jsonObject.getInteger("roleId");
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            return new ResultUtil<>().setErrorMsg(503, "明文JSON解析错误");
+        }
         User searchResult = this.userMapper.selectByUserName(username);
         if (searchResult == null) {
             return new ResultUtil<>().setErrorMsg(502, "用户名不存在");

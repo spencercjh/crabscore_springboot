@@ -44,19 +44,16 @@ public class LoginController {
         this.securityService = securityService;
     }
 
-    @GetMapping("/login/{json}/{key}")
+    @PostMapping("/login")
     @ApiOperation(value = "用户登录,这个接口会在body里返回JWT！！！", notes = "参数检查交给Android端完成")
-    @ResponseHeader(name = "jwt", description = "JWT串")
     @ApiResponses({@ApiResponse(code = 200, message = "登录成功"),
             @ApiResponse(code = 501, message = "用户组参数错误"),
             @ApiResponse(code = 502, message = "用户名不存在"),
             @ApiResponse(code = 503, message = "用户组选择错误"),
             @ApiResponse(code = 504, message = "密码错误")})
     public Result<Object> login(@ApiParam(name = "json", value = "加密后的JSON串", type = "String")
-                                @PathVariable("json") String json,
-                                @ApiParam(name = "key", value = "编码后的key", type = "String")
-                                @PathVariable("key") String key) {
-        return this.securityService.login(json, key);
+                                @RequestParam("json") String json) {
+        return this.securityService.login(json);
     }
 
     @PostMapping("/creation")

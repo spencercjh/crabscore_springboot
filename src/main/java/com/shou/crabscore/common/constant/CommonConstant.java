@@ -4,6 +4,7 @@ package com.shou.crabscore.common.constant;
  * @author spencercjh
  */
 public interface CommonConstant {
+    byte[] AES_KEY = {34, 70, 37, -19, -41, -44, -114, -103, 91, -13, -115, -57, 94, 17, 67, 3};
 
     /**
      * 成功
