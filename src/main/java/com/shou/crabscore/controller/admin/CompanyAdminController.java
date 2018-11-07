@@ -98,7 +98,7 @@ public class CompanyAdminController {
         }
     }
 
-    @PutMapping(value = "/property")
+    @PutMapping(value = "/property",consumes = "application/json")
     @ApiOperation("修改参选单位资料")
     @ApiImplicitParam(name = "company", value = "单个参选单位信息", dataType = "Company")
     @ApiResponses({@ApiResponse(code = 200, message = "修改参选单位资料成功"),
@@ -115,7 +115,7 @@ public class CompanyAdminController {
         }
     }
 
-    @PostMapping(value = "/creation")
+    @PostMapping(value = "/creation",consumes = "application/json")
     @ApiOperation("创建参选单位")
     @ApiImplicitParam(name = "company", value = "单个参选单位信息", dataType = "Company")
     @ApiResponses({@ApiResponse(code = 200, message = "创建参选单位成功"),

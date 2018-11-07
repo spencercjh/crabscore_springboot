@@ -86,7 +86,8 @@ public class UserAdminController {
         }
     }
 
-    @PutMapping(value = "/property")
+    //FIXME BUG 415
+    @PutMapping(value = "/property", consumes = "application/json")
     @ApiOperation("修改用户资料")
     @ApiImplicitParam(name = "user", value = "单个用户信息", dataType = "User")
     @ApiResponses({@ApiResponse(code = 200, message = "修改用户资料成功"),

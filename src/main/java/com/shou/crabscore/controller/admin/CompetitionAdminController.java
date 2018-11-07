@@ -69,7 +69,7 @@ public class CompetitionAdminController {
         }
     }
 
-    @PutMapping(value = "/property")
+    @PutMapping(value = "/property",consumes = "application/json")
     @ApiOperation("修改大赛资料")
     @ApiImplicitParam(name = "competition", value = "大赛信息", dataType = "Competition")
     @ApiResponses({@ApiResponse(code = 200, message = "修改大赛资料成功"),
@@ -96,7 +96,7 @@ public class CompetitionAdminController {
                 new ResultUtil<>().setErrorMsg("查询当前大赛Id失败");
     }
 
-    @PutMapping(value = "/present")
+    @PutMapping(value = "/present",consumes = "application/json")
     @ApiOperation("修改当前大赛配置(大赛id)")
     @ApiImplicitParam(name = "competitionConfig", value = "大赛配置", dataType = "CompetitionConfig")
     @ApiResponses({@ApiResponse(code = 200, message = "修改当前大赛配置成功"),

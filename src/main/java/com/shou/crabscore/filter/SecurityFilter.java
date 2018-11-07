@@ -66,6 +66,7 @@ public class SecurityFilter implements Filter {
             }
         } else if (this.securityService.verify(jwt, requestApiRoleId, request).getCode().equals(CommonConstant.SUCCESS)) {
             try {
+                response.addHeader("content-type", "application/json;charset=UTF-8");
                 filterChain.doFilter(request, response);
             } catch (IOException | ServletException e) {
                 e.printStackTrace();

@@ -62,7 +62,7 @@ public class JudgeController {
         }
     }
 
-    @PostMapping("/quality")
+    @PostMapping(value = "/quality", consumes = "application/json")
     @ApiOperation("插入种质成绩信息")
     @ApiResponses({@ApiResponse(code = 200, message = "插入种质成绩信息成功"),
             @ApiResponse(code = 500, message = "插入种质成绩信息失败"),
@@ -77,7 +77,7 @@ public class JudgeController {
         }
     }
 
-    @PostMapping("/taste")
+    @PostMapping(value = "/taste", consumes = "application/json")
     @ApiOperation("插入口感成绩信息")
     @ApiResponses({@ApiResponse(code = 200, message = "插入种质成绩信息成功"),
             @ApiResponse(code = 500, message = "插入种质成绩信息失败"),
@@ -92,7 +92,7 @@ public class JudgeController {
         }
     }
 
-    @PutMapping("/quality")
+    @PutMapping(value = "/quality", consumes = "application/json")
     @ApiOperation("更新种质成绩信息")
     @ApiResponses({@ApiResponse(code = 200, message = "修改种质成绩信息成功"),
             @ApiResponse(code = 500, message = "修改种质成绩信息失败"),
@@ -108,7 +108,7 @@ public class JudgeController {
         }
     }
 
-    @PutMapping("/taste")
+    @PutMapping(value = "/taste", consumes = "application/json")
     @ApiOperation("更新口感成绩信息")
     @ApiResponses({@ApiResponse(code = 200, message = "修改口感成绩信息成功"),
             @ApiResponse(code = 500, message = "修改口感成绩信息失败"),

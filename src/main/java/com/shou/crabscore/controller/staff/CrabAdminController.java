@@ -48,7 +48,7 @@ public class CrabAdminController {
         }
     }
 
-    @PostMapping("/crab")
+    @PostMapping(value = "/crab", consumes = "application/json")
     @ApiOperation("插入螃蟹信息")
     @ApiResponses({@ApiResponse(code = 200, message = "插入螃蟹信息成功"),
             @ApiResponse(code = 500, message = "插入螃蟹信息失败"),
@@ -89,7 +89,7 @@ public class CrabAdminController {
         }
     }
 
-    @PutMapping("/crab")
+    @PutMapping(value = "/crab", consumes = "application/json")
     @ApiOperation(value = "更新螃蟹信息", notes = "这里应该在Android部分就把肥满度算好")
     @ApiResponses({@ApiResponse(code = 200, message = "更新螃蟹信息成功"),
             @ApiResponse(code = 500, message = "更新螃蟹信息失败"),
