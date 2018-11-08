@@ -37,6 +37,8 @@ Mybatis 1.3.2 (ORM)
 
 [commons-codec(加密、编码)](https://blog.csdn.net/yaomingyang/article/details/80653593)
 
+AES(对称加密算法)
+
 [PageHelper(分页插件)](https://blog.csdn.net/qq_36952874/article/details/80986945)
 
 ## 参考 

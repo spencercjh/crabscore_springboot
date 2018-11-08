@@ -37,6 +37,8 @@ com.alibaba.fastjson(JSON)
 
 commons-codec(encryption)
 
+AES(encryption)
+
 PageHelper Pagination(Pagination)
 
 ## reference
