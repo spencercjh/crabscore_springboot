@@ -1,6 +1,5 @@
 package com.shou.crabscore.controller.common;
 
-import cn.hutool.core.util.CharUtil;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.Competition;
@@ -42,7 +41,7 @@ public class CommonPropertyController {
     public Result<Object> presentCompetitionId() {
         CompetitionConfig competitionConfig = this.competitionConfigService.selectByPrimaryKey(1);
         Competition competition = this.competitionService.selectByPrimaryKey(competitionConfig.getCompetitionId());
-        return !CharUtil.isBlankChar(competition.getCompetitionId()) ?
+        return competition.getCompetitionId() > 0 ?
                 new ResultUtil<>().setData(competition, "查询当前大赛信息成功") :
                 new ResultUtil<>().setErrorMsg("查询当前大赛信息失败");
     }

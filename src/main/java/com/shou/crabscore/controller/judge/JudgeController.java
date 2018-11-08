@@ -1,6 +1,5 @@
 package com.shou.crabscore.controller.judge;
 
-import cn.hutool.core.util.CharUtil;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.Group;
@@ -50,7 +49,7 @@ public class JudgeController {
                                    @PathVariable("pageNum") Integer pageNum,
                                    @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
                                    @PathVariable("pageSize") Integer pageSize) {
-        if (CharUtil.isBlankChar(competitionId)) {
+        if (competitionId == null || competitionId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
             List<Group> groupList = this.groupService.selectAllGroupOneCompetition(competitionId, pageNum, pageSize);
@@ -69,7 +68,7 @@ public class JudgeController {
             @ApiResponse(code = 501, message = "ScoreId为空")})
     public Result<Object> insertQualityScoreInfo(@ApiParam(name = "qualityScoreInfo", value = "种质成绩信息Json", type = "String")
                                                  @RequestParam QualityScore qualityScore, @RequestHeader("jwt") String jwt) {
-        if (CharUtil.isBlankChar(qualityScore.getScoreId())) {
+        if (qualityScore.getScoreId() == null || qualityScore.getScoreId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "ScoreId为空");
         } else {
             return this.qualityScoreService.insert(qualityScore) <= 0 ?
@@ -84,7 +83,7 @@ public class JudgeController {
             @ApiResponse(code = 501, message = "ScoreId为空")})
     public Result<Object> insertTasteScoreInfo(@ApiParam(name = "tasteScoreInfo", value = "口感成绩信息Json", type = "String")
                                                @RequestParam TasteScore tasteScore, @RequestHeader("jwt") String jwt) {
-        if (CharUtil.isBlankChar(tasteScore.getScoreId())) {
+        if (tasteScore.getScoreId() == null || tasteScore.getScoreId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "ScoreId为空");
         } else {
             return this.tasteScoreService.insert(tasteScore) <= 0 ?
@@ -99,7 +98,7 @@ public class JudgeController {
             @ApiResponse(code = 501, message = "主键ScoreId为空")})
     public Result<Object> updateQualityScoreInfo(@ApiParam(name = "qualityScoreInfo", value = "种质成绩信息Json", type = "String")
                                                  @RequestParam QualityScore qualityScore, @RequestHeader("jwt") String jwt) {
-        if (CharUtil.isBlankChar(qualityScore.getScoreId())) {
+        if (qualityScore.getScoreId() == null || qualityScore.getScoreId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "主键ScoreId为空");
         } else {
             int updateResult = this.qualityScoreService.updateByPrimaryKey(qualityScore);
@@ -115,7 +114,7 @@ public class JudgeController {
             @ApiResponse(code = 501, message = "主键ScoreId为空")})
     public Result<Object> updateTasteScoreInfo(@ApiParam(name = "tasteScoreInfo", value = "口感成绩信息Json", type = "String")
                                                @RequestParam TasteScore tasteScore, @RequestHeader("jwt") String jwt) {
-        if (CharUtil.isBlankChar(tasteScore.getScoreId())) {
+        if (tasteScore.getScoreId() == null || tasteScore.getScoreId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "ScoreId为空");
         } else {
             return this.tasteScoreService.updateByPrimaryKey(tasteScore) <= 0 ?

@@ -1,6 +1,5 @@
 package com.shou.crabscore.controller.admin;
 
-import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.StrUtil;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
@@ -43,7 +42,7 @@ public class CompanyAdminController {
     public Result<Object> singleCompany(@ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
                                         @PathVariable("companyId") Integer companyId,
                                         @RequestHeader("jwt") String jwt) {
-        if (CharUtil.isBlankChar(companyId)) {
+        if (companyId == null || companyId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "companyId为空");
         } else {
             Company company = this.companyService.selectByPrimaryKey(companyId);
@@ -75,7 +74,8 @@ public class CompanyAdminController {
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有比赛组成功"),
             @ApiResponse(code = 200, message = "查询所有比赛组成功"),
             @ApiResponse(code = 201, message = "groupList为空"),
-            @ApiResponse(code = 501, message = "competitionId或者companyId为空")})
+            @ApiResponse(code = 501, message = "competitionId为空"),
+            @ApiResponse(code = 502, message = "companyId为空")})
     public Result<Object> allGroup(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
                                    @PathVariable("competitionId") Integer competitionId,
                                    @ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
@@ -85,8 +85,10 @@ public class CompanyAdminController {
                                    @PathVariable("pageNum") Integer pageNum,
                                    @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
                                    @PathVariable("pageSize") Integer pageSize) {
-        if (CharUtil.isBlankChar(competitionId) || CharUtil.isBlankChar(companyId)) {
-            return new ResultUtil<>().setErrorMsg(501, "competitionId或者companyId为空");
+        if (competitionId == null || competitionId <= 0) {
+            return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
+        } else if (companyId == null || companyId <= 0) {
+            return new ResultUtil<>().setErrorMsg(502, "companyId为空");
         } else {
             List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOneCompany(competitionId, companyId,
                     pageNum, pageSize);
@@ -98,7 +100,7 @@ public class CompanyAdminController {
         }
     }
 
-    @PutMapping(value = "/property",consumes = "application/json")
+    @PutMapping(value = "/property", consumes = "application/json")
     @ApiOperation("修改参选单位资料")
     @ApiImplicitParam(name = "company", value = "单个参选单位信息", dataType = "Company")
     @ApiResponses({@ApiResponse(code = 200, message = "修改参选单位资料成功"),
@@ -106,7 +108,7 @@ public class CompanyAdminController {
             @ApiResponse(code = 501, message = "主键CompanyId为空")})
     public Result<Object> updateCompanyProperty(@ApiParam("参选单位信息Json") @RequestBody Company company,
                                                 @RequestHeader("jwt") String jwt) {
-        if (CharUtil.isBlankChar(company.getCompanyId())) {
+        if (company.getCompanyId() == null || company.getCompanyId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "主键CompanyId为空");
         } else {
             int updateResult = this.companyService.updateByPrimaryKeySelective(company);
@@ -115,7 +117,7 @@ public class CompanyAdminController {
         }
     }
 
-    @PostMapping(value = "/creation",consumes = "application/json")
+    @PostMapping(value = "/creation", consumes = "application/json")
     @ApiOperation("创建参选单位")
     @ApiImplicitParam(name = "company", value = "单个参选单位信息", dataType = "Company")
     @ApiResponses({@ApiResponse(code = 200, message = "创建参选单位成功"),
@@ -123,7 +125,7 @@ public class CompanyAdminController {
             @ApiResponse(code = 501, message = "主键CompanyId为空为空")})
     public Result<Object> insertCompanyProperty(@ApiParam("参选单位信息Json") @RequestBody Company company,
                                                 @RequestHeader("jwt") String jwt) {
-        if (CharUtil.isBlankChar(company.getCompanyId())) {
+        if (company.getCompanyId() == null || company.getCompanyId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "主键CompanyId为空为空");
         } else {
             int updateResult = this.companyService.insert(company);
@@ -140,7 +142,7 @@ public class CompanyAdminController {
     public Result<Object> deleteCompany(@ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
                                         @PathVariable("companyId") Integer companyId,
                                         @RequestHeader("jwt") String jwt) {
-        if (CharUtil.isBlankChar(companyId)) {
+        if (companyId == null || companyId <= 0) {
             return new ResultUtil<>().setErrorMsg("companyId为空");
         } else {
             int deleteResult = this.companyService.deleteByPrimaryKey(companyId);

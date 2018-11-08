@@ -1,6 +1,5 @@
 package com.shou.crabscore.controller.admin;
 
-import cn.hutool.core.util.CharUtil;
 import cn.hutool.core.util.StrUtil;
 import com.shou.crabscore.common.constant.CommonConstant;
 import com.shou.crabscore.common.util.ResultUtil;
@@ -40,7 +39,7 @@ public class UserAdminController {
     public Result<Object> singleUser(@ApiParam(name = "userId", value = "用户Id", type = "Integer")
                                      @PathVariable("userId") Integer userId,
                                      @RequestHeader("jwt") String jwt) {
-        if (CharUtil.isBlankChar(userId)) {
+        if (userId == null || userId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "userId为空");
         } else {
             User user = this.userService.selectByPrimaryKey(userId);
@@ -94,7 +93,7 @@ public class UserAdminController {
             @ApiResponse(code = 501, message = "UserId为空")})
     public Result<Object> updateUserProperty(@ApiParam("用户信息Json") @RequestBody User user,
                                              @RequestHeader("jwt") String jwt) {
-        if (CharUtil.isBlankChar(user.getUserId())) {
+        if (user.getUserId() == null || user.getUserId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "UserId为空");
         } else {
             int updateResult = this.userService.updateByPrimaryKeySelective(user);
@@ -110,7 +109,7 @@ public class UserAdminController {
             @ApiResponse(code = 501, message = "userId为空")})
     public Result<Object> deleteUser(@ApiParam(name = "userId", value = "用户Id", type = "Integer")
                                      @PathVariable("userId") Integer userId, @RequestHeader("jwt") String jwt) {
-        if (CharUtil.isBlankChar(userId)) {
+        if (userId == null || userId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "userId为空");
         } else {
             int deleteResult = this.userService.deleteByPrimaryKey(userId);
