@@ -1,7 +1,6 @@
 package com.shou.crabscore.service;
 
 import com.shou.crabscore.entity.Competition;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,11 +11,9 @@ public interface CompetitionService {
     /**
      * 查询所有大赛信息记录
      *
-     * @param pageNum  pageNum
-     * @param pageSize pageSize
      * @return 所有大赛信息记录
      */
-    List<Competition> selectAllCompetition(@Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+    List<Competition> selectAllCompetition();
 
     /**
      * 通过主键删除

@@ -1,6 +1,5 @@
 package com.shou.crabscore.controller.admin;
 
-import cn.hutool.core.util.StrUtil;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.Competition;
@@ -34,33 +33,12 @@ public class CompetitionAdminController {
         this.competitionService = competitionService;
     }
 
-    @GetMapping(value = "/{competitionId}")
-    @ApiOperation("查询单个大赛信息")
-    @ApiResponses({@ApiResponse(code = 200, message = "查询单个大赛信息成功"),
-            @ApiResponse(code = 500, message = "查询单个大赛信息失败"),
-            @ApiResponse(code = 501, message = "competitionId为空")})
-    public Result<Object> singleCompetition(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
-                                            @PathVariable("competitionId") Integer competitionId,
-                                            @RequestHeader("jwt") String jwt) {
-        if (competitionId == null || competitionId <= 0) {
-            return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
-        } else {
-            Competition competition = this.competitionService.selectByPrimaryKey(competitionId);
-            return StrUtil.isNotBlank(competition.getCompetitionYear()) ? new ResultUtil<>().setData(competition, "查询单个大赛信息成功") :
-                    new ResultUtil<>().setErrorMsg("查询单个大赛信息失败");
-        }
-    }
-
-    @GetMapping(value = "/competitions/{pageNum}/{pageSize}")
+    @GetMapping(value = "/competitions")
     @ApiOperation("查询所有大赛")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有大赛成功"),
             @ApiResponse(code = 201, message = "没有大赛")})
-    public Result<Object> allCompetition(@RequestHeader("jwt") String jwt,
-                                         @ApiParam(name = "pageNum", value = "页数", type = "Integer")
-                                         @PathVariable("pageNum") Integer pageNum,
-                                         @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
-                                         @PathVariable("pageSize") Integer pageSize) {
-        List<Competition> competitionList = this.competitionService.selectAllCompetition(pageNum, pageSize);
+    public Result<Object> allCompetition(@RequestHeader("jwt") String jwt) {
+        List<Competition> competitionList = this.competitionService.selectAllCompetition();
         if (competitionList.size() == 0) {
             return new ResultUtil<>().setSuccessMsg(201, "没有大赛");
         } else {
