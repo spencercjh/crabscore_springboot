@@ -1,6 +1,7 @@
 package com.shou.crabscore.service;
 
 import com.shou.crabscore.entity.Group;
+import com.shou.crabscore.entity.vo.GroupResult;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -19,9 +20,9 @@ public interface GroupService {
      * @param pageSize      pageSize
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetition(@Param("competitionId") Integer competitionId,
-                                             @Param("pageNum") int pageNum,
-                                             @Param("pageSize") int pageSize);
+    List<GroupResult> selectAllGroupOneCompetition(@Param("competitionId") Integer competitionId,
+                                                   @Param("pageNum") int pageNum,
+                                                   @Param("pageSize") int pageSize);
 
     /**
      * 查询在某一届大赛中的所有组并按照种质成绩从大到小排列
@@ -31,7 +32,7 @@ public interface GroupService {
      * @param pageSize      pageSize
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetitionOrderByQualityScore(@Param("competitionId") Integer competitionId,
+    List<GroupResult> selectAllGroupOneCompetitionOrderByQualityScore(@Param("competitionId") Integer competitionId,
                                                                 @Param("pageNum") int pageNum,
                                                                 @Param("pageSize") int pageSize);
 
@@ -43,7 +44,7 @@ public interface GroupService {
      * @param pageSize      pageSize
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetitionOrderByTasteScore(@Param("competitionId") Integer competitionId,
+    List<GroupResult> selectAllGroupOneCompetitionOrderByTasteScore(@Param("competitionId") Integer competitionId,
                                                               @Param("pageNum") int pageNum,
                                                               @Param("pageSize") int pageSize);
 
@@ -55,7 +56,7 @@ public interface GroupService {
      * @param pageSize      pageSize
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetitionOrderByFatnessScore(@Param("competitionId") Integer competitionId,
+    List<GroupResult> selectAllGroupOneCompetitionOrderByFatnessScore(@Param("competitionId") Integer competitionId,
                                                                 @Param("pageNum") int pageNum,
                                                                 @Param("pageSize") int pageSize);
 
@@ -68,7 +69,7 @@ public interface GroupService {
      * @param pageSize      pageSize
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetitionOneCompany(@Param("competitionId") Integer competitionId,
+    List<GroupResult> selectAllGroupOneCompetitionOneCompany(@Param("competitionId") Integer competitionId,
                                                        @Param("companyId") Integer companyId,
                                                        @Param("pageNum") int pageNum,
                                                        @Param("pageSize") int pageSize);

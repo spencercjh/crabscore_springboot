@@ -5,6 +5,7 @@ import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.Company;
 import com.shou.crabscore.entity.Group;
+import com.shou.crabscore.entity.vo.GroupResult;
 import com.shou.crabscore.service.CompanyService;
 import com.shou.crabscore.service.GroupService;
 import io.swagger.annotations.*;
@@ -90,7 +91,7 @@ public class CompanyAdminController {
         } else if (companyId == null || companyId <= 0) {
             return new ResultUtil<>().setErrorMsg(502, "companyId为空");
         } else {
-            List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOneCompany(competitionId, companyId,
+            List<GroupResult> groupList = this.groupService.selectAllGroupOneCompetitionOneCompany(competitionId, companyId,
                     pageNum, pageSize);
             if (groupList.size() == 0) {
                 return new ResultUtil<>().setSuccessMsg(201, "groupList为空");

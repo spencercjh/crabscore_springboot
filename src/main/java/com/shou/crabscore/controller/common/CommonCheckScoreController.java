@@ -3,6 +3,7 @@ package com.shou.crabscore.controller.common;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.Group;
+import com.shou.crabscore.entity.vo.GroupResult;
 import com.shou.crabscore.service.GroupService;
 import io.swagger.annotations.*;
 import lombok.extern.log4j.Log4j2;
@@ -45,7 +46,7 @@ public class CommonCheckScoreController {
         if (competitionId == null || competitionId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
-            List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOrderByFatnessScore(competitionId,
+            List<GroupResult> groupList = this.groupService.selectAllGroupOneCompetitionOrderByFatnessScore(competitionId,
                     pageNum, pageSize);
             return groupList.size() == 0 ? (new ResultUtil<>().setSuccessMsg(201, "没有金蟹奖成绩")) :
                     (new ResultUtil<>().setData(groupList, "查找所有金蟹奖成绩成功"));
@@ -66,7 +67,7 @@ public class CommonCheckScoreController {
         if (competitionId == null || competitionId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
-            List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOrderByQualityScore(competitionId,
+            List<GroupResult> groupList = this.groupService.selectAllGroupOneCompetitionOrderByQualityScore(competitionId,
                     pageNum, pageSize);
             return groupList.size() == 0 ? (new ResultUtil<>().setSuccessMsg(201, "没有种质奖成绩")) :
                     (new ResultUtil<>().setData(groupList, "查找所有种质奖成绩成功"));
@@ -87,7 +88,7 @@ public class CommonCheckScoreController {
         if (competitionId == null || competitionId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
-            List<Group> groupList = this.groupService.selectAllGroupOneCompetitionOrderByTasteScore(competitionId,
+            List<GroupResult> groupList = this.groupService.selectAllGroupOneCompetitionOrderByTasteScore(competitionId,
                     pageNum, pageSize);
             return groupList.size() == 0 ? (new ResultUtil<>().setSuccessMsg(201, "没有口感奖成绩")) :
                     (new ResultUtil<>().setData(groupList, "查找所有口感奖成绩成功"));

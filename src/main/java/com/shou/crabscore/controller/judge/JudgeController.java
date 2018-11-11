@@ -5,6 +5,7 @@ import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.Group;
 import com.shou.crabscore.entity.QualityScore;
 import com.shou.crabscore.entity.TasteScore;
+import com.shou.crabscore.entity.vo.GroupResult;
 import com.shou.crabscore.service.GroupService;
 import com.shou.crabscore.service.QualityScoreService;
 import com.shou.crabscore.service.TasteScoreService;
@@ -52,7 +53,7 @@ public class JudgeController {
         if (competitionId == null || competitionId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
-            List<Group> groupList = this.groupService.selectAllGroupOneCompetition(competitionId, pageNum, pageSize);
+            List<GroupResult> groupList = this.groupService.selectAllGroupOneCompetition(competitionId, pageNum, pageSize);
             if (groupList.size() == 0) {
                 return new ResultUtil<>().setSuccessMsg(201, "groupList为空");
             } else {

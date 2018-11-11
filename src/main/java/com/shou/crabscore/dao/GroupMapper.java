@@ -1,7 +1,7 @@
 package com.shou.crabscore.dao;
 
 import com.shou.crabscore.entity.Group;
-import org.apache.ibatis.annotations.Mapper;
+import com.shou.crabscore.entity.vo.GroupResult;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +20,7 @@ public interface GroupMapper {
      * @param competitionId 大赛Id
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetition(@Param("competitionId") Integer competitionId);
+    List<GroupResult> selectAllGroupOneCompetition(@Param("competitionId") Integer competitionId);
 
     /**
      * 查询在某一届大赛中的所有组并按照种质成绩从大到小排列
@@ -28,7 +28,7 @@ public interface GroupMapper {
      * @param competitionId 大赛Id
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetitionOrderByQualityScore(@Param("competitionId") Integer competitionId);
+    List<GroupResult> selectAllGroupOneCompetitionOrderByQualityScore(@Param("competitionId") Integer competitionId);
 
     /**
      * 查询在某一届大赛中的所有组并按照口感成绩从大到小排列
@@ -36,7 +36,7 @@ public interface GroupMapper {
      * @param competitionId 大赛Id
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetitionOrderByTasteScore(@Param("competitionId") Integer competitionId);
+    List<GroupResult> selectAllGroupOneCompetitionOrderByTasteScore(@Param("competitionId") Integer competitionId);
 
     /**
      * 查询在某一届大赛中的所有组并按照肥满度成绩从大到小排列
@@ -44,7 +44,7 @@ public interface GroupMapper {
      * @param competitionId 大赛Id
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetitionOrderByFatnessScore(@Param("competitionId") Integer competitionId);
+    List<GroupResult> selectAllGroupOneCompetitionOrderByFatnessScore(@Param("competitionId") Integer competitionId);
 
     /**
      * 查询在某一届大赛中某一参选单位的所有组
@@ -53,7 +53,7 @@ public interface GroupMapper {
      * @param companyId     参选单位Id
      * @return 所有符合条件的组记录
      */
-    List<Group> selectAllGroupOneCompetitionOneCompany(@Param("competitionId") Integer competitionId, @Param("companyId") Integer companyId);
+    List<GroupResult> selectAllGroupOneCompetitionOneCompany(@Param("competitionId") Integer competitionId, @Param("companyId") Integer companyId);
 
     /**
      * 通过主键删除

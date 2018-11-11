@@ -6,6 +6,7 @@ import com.shou.crabscore.dao.*;
 import com.shou.crabscore.entity.Competition;
 import com.shou.crabscore.entity.CompetitionConfig;
 import com.shou.crabscore.entity.Group;
+import com.shou.crabscore.entity.vo.GroupResult;
 import com.shou.crabscore.service.ScoreService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,8 +65,8 @@ public class ScoreServiceImpl implements ScoreService {
     public Result<Object> calculateFatnessScore(Integer competitionId) {
         CompetitionConfig presentCompetitionConfig = this.competitionConfigMapper.selectByPrimaryKey(1);
         Competition presentCompetition = this.competitionMapper.selectByPrimaryKey(presentCompetitionConfig.getCompetitionId());
-        List<Group> allGroups = this.groupMapper.selectAllGroupOneCompetition(competitionId);
-        for (Group group : allGroups) {
+        List<GroupResult> allGroups = this.groupMapper.selectAllGroupOneCompetition(competitionId);
+        for (GroupResult group : allGroups) {
             int groupId = group.getGroupId();
             Float averageMaleFatness = this.crabMapper.
                     averageFatnessByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, 1);
