@@ -102,7 +102,7 @@ public class CompanyCheckScoreController {
             @ApiResponse(code = 500, message = "绑定失败"),
             @ApiResponse(code = 501, message = "用户Id为空"),
             @ApiResponse(code = 502, message = "参选单位Id为空")})
-    public Result<Object> bindUserCompany(@ApiParam(name = "userId", value = "用户Id", type = "Integer")
+    public Result<Object> userBindCompany(@ApiParam(name = "userId", value = "用户Id", type = "Integer")
                                           @RequestParam Integer userId,
                                           @ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
                                           @RequestParam Integer companyId,
@@ -117,7 +117,7 @@ public class CompanyCheckScoreController {
             user.setCompanyId(companyId);
             return this.userService.updateByPrimaryKeySelective(user) <= 0 ?
                     new ResultUtil<>().setErrorMsg(500, "绑定失败") :
-                    new ResultUtil<>().setSuccessMsg("修改成功");
+                    new ResultUtil<>().setSuccessMsg("绑定成功");
         }
 
     }
