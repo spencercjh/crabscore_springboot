@@ -14,14 +14,6 @@ import java.util.List;
 @Repository
 public interface CompanyMapper {
     /**
-     * 通过userId查找参选单位
-     *
-     * @param userId 用户Id
-     * @return 参选单位记录
-     */
-    List<Company> selectOneUserAllCompany(@Param("userId") Integer userId);
-
-    /**
      * 查找所有参选单位
      *
      * @return 所有参选单位记录

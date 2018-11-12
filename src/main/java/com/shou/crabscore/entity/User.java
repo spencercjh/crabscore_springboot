@@ -17,6 +17,9 @@ public class User {
     @ApiModelProperty(value = "唯一标识 用户id")
     private Integer userId;
 
+    @ApiModelProperty(value = "绑定的参选单位Id")
+    private Integer companyId;
+
     @ApiModelProperty(value = "用户名")
     private String userName;
 

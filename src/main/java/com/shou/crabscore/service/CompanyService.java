@@ -12,18 +12,6 @@ import java.util.List;
  */
 public interface CompanyService {
     /**
-     * 通过userId查找参选单位
-     *
-     * @param userId   用户Id
-     * @param pageNum  pageNum
-     * @param pageSize pageSize
-     * @return 参选单位记录
-     */
-    List<Company> selectOneUserAllCompany(@Param("userId") Integer userId,
-                                          @Param("pageNum") int pageNum,
-                                          @Param("pageSize") int pageSize);
-
-    /**
      * 查找所有参选单位
      *
      * @param pageNum  pageNum
