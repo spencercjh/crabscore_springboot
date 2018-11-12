@@ -12,6 +12,13 @@ import java.util.List;
  */
 public interface CompanyService {
     /**
+     * 查找所有参选单位（不分页）
+     *
+     * @return 所有参选单位记录
+     */
+    List<Company> selectAllCompany();
+
+    /**
      * 查找所有参选单位
      *
      * @param pageNum  pageNum

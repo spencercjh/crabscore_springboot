@@ -83,17 +83,17 @@ public class CompanyCheckScoreController {
                 new ResultUtil<>().setData(tasteScoreList, "查询口感成绩信息成功");
     }
 
-    @GetMapping("/{companyId}")
-    @ApiOperation("查询一个用户绑定的所有参选单位")
-    @ApiResponses({@ApiResponse(code = 200, message = "查询绑定参选单位信息成功"),
-            @ApiResponse(code = 500, message = "没有绑定的参选单位信息")})
-    public Result<Object> company(
-            @ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
-            @PathVariable("companyId") Integer companyId,
-            @RequestHeader("jwt") String jwt) {
-        Company company = this.companyService.selectByPrimaryKey(companyId);
-        return company == null ? new ResultUtil<>().setSuccessMsg(500, "没有绑定的参选单位信息") :
-                new ResultUtil<>().setData(company, "查询绑定参选单位信息成功");
+    @GetMapping(value = "/companies")
+    @ApiOperation("查询所有参选单位")
+    @ApiResponses({@ApiResponse(code = 200, message = "查询所有参选单位成功"),
+            @ApiResponse(code = 201, message = "companyList列表为空")})
+    public Result<Object> allCompany(@RequestHeader("jwt") String jwt) {
+        List<Company> companyList = this.companyService.selectAllCompany();
+        if (companyList.size() == 0) {
+            return new ResultUtil<>().setSuccessMsg(201, "companyList列表为空");
+        } else {
+            return new ResultUtil<>().setData(companyList, "查询所有参选单位成功");
+        }
     }
 
     @PutMapping("/user")
