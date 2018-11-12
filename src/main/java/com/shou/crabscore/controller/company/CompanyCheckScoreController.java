@@ -6,10 +6,8 @@ import com.shou.crabscore.entity.Company;
 import com.shou.crabscore.entity.QualityScore;
 import com.shou.crabscore.entity.TasteScore;
 import com.shou.crabscore.entity.User;
-import com.shou.crabscore.service.CompanyService;
-import com.shou.crabscore.service.QualityScoreService;
-import com.shou.crabscore.service.TasteScoreService;
-import com.shou.crabscore.service.UserService;
+import com.shou.crabscore.entity.vo.GroupResult;
+import com.shou.crabscore.service.*;
 import io.swagger.annotations.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +30,15 @@ public class CompanyCheckScoreController {
     private final TasteScoreService tasteScoreService;
     private final CompanyService companyService;
     private final UserService userService;
+    private final GroupService groupService;
 
     @Autowired
-    public CompanyCheckScoreController(QualityScoreService qualityScoreService, TasteScoreService tasteScoreService, CompanyService companyService, UserService userService) {
+    public CompanyCheckScoreController(QualityScoreService qualityScoreService, TasteScoreService tasteScoreService, CompanyService companyService, UserService userService, GroupService groupService) {
         this.qualityScoreService = qualityScoreService;
         this.tasteScoreService = tasteScoreService;
         this.companyService = companyService;
         this.userService = userService;
+        this.groupService = groupService;
     }
 
     @GetMapping("/score/qualities/{competitionId}/{groupId}/{crabSex}/{pageNum}/{pageSize}")
@@ -87,7 +87,7 @@ public class CompanyCheckScoreController {
     @ApiOperation("查询一个用户绑定的所有参选单位")
     @ApiResponses({@ApiResponse(code = 200, message = "查询绑定参选单位信息成功"),
             @ApiResponse(code = 500, message = "没有绑定的参选单位信息")})
-    public Result<Object> oneUserAllCompany(
+    public Result<Object> company(
             @ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
             @PathVariable("companyId") Integer companyId,
             @RequestHeader("jwt") String jwt) {
@@ -99,17 +99,57 @@ public class CompanyCheckScoreController {
     @PutMapping("/user")
     @ApiOperation("将参选单位信息与参选单位用户绑定")
     @ApiResponses({@ApiResponse(code = 200, message = "绑定成功"),
-            @ApiResponse(code = 500, message = "绑定失败")})
+            @ApiResponse(code = 500, message = "绑定失败"),
+            @ApiResponse(code = 501, message = "用户Id为空"),
+            @ApiResponse(code = 502, message = "参选单位Id为空")})
     public Result<Object> bindUserCompany(@ApiParam(name = "userId", value = "用户Id", type = "Integer")
                                           @RequestParam Integer userId,
                                           @ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
                                           @RequestParam Integer companyId,
                                           @RequestHeader("jwt") String jwt) {
-        User user = new User();
-        user.setUserId(userId);
-        user.setCompanyId(companyId);
-        return this.userService.updateByPrimaryKeySelective(user) <= 0 ?
-                new ResultUtil<>().setErrorMsg(500, "绑定失败") :
-                new ResultUtil<>().setSuccessMsg("修改成功");
+        if (userId == null || userId == 0) {
+            return new ResultUtil<>().setErrorMsg(501, "用户Id为空");
+        } else if (companyId == null || companyId == 0) {
+            return new ResultUtil<>().setErrorMsg(502, "参选单位Id为空");
+        } else {
+            User user = new User();
+            user.setUserId(userId);
+            user.setCompanyId(companyId);
+            return this.userService.updateByPrimaryKeySelective(user) <= 0 ?
+                    new ResultUtil<>().setErrorMsg(500, "绑定失败") :
+                    new ResultUtil<>().setSuccessMsg("修改成功");
+        }
+
+    }
+
+    @GetMapping(value = "/groups/{competitionId}/{companyId}/{pageNum}/{pageSize}")
+    @ApiOperation("查询在某一届大赛中某一参选单位的所有组")
+    @ApiResponses({@ApiResponse(code = 200, message = "查询所有比赛组成功"),
+            @ApiResponse(code = 200, message = "查询所有比赛组成功"),
+            @ApiResponse(code = 500, message = "该参选单位没有比赛组"),
+            @ApiResponse(code = 501, message = "competitionId为空"),
+            @ApiResponse(code = 502, message = "companyId为空")})
+    public Result<Object> oneCompanyAllGroup(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
+                                             @PathVariable("competitionId") Integer competitionId,
+                                             @ApiParam(name = "companyId", value = "参选单位Id", type = "Integer")
+                                             @PathVariable("companyId") Integer companyId,
+                                             @RequestHeader("jwt") String jwt,
+                                             @ApiParam(name = "pageNum", value = "页数", type = "Integer")
+                                             @PathVariable("pageNum") Integer pageNum,
+                                             @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
+                                             @PathVariable("pageSize") Integer pageSize) {
+        if (competitionId == null || competitionId <= 0) {
+            return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
+        } else if (companyId == null || companyId <= 0) {
+            return new ResultUtil<>().setErrorMsg(502, "companyId为空");
+        } else {
+            List<GroupResult> groupList = this.groupService.selectAllGroupOneCompetitionOneCompany(competitionId, companyId,
+                    pageNum, pageSize);
+            if (groupList.size() == 0) {
+                return new ResultUtil<>().setErrorMsg(500, "该参选单位没有比赛组");
+            } else {
+                return new ResultUtil<>().setData(groupList, "查询所有比赛组成功");
+            }
+        }
     }
 }

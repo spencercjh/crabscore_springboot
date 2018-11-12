@@ -74,7 +74,7 @@ public class SecurityServiceImpl implements SecurityService {
             String jwt = JwtUtil.createJWT(String.valueOf(subject.hashCode()), JSON.toJSONString(subject));
             Map<String, Object> result = new HashMap<>(2);
             result.put("jwt", jwt);
-            result.put("user", searchResult);
+            result.put("user", JSON.toJSON(searchResult));
             return new ResultUtil<>().setData(result, "登录成功");
         } else {
             return new ResultUtil<>().setErrorMsg(501, "用户组参数错误");
