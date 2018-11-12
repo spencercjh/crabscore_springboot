@@ -11,11 +11,14 @@ import java.util.Date;
  * rxpb_company_info
  */
 @Data
-@ApiModel(value="参选单位对象模型")
+@ApiModel(value = "参选单位对象模型")
 public class Company {
 
     @ApiModelProperty(value = "唯一标识 参选单位id")
     private Integer companyId;
+
+    @ApiModelProperty(value = "用户id", notes = "多个userId对应一个companyId")
+    private Integer userId;
 
     @ApiModelProperty(value = "参选单位名")
     private String companyName;

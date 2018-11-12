@@ -27,6 +27,12 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    public List<Company> selectOneUserAllCompany(Integer userId, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return companyMapper.selectOneUserAllCompany(userId);
+    }
+
+    @Override
     public List<Company> selectAllCompany(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         return companyMapper.selectAllCompany();
