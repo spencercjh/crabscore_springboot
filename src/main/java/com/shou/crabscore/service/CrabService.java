@@ -1,6 +1,7 @@
 package com.shou.crabscore.service;
 
 import com.shou.crabscore.entity.Crab;
+import com.shou.crabscore.entity.vo.CrabResult;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -77,7 +78,7 @@ public interface CrabService {
      * @param label 标签
      * @return 螃蟹信息记录
      */
-    Crab selectByLabel(@Param("label") String label);
+    CrabResult selectByLabel(@Param("label") String label);
 
     /**
      * 根据大赛Id,小组Id和螃蟹性别来查询螃蟹信息

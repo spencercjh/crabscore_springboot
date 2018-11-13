@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.Crab;
+import com.shou.crabscore.entity.vo.CrabResult;
 import com.shou.crabscore.entity.vo.GroupResult;
 import com.shou.crabscore.service.CrabService;
 import com.shou.crabscore.service.GroupService;
@@ -120,10 +121,10 @@ public class CrabAdminController {
             @ApiResponse(code = 501, message = "label为空")})
     public Result<Object> searchLabel(@ApiParam(name = "label", value = "标签", type = "String")
                                       @PathVariable("label") String label, @RequestHeader("jwt") String jwt) {
-        if (StrUtil.isNotBlank(label)) {
+        if (!StrUtil.isNotBlank(label)) {
             return new ResultUtil<>().setErrorMsg(501, "label为空");
         } else {
-            Crab crab = this.crabService.selectByLabel(label);
+            CrabResult crab = this.crabService.selectByLabel(label);
             return crab.getCrabId() <= 0 ? new ResultUtil<>().setErrorMsg("查找螃蟹信息失败") :
                     new ResultUtil<>().setData(crab, "查找螃蟹信息成功");
         }

@@ -19,6 +19,22 @@
         <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
         <result column="competition_id" property="competitionId" jdbcType="INTEGER"/>
     </resultMap>
+    <resultMap id="ExtendResultMap" type="com.shou.crabscore.entity.vo.CrabResult">
+        <id column="crab_id" property="crabId" jdbcType="INTEGER"/>
+        <result column="group_id" property="groupId" jdbcType="INTEGER"/>
+        <result column="company_id" property="companyId" jdbcType="INTEGER"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="crab_sex" property="crabSex" jdbcType="INTEGER"/>
+        <result column="crab_label" property="crabLabel" jdbcType="VARCHAR"/>
+        <result column="crab_weight" property="crabWeight" jdbcType="REAL"/>
+        <result column="crab_length" property="crabLength" jdbcType="REAL"/>
+        <result column="crab_fatness" property="crabFatness" jdbcType="REAL"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="create_user" property="createUser" jdbcType="VARCHAR"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
+        <result column="competition_id" property="competitionId" jdbcType="INTEGER"/>
+    </resultMap>
     <sql id="Base_Column_List">
         <!--
           WARNING - @mbggenerated
@@ -71,12 +87,27 @@
         </set>
         where competition_id=#{competitionId,jdbcType=INTEGER}
     </update>
-    <!-- 2018年9月21日09:28:25 -->
-    <select id="selectByLabel" resultMap="BaseResultMap" parameterType="java.lang.String">
-        select
-        <include refid="Base_Column_List"/>
-        from rxpb_crab_info
-        where crab_length=#{label,jdbcType=VARCHAR}
+    <select id="selectByLabel" resultMap="ExtendResultMap" parameterType="java.lang.String">
+        select a.crab_id,
+               a.group_id,
+               c.company_id,
+               c.company_name,
+               a.crab_sex,
+               a.crab_label,
+               a.crab_weight,
+               a.crab_length,
+               a.crab_fatness,
+               a.create_date,
+               a.create_user,
+               a.update_date,
+               a.update_user,
+               a.competition_id
+        from rxpb_crab_info as a,
+             rxpb_group_info as b,
+             rxpb_company_info as c
+        where a.group_id = b.group_id
+          and b.company_id = c.company_id
+          and crab_label = #{crabLabel,jdbcType=VARCHAR}
     </select>
     <select id="selectByCompetitionIdAndGroupIdAndCrabSex" resultMap="BaseResultMap">
         select

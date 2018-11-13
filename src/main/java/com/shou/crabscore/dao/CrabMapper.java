@@ -1,6 +1,7 @@
 package com.shou.crabscore.dao;
 
 import com.shou.crabscore.entity.Crab;
+import com.shou.crabscore.entity.vo.CrabResult;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -77,10 +78,10 @@ public interface CrabMapper {
     /**
      * 根据唯一标签来查找螃蟹信息
      *
-     * @param label 标签
+     * @param crabLabel 标签
      * @return 螃蟹信息记录
      */
-    Crab selectByLabel(@Param("label") String label);
+    CrabResult selectByLabel(@Param("crabLabel") String crabLabel);
 
     /**
      * 根据大赛Id,小组Id和螃蟹性别来查询螃蟹信息
