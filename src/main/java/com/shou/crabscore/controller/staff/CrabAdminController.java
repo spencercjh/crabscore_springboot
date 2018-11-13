@@ -152,4 +152,26 @@ public class CrabAdminController {
             }
         }
     }
+
+    @PostMapping(value = "/crabs", consumes = "application/json")
+    @ApiOperation("批量插入螃蟹信息")
+    @ApiResponses({@ApiResponse(code = 200, message = "批量插入螃蟹信息成功"),
+            @ApiResponse(code = 500, message = "批量插入螃蟹信息失败"),
+            @ApiResponse(code = 501, message = "crabList为空为空")})
+    public Result<Object> insertCrabInfoList(@ApiParam(name = "crabList", value = "螃蟹信息对象List", type = "List")
+                                             @RequestBody List<Crab> crabList,
+                                             @RequestHeader("jwt") String jwt) {
+        if (crabList == null || crabList.isEmpty()) {
+            return new ResultUtil<>().setErrorMsg(501, "crabList为空");
+        } else {
+            int failCount = 0;
+            for (Crab crab : crabList) {
+                if (this.crabService.insert(crab) <= 0) {
+                    failCount++;
+                }
+            }
+            return failCount == 0 ? new ResultUtil<>().setSuccessMsg("批量插入螃蟹信息成功") :
+                    new ResultUtil<>().setErrorMsg(500, "批量插入螃蟹信息失败");
+        }
+    }
 }
