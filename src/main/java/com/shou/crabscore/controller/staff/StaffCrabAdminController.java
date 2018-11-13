@@ -25,13 +25,13 @@ import java.util.List;
 @Api(description = "工作人员用户组-工作人员接口")
 @RestController
 @RequestMapping("/api/staff")
-public class CrabAdminController {
+public class StaffCrabAdminController {
 
     private final CrabService crabService;
     private final GroupService groupService;
 
     @Autowired
-    public CrabAdminController(CrabService crabService, GroupService groupService) {
+    public StaffCrabAdminController(CrabService crabService, GroupService groupService) {
         this.crabService = crabService;
         this.groupService = groupService;
     }

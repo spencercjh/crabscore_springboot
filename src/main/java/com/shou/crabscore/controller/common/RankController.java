@@ -24,11 +24,11 @@ import java.util.List;
 @RestController
 @Api(description = "公共用户组-公共三大奖查分接口")
 @RequestMapping("/api/common/score")
-public class CommonCheckScoreController {
+public class RankController {
     private final GroupService groupService;
 
     @Autowired
-    public CommonCheckScoreController(GroupService groupService) {
+    public RankController(GroupService groupService) {
         this.groupService = groupService;
     }
 

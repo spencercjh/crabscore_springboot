@@ -49,6 +49,8 @@ public interface CommonConstant {
      */
     Integer USER_TYPE_NORMAL = 0;
 
+    String PERSON_CENTER = "person";
+
     /**
      * 公共权限
      */

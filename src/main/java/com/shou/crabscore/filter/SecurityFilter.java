@@ -53,6 +53,8 @@ public class SecurityFilter implements Filter {
             requestApiRoleId = CommonConstant.USER_TYPE_STAFF;
         } else if (request.getRequestURI().contains(CommonConstant.COMPANY)) {
             requestApiRoleId = CommonConstant.USER_TYPE_COMPANY;
+        } else if (request.getRequestURI().contains(CommonConstant.PERSON_CENTER)) {
+            requestApiRoleId = CommonConstant.USER_TYPE_COMMON;
         }
         if (requestApiRoleId.equals(CommonConstant.USER_TYPE_NORMAL)) {
             try {
