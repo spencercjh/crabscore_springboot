@@ -11,7 +11,11 @@ import com.shou.crabscore.service.UserService;
 import io.swagger.annotations.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author spencercjh
@@ -21,6 +25,14 @@ import org.springframework.web.bind.annotation.*;
 @Api(description = "公共用户组-大赛公共信息接口")
 @RequestMapping("/api/common")
 public class CommonPropertyController {
+    @Value("${qiniu.accessKey}")
+    public String accessKey;
+
+    @Value("${qiniu.secretKey}")
+    public String secretKey;
+
+    @Value("${qiniu.bucket}")
+    public String bucket;
 
     private final CompetitionConfigService competitionConfigService;
     private final CompetitionService competitionService;
@@ -60,5 +72,16 @@ public class CommonPropertyController {
             return (updateResult <= 0) ? new ResultUtil<>().setErrorMsg("修改资料失败") :
                     new ResultUtil<>().setSuccessMsg("修改资料成功");
         }
+    }
+
+    @GetMapping(value = "/qiniu")
+    @ApiOperation("查询七牛云秘钥")
+    @ApiResponses({@ApiResponse(code = 200, message = "查询七牛云信息成功")})
+    public Result<Object> getQiNiuProperty(@RequestHeader("jwt") String jwt) {
+        Map<String, Object> result = new HashMap<>(3);
+        result.put("accessKey", accessKey);
+        result.put("secretKey", secretKey);
+        result.put("bucket", bucket);
+        return new ResultUtil<>().setData(result, "查询七牛云信息成功");
     }
 }

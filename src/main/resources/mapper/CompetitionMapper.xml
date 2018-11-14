@@ -25,6 +25,7 @@
         <result column="create_user" property="createUser" jdbcType="VARCHAR"/>
         <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
         <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
+        <result column="avatar_url" property="avatarUrl" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--
@@ -34,7 +35,7 @@
         competition_id, competition_year, var_fatness_m, var_fatness_f, var_weight_m, var_weight_f,
         var_mfatness_sd, var_mweight_sd, var_ffatness_sd, var_fweight_sd, result_fatness,
         result_quality, result_taste, note, status, create_date, create_user, update_date,
-        update_user
+        update_user,avatar_url
     </sql>
     <!-- 2018年9月20日10:46:29 -->
     <select id="selectAllCompetition" resultMap="BaseResultMap">
@@ -71,14 +72,14 @@
         var_fweight_sd, result_fatness, result_quality,
         result_taste, note, status,
         create_date, create_user, update_date,
-        update_user)
+        update_user,avatar_url)
         values (#{competitionId,jdbcType=INTEGER}, #{competitionYear,jdbcType=VARCHAR}, #{varFatnessM,jdbcType=REAL},
         #{varFatnessF,jdbcType=REAL}, #{varWeightM,jdbcType=REAL}, #{varWeightF,jdbcType=REAL},
         #{varMfatnessSd,jdbcType=REAL}, #{varMweightSd,jdbcType=REAL}, #{varFfatnessSd,jdbcType=REAL},
         #{varFweightSd,jdbcType=REAL}, #{resultFatness,jdbcType=INTEGER}, #{resultQuality,jdbcType=INTEGER},
         #{resultTaste,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
         #{createDate,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP},
-        #{updateUser,jdbcType=VARCHAR})
+        #{updateUser,jdbcType=VARCHAR},#{avatarUrl,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.shou.crabscore.entity.Competition">
         <!--
@@ -144,6 +145,9 @@
             <if test="updateUser != null">
                 update_user,
             </if>
+            <if test="avatarUrl != null">
+                avatar_url
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="competitionId != null">
@@ -202,6 +206,9 @@
             </if>
             <if test="updateUser != null">
                 #{updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="avatarUrl != null">
+                #{avatarUrl,jdbcType=VARCHAR}
             </if>
         </trim>
     </insert>
@@ -266,6 +273,9 @@
             <if test="updateUser != null">
                 update_user = #{updateUser,jdbcType=VARCHAR},
             </if>
+            <if test="avatarUrl != null">
+                avatar_url= #{avatarUrl,jdbcType=VARCHAR}
+            </if>
         </set>
         where competition_id = #{competitionId,jdbcType=INTEGER}
     </update>
@@ -292,7 +302,8 @@
         create_date = #{createDate,jdbcType=TIMESTAMP},
         create_user = #{createUser,jdbcType=VARCHAR},
         update_date = #{updateDate,jdbcType=TIMESTAMP},
-        update_user = #{updateUser,jdbcType=VARCHAR}
+        update_user = #{updateUser,jdbcType=VARCHAR},
+        avatar_url=#{avatarUrl,jdbcType=VARCHAR}
         where competition_id = #{competitionId,jdbcType=INTEGER}
     </update>
 </mapper>

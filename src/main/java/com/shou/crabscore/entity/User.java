@@ -53,6 +53,8 @@ public class User {
     @ApiModelProperty(value = "更新用户")
     private String updateUser;
 
+    @ApiModelProperty(value = "头像链接")
+    private String avatarUrl;
 
     public User() {
     }

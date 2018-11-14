@@ -50,4 +50,6 @@ public class Crab {
     @ApiModelProperty(value = "大赛id")
     private Integer competitionId;
 
+    @ApiModelProperty(value = "头像链接")
+    private String avatarUrl;
 }
