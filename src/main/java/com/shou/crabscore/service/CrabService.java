@@ -2,6 +2,7 @@ package com.shou.crabscore.service;
 
 import com.shou.crabscore.entity.Crab;
 import com.shou.crabscore.entity.vo.CrabResult;
+import com.shou.crabscore.entity.vo.CrabScoreResult;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,6 +13,20 @@ import java.util.List;
  * @author spencercjh
  */
 public interface CrabService {
+    /**
+     * 查找一个组的所有螃蟹和螃蟹对应的评分
+     *
+     * @param competitionId 大赛Id
+     * @param groupId       小组Id
+     * @param pageNum       页数
+     * @param pageSize      页面大小
+     * @return List<CrabScoreResult>
+     */
+    List<CrabScoreResult> selectOneGroupAllCrabAndScore(@Param("competitionId") Integer competitionId,
+                                                        @Param("groupId") Integer groupId,
+                                                        @Param("pageNum") int pageNum,
+                                                        @Param("pageSize") int pageSize);
+
     /**
      * 计算某一年大赛的某一组的某一性别的螃蟹的肥满度标准差
      *

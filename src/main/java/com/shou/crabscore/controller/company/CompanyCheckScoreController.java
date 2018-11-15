@@ -6,6 +6,7 @@ import com.shou.crabscore.entity.Company;
 import com.shou.crabscore.entity.QualityScore;
 import com.shou.crabscore.entity.TasteScore;
 import com.shou.crabscore.entity.User;
+import com.shou.crabscore.entity.vo.CrabScoreResult;
 import com.shou.crabscore.entity.vo.GroupResult;
 import com.shou.crabscore.service.*;
 import io.swagger.annotations.*;
@@ -31,14 +32,16 @@ public class CompanyCheckScoreController {
     private final CompanyService companyService;
     private final UserService userService;
     private final GroupService groupService;
+    private final CrabService crabService;
 
     @Autowired
-    public CompanyCheckScoreController(QualityScoreService qualityScoreService, TasteScoreService tasteScoreService, CompanyService companyService, UserService userService, GroupService groupService) {
+    public CompanyCheckScoreController(QualityScoreService qualityScoreService, TasteScoreService tasteScoreService, CompanyService companyService, UserService userService, GroupService groupService, CrabService crabService) {
         this.qualityScoreService = qualityScoreService;
         this.tasteScoreService = tasteScoreService;
         this.companyService = companyService;
         this.userService = userService;
         this.groupService = groupService;
+        this.crabService = crabService;
     }
 
     @GetMapping("/score/qualities/{competitionId}/{groupId}/{crabSex}/{pageNum}/{pageSize}")
@@ -125,7 +128,6 @@ public class CompanyCheckScoreController {
     @GetMapping(value = "/groups/{competitionId}/{companyId}/{pageNum}/{pageSize}")
     @ApiOperation("查询在某一届大赛中某一参选单位的所有组")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有比赛组成功"),
-            @ApiResponse(code = 200, message = "查询所有比赛组成功"),
             @ApiResponse(code = 500, message = "该参选单位没有比赛组"),
             @ApiResponse(code = 501, message = "competitionId为空"),
             @ApiResponse(code = 502, message = "companyId为空")})
@@ -150,6 +152,32 @@ public class CompanyCheckScoreController {
             } else {
                 return new ResultUtil<>().setData(groupList, "查询所有比赛组成功");
             }
+        }
+    }
+
+    @GetMapping(value = "/{groupId}/crabs/{competitionId}/{pageNum}/{pageSize}")
+    @ApiOperation("查找一个组的所有螃蟹和螃蟹对应的评分")
+    @ApiResponses({@ApiResponse(code = 200, message = "查询所有螃蟹和评分成功"),
+            @ApiResponse(code = 201, message = "评分为空，没有查询结果"),
+            @ApiResponse(code = 501, message = "competitionId为空"),
+            @ApiResponse(code = 502, message = "groupId为空")})
+    public Result<Object> oneGroupAllCrabAndScore(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
+                                                  @PathVariable("competitionId") Integer competitionId,
+                                                  @ApiParam(name = "groupId", value = "小组Id", type = "Integer")
+                                                  @PathVariable("groupId") Integer groupId,
+                                                  @RequestHeader("jwt") String jwt,
+                                                  @ApiParam(name = "pageNum", value = "页数", type = "Integer")
+                                                  @PathVariable("pageNum") Integer pageNum,
+                                                  @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
+                                                  @PathVariable("pageSize") Integer pageSize) {
+        if (competitionId == null || competitionId == 0) {
+            return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
+        } else if (groupId == null || groupId == 0) {
+            return new ResultUtil<>().setErrorMsg(502, "groupId为空");
+        } else {
+            List<CrabScoreResult> crabScoreResults = this.crabService.selectOneGroupAllCrabAndScore(competitionId, groupId, pageNum, pageSize);
+            return crabScoreResults.size() > 0 ? new ResultUtil<>().setData(crabScoreResults, "查询所有螃蟹和评分成功") :
+                    new ResultUtil<>().setSuccessMsg(201, "评分为空，没有查询结果");
         }
     }
 }

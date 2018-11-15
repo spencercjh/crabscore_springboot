@@ -4,6 +4,9 @@ package com.shou.crabscore.common.constant;
  * @author spencercjh
  */
 public interface CommonConstant {
+    Integer CRAB_MALE = 1;
+
+    Integer CRAB_FEMALE = 0;
     /**
      * 成功
      */

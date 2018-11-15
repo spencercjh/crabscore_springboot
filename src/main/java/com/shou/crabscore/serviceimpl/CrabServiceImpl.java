@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.shou.crabscore.dao.CrabMapper;
 import com.shou.crabscore.entity.Crab;
 import com.shou.crabscore.entity.vo.CrabResult;
+import com.shou.crabscore.entity.vo.CrabScoreResult;
 import com.shou.crabscore.service.CrabService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,13 @@ public class CrabServiceImpl implements CrabService {
     @Autowired
     public CrabServiceImpl(CrabMapper crabMapper) {
         this.crabMapper = crabMapper;
+    }
+
+    @Override
+    public List<CrabScoreResult> selectOneGroupAllCrabAndScore(Integer competitionId, Integer groupId,
+                                                               int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return crabMapper.selectOneGroupAllCrabAndScore(competitionId, groupId);
     }
 
     @Override

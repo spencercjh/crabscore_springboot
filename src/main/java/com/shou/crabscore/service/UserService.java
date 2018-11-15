@@ -20,7 +20,7 @@ public interface UserService {
      * @param pageSize pageSize
      * @return 所有用户记录
      */
-    List<User> selectAllUserSelective(Integer status, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+    List<User> selectAllUserSelective(@Param("status") Integer status, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 
     /**
      * 查找所有用户

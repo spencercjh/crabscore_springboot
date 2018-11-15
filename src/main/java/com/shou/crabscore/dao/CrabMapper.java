@@ -2,7 +2,7 @@ package com.shou.crabscore.dao;
 
 import com.shou.crabscore.entity.Crab;
 import com.shou.crabscore.entity.vo.CrabResult;
-import org.apache.ibatis.annotations.Mapper;
+import com.shou.crabscore.entity.vo.CrabScoreResult;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +15,16 @@ import java.util.List;
  */
 @Repository
 public interface CrabMapper {
+    /**
+     * 查找一个组的所有螃蟹和螃蟹对应的评分
+     *
+     * @param competitionId 大赛Id
+     * @param groupId       小组Id
+     * @return List<CrabScoreResult>
+     */
+    List<CrabScoreResult> selectOneGroupAllCrabAndScore(@Param("competitionId") Integer competitionId,
+                                                        @Param("groupId") Integer groupId);
+
     /**
      * 计算某一年大赛的某一组的某一性别的螃蟹的肥满度标准差
      *

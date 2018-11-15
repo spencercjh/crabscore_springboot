@@ -20,7 +20,10 @@ public class TasteScore {
     @ApiModelProperty(value = "所属小组id")
     private Integer groupId;
 
-    @ApiModelProperty(value = "性别，1:雄 2：雌")
+    @ApiModelProperty(value = "对应螃蟹Id")
+    private Integer crabId;
+
+    @ApiModelProperty(value = "性别，0:雌 1 雄")
     private Integer crabSex;
 
     @ApiModelProperty(value = "评委用户ID")

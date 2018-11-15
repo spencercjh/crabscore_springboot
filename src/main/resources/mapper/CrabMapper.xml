@@ -37,6 +37,23 @@
         <result column="competition_id" property="competitionId" jdbcType="INTEGER"/>
         <result column="avatar_url" property="avatarUrl" jdbcType="VARCHAR"/>
     </resultMap>
+    <resultMap id="ExtendResultMap2" type="com.shou.crabscore.entity.vo.CrabScoreResult">
+        <id column="crab_id" property="crabId" jdbcType="INTEGER"/>
+        <result column="group_id" property="groupId" jdbcType="INTEGER"/>
+        <result column="crab_sex" property="crabSex" jdbcType="INTEGER"/>
+        <result column="crab_label" property="crabLabel" jdbcType="VARCHAR"/>
+        <result column="crab_weight" property="crabWeight" jdbcType="REAL"/>
+        <result column="crab_length" property="crabLength" jdbcType="REAL"/>
+        <result column="crab_fatness" property="crabFatness" jdbcType="REAL"/>
+        <result column="taste_score_fin" property="tasteScoreFin" jdbcType="REAL"/>
+        <result column="quality_score_fin" property="qualityScoreFin" jdbcType="REAL"/>
+        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="create_user" property="createUser" jdbcType="VARCHAR"/>
+        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
+        <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
+        <result column="competition_id" property="competitionId" jdbcType="INTEGER"/>
+        <result column="avatar_url" property="avatarUrl" jdbcType="VARCHAR"/>
+    </resultMap>
     <sql id="Base_Column_List">
         <!--
           WARNING - @mbggenerated
@@ -45,6 +62,31 @@
         crab_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
         create_date, create_user, update_date, update_user, competition_id,avatar_url
     </sql>
+    <select id="selectOneGroupAllCrabAndScore" resultMap="ExtendResultMap2">
+        select a.crab_id,
+               a.group_id,
+               a.crab_sex,
+               a.crab_label,
+               a.crab_weight,
+               a.crab_length,
+               a.crab_fatness,
+               b.score_fin as taste_score_fin,
+               c.score_fin as quality_score_fin,
+               a.create_date,
+               a.create_user,
+               a.update_date,
+               a.update_user,
+               a.competition_id,
+               a.avatar_url
+        from rxpb_crab_info as a,
+             rxpb_score_taste as b,
+             rxpb_score_quality as c
+        where a.crab_id = b.crab_id
+          and b.crab_id = c.crab_id
+          and a.competition_id = #{competitionId,jdbcType=INTEGER}
+          and a.group_id = #{groupId,jdbcType=INTEGER}
+        order by a.group_id
+    </select>
     <!-- 2018年9月24日23:44:37 -->
     <select id="sdFatnessByCompetitionIdAndGroupIdAndCrabSex">
         select STDDEV(crab_fatness)
