@@ -24,6 +24,7 @@
         <id column="group_id" property="groupId" jdbcType="INTEGER"/>
         <result column="company_id" property="companyId" jdbcType="INTEGER"/>
         <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="avatar_url" property="avatarUrl" jdbcType="VARCHAR"/>
         <result column="competition_id" property="competitionId" jdbcType="INTEGER"/>
         <result column="fatness_score_m" property="fatnessScoreM" jdbcType="REAL"/>
         <result column="quality_score_m" property="qualityScoreM" jdbcType="REAL"/>
@@ -49,6 +50,7 @@
         select group_id,
                a.company_id,
                b.company_name,
+               b.avatar_url,
                a.competition_id,
                fatness_score_m,
                quality_score_m,
@@ -71,6 +73,7 @@
         select group_id,
                a.company_id,
                b.company_name,
+               b.avatar_url,
                a.competition_id,
                fatness_score_m,
                quality_score_m,
@@ -95,6 +98,7 @@
         select group_id,
                a.company_id,
                b.company_name,
+               b.avatar_url,
                a.competition_id,
                fatness_score_m,
                quality_score_m,
@@ -118,6 +122,7 @@
         select group_id,
                a.company_id,
                b.company_name,
+               b.avatar_url,
                a.competition_id,
                fatness_score_m,
                quality_score_m,
@@ -141,6 +146,7 @@
                a.company_id,
                a.competition_id,
                b.company_name,
+               b.avatar_url,
                fatness_score_m,
                quality_score_m,
                taste_score_m,

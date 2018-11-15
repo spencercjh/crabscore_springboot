@@ -23,6 +23,9 @@ public class GroupResult {
     @ApiModelProperty(value = "参选单位名")
     private String companyName;
 
+    @ApiModelProperty(value = "参选单位头像链接")
+    private String avatarUrl;
+
     @ApiModelProperty(value = "所属大赛id")
     private Integer competitionId;
 
