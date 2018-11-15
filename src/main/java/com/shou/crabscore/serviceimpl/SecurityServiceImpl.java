@@ -37,10 +37,10 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     @Override
-    public Result<Object> login(String encryptedJson) {
+    public Result<Object> login(String encryptedJson, byte[] key) {
         String json;
         try {
-            json = new String(AesUtil.decrypt(Base64.decodeBase64(encryptedJson), CommonConstant.AES_KEY),
+            json = new String(AesUtil.decrypt(Base64.decodeBase64(encryptedJson), key),
                     StandardCharsets.UTF_8);
         } catch (Exception | Error e) {
             e.printStackTrace();

@@ -2,6 +2,7 @@ package com.shou.crabscore.controller.common;
 
 import cn.hutool.core.util.NumberUtil;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.shou.crabscore.common.constant.CommonConstant;
 import com.shou.crabscore.common.util.JwtUtil;
 import com.shou.crabscore.common.util.MessageUtil;
@@ -52,8 +53,16 @@ public class LoginController {
             @ApiResponse(code = 503, message = "用户组选择错误"),
             @ApiResponse(code = 504, message = "密码错误")})
     public Result<Object> login(@ApiParam(name = "json", value = "加密后的JSON串", type = "String")
-                                @RequestParam("json") String json) {
-        return this.securityService.login(json);
+                                @RequestParam("json") String json,
+                                @ApiParam(name = "key", value = "秘钥JSON", type = "String")
+                                @RequestParam("key") String keyList) {
+        byte[] key = new byte[16];
+        int i = 0;
+        JSONArray jsonArray = JSON.parseArray(keyList);
+        for (Object object : jsonArray) {
+            key[i++] = (byte) (((Integer) (object)).intValue());
+        }
+        return this.securityService.login(json, key);
     }
 
     @PostMapping("/creation")
