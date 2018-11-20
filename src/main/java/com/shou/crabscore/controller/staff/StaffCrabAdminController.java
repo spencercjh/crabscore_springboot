@@ -1,6 +1,7 @@
 package com.shou.crabscore.controller.staff;
 
 import cn.hutool.core.util.StrUtil;
+import com.shou.crabscore.common.constant.CommonConstant;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.Crab;
@@ -89,8 +90,9 @@ public class StaffCrabAdminController {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else if (groupId == null || groupId <= 0) {
             return new ResultUtil<>().setErrorMsg(502, "groupId为空");
-        } else if (crabSex == null || crabSex <= 0) {
-            return new ResultUtil<>().setErrorMsg(503, "crabSex为空");
+        } else if (crabSex == null || (!CommonConstant.CRAB_MALE.equals(crabSex) &&
+                !CommonConstant.CRAB_FEMALE.equals(crabSex))) {
+            return new ResultUtil<>().setErrorMsg(503, "crabSex为空或非法");
         } else {
             List<Crab> crabList = this.crabService.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId,
                     crabSex, pageNum, pageSize);
