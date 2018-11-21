@@ -177,4 +177,8 @@ public class StaffCrabAdminController {
                     new ResultUtil<>().setErrorMsg(500, "批量插入螃蟹信息失败");
         }
     }
+
+    //todo insertTasteScoreList post /tastes
+
+    //todo insertQualityScoreList post /qualities
 }
