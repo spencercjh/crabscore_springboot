@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Repository;
 @MapperScan(basePackages = {"com.shou.crabscore.dao"}, annotationClass = Repository.class)
 @EntityScan(basePackages = {"com.shou.crabscore.entity"})
 @ComponentScan(basePackages = {"com.shou.crabscore.*"})
+@EnableCaching
 public class CrabScoreApplication extends SpringBootServletInitializer {
 
     @Override

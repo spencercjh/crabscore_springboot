@@ -115,22 +115,10 @@
             </exclusions>
         </dependency>
 
-        <!-- Spring Security -->
-        <!--<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>-->
-
-        <!--Spring Boot Redis-->
+        <!-- Spring Cache -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <artifactId>spring-boot-starter-cache</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
@@ -139,6 +127,16 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
         <!-- mysql connector -->
         <dependency>
@@ -253,16 +251,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <!-- PageHelper -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
@@ -279,15 +267,6 @@
     </dependencies>
 
     <build>
-        <!--解决Intellij构建项目时，target/classes目录下不存在mapper.xml文件-->
-        <!--<resources>
-             <resource>
-                 <directory>${basedir}/src/main/java</directory>
-                 <includes>
-                     <include>**/*.xml</include>
-                 </includes>
-             </resource>
-         </resources>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
