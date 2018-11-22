@@ -16,6 +16,19 @@ public interface TasteScoreService {
      *
      * @param competitionId 大赛Id
      * @param groupId       小组Id
+     * @param pageNum       pageNum
+     * @param pageSize      pageSize
+     * @return 所有符合条件的口感分数信息记录
+     */
+    List<TasteScore> selectByCompetitionIdAndGroupId(@Param("competitionId") Integer competitionId,
+                                                     @Param("groupId") Integer groupId,
+                                                     @Param("pageNum") int pageNum,
+                                                     @Param("pageSize") int pageSize);
+    /**
+     * 通过大赛Id，小组Id和螃蟹性别来查找口感分数信息
+     *
+     * @param competitionId 大赛Id
+     * @param groupId       小组Id
      * @param crabSex       性别，1:雄 2：雌
      * @param pageNum       pageNum
      * @param pageSize      pageSize

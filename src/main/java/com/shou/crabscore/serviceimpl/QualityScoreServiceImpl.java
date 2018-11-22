@@ -26,6 +26,12 @@ public class QualityScoreServiceImpl implements QualityScoreService {
     }
 
     @Override
+    public List<QualityScore> selectByCompetitionIdAndGroupId(Integer competitionId, Integer groupId, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return qualityScoreMapper.selectByCompetitionIdAndGroupId(competitionId, groupId);
+    }
+
+    @Override
     public List<QualityScore> selectByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         return qualityScoreMapper.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);

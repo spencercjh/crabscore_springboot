@@ -1,7 +1,6 @@
 package com.shou.crabscore.dao;
 
 import com.shou.crabscore.entity.TasteScore;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +13,16 @@ import java.util.List;
  */
 @Repository
 public interface TasteScoreMapper {
+    /**
+     * 通过大赛Id，小组Id和螃蟹性别来查找口感分数信息
+     *
+     * @param competitionId 大赛Id
+     * @param groupId       小组Id
+     * @return 所有符合条件的口感分数信息记录
+     */
+    List<TasteScore> selectByCompetitionIdAndGroupId(@Param("competitionId") Integer competitionId,
+                                                     @Param("groupId") Integer groupId);
+
     /**
      * 通过大赛Id，小组Id和螃蟹性别来查找口感分数信息
      *

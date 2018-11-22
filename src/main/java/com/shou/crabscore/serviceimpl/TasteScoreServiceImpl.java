@@ -26,6 +26,12 @@ public class TasteScoreServiceImpl implements TasteScoreService {
     }
 
     @Override
+    public List<TasteScore> selectByCompetitionIdAndGroupId(Integer competitionId, Integer groupId, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return tasteScoreMapper.selectByCompetitionIdAndGroupId(competitionId, groupId);
+    }
+
+    @Override
     public List<TasteScore> selectByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, Integer groupId, Integer crabSex, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         return tasteScoreMapper.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, crabSex);

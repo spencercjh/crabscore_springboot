@@ -30,7 +30,13 @@
         score_id, group_id, crab_sex, user_id, score_fin, score_bts, score_fts, score_ec,
         score_dscc, score_bbyzt, create_date, create_user, update_date, update_user, competition_id
     </sql>
-    <!-- 2018年9月20日19:49:27 -->
+    <select id="selectByCompetitionIdAndGroupId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from rxpb_score_quality
+        where competition_id=#{competitionId,jdbcType=INTEGER}
+        and group_id=#{groupId,jdbcType=INTEGER}
+    </select>
     <select id="selectByCompetitionIdAndGroupIdAndCrabSex" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

@@ -12,6 +12,20 @@ import java.util.List;
  */
 public interface QualityScoreService {
     /**
+     * 通过大赛Id，小组Id来查找种质分数信息
+     *
+     * @param competitionId 大赛Id
+     * @param groupId       小组Id
+     * @param pageNum       pageNum
+     * @param pageSize      pageSize
+     * @return 所有符合条件的种质分数信息记录
+     */
+    List<QualityScore> selectByCompetitionIdAndGroupId(@Param("competitionId") Integer competitionId,
+                                                       @Param("groupId") Integer groupId,
+                                                       @Param("pageNum") int pageNum,
+                                                       @Param("pageSize") int pageSize);
+
+    /**
      * 通过大赛Id，小组Id和螃蟹性别来查找种质分数信息
      *
      * @param competitionId 大赛Id

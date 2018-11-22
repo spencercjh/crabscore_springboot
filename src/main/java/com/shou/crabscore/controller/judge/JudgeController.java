@@ -2,7 +2,6 @@ package com.shou.crabscore.controller.judge;
 
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
-import com.shou.crabscore.entity.Group;
 import com.shou.crabscore.entity.QualityScore;
 import com.shou.crabscore.entity.TasteScore;
 import com.shou.crabscore.entity.vo.GroupResult;
@@ -39,17 +38,17 @@ public class JudgeController {
     }
 
     @GetMapping("/groups/{competitionId}/{pageNum}/{pageSize}")
-    @ApiOperation("查看所有比赛组")
+    @ApiOperation("查看某一年的所有比赛组")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有比赛组成功"),
             @ApiResponse(code = 201, message = "groupList为空"),
             @ApiResponse(code = 501, message = "competitionId为空")})
     public Result<Object> allGroup(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
                                    @PathVariable("competitionId") Integer competitionId,
-                                   @RequestHeader("jwt") String jwt,
                                    @ApiParam(name = "pageNum", value = "页数", type = "Integer")
                                    @PathVariable("pageNum") Integer pageNum,
                                    @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
-                                   @PathVariable("pageSize") Integer pageSize) {
+                                   @PathVariable("pageSize") Integer pageSize,
+                                   @RequestHeader("jwt") String jwt) {
         if (competitionId == null || competitionId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
@@ -62,13 +61,74 @@ public class JudgeController {
         }
     }
 
+    @GetMapping("/qualities/{competitionId}/{groupId}/{pageNum}/{pageSize}")
+    @ApiOperation("查看某一年的某一组的所有种质得分信息")
+    @ApiResponses({@ApiResponse(code = 200, message = "查询所有种质得分信息成功"),
+            @ApiResponse(code = 201, message = "qualityScoreList为空"),
+            @ApiResponse(code = 501, message = "competitionId为空"),
+            @ApiResponse(code = 502, message = "groupId为空")})
+    public Result<Object> getOneGroupAllQualityScore(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
+                                                     @PathVariable("competitionId") Integer competitionId,
+                                                     @ApiParam(name = "groupId", value = "小组Id", type = "Integer")
+                                                     @PathVariable("groupId") Integer groupId,
+                                                     @ApiParam(name = "pageNum", value = "页数", type = "Integer")
+                                                     @PathVariable("pageNum") Integer pageNum,
+                                                     @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
+                                                     @PathVariable("pageSize") Integer pageSize,
+                                                     @RequestHeader("jwt") String jwt) {
+        if (competitionId == null || competitionId <= 0) {
+            return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
+        } else if (groupId == null || groupId <= 0) {
+            return new ResultUtil<>().setErrorMsg(502, "groupId为空");
+        } else {
+            List<QualityScore> qualityScoreList = this.qualityScoreService.selectByCompetitionIdAndGroupId(
+                    competitionId, groupId, pageNum, pageSize);
+            if (qualityScoreList.size() == 0) {
+                return new ResultUtil<>().setSuccessMsg(201, "qualityScoreList为空");
+            } else {
+                return new ResultUtil<>().setData(qualityScoreList, "查询所有种质得分信息成功");
+            }
+        }
+    }
+
+    @GetMapping("/tastes/{competitionId}/{groupId}/{pageNum}/{pageSize}")
+    @ApiOperation("查看某一年的某一组的所有口感得分信息")
+    @ApiResponses({@ApiResponse(code = 200, message = "查询所有口感得分信息成功"),
+            @ApiResponse(code = 201, message = "tasteScoreList为空"),
+            @ApiResponse(code = 501, message = "competitionId为空"),
+            @ApiResponse(code = 502, message = "groupId为空")})
+    public Result<Object> getOneGroupAllTasteScore(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
+                                                   @PathVariable("competitionId") Integer competitionId,
+                                                   @ApiParam(name = "groupId", value = "小组Id", type = "Integer")
+                                                   @PathVariable("groupId") Integer groupId,
+                                                   @ApiParam(name = "pageNum", value = "页数", type = "Integer")
+                                                   @PathVariable("pageNum") Integer pageNum,
+                                                   @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
+                                                   @PathVariable("pageSize") Integer pageSize,
+                                                   @RequestHeader("jwt") String jwt) {
+        if (competitionId == null || competitionId <= 0) {
+            return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
+        } else if (groupId == null || groupId <= 0) {
+            return new ResultUtil<>().setErrorMsg(502, "groupId为空");
+        } else {
+            List<TasteScore> tasteScoreList = this.tasteScoreService.selectByCompetitionIdAndGroupId(
+                    competitionId, groupId, pageNum, pageSize);
+            if (tasteScoreList.size() == 0) {
+                return new ResultUtil<>().setSuccessMsg(201, "tasteScoreList为空");
+            } else {
+                return new ResultUtil<>().setData(tasteScoreList, "查询所有口感得分信息成功");
+            }
+        }
+    }
+
     @PostMapping(value = "/quality", consumes = "application/json")
     @ApiOperation("插入种质成绩信息")
     @ApiResponses({@ApiResponse(code = 200, message = "插入种质成绩信息成功"),
             @ApiResponse(code = 500, message = "插入种质成绩信息失败"),
             @ApiResponse(code = 501, message = "ScoreId为空")})
-    public Result<Object> insertQualityScoreInfo(@ApiParam(name = "qualityScoreInfo", value = "种质成绩信息Json", type = "String")
-                                                 @RequestParam QualityScore qualityScore, @RequestHeader("jwt") String jwt) {
+    public Result<Object> insertQualityScoreInfo(@ApiParam(name = "qualityScoreInfo", value = "种质成绩信息Json", type = "QualityScore")
+                                                 @RequestBody QualityScore qualityScore,
+                                                 @RequestHeader("jwt") String jwt) {
         if (qualityScore.getScoreId() == null || qualityScore.getScoreId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "ScoreId为空");
         } else {
@@ -82,8 +142,9 @@ public class JudgeController {
     @ApiResponses({@ApiResponse(code = 200, message = "插入种质成绩信息成功"),
             @ApiResponse(code = 500, message = "插入种质成绩信息失败"),
             @ApiResponse(code = 501, message = "ScoreId为空")})
-    public Result<Object> insertTasteScoreInfo(@ApiParam(name = "tasteScoreInfo", value = "口感成绩信息Json", type = "String")
-                                               @RequestParam TasteScore tasteScore, @RequestHeader("jwt") String jwt) {
+    public Result<Object> insertTasteScoreInfo(@ApiParam(name = "tasteScoreInfo", value = "口感成绩信息Json", type = "TasteScore")
+                                               @RequestBody TasteScore tasteScore,
+                                               @RequestHeader("jwt") String jwt) {
         if (tasteScore.getScoreId() == null || tasteScore.getScoreId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "ScoreId为空");
         } else {
@@ -97,8 +158,9 @@ public class JudgeController {
     @ApiResponses({@ApiResponse(code = 200, message = "修改种质成绩信息成功"),
             @ApiResponse(code = 500, message = "修改种质成绩信息失败"),
             @ApiResponse(code = 501, message = "主键ScoreId为空")})
-    public Result<Object> updateQualityScoreInfo(@ApiParam(name = "qualityScoreInfo", value = "种质成绩信息Json", type = "String")
-                                                 @RequestParam QualityScore qualityScore, @RequestHeader("jwt") String jwt) {
+    public Result<Object> updateQualityScoreInfo(@ApiParam(name = "qualityScoreInfo", value = "种质成绩信息Json", type = "QualityScore")
+                                                 @RequestBody QualityScore qualityScore,
+                                                 @RequestHeader("jwt") String jwt) {
         if (qualityScore.getScoreId() == null || qualityScore.getScoreId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "主键ScoreId为空");
         } else {
@@ -113,8 +175,9 @@ public class JudgeController {
     @ApiResponses({@ApiResponse(code = 200, message = "修改口感成绩信息成功"),
             @ApiResponse(code = 500, message = "修改口感成绩信息失败"),
             @ApiResponse(code = 501, message = "主键ScoreId为空")})
-    public Result<Object> updateTasteScoreInfo(@ApiParam(name = "tasteScoreInfo", value = "口感成绩信息Json", type = "String")
-                                               @RequestParam TasteScore tasteScore, @RequestHeader("jwt") String jwt) {
+    public Result<Object> updateTasteScoreInfo(@ApiParam(name = "tasteScoreInfo", value = "口感成绩信息Json", type = "TasteScore")
+                                               @RequestBody TasteScore tasteScore,
+                                               @RequestHeader("jwt") String jwt) {
         if (tasteScore.getScoreId() == null || tasteScore.getScoreId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "ScoreId为空");
         } else {
