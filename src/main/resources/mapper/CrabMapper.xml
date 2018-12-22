@@ -81,8 +81,8 @@
         from rxpb_crab_info as a,
              rxpb_score_taste as b,
              rxpb_score_quality as c
-        where a.crab_id = b.crab_id
-          and b.crab_id = c.crab_id
+        where a.crab_id = b.score_id
+          and b.score_id = c.score_id
           and a.competition_id = #{competitionId,jdbcType=INTEGER}
           and a.group_id = #{groupId,jdbcType=INTEGER}
         order by a.group_id

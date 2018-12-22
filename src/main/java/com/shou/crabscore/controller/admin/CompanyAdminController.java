@@ -72,8 +72,8 @@ public class CompanyAdminController {
 
     @GetMapping(value = "/groups/{competitionId}/{companyId}/{pageNum}/{pageSize}")
     @ApiOperation("查询在某一届大赛中某一参选单位的所有组")
-    @ApiResponses({@ApiResponse(code = 200, message = "查询所有比赛组成功"),
-            @ApiResponse(code = 200, message = "查询所有比赛组成功"),
+    @ApiResponses({@ApiResponse(code = 200, message = "查询参选单位所有比赛组成功"),
+            @ApiResponse(code = 200, message = "查询参选单位所有比赛组成功"),
             @ApiResponse(code = 201, message = "groupList为空"),
             @ApiResponse(code = 501, message = "competitionId为空"),
             @ApiResponse(code = 502, message = "companyId为空")})
@@ -96,7 +96,7 @@ public class CompanyAdminController {
             if (groupList.size() == 0) {
                 return new ResultUtil<>().setSuccessMsg(201, "groupList为空");
             } else {
-                return new ResultUtil<>().setData(groupList, "查询所有比赛组成功");
+                return new ResultUtil<>().setData(groupList, "查询参选单位所有比赛组成功");
             }
         }
     }

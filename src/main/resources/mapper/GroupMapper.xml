@@ -161,8 +161,8 @@
              rxpb_company_info AS b
         WHERE a.company_id = #{companyId,jdbcType=INTEGER}
           AND a.competition_id = #{competitionId,jdbcType=INTEGER}
-          AND a.company_id = b.company_id
-          AND a.competition_id = b.competition_id
+          AND b.company_id = #{companyId,jdbcType=INTEGER}
+          AND b.competition_id = #{competitionId,jdbcType=INTEGER}
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         <!--
