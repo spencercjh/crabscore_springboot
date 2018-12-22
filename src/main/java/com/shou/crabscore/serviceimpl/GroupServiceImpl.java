@@ -53,7 +53,6 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Cacheable(key = "#competitionId")
-
     @Override
     public List<GroupResult> selectAllGroupOneCompetitionOrderByFatnessScore(Integer competitionId, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
