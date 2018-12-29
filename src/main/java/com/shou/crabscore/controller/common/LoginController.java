@@ -80,7 +80,7 @@ public class LoginController {
             User newUser = new User(username, password, displayName, roleId, CommonConstant.USER_STATUS_LOCK, email,
                     CommonConstant.USER_COMPETITION_ALL, new Date(System.currentTimeMillis()), username,
                     new Date(System.currentTimeMillis()), username);
-            int insertResult = this.userService.insert(newUser);
+            int insertResult = this.userService.insertSelective(newUser);
             return insertResult > 0 ? new ResultUtil<>().setSuccessMsg("注册成功") : new ResultUtil<>().setErrorMsg("注册失败");
         } else {
             return new ResultUtil<>().setErrorMsg(501, "用户名已存在");
@@ -150,7 +150,7 @@ public class LoginController {
                         "用户" + mobile, CommonConstant.USER_TYPE_COMPANY, CommonConstant.USER_STATUS_LOCK, mobile,
                         CommonConstant.USER_COMPETITION_ALL, new Date(System.currentTimeMillis()), mobile,
                         new Date(System.currentTimeMillis()), mobile);
-                int insertResult = this.userService.insert(newUser);
+                int insertResult = this.userService.insertSelective(newUser);
                 if (insertResult > 0) {
                     Map<String, Object> subject = new HashMap<>(2);
                     subject.put("username", mobile);

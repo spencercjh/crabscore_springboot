@@ -129,7 +129,7 @@ public class CompanyAdminController {
         if (company.getCompanyId() == null || company.getCompanyId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "主键CompanyId为空为空");
         } else {
-            int updateResult = this.companyService.insert(company);
+            int updateResult = this.companyService.insertSelective(company);
             return (updateResult <= 0) ? new ResultUtil<>().setErrorMsg("创建参选单位失败") :
                     new ResultUtil<>().setSuccessMsg("创建参选单位成功");
         }

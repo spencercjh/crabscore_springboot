@@ -225,7 +225,7 @@ public class StaffController {
         } else {
             int failCount = 0;
             for (QualityScore qualityScore : qualityScoreList) {
-                if (this.qualityScoreService.insert(qualityScore) <= 0) {
+                if (this.qualityScoreService.insertSelective(qualityScore) <= 0) {
                     failCount++;
                 }
             }
