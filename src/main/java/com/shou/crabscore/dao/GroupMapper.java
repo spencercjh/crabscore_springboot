@@ -1,7 +1,8 @@
 package com.shou.crabscore.dao;
 
 import com.shou.crabscore.entity.Group;
-import com.shou.crabscore.entity.vo.GroupResult;
+import com.shou.crabscore.entity.dto.GroupResult;
+import com.shou.crabscore.entity.dto.RankResult;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -28,7 +29,7 @@ public interface GroupMapper {
      * @param competitionId 大赛Id
      * @return 所有符合条件的组记录
      */
-    List<GroupResult> selectAllGroupOneCompetitionOrderByQualityScore(@Param("competitionId") Integer competitionId);
+    List<RankResult> selectAllGroupOneCompetitionOrderByQualityScore(@Param("competitionId") Integer competitionId);
 
     /**
      * 查询在某一届大赛中的所有组并按照口感成绩从大到小排列
@@ -36,7 +37,7 @@ public interface GroupMapper {
      * @param competitionId 大赛Id
      * @return 所有符合条件的组记录
      */
-    List<GroupResult> selectAllGroupOneCompetitionOrderByTasteScore(@Param("competitionId") Integer competitionId);
+    List<RankResult> selectAllGroupOneCompetitionOrderByTasteScore(@Param("competitionId") Integer competitionId);
 
     /**
      * 查询在某一届大赛中的所有组并按照肥满度成绩从大到小排列
@@ -44,7 +45,7 @@ public interface GroupMapper {
      * @param competitionId 大赛Id
      * @return 所有符合条件的组记录
      */
-    List<GroupResult> selectAllGroupOneCompetitionOrderByFatnessScore(@Param("competitionId") Integer competitionId);
+    List<RankResult> selectAllGroupOneCompetitionOrderByFatnessScore(@Param("competitionId") Integer competitionId);
 
     /**
      * 查询在某一届大赛中某一参选单位的所有组

@@ -1,8 +1,8 @@
 package com.shou.crabscore.service;
 
 import com.shou.crabscore.entity.Crab;
-import com.shou.crabscore.entity.vo.CrabResult;
-import com.shou.crabscore.entity.vo.CrabScoreResult;
+import com.shou.crabscore.entity.dto.CrabResult;
+import com.shou.crabscore.entity.dto.CrabScoreResult;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

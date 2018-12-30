@@ -20,7 +20,7 @@
         <result column="competition_id" property="competitionId" jdbcType="INTEGER"/>
         <result column="avatar_url" property="avatarUrl" jdbcType="VARCHAR"/>
     </resultMap>
-    <resultMap id="ExtendResultMap" type="com.shou.crabscore.entity.vo.CrabResult">
+    <resultMap id="ExtendResultMap" type="com.shou.crabscore.entity.dto.CrabResult">
         <id column="crab_id" property="crabId" jdbcType="INTEGER"/>
         <result column="group_id" property="groupId" jdbcType="INTEGER"/>
         <result column="company_id" property="companyId" jdbcType="INTEGER"/>
@@ -37,7 +37,7 @@
         <result column="competition_id" property="competitionId" jdbcType="INTEGER"/>
         <result column="avatar_url" property="avatarUrl" jdbcType="VARCHAR"/>
     </resultMap>
-    <resultMap id="ExtendResultMap2" type="com.shou.crabscore.entity.vo.CrabScoreResult">
+    <resultMap id="ExtendResultMap2" type="com.shou.crabscore.entity.dto.CrabScoreResult">
         <id column="crab_id" property="crabId" jdbcType="INTEGER"/>
         <result column="group_id" property="groupId" jdbcType="INTEGER"/>
         <result column="crab_sex" property="crabSex" jdbcType="INTEGER"/>

@@ -2,13 +2,14 @@ package com.shou.crabscore.serviceimpl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.shou.crabscore.dao.GroupMapper;
 import com.shou.crabscore.entity.Group;
-import com.shou.crabscore.entity.vo.GroupResult;
+import com.shou.crabscore.entity.dto.GroupResult;
+import com.shou.crabscore.entity.dto.RankResult;
 import com.shou.crabscore.service.GroupService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,21 +36,24 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public List<GroupResult> selectAllGroupOneCompetitionOrderByQualityScore(Integer competitionId, int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        return groupMapper.selectAllGroupOneCompetitionOrderByQualityScore(competitionId);
+    public PageInfo<RankResult> selectAllGroupOneCompetitionOrderByQualityScore(Integer competitionId, int pageNum, int pageSize) {
+        Page<RankResult> page = PageHelper.startPage(pageNum, pageSize);
+        groupMapper.selectAllGroupOneCompetitionOrderByQualityScore(competitionId);
+        return page.toPageInfo();
     }
 
     @Override
-    public List<GroupResult> selectAllGroupOneCompetitionOrderByTasteScore(Integer competitionId, int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        return groupMapper.selectAllGroupOneCompetitionOrderByTasteScore(competitionId);
+    public PageInfo<RankResult> selectAllGroupOneCompetitionOrderByTasteScore(Integer competitionId, int pageNum, int pageSize) {
+        Page<RankResult> page = PageHelper.startPage(pageNum, pageSize);
+        groupMapper.selectAllGroupOneCompetitionOrderByTasteScore(competitionId);
+        return page.toPageInfo();
     }
 
     @Override
-    public List<GroupResult> selectAllGroupOneCompetitionOrderByFatnessScore(Integer competitionId, int pageNum, int pageSize) {
-        Page page=PageHelper.startPage(pageNum, pageSize);
-        return groupMapper.selectAllGroupOneCompetitionOrderByFatnessScore(competitionId);
+    public PageInfo<RankResult> selectAllGroupOneCompetitionOrderByFatnessScore(Integer competitionId, int pageNum, int pageSize) {
+        Page<RankResult> page = PageHelper.startPage(pageNum, pageSize);
+        groupMapper.selectAllGroupOneCompetitionOrderByFatnessScore(competitionId);
+        return page.toPageInfo();
     }
 
     @Override

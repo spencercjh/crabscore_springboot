@@ -4,7 +4,7 @@ import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
 import com.shou.crabscore.entity.QualityScore;
 import com.shou.crabscore.entity.TasteScore;
-import com.shou.crabscore.entity.vo.GroupResult;
+import com.shou.crabscore.entity.dto.GroupResult;
 import com.shou.crabscore.service.GroupService;
 import com.shou.crabscore.service.QualityScoreService;
 import com.shou.crabscore.service.TasteScoreService;

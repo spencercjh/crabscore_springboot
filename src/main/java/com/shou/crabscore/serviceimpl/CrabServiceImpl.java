@@ -3,12 +3,11 @@ package com.shou.crabscore.serviceimpl;
 import com.github.pagehelper.PageHelper;
 import com.shou.crabscore.dao.CrabMapper;
 import com.shou.crabscore.entity.Crab;
-import com.shou.crabscore.entity.vo.CrabResult;
-import com.shou.crabscore.entity.vo.CrabScoreResult;
+import com.shou.crabscore.entity.dto.CrabResult;
+import com.shou.crabscore.entity.dto.CrabScoreResult;
 import com.shou.crabscore.service.CrabService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 

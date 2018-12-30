@@ -21,3 +21,7 @@ public class CrabScoreApplication {
         SpringApplication.run(CrabScoreApplication.class, args);
     }
 }
+
+
+//fixme 分页要大改，需要把分页页面数据返回给前端
+//fixme tk.mybatis要安排上

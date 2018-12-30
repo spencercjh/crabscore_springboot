@@ -1,4 +1,4 @@
-package com.shou.crabscore.entity.vo;
+package com.shou.crabscore.entity.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,12 +8,10 @@ import java.util.Date;
 
 /**
  * @author spencercjh
- * rxpb_group_info
  */
+@ApiModel("排名结果")
 @Data
-@ApiModel(value = "小组对象模型")
-public class GroupResult {
-
+public class RankResult {
     @ApiModelProperty(value = "唯一标识 小组id")
     private Integer groupId;
 
@@ -29,23 +27,8 @@ public class GroupResult {
     @ApiModelProperty(value = "所属大赛id")
     private Integer competitionId;
 
-    @ApiModelProperty(value = "雄蟹肥满度评分")
-    private Float fatnessScoreM;
-
-    @ApiModelProperty(value = "雄蟹种质评分")
-    private Float qualityScoreM;
-
-    @ApiModelProperty(value = "雄蟹口感评分")
-    private Float tasteScoreM;
-
-    @ApiModelProperty(value = "雌蟹口感评分")
-    private Float fatnessScoreF;
-
-    @ApiModelProperty(value = "雌蟹种质评分")
-    private Float qualityScoreF;
-
-    @ApiModelProperty(value = "雌蟹口感评分")
-    private Float tasteScoreF;
+    @ApiModelProperty(value = "分数")
+    private Float score;
 
     @ApiModelProperty(value = "创建时间")
     private Date createDate;
@@ -58,5 +41,4 @@ public class GroupResult {
 
     @ApiModelProperty(value = "更新用户")
     private String updateUser;
-
 }

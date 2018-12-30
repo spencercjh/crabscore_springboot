@@ -20,23 +20,6 @@
         <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
         <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
     </resultMap>
-    <resultMap id="ExtendResultMap" type="com.shou.crabscore.entity.vo.GroupResult">
-        <id column="group_id" property="groupId" jdbcType="INTEGER"/>
-        <result column="company_id" property="companyId" jdbcType="INTEGER"/>
-        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
-        <result column="avatar_url" property="avatarUrl" jdbcType="VARCHAR"/>
-        <result column="competition_id" property="competitionId" jdbcType="INTEGER"/>
-        <result column="fatness_score_m" property="fatnessScoreM" jdbcType="REAL"/>
-        <result column="quality_score_m" property="qualityScoreM" jdbcType="REAL"/>
-        <result column="taste_score_m" property="tasteScoreM" jdbcType="REAL"/>
-        <result column="fatness_score_f" property="fatnessScoreF" jdbcType="REAL"/>
-        <result column="quality_score_f" property="qualityScoreF" jdbcType="REAL"/>
-        <result column="taste_score_f" property="tasteScoreF" jdbcType="REAL"/>
-        <result column="create_date" property="createDate" jdbcType="TIMESTAMP"/>
-        <result column="create_user" property="createUser" jdbcType="VARCHAR"/>
-        <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
-        <result column="update_user" property="updateUser" jdbcType="VARCHAR"/>
-    </resultMap>
     <sql id="Base_Column_List">
         <!--
           WARNING - @mbggenerated
@@ -46,123 +29,113 @@
         fatness_score_f, quality_score_f, taste_score_f, create_date, create_user, update_date,
         update_user
     </sql>
-    <select id="selectAllGroupOneCompetition" resultMap="ExtendResultMap" parameterType="java.lang.Integer">
-        select group_id,
-               a.company_id,
-               b.company_name,
-               b.avatar_url,
-               a.competition_id,
-               fatness_score_m,
-               quality_score_m,
-               taste_score_m,
-               fatness_score_f,
-               quality_score_f,
-               taste_score_f,
-               a.create_date,
-               a.create_user,
-               a.update_date,
-               a.update_user
-        from rxpb_group_info as a,
-             rxpb_company_info as b
-        where a.competition_id = b.competition_id
-          AND a.company_id = b.company_id
-          AND a.competition_id = #{competitionId,jdbcType=INTEGER}
-    </select>
-    <select id="selectAllGroupOneCompetitionOrderByFatnessScore" resultMap="ExtendResultMap"
+    <select id="selectAllGroupOneCompetition" resultType="com.shou.crabscore.entity.dto.GroupResult"
             parameterType="java.lang.Integer">
-        select group_id,
-               a.company_id,
-               b.company_name,
-               b.avatar_url,
-               a.competition_id,
-               fatness_score_m,
-               quality_score_m,
-               taste_score_m,
-               fatness_score_f,
-               quality_score_f,
-               taste_score_f,
-               a.create_date,
-               a.create_user,
-               a.update_date,
-               a.update_user
-        from rxpb_group_info as a,
+        select group_id         AS groupId,
+               a.company_id     AS companyId,
+               b.company_name   AS companyName,
+               b.avatar_url     AS avatarUrl,
+               a.competition_id AS competitionId,
+               fatness_score_m  AS fatnessScoreM,
+               quality_score_m  AS qualityScoreM,
+               taste_score_m    AS tasteScoreM,
+               fatness_score_f  AS fatnessScoreF,
+               quality_score_f  AS qualityScoreF,
+               taste_score_f    AS tasteScoreF,
+               a.create_date    AS createDate,
+               a.create_user    AS createUser,
+               a.update_date    AS updateDate,
+               a.update_user    AS updateUser
+        from rxpb_group_info as a
+                 LEFT JOIN
              rxpb_company_info as b
-        where a.competition_id = b.competition_id
-          AND a.company_id = b.company_id
-          AND a.competition_id = #{competitionId,jdbcType=INTEGER}
-        order by fatness_score_m desc, fatness_score_f desc
+             ON a.company_id = b.company_id
+                 AND a.competition_id = b.competition_id
+        where a.competition_id = #{competitionId,jdbcType=INTEGER}
     </select>
-    <select id="selectAllGroupOneCompetitionOrderByQualityScore" resultMap="ExtendResultMap"
+    <select id="selectAllGroupOneCompetitionOrderByFatnessScore" resultType="com.shou.crabscore.entity.dto.RankResult"
             parameterType="java.lang.Integer">
-
-        select group_id,
-               a.company_id,
-               b.company_name,
-               b.avatar_url,
-               a.competition_id,
-               fatness_score_m,
-               quality_score_m,
-               taste_score_m,
-               fatness_score_f,
-               quality_score_f,
-               taste_score_f,
-               a.create_date,
-               a.create_user,
-               a.update_date,
-               a.update_user
-        from rxpb_group_info as a,
+        select group_id                                  AS groupId,
+               a.company_id                              AS companyId,
+               b.company_name                            AS companyName,
+               b.avatar_url                              AS avatarUrl,
+               a.competition_id                          AS competitionId,
+               ((fatness_score_m + fatness_score_f) / 2) AS score,
+               a.create_date                             AS createDate,
+               a.create_user                             AS createUser,
+               a.update_date                             AS updateDate,
+               a.update_user                             AS updateUser
+        from rxpb_group_info as a
+                 LEFT JOIN
              rxpb_company_info as b
-        where a.competition_id = b.competition_id
-          AND a.company_id = b.company_id
-          AND a.competition_id = #{competitionId,jdbcType=INTEGER}
-        order by quality_score_m desc, quality_score_f desc
+             ON a.competition_id = b.competition_id
+                 AND
+                a.company_id = b.company_id
+        where a.competition_id = #{competitionId,jdbcType=INTEGER}
+        order by score desc
     </select>
-    <select id="selectAllGroupOneCompetitionOrderByTasteScore" resultMap="ExtendResultMap"
+    <select id="selectAllGroupOneCompetitionOrderByQualityScore" resultType="com.shou.crabscore.entity.dto.RankResult"
             parameterType="java.lang.Integer">
-        select group_id,
-               a.company_id,
-               b.company_name,
-               b.avatar_url,
-               a.competition_id,
-               fatness_score_m,
-               quality_score_m,
-               taste_score_m,
-               fatness_score_f,
-               quality_score_f,
-               taste_score_f,
-               a.create_date,
-               a.create_user,
-               a.update_date,
-               a.update_user
-        from rxpb_group_info as a,
+        select group_id                                  AS groupId,
+               a.company_id                              AS companyId,
+               b.company_name                            AS companyName,
+               b.avatar_url                              AS avatarUrl,
+               a.competition_id                          AS competitionId,
+               ((quality_score_m + quality_score_f) / 2) AS score,
+               a.create_date                             AS createDate,
+               a.create_user                             AS createUser,
+               a.update_date                             AS updateDate,
+               a.update_user                             AS updateUser
+        from rxpb_group_info as a
+                 LEFT JOIN
              rxpb_company_info as b
-        where a.competition_id = b.competition_id
-          AND a.company_id = b.company_id
-          AND a.competition_id = #{competitionId,jdbcType=INTEGER}
-        order by taste_score_m desc, taste_score_f desc
+             ON a.competition_id = b.competition_id
+                 AND a.company_id = b.company_id
+        where a.competition_id = #{competitionId,jdbcType=INTEGER}
+        order by score desc
     </select>
-    <select id="selectAllGroupOneCompetitionOneCompany" resultMap="ExtendResultMap">
-        SELECT group_id,
-               a.company_id,
-               a.competition_id,
-               b.company_name,
-               b.avatar_url,
-               fatness_score_m,
-               quality_score_m,
-               taste_score_m,
-               fatness_score_f,
-               quality_score_f,
-               taste_score_f,
-               a.create_date,
-               a.create_user,
-               a.update_date,
-               a.update_user
-        FROM rxpb_group_info AS a,
+    <select id="selectAllGroupOneCompetitionOrderByTasteScore" resultType="com.shou.crabscore.entity.dto.RankResult"
+            parameterType="java.lang.Integer">
+        select group_id                              AS groupId,
+               a.company_id                          AS companyId,
+               b.company_name                        AS companyName,
+               b.avatar_url                          AS avatarUrl,
+               a.competition_id                      AS competitionId,
+               ((taste_score_f + taste_score_m) / 2) AS score,
+               a.create_date                         AS createDate,
+               a.create_user                         AS createUser,
+               a.update_date                         AS updateDate,
+               a.update_user                         AS updateUser
+        from rxpb_group_info as a
+                 LEFT JOIN
+             rxpb_company_info as b
+             ON a.competition_id = b.competition_id
+                 AND a.company_id = b.company_id
+        where a.competition_id = #{competitionId,jdbcType=INTEGER}
+        order by score desc
+    </select>
+    <select id="selectAllGroupOneCompetitionOneCompany" resultType="com.shou.crabscore.entity.dto.GroupResult">
+        select group_id         AS groupId,
+               a.company_id     AS companyId,
+               b.company_name   AS companyName,
+               b.avatar_url     AS avatarUrl,
+               a.competition_id AS competitionId,
+               fatness_score_m  AS fatnessScoreM,
+               quality_score_m  AS qualityScoreM,
+               taste_score_m    AS tasteScoreM,
+               fatness_score_f  AS fatnessScoreF,
+               quality_score_f  AS qualityScoreF,
+               taste_score_f    AS tasteScoreF,
+               a.create_date    AS createDate,
+               a.create_user    AS createUser,
+               a.update_date    AS updateDate,
+               a.update_user    AS updateUser
+        FROM rxpb_group_info AS a
+                 LEFT JOIN
              rxpb_company_info AS b
+             ON a.company_id = b.company_id AND a.competition_id = b.competition_id
         WHERE a.company_id = #{companyId,jdbcType=INTEGER}
           AND a.competition_id = #{competitionId,jdbcType=INTEGER}
-          AND b.company_id = #{companyId,jdbcType=INTEGER}
-          AND b.competition_id = #{competitionId,jdbcType=INTEGER}
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         <!--

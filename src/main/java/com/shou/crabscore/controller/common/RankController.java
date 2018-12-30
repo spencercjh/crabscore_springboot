@@ -1,9 +1,9 @@
 package com.shou.crabscore.controller.common;
 
+import com.github.pagehelper.PageInfo;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
-import com.shou.crabscore.entity.Group;
-import com.shou.crabscore.entity.vo.GroupResult;
+import com.shou.crabscore.entity.dto.RankResult;
 import com.shou.crabscore.service.GroupService;
 import io.swagger.annotations.*;
 import lombok.extern.log4j.Log4j2;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * 公共三大奖查分接口
@@ -46,10 +44,10 @@ public class RankController {
         if (competitionId == null || competitionId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
-            List<GroupResult> groupList = this.groupService.selectAllGroupOneCompetitionOrderByFatnessScore(competitionId,
+            PageInfo<RankResult> pageInfo = groupService.selectAllGroupOneCompetitionOrderByFatnessScore(competitionId,
                     pageNum, pageSize);
-            return groupList.size() == 0 ? (new ResultUtil<>().setSuccessMsg(201, "没有金蟹奖成绩")) :
-                    (new ResultUtil<>().setData(groupList, "查找所有金蟹奖成绩成功"));
+            return pageInfo.getList().isEmpty() ? (new ResultUtil<>().setSuccessMsg(201, "没有金蟹奖成绩")) :
+                    (new ResultUtil<>().setData(pageInfo, "查找所有金蟹奖成绩成功"));
         }
     }
 
@@ -67,10 +65,10 @@ public class RankController {
         if (competitionId == null || competitionId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
-            List<GroupResult> groupList = this.groupService.selectAllGroupOneCompetitionOrderByQualityScore(competitionId,
+            PageInfo<RankResult> pageInfo = groupService.selectAllGroupOneCompetitionOrderByQualityScore(competitionId,
                     pageNum, pageSize);
-            return groupList.size() == 0 ? (new ResultUtil<>().setSuccessMsg(201, "没有种质奖成绩")) :
-                    (new ResultUtil<>().setData(groupList, "查找所有种质奖成绩成功"));
+            return pageInfo.getList().isEmpty() ? (new ResultUtil<>().setSuccessMsg(201, "没有种质奖成绩")) :
+                    (new ResultUtil<>().setData(pageInfo, "查找所有种质奖成绩成功"));
         }
     }
 
@@ -88,10 +86,10 @@ public class RankController {
         if (competitionId == null || competitionId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {
-            List<GroupResult> groupList = this.groupService.selectAllGroupOneCompetitionOrderByTasteScore(competitionId,
+            PageInfo<RankResult> pageInfo = groupService.selectAllGroupOneCompetitionOrderByTasteScore(competitionId,
                     pageNum, pageSize);
-            return groupList.size() == 0 ? (new ResultUtil<>().setSuccessMsg(201, "没有口感奖成绩")) :
-                    (new ResultUtil<>().setData(groupList, "查找所有口感奖成绩成功"));
+            return pageInfo.getList().isEmpty() ? (new ResultUtil<>().setSuccessMsg(201, "没有口感奖成绩")) :
+                    (new ResultUtil<>().setData(pageInfo, "查找所有口感奖成绩成功"));
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.shou.crabscore.entity.vo;
+package com.shou.crabscore.entity.dto;
 
 import lombok.Data;
 
@@ -8,14 +8,10 @@ import java.util.Date;
  * @author spencercjh
  */
 @Data
-public class CrabResult {
+public class CrabScoreResult {
     private Integer crabId;
 
     private Integer groupId;
-
-    private Integer companyId;
-
-    private String companyName;
 
     private Integer crabSex;
 
@@ -26,6 +22,10 @@ public class CrabResult {
     private Float crabLength;
 
     private Float crabFatness;
+
+    private Float qualityScoreFin;
+
+    private Float tasteScoreFin;
 
     private Date createDate;
 
