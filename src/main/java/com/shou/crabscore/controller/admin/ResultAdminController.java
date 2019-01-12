@@ -2,7 +2,6 @@ package com.shou.crabscore.controller.admin;
 
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
-import com.alibaba.fastjson.JSON;
 import com.shou.crabscore.common.constant.CommonConstant;
 import com.shou.crabscore.common.util.ResultUtil;
 import com.shou.crabscore.common.vo.Result;
@@ -15,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author : spencercjh
@@ -47,11 +43,12 @@ public class ResultAdminController {
     @ApiOperation("计算大赛成绩")
     @ApiResponses({@ApiResponse(code = 200, message = "计算成功")})
     @ResponseBody
-    public Result<Object> calculatePresentCompetitionScore(@ApiParam("大赛ID") @RequestBody Integer competitionId,
+    public Result<Object> calculatePresentCompetitionScore(@ApiParam(name = "competitionId", value = "大赛ID", type = "Integer") @RequestBody Integer competitionId,
+                                                           @ApiParam(name = "username", value = "用户名", type = "String") @RequestParam String username,
                                                            @RequestHeader("jwt") String jwt) {
-        return scoreService.calculateAllFatnessScore(competitionId) &&
-                scoreService.calculateQualityScore(competitionId) &&
-                scoreService.calculateTasteScore(competitionId) ?
+        return scoreService.calculateAllFatnessScore(competitionId, username) &&
+                scoreService.calculateAllQualityScore(competitionId, username) &&
+                scoreService.calculateAllTasteScore(competitionId, username) ?
                 new ResultUtil<>().setSuccessMsg("大赛成绩计算成功") : new ResultUtil<>().setErrorMsg("大赛成绩计算失败");
     }
 
@@ -59,12 +56,9 @@ public class ResultAdminController {
     @ApiOperation("生成大赛数据Excel文件")
     @ApiResponses({@ApiResponse(code = 200, message = "生成成功")})
     @ResponseBody
-    public Result<Object> sendDataToPythonSever(@ApiParam("大赛ID") @RequestBody Integer competitionId,
+    public Result<Object> sendDataToPythonSever(@ApiParam(name = "competitionId", value = "大赛ID", type = "Integer") @RequestBody Integer competitionId,
                                                 @RequestHeader("jwt") String jwt) {
-        Map<String, Object> hashMap = new HashMap<>(16);
-        hashMap.put("all_company", JSON.toJSONString(companyService.selectAllCompany()));
-        hashMap.put("all_group", JSON.toJSONString(groupService.selectAllGroupOneCompetition(competitionId, 1, 10000)));
-        HttpResponse httpResponse = HttpUtil.createPost(excelUrl).form(hashMap).execute();
+        HttpResponse httpResponse = HttpUtil.createPost(excelUrl).form(scoreService.getExcelData(competitionId)).execute();
         if (httpResponse.getStatus() == CommonConstant.SUCCESS) {
             return new ResultUtil<>().setSuccessMsg("生成成功");
         } else {

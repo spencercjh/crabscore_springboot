@@ -14,6 +14,26 @@ import java.util.List;
 @Repository
 public interface TasteScoreMapper {
     /**
+     * 通过大赛Id，小组ID和螃蟹性别来查找某一组某一性别的口感得分平均分
+     *
+     * @param competitionId
+     * @param groupId
+     * @param crabMale
+     * @return
+     */
+    Float averageTasteScoreByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, int groupId, int crabMale);
+
+    /**
+     * 通过大赛Id，小组ID和螃蟹性别来查找某一组某一性别的口感得分标准差
+     *
+     * @param competitionId
+     * @param groupId
+     * @param crabMale
+     * @return
+     */
+    Float sdTasteScoreByCompetitionIdAndGroupIdAndCrabSex(Integer competitionId, int groupId, int crabMale);
+
+    /**
      * 通过大赛Id，小组Id和螃蟹性别来查找口感分数信息
      *
      * @param competitionId 大赛Id

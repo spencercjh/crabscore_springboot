@@ -31,6 +31,20 @@
         score_id,crab_id, group_id, crab_sex, user_id, score_fin, score_bts, score_fts, score_ec,
         score_dscc, score_bbyzt, create_date, create_user, update_date, update_user, competition_id
     </sql>
+    <select id="sdQualityScoreByCompetitionIdAndGroupIdAndCrabSex">
+        select STDDEV(score_fin)
+        from rxpb_score_quality
+        where competition_id = #{competitionId,jdbcType=INTEGER}
+          and group_id = #{groupId,jdbcType=INTEGER}
+          and crab_sex = #{crabSex,jdbcType=INTEGER}
+    </select>
+    <select id="averageQualityScoreByCompetitionIdAndGroupIdAndCrabSex">
+        select AVG(score_fin)
+        from rxpb_score_quality
+        where competition_id = #{competitionId,jdbcType=INTEGER}
+          and group_id = #{groupId,jdbcType=INTEGER}
+          and crab_sex = #{crabSex,jdbcType=INTEGER}
+    </select>
     <select id="selectByCompetitionIdAndGroupId" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

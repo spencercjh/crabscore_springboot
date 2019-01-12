@@ -14,6 +14,35 @@ import java.util.List;
 @Repository
 public interface QualityScoreMapper {
     /**
+     * 通过大赛Id，小组ID和螃蟹性别来查找某一组某一性别的种质得分标准差
+     *
+     * @param competitionId 大赛Id
+     * @param groupId       小组Id
+     * @param crabSex       性别
+     * @return average
+     * @see com.shou.crabscore.common.constant.CommonConstant#CRAB_MALE
+     * @see com.shou.crabscore.common.constant.CommonConstant#CRAB_FEMALE
+     */
+    Float sdQualityScoreByCompetitionIdAndGroupIdAndCrabSex(@Param("competitionId") Integer competitionId,
+                                                                 @Param("groupId") Integer groupId,
+                                                                 @Param("crabSex") Integer crabSex);
+
+
+    /**
+     * 通过大赛Id，小组ID和螃蟹性别来查找某一组某一性别的平均种质得分
+     *
+     * @param competitionId 大赛Id
+     * @param groupId       小组Id
+     * @param crabSex       性别
+     * @return average
+     * @see com.shou.crabscore.common.constant.CommonConstant#CRAB_MALE
+     * @see com.shou.crabscore.common.constant.CommonConstant#CRAB_FEMALE
+     */
+    Float averageQualityScoreByCompetitionIdAndGroupIdAndCrabSex(@Param("competitionId") Integer competitionId,
+                                                                 @Param("groupId") Integer groupId,
+                                                                 @Param("crabSex") Integer crabSex);
+
+    /**
      * 通过大赛Id，小组Id来查找种质分数信息
      *
      * @param competitionId 大赛Id
@@ -28,8 +57,10 @@ public interface QualityScoreMapper {
      *
      * @param competitionId 大赛Id
      * @param groupId       小组Id
-     * @param crabSex       性别，1:雄 2：雌
+     * @param crabSex       性别
      * @return 所有符合条件的种质分数信息记录
+     * @see com.shou.crabscore.common.constant.CommonConstant#CRAB_MALE
+     * @see com.shou.crabscore.common.constant.CommonConstant#CRAB_FEMALE
      */
     List<QualityScore> selectByCompetitionIdAndGroupIdAndCrabSex(@Param("competitionId") Integer competitionId,
                                                                  @Param("groupId") Integer groupId,

@@ -1,30 +1,34 @@
-import json
-import platform
-
-from flask import request, Flask, render_template
-
-app = Flask(__name__, template_folder='../templates')
+import xlrd
+import xlwt
 
 
-# noinspection PyUnresolvedReferences
-@app.route('/')
-def home():
-    return render_template('home.html')
+def save_excel_book():
+    pass
 
 
-@app.route('/generate', methods=['POST'])
-def get_data():
-    if request.method == 'POST':
-        all_company = request.form['all_company']
-        all_company = json.loads(all_company)
-        print(str(all_company))
-        all_group = request.form['all_group']
-        print(str(all_group))
-        return "generate excel"
+def sheet_all_company():
+    pass
 
 
-if __name__ == '__main__':
-    if 'WindowsPE' in platform.architecture():
-        app.run(host="127.0.0.1", port=5000)
-    else:
-        app.run(host="0.0.0.0", port=5000)
+def sheet_rank_fatness():
+    pass
+
+
+def sheet_rank_quality():
+    pass
+
+
+def sheet_rank_taste():
+    pass
+
+
+def sheet_quality_score():
+    pass
+
+
+def sheet_taste_score():
+    pass
+
+
+def sheet_fatness_score():
+    pass
