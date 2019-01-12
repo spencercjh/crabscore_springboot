@@ -3,15 +3,21 @@
 ## 项目介绍
 基于SpringBoot 2.x和Spring 5.x的SSM框架的Restful Android App服务端
 
+Flask Python 服务端
+
 ## 软件架构
 
-服务端：REST (增POST 删DELETE 改PUT 查GET)
+Spring Boot 服务端：REST (增POST 删DELETE 改PUT 查GET)
+
+Python 服务端: 生成Excel文件
 
 ——————————————————————
 
 [基于MVP的Android客户端](https://gitee.com/spencercjh/CrabScore2)
 
 ## 使用库、包
+
+Flask 1.0.2
 
 Spring Boot 2.0.5 (快速构建SSM)
 
@@ -44,5 +50,8 @@ AES(对称加密算法)
 ## 参考 
 [参考项目](https://gitee.com/Exrick/x-boot)
 
-参考书本：杨开振，[深入浅出Spring Boot 2.x](https://item.jd.com/12403128.html)：人民邮电出版社，2018年8月第一版 
+参考书本：
 
+杨开振 著，[深入浅出Spring Boot 2.x](https://item.jd.com/12403128.html)：人民邮电出版社，2018年8月第一版 
+
+陈舸 译,[Python Cookbook(第3版)](https://item.jd.com/11681561.html):人民邮电出版社

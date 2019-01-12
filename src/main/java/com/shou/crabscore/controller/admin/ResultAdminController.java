@@ -61,7 +61,7 @@ public class ResultAdminController {
     @ResponseBody
     public Result<Object> sendDataToPythonSever(@ApiParam("大赛ID") @RequestBody Integer competitionId,
                                                 @RequestHeader("jwt") String jwt) {
-        Map<String, Object> hashMap = new HashMap<>(4);
+        Map<String, Object> hashMap = new HashMap<>(16);
         hashMap.put("all_company", JSON.toJSONString(companyService.selectAllCompany()));
         hashMap.put("all_group", JSON.toJSONString(groupService.selectAllGroupOneCompetition(competitionId, 1, 10000)));
         HttpResponse httpResponse = HttpUtil.createPost(excelUrl).form(hashMap).execute();
