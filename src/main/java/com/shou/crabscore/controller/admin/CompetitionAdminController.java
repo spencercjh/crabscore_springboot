@@ -85,7 +85,7 @@ public class CompetitionAdminController {
                 competitionConfig.getCompetitionId() == null || competitionConfig.getCompetitionId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "CompetitionId为空");
         } else {
-            return this.competitionConfigService.updateByPrimaryKey(competitionConfig) == 0 ?
+            return this.competitionConfigService.updateByPrimaryKeySelective(competitionConfig) == 0 ?
                     new ResultUtil<>().setErrorMsg("修改当前大赛配置失败") : new ResultUtil<>().setSuccessMsg("修改当前大赛配置成功");
         }
     }

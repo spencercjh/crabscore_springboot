@@ -98,8 +98,8 @@ public class StaffController {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else if (groupId == null || groupId <= 0) {
             return new ResultUtil<>().setErrorMsg(502, "groupId为空");
-        } else if (crabSex == null || (!CommonConstant.CRAB_MALE.equals(crabSex) &&
-                !CommonConstant.CRAB_FEMALE.equals(crabSex))) {
+        } else if (CommonConstant.CRAB_MALE != crabSex &&
+                CommonConstant.CRAB_FEMALE != crabSex) {
             return new ResultUtil<>().setErrorMsg(503, "crabSex为空或非法");
         } else {
             List<Crab> crabList = this.crabService.selectByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId,

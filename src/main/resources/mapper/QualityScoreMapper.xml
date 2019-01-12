@@ -75,7 +75,7 @@
         score_bbyzt, create_date, create_user,
         update_date, update_user, competition_id
         )
-        values (#{scoreId,jdbcType=INTEGER},{crabId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER},
+        values (#{scoreId,jdbcType=INTEGER},#{crabId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER},
         #{crabSex,jdbcType=INTEGER},#{userId,jdbcType=INTEGER}, #{scoreFin,jdbcType=REAL}, #{scoreBts,jdbcType=REAL},
         #{scoreFts,jdbcType=REAL}, #{scoreEc,jdbcType=REAL}, #{scoreDscc,jdbcType=REAL},
         #{scoreBbyzt,jdbcType=REAL}, #{createDate,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR},

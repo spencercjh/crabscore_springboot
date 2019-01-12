@@ -164,7 +164,7 @@ public class JudgeController {
         if (qualityScore.getScoreId() == null || qualityScore.getScoreId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "主键ScoreId为空");
         } else {
-            int updateResult = this.qualityScoreService.updateByPrimaryKey(qualityScore);
+            int updateResult = this.qualityScoreService.updateByPrimaryKeySelective(qualityScore);
             return (updateResult <= 0) ? new ResultUtil<>().setErrorMsg("修改种质成绩信息失败") :
                     new ResultUtil<>().setSuccessMsg("修改种质成绩信息成功");
         }
@@ -181,7 +181,7 @@ public class JudgeController {
         if (tasteScore.getScoreId() == null || tasteScore.getScoreId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "ScoreId为空");
         } else {
-            return this.tasteScoreService.updateByPrimaryKey(tasteScore) <= 0 ?
+            return this.tasteScoreService.updateByPrimaryKeySelective(tasteScore) <= 0 ?
                     new ResultUtil<>().setErrorMsg("修改口感成绩信息失败") : new ResultUtil<>().setSuccessMsg("修改口感成绩信息成功");
         }
     }
