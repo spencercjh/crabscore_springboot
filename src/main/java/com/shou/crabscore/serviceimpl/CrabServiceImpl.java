@@ -3,14 +3,19 @@ package com.shou.crabscore.serviceimpl;
 import com.github.pagehelper.PageHelper;
 import com.shou.crabscore.dao.CrabMapper;
 import com.shou.crabscore.entity.Crab;
+import com.shou.crabscore.entity.QualityScore;
+import com.shou.crabscore.entity.TasteScore;
 import com.shou.crabscore.entity.dto.CrabResult;
 import com.shou.crabscore.entity.dto.CrabScoreResult;
 import com.shou.crabscore.service.CrabService;
+import com.shou.crabscore.service.QualityScoreService;
+import com.shou.crabscore.service.TasteScoreService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,10 +28,39 @@ import java.util.List;
 public class CrabServiceImpl implements CrabService {
 
     private final CrabMapper crabMapper;
+    private final TasteScoreService tasteScoreService;
+    private final QualityScoreService qualityScoreService;
 
     @Autowired
-    public CrabServiceImpl(CrabMapper crabMapper) {
+    public CrabServiceImpl(CrabMapper crabMapper, TasteScoreService tasteScoreService, QualityScoreService qualityScoreService) {
         this.crabMapper = crabMapper;
+        this.tasteScoreService = tasteScoreService;
+        this.qualityScoreService = qualityScoreService;
+    }
+
+    @Override
+    public boolean insertCrabAttachScoreInfo(Crab crab) {
+        TasteScore tasteScore = new TasteScore();
+        tasteScore.setCrabId(crab.getCrabId());
+        tasteScore.setGroupId(crab.getGroupId());
+        tasteScore.setCrabSex(crab.getCrabSex());
+        tasteScore.setCompetitionId(crab.getCompetitionId());
+        tasteScore.setCreateDate(new Date(System.currentTimeMillis()));
+        tasteScore.setUpdateDate(new Date(System.currentTimeMillis()));
+        tasteScore.setCreateUser(crab.getCreateUser());
+        tasteScore.setUpdateUser(crab.getUpdateUser());
+        int resultInsertTasteScore = tasteScoreService.insertSelective(tasteScore);
+        QualityScore qualityScore = new QualityScore();
+        qualityScore.setCrabId(crab.getCrabId());
+        qualityScore.setGroupId(crab.getGroupId());
+        qualityScore.setCrabSex(crab.getCrabSex());
+        qualityScore.setCompetitionId(crab.getCompetitionId());
+        qualityScore.setCreateDate(new Date(System.currentTimeMillis()));
+        qualityScore.setUpdateDate(new Date(System.currentTimeMillis()));
+        qualityScore.setCreateUser(crab.getCreateUser());
+        qualityScore.setUpdateUser(crab.getUpdateUser());
+        int resultInsertQualityScore = qualityScoreService.insertSelective(qualityScore);
+        return resultInsertQualityScore > 0 && resultInsertTasteScore > 0;
     }
 
     @Override

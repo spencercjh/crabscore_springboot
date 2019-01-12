@@ -14,6 +14,14 @@ import java.util.List;
  */
 public interface CrabService {
     /**
+     * 插入螃蟹信息对应的评分信息
+     *
+     * @param crab Crab
+     * @return 成功/失败
+     */
+    boolean insertCrabAttachScoreInfo(Crab crab);
+
+    /**
      * 查找一个组的所有螃蟹和螃蟹对应的评分
      *
      * @param competitionId 大赛Id

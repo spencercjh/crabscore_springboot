@@ -132,7 +132,7 @@ public class JudgeController {
         if (qualityScore.getScoreId() == null || qualityScore.getScoreId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "ScoreId为空");
         } else {
-            return this.qualityScoreService.insert(qualityScore) <= 0 ?
+            return this.qualityScoreService.insertSelective(qualityScore) <= 0 ?
                     new ResultUtil<>().setErrorMsg("插入种质成绩信息失败") : new ResultUtil<>().setSuccessMsg("插入种质成绩信息成功");
         }
     }
@@ -148,7 +148,7 @@ public class JudgeController {
         if (tasteScore.getScoreId() == null || tasteScore.getScoreId() <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "ScoreId为空");
         } else {
-            return this.tasteScoreService.insert(tasteScore) <= 0 ?
+            return this.tasteScoreService.insertSelective(tasteScore) <= 0 ?
                     new ResultUtil<>().setErrorMsg("插入口感成绩信息失败") : new ResultUtil<>().setSuccessMsg("插入口感成绩信息成功");
         }
     }

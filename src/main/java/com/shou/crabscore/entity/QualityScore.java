@@ -17,6 +17,9 @@ public class QualityScore {
     @ApiModelProperty(value = "唯一标识 种质分数id")
     private Integer scoreId;
 
+    @ApiModelProperty(value = "螃蟹id")
+    private Integer crabId;
+
     @ApiModelProperty(value = "所属小组id")
     private Integer groupId;
 

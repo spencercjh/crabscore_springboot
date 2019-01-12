@@ -11,11 +11,14 @@ import java.util.Date;
  * rxpb_score_taste
  */
 @Data
-@ApiModel(value="口感分数对象模型")
+@ApiModel(value = "口感分数对象模型")
 public class TasteScore {
 
     @ApiModelProperty(value = "唯一标识 口感分数id")
     private Integer scoreId;
+
+    @ApiModelProperty(value = "螃蟹id")
+    private Integer crabId;
 
     @ApiModelProperty(value = "所属小组id")
     private Integer groupId;

@@ -70,12 +70,10 @@ public class StaffController {
     public Result<Object> insertCrabInfo(@ApiParam(name = "crabInfo", value = "螃蟹信息Json", type = "String")
                                          @RequestBody Crab crab,
                                          @RequestHeader("jwt") String jwt) {
-        if (crab.getCrabId() == null || crab.getCrabId() <= 0) {
-            return new ResultUtil<>().setErrorMsg(501, "crabId为空");
-        } else {
-            return this.crabService.insert(crab) <= 0 ? new ResultUtil<>().setErrorMsg("插入螃蟹信息失败") :
-                    new ResultUtil<>().setSuccessMsg("插入螃蟹信息成功");
-        }
+        int result = this.crabService.insertSelective(crab);
+        return result <= 0 ? new ResultUtil<>().setErrorMsg("插入螃蟹信息失败") :
+                new ResultUtil<>().setData(crab.getCrabId(), "插入螃蟹信息成功");
+
     }
 
     @GetMapping("/crabs/{competitionId}/{groupId}/{crabSex}/{pageNum}/{pageSize}")
@@ -169,9 +167,9 @@ public class StaffController {
     }
 
     @PostMapping(value = "/crabs", consumes = "application/json")
-    @ApiOperation("批量插入螃蟹信息")
-    @ApiResponses({@ApiResponse(code = 200, message = "批量插入螃蟹信息成功"),
-            @ApiResponse(code = 500, message = "批量插入螃蟹信息失败"),
+    @ApiOperation("批量插入螃蟹信息和评分信息")
+    @ApiResponses({@ApiResponse(code = 200, message = "批量插入螃蟹信息和评分信息成功"),
+            @ApiResponse(code = 500, message = "批量插入螃蟹信息和评分信息失败"),
             @ApiResponse(code = 501, message = "crabList为空")})
     public Result<Object> insertCrabInfoList(@ApiParam(name = "crabList", value = "螃蟹信息对象List", type = "List")
                                              @RequestBody List<Crab> crabList,
@@ -181,11 +179,15 @@ public class StaffController {
         } else {
             int failCount = 0;
             for (Crab crab : crabList) {
-                if (this.crabService.insert(crab) <= 0) {
+                if (this.crabService.insertSelective(crab) <= 0) {
                     failCount++;
+                } else {
+                    if (!crabService.insertCrabAttachScoreInfo(crab)) {
+                        failCount++;
+                    }
                 }
             }
-            return failCount == 0 ? new ResultUtil<>().setSuccessMsg("批量插入螃蟹信息成功") :
+            return failCount == 0 ? new ResultUtil<>().setSuccessMsg("批量插入螃蟹信息和评分信息成功") :
                     new ResultUtil<>().setData(failCount, "批量插入螃蟹信息失败", 500, false);
         }
     }
@@ -203,7 +205,7 @@ public class StaffController {
         } else {
             int failCount = 0;
             for (TasteScore tasteScore : tasteScoreList) {
-                if (this.tasteScoreService.insert(tasteScore) <= 0) {
+                if (this.tasteScoreService.insertSelective(tasteScore) <= 0) {
                     failCount++;
                 }
             }
