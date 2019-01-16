@@ -1,5 +1,4 @@
 /target/
-target/
 out/
 logs/
 generatorConfig.xml
@@ -28,3 +27,5 @@ mvnw.cmd
 /dist/
 /nbdist/
 /.nb-gradle/
+src/main/generate_excel/src/__pycache__/
+log4j2.xml

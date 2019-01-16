@@ -39,11 +39,13 @@
           and crab_sex = #{crabSex,jdbcType=INTEGER}
     </select>
     <select id="averageQualityScoreByCompetitionIdAndGroupIdAndCrabSex">
-        select AVG(score_fin)
+        select (sum(score_fin) - min(score_fin) - max(score_fin)) / (count(*) - 2) as ans
         from rxpb_score_quality
         where competition_id = #{competitionId,jdbcType=INTEGER}
           and group_id = #{groupId,jdbcType=INTEGER}
           and crab_sex = #{crabSex,jdbcType=INTEGER}
+        group by score_id
+        having count(*) > 2
     </select>
     <select id="selectByCompetitionIdAndGroupId" resultMap="BaseResultMap">
         select

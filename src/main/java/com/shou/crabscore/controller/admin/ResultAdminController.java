@@ -56,7 +56,7 @@ public class ResultAdminController {
     @ApiOperation("生成大赛数据Excel文件")
     @ApiResponses({@ApiResponse(code = 200, message = "生成成功")})
     @ResponseBody
-    public Result<Object> sendDataToPythonSever(@ApiParam(name = "competitionId", value = "大赛ID", type = "Integer") @RequestBody Integer competitionId,
+    public Result<Object> sendDataToPythonSever(@ApiParam(name = "competitionId", value = "大赛ID", type = "Integer", defaultValue = "1") @RequestBody Integer competitionId,
                                                 @RequestHeader("jwt") String jwt) {
         HttpResponse httpResponse = HttpUtil.createPost(excelUrl).form(scoreService.getExcelData(competitionId)).execute();
         if (httpResponse.getStatus() == CommonConstant.SUCCESS) {

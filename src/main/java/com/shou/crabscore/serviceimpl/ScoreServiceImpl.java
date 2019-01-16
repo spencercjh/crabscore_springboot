@@ -77,14 +77,16 @@ public class ScoreServiceImpl implements ScoreService {
         Group group = new Group();
         group.setGroupId(groupId);
         if (sex == CommonConstant.CRAB_MALE) {
-            //fixme formula to calculate fatness
-            float fatnessScore = averageFatness * presentCompetition.getVarFatnessM() + averageWeight * presentCompetition.getVarWeightM() +
-                    sdFatness * presentCompetition.getVarMfatnessSd() + sdWeight * presentCompetition.getVarMweightSd();
+            // 雄蟹得分=平均肥满度+雄体重参数*平均体重 -雄蟹肥满度标准差参数*肥满度的标准偏差- 雄体重参数*体重的标准偏差
+            float fatnessScore = averageFatness + presentCompetition.getVarWeightM() * averageWeight -
+                    presentCompetition.getVarMfatnessSd() * sdFatness -
+                    presentCompetition.getVarMweightSd() * sdWeight;
             group.setFatnessScoreM(fatnessScore);
         } else {
-            //fixme formula to calculate fatness
-            float fatnessScore = averageFatness * presentCompetition.getVarFatnessF() + averageWeight * presentCompetition.getVarWeightF() +
-                    sdFatness * presentCompetition.getVarFfatnessSd() + sdWeight * presentCompetition.getVarFweightSd();
+            // 雌蟹得分=平均肥满度+雌体重参数*平均体重 -雌蟹肥满度标准差参数*肥满度的标准偏差- 雌体重参数*体重的标准偏差
+            float fatnessScore = averageFatness + presentCompetition.getVarWeightF() * averageWeight -
+                    presentCompetition.getVarFfatnessSd() * sdFatness -
+                    presentCompetition.getVarFweightSd() * sdWeight;
             group.setFatnessScoreF(fatnessScore);
         }
         group.setUpdateDate(new Date(System.currentTimeMillis()));
@@ -102,7 +104,6 @@ public class ScoreServiceImpl implements ScoreService {
                     calculateQualityScore(competitionId, groupId, CommonConstant.CRAB_FEMALE, username))) {
                 throw new RuntimeException("种质分数计算失败,groupId: " + groupId + "引起的回滚");
             }
-            //fixme formula to calculate quality score
         });
         return true;
     }
@@ -112,21 +113,15 @@ public class ScoreServiceImpl implements ScoreService {
             return false;
         }
         Float average = qualityScoreMapper.averageQualityScoreByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, sex);
-        Float sd = qualityScoreMapper.sdQualityScoreByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, sex);
-        if (null == average || 0 == average ||
-                null == sd || 0 == sd) {
+        if (null == average || 0 == average) {
             return false;
         }
         Group group = new Group();
         group.setGroupId(groupId);
         if (sex == CommonConstant.CRAB_MALE) {
-            //fixme formula to calculate qualityScore
-            float qualityScore = 0;
-            group.setQualityScoreM(qualityScore);
+            group.setQualityScoreM(average);
         } else {
-            //fixme formula to calculate qualityScore
-            float qualityScore = 0;
-            group.setQualityScoreF(qualityScore);
+            group.setQualityScoreF(average);
         }
         group.setUpdateDate(new Date(System.currentTimeMillis()));
         group.setUpdateUser(username);
@@ -152,21 +147,15 @@ public class ScoreServiceImpl implements ScoreService {
             return false;
         }
         Float average = tasteScoreMapper.averageTasteScoreByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, sex);
-        Float sd = tasteScoreMapper.sdTasteScoreByCompetitionIdAndGroupIdAndCrabSex(competitionId, groupId, sex);
-        if (null == average || 0 == average ||
-                null == sd || 0 == sd) {
+        if (null == average || 0 == average) {
             return false;
         }
         Group group = new Group();
         group.setGroupId(groupId);
         if (sex == CommonConstant.CRAB_MALE) {
-            //fixme formula to calculate tasteScore
-            float tasteScore = 0;
-            group.setTasteScoreM(tasteScore);
+            group.setTasteScoreM(average);
         } else {
-            //fixme formula to calculate tasteScore
-            float tasteScore = 0;
-            group.setTasteScoreF(tasteScore);
+            group.setTasteScoreF(average);
         }
         group.setUpdateDate(new Date(System.currentTimeMillis()));
         group.setUpdateUser(username);
