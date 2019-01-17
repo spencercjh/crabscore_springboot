@@ -76,7 +76,7 @@ public class StaffController {
 
     }
 
-    @GetMapping("/crabs/{competitionId}/{groupId}/{crabSex}/{pageNum}/{pageSize}")
+    @GetMapping("/crabs/competition/{competitionId}/group/{groupId}/sex/{crabSex}")
     @ApiOperation("查询某一年某一组某一性别的螃蟹信息")
     @ApiResponses({@ApiResponse(code = 200, message = "查询螃蟹信息成功"),
             @ApiResponse(code = 201, message = "crabList为空"),
@@ -90,10 +90,10 @@ public class StaffController {
                                   @ApiParam(name = "crabSex", value = "性别，1:雄 2：雌", type = "Integer")
                                   @PathVariable("crabSex") Integer crabSex,
                                   @RequestHeader("jwt") String jwt,
-                                  @ApiParam(name = "pageNum", value = "页数", type = "Integer")
-                                  @PathVariable("pageNum") Integer pageNum,
-                                  @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
-                                  @PathVariable("pageSize") Integer pageSize) {
+                                  @ApiParam(name = "pageNum", value = "页数", type = "Integer", defaultValue = "0")
+                                  @RequestParam(value = "pageNum", defaultValue = "0") Integer pageNum,
+                                  @ApiParam(name = "pageSize", value = "页面大小", type = "Integer", defaultValue = "10")
+                                  @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         if (competitionId == null || competitionId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else if (groupId == null || groupId <= 0) {
@@ -142,7 +142,7 @@ public class StaffController {
         }
     }
 
-    @GetMapping("/groups/{competitionId}/{pageNum}/{pageSize}")
+    @GetMapping("/groups/competition/{competitionId}")
     @ApiOperation("查看所有比赛组")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有比赛组成功"),
             @ApiResponse(code = 201, message = "groupList为空"),
@@ -150,10 +150,10 @@ public class StaffController {
     public Result<Object> allGroup(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
                                    @PathVariable("competitionId") Integer competitionId,
                                    @RequestHeader("jwt") String jwt,
-                                   @ApiParam(name = "pageNum", value = "页数", type = "Integer")
-                                   @PathVariable("pageNum") Integer pageNum,
-                                   @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
-                                   @PathVariable("pageSize") Integer pageSize) {
+                                   @ApiParam(name = "pageNum", value = "页数", type = "Integer", defaultValue = "0")
+                                   @RequestParam(value = "pageNum", defaultValue = "0") Integer pageNum,
+                                   @ApiParam(name = "pageSize", value = "页面大小", type = "Integer", defaultValue = "10")
+                                   @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         if (competitionId == null || competitionId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
         } else {

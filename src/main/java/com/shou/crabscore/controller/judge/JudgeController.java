@@ -37,17 +37,17 @@ public class JudgeController {
         this.qualityScoreService = qualityScoreService;
     }
 
-    @GetMapping("/groups/{competitionId}/{pageNum}/{pageSize}")
+    @GetMapping("/groups/competition/{competitionId}")
     @ApiOperation("查看某一年的所有比赛组")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有比赛组成功"),
             @ApiResponse(code = 201, message = "groupList为空"),
             @ApiResponse(code = 501, message = "competitionId为空")})
     public Result<Object> allGroup(@ApiParam(name = "competitionId", value = "大赛Id", type = "Integer")
                                    @PathVariable("competitionId") Integer competitionId,
-                                   @ApiParam(name = "pageNum", value = "页数", type = "Integer")
-                                   @PathVariable("pageNum") Integer pageNum,
-                                   @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
-                                   @PathVariable("pageSize") Integer pageSize,
+                                   @ApiParam(name = "pageNum", value = "页数", type = "Integer", defaultValue = "0")
+                                   @RequestParam(value = "pageNum", defaultValue = "0") Integer pageNum,
+                                   @ApiParam(name = "pageSize", value = "页面大小", type = "Integer", defaultValue = "10")
+                                   @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
                                    @RequestHeader("jwt") String jwt) {
         if (competitionId == null || competitionId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
@@ -61,7 +61,7 @@ public class JudgeController {
         }
     }
 
-    @GetMapping("/qualities/{competitionId}/{groupId}/{pageNum}/{pageSize}")
+    @GetMapping("/qualities/competition/{competitionId}/group/{groupId}")
     @ApiOperation("查看某一年的某一组的所有种质得分信息")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有种质得分信息成功"),
             @ApiResponse(code = 201, message = "qualityScoreList为空"),
@@ -71,10 +71,10 @@ public class JudgeController {
                                                      @PathVariable("competitionId") Integer competitionId,
                                                      @ApiParam(name = "groupId", value = "小组Id", type = "Integer")
                                                      @PathVariable("groupId") Integer groupId,
-                                                     @ApiParam(name = "pageNum", value = "页数", type = "Integer")
-                                                     @PathVariable("pageNum") Integer pageNum,
-                                                     @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
-                                                     @PathVariable("pageSize") Integer pageSize,
+                                                     @ApiParam(name = "pageNum", value = "页数", type = "Integer", defaultValue = "0")
+                                                     @RequestParam(value = "pageNum", defaultValue = "0") Integer pageNum,
+                                                     @ApiParam(name = "pageSize", value = "页面大小", type = "Integer", defaultValue = "10")
+                                                     @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
                                                      @RequestHeader("jwt") String jwt) {
         if (competitionId == null || competitionId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
@@ -91,7 +91,7 @@ public class JudgeController {
         }
     }
 
-    @GetMapping("/tastes/{competitionId}/{groupId}/{pageNum}/{pageSize}")
+    @GetMapping("/tastes/competition/{competitionId}/group/{groupId}")
     @ApiOperation("查看某一年的某一组的所有口感得分信息")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有口感得分信息成功"),
             @ApiResponse(code = 201, message = "tasteScoreList为空"),
@@ -101,10 +101,10 @@ public class JudgeController {
                                                    @PathVariable("competitionId") Integer competitionId,
                                                    @ApiParam(name = "groupId", value = "小组Id", type = "Integer")
                                                    @PathVariable("groupId") Integer groupId,
-                                                   @ApiParam(name = "pageNum", value = "页数", type = "Integer")
-                                                   @PathVariable("pageNum") Integer pageNum,
-                                                   @ApiParam(name = "pageSize", value = "页面大小", type = "Integer")
-                                                   @PathVariable("pageSize") Integer pageSize,
+                                                   @ApiParam(name = "pageNum", value = "页数", type = "Integer", defaultValue = "0")
+                                                   @RequestParam(value = "pageNum", defaultValue = "0") Integer pageNum,
+                                                   @ApiParam(name = "pageSize", value = "页面大小", type = "Integer", defaultValue = "10")
+                                                   @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
                                                    @RequestHeader("jwt") String jwt) {
         if (competitionId == null || competitionId <= 0) {
             return new ResultUtil<>().setErrorMsg(501, "competitionId为空");
