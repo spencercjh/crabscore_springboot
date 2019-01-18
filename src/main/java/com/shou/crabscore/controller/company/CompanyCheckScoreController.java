@@ -155,7 +155,7 @@ public class CompanyCheckScoreController {
         }
     }
 
-    @GetMapping(value = "/{groupId}/competition/{competitionId}/crabs")
+    @GetMapping(value = "/group/{groupId}/competition/{competitionId}/crabs")
     @ApiOperation("查找一个组的所有螃蟹和螃蟹对应的评分")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有螃蟹和评分成功"),
             @ApiResponse(code = 201, message = "评分为空，没有查询结果"),

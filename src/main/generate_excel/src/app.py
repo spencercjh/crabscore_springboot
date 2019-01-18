@@ -1,7 +1,7 @@
 import json
 import platform
 
-from excel import save_excel_book, sheet_all_company, sheet_rank_fatness, sheet_rank_quality, sheet_rank_taste, sheet_quality_score, \
+from .excel import save_excel_book, sheet_all_company, sheet_rank_fatness, sheet_rank_quality, sheet_rank_taste, sheet_quality_score, \
     sheet_taste_score, sheet_fatness_score
 from flask import request, Flask, render_template
 
@@ -42,6 +42,14 @@ def get_data():
             print(str(male_taste))
             female_taste = json.loads(group['female_taste'])
             print(str(female_taste))
+        sheet_all_company()
+        sheet_fatness_score()
+        sheet_quality_score()
+        sheet_taste_score()
+        sheet_rank_fatness()
+        sheet_rank_quality()
+        sheet_rank_taste()
+        save_excel_book()
         return "generate excel"
 
 

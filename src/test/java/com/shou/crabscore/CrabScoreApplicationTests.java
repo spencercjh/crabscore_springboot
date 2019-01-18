@@ -17,8 +17,6 @@ public class CrabScoreApplicationTests {
 
     @Value("${jasypt.encryptor.password}")
     private String password;
-    private int countJava = 0;
-    private int countXml = 0;
 
     @Test
     public void contextLoads() {
@@ -43,50 +41,6 @@ public class CrabScoreApplicationTests {
         for (byte b :
                 key) {
             System.out.println(b);
-        }
-    }
-
-    @Test
-    public void countFile() {
-//        String jdkPath = System.getProperty("java.home");
-        String jdkPath = "C:\\EXE\\JDK1.8";
-        System.out.println(jdkPath);
-        File jreFile = new File(jdkPath);
-        try {
-            searchFile(jreFile);
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-        }
-        System.out.println("count jar file:" + countJava);
-        System.out.println("count xml file:" + countXml);
-    }
-
-    private void searchFile(File jreFile) throws RuntimeException {
-        if (!jreFile.exists()) {
-            //todo exception
-            throw new RuntimeException();
-        } else {
-            if (jreFile.isFile()) {
-                String fileType = jreFile.getName().substring(jreFile.getName().lastIndexOf('.') + 1);
-                if ("jar".equals(fileType)) {
-                    countJava++;
-                } else if ("xml".equals(fileType)) {
-                    countXml++;
-                }
-            } else if (jreFile.isDirectory()) {
-                File[] files = jreFile.listFiles();
-                if (null != files) {
-                    for (File file : files) {
-                        searchFile(file);
-                    }
-                } else {
-                    //todo exception
-                    throw new RuntimeException();
-                }
-            } else {
-                //todo exception
-                throw new RuntimeException();
-            }
         }
     }
 }
