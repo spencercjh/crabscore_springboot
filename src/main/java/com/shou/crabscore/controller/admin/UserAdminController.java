@@ -65,12 +65,12 @@ public class UserAdminController {
         }
     }
 
-    @GetMapping(value = "/users")
+    @GetMapping(value = "/users/status/{status}")
     @ApiOperation("查询所有符合某一状态的用户")
     @ApiResponses({@ApiResponse(code = 200, message = "查询所有用户成功"),
             @ApiResponse(code = 201, message = "没有找到可用/禁用用户")})
     public Result<Object> partUser(@ApiParam(name = "status", value = "用户状态 1：可用 0：禁用", type = "Integer", defaultValue = "1")
-                                   @RequestParam(value = "status", defaultValue = "1") Integer status,
+                                   @PathVariable("status") Integer status,
                                    @RequestHeader("jwt") String jwt,
                                    @ApiParam(name = "pageNum", value = "页数", type = "Integer", defaultValue = "0")
                                    @RequestParam(value = "pageNum", defaultValue = "0") Integer pageNum,
