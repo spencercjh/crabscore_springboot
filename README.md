@@ -28,7 +28,7 @@ Detail Dependencies Information in `pom.xml`
 * *Springfox Swagger* 2.9.2
 * *Junit Jupiter* 5.5.2
 
-## Arrangement
+## Conventions
 
 * Test
 
