@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.spencercjh.crabscore.refactory.mapper.ScoreQualityMapper">
+    <resultMap id="BaseResultMap" type="top.spencercjh.crabscore.refactory.model.ScoreQuality">
+        <!--@mbg.generated-->
+        <!--@Table rxpb.rxpb_score_quality-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="competition_id" jdbcType="INTEGER" property="competitionId"/>
+        <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+        <result column="crab_sex" jdbcType="TINYINT" property="crabSex"/>
+        <result column="judges_id" jdbcType="INTEGER" property="judgesId"/>
+        <result column="score_fin" jdbcType="DECIMAL" property="scoreFin"/>
+        <result column="score_bts" jdbcType="DECIMAL" property="scoreBts"/>
+        <result column="score_fts" jdbcType="DECIMAL" property="scoreFts"/>
+        <result column="score_ec" jdbcType="DECIMAL" property="scoreEc"/>
+        <result column="score_dscc" jdbcType="DECIMAL" property="scoreDscc"/>
+        <result column="score_bbyzt" jdbcType="DECIMAL" property="scoreBbyzt"/>
+        <result column="version" jdbcType="TIMESTAMP" property="version"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="create_user" jdbcType="INTEGER" property="createUser"/>
+        <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, competition_id, group_id, crab_sex, judges_id, score_fin, score_bts, score_fts,
+        score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user
+    </sql>
+</mapper>
