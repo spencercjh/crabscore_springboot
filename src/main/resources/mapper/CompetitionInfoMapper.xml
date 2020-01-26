@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.spencercjh.crabscore.refactory.mapper.CompetitionInfoMapper">
+    <resultMap id="BaseResultMap" type="top.spencercjh.crabscore.refactory.model.CompetitionInfo">
+        <!--@mbg.generated-->
+        <!--@Table rxpb.rxpb_competition_info-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="competition_year" jdbcType="VARCHAR" property="competitionYear"/>
+        <result column="var_fatness_m" jdbcType="DECIMAL" property="varFatnessM"/>
+        <result column="var_fatness_f" jdbcType="DECIMAL" property="varFatnessF"/>
+        <result column="var_weight_m" jdbcType="DECIMAL" property="varWeightM"/>
+        <result column="var_weight_f" jdbcType="DECIMAL" property="varWeightF"/>
+        <result column="var_mfatness_sd" jdbcType="DECIMAL" property="varMfatnessSd"/>
+        <result column="var_mweight_sd" jdbcType="DECIMAL" property="varMweightSd"/>
+        <result column="var_ffatness_sd" jdbcType="DECIMAL" property="varFfatnessSd"/>
+        <result column="var_fweight_sd" jdbcType="DECIMAL" property="varFweightSd"/>
+        <result column="result_fatness" jdbcType="TINYINT" property="resultFatness"/>
+        <result column="result_quality" jdbcType="TINYINT" property="resultQuality"/>
+        <result column="result_taste" jdbcType="TINYINT" property="resultTaste"/>
+        <result column="note" jdbcType="VARCHAR" property="note"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl"/>
+        <result column="version" jdbcType="TIMESTAMP" property="version"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="create_user" jdbcType="INTEGER" property="createUser"/>
+        <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, competition_year, var_fatness_m, var_fatness_f, var_weight_m, var_weight_f, var_mfatness_sd,
+        var_mweight_sd, var_ffatness_sd, var_fweight_sd, result_fatness, result_quality,
+        result_taste, note, `status`, avatar_url, version, create_date, create_user, update_user
+    </sql>
+</mapper>

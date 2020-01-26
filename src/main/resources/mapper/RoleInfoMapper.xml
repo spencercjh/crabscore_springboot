@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.spencercjh.crabscore.refactory.mapper.RoleInfoMapper">
+    <resultMap id="BaseResultMap" type="top.spencercjh.crabscore.refactory.model.RoleInfo">
+        <!--@mbg.generated-->
+        <!--@Table rxpb.rxpb_role_info-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="version" jdbcType="TIMESTAMP" property="version"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="create_user" jdbcType="INTEGER" property="createUser"/>
+        <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, role_name, version, create_date, create_user, update_user
+    </sql>
+</mapper>

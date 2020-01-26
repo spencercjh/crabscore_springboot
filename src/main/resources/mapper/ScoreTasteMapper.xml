@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.spencercjh.crabscore.refactory.mapper.ScoreTasteMapper">
+    <resultMap id="BaseResultMap" type="top.spencercjh.crabscore.refactory.model.ScoreTaste">
+        <!--@mbg.generated-->
+        <!--@Table rxpb.rxpb_score_taste-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="competition_id" jdbcType="INTEGER" property="competitionId"/>
+        <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+        <result column="crab_sex" jdbcType="TINYINT" property="crabSex"/>
+        <result column="judges_id" jdbcType="INTEGER" property="judgesId"/>
+        <result column="score_fin" jdbcType="DECIMAL" property="scoreFin"/>
+        <result column="score_ygys" jdbcType="DECIMAL" property="scoreYgys"/>
+        <result column="score_sys" jdbcType="DECIMAL" property="scoreSys"/>
+        <result column="score_ghys" jdbcType="DECIMAL" property="scoreGhys"/>
+        <result column="score_xwxw" jdbcType="DECIMAL" property="scoreXwxw"/>
+        <result column="score_gh" jdbcType="DECIMAL" property="scoreGh"/>
+        <result column="score_fbjr" jdbcType="DECIMAL" property="scoreFbjr"/>
+        <result column="score_bzjr" jdbcType="DECIMAL" property="scoreBzjr"/>
+        <result column="version" jdbcType="TIMESTAMP" property="version"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="create_user" jdbcType="INTEGER" property="createUser"/>
+        <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, competition_id, group_id, crab_sex, judges_id, score_fin, score_ygys, score_sys,
+        score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user
+    </sql>
+</mapper>

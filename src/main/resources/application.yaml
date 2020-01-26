@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/rxpb?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
+  mvc:
+    servlet:
+      path: /
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 30MB
+  resources:
+    static-locations: file:${crabScore.root},classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+logging:
+  level:
+    top.spencercjh: trace
+mybatis-plus:
+  type-enums-package: top.spencercjh.crabscore.refactory.model.enums
+crabScore:
+  root:
+  companyInfo:
