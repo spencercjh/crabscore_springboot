@@ -4,9 +4,12 @@ import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
+ * 螃蟹性别
+ *
  * @author Spencer
  * @date 2020/1/25
  */
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public enum SexEnum {
     /**
      * 雌性 0

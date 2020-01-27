@@ -9,9 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import top.spencercjh.crabscore.refactory.model.CompanyInfo;
+import top.spencercjh.crabscore.refactory.model.Company;
 import top.spencercjh.crabscore.refactory.model.vo.Result;
-import top.spencercjh.crabscore.refactory.service.CompanyInfoService;
+import top.spencercjh.crabscore.refactory.service.CompanyService;
 import top.spencercjh.crabscore.refactory.util.JacksonUtil;
 import top.spencercjh.crabscore.refactory.util.ResponseEntityUtil;
 
@@ -27,10 +27,10 @@ import javax.validation.constraints.Positive;
 @Validated
 @Slf4j
 public class CompanyController {
-    private final CompanyInfoService companyInfoService;
+    private final CompanyService companyService;
 
-    public CompanyController(CompanyInfoService companyInfoService) {
-        this.companyInfoService = companyInfoService;
+    public CompanyController(CompanyService companyService) {
+        this.companyService = companyService;
     }
 
     /**
@@ -40,8 +40,8 @@ public class CompanyController {
      * @return detail
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Result<CompanyInfo>> detail(@PathVariable @Positive Integer id) {
-        final CompanyInfo detail = companyInfoService.getById(id);
+    public ResponseEntity<Result<Company>> getDetail(@PathVariable @Positive Integer id) {
+        final Company detail = companyService.getById(id);
         return detail == null ?
                 ResponseEntityUtil.fail(HttpStatus.NOT_FOUND) :
                 ResponseEntityUtil.success(detail);
@@ -57,12 +57,12 @@ public class CompanyController {
      * @return list
      */
     @GetMapping
-    public ResponseEntity<Result<IPage<CompanyInfo>>> listSearch(
+    public ResponseEntity<Result<IPage<Company>>> listSearch(
             @RequestParam(required = false, defaultValue = "15") @Positive Long size,
             @RequestParam(required = false, defaultValue = "1") @Positive Long page,
             @RequestParam(required = false) String companyName,
             @RequestParam(required = false) @Positive Integer competitionId) {
-        final IPage<CompanyInfo> pageResult = companyInfoService.pageQuery(companyName, competitionId, page, size);
+        final IPage<Company> pageResult = companyService.pageQuery(companyName, competitionId, page, size);
         return pageResult.getRecords().isEmpty() ?
                 ResponseEntityUtil.fail(HttpStatus.NOT_FOUND) :
                 ResponseEntityUtil.success(pageResult);
@@ -76,16 +76,16 @@ public class CompanyController {
      * @return updated
      */
     @PutMapping
-    public ResponseEntity<Result<CompanyInfo>> updateCompanyInfo(@RequestParam(required = false) MultipartFile image,
-                                                                 @RequestParam(name = "company") @NotEmpty String companyJson) {
-        final CompanyInfo toUpdate = JacksonUtil.deserialize(companyJson, new TypeReference<>() {
+    public ResponseEntity<Result<Company>> updateCompanyInfo(@RequestParam(required = false) MultipartFile image,
+                                                             @RequestParam(name = "company") @NotEmpty String companyJson) {
+        final Company toUpdate = JacksonUtil.deserialize(companyJson, new TypeReference<>() {
         });
         if (toUpdate == null || toUpdate.getId() == null) {
             return ResponseEntityUtil.fail(ResponseEntityUtil.ILLEGAL_ARGUMENTS_FAIL_CODE,
                     "invalid companyInfo",
                     HttpStatus.BAD_REQUEST);
         }
-        return companyInfoService.commitAndUpdate(toUpdate, image) ?
+        return companyService.commitAndUpdate(toUpdate, image) ?
                 ResponseEntityUtil.success(toUpdate) :
                 ResponseEntityUtil.fail(ResponseEntityUtil.INTERNAL_EXCEPTION_FAIL_CODE,
                         HttpStatus.INTERNAL_SERVER_ERROR);
@@ -93,7 +93,7 @@ public class CompanyController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Result<Object>> deleteCompanyInfo(@PathVariable @Positive Integer id) {
-        return companyInfoService.removeById(id) ?
+        return companyService.removeById(id) ?
                 ResponseEntityUtil.success() :
                 ResponseEntityUtil.fail(ResponseEntityUtil.INTERNAL_EXCEPTION_FAIL_CODE, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -106,16 +106,16 @@ public class CompanyController {
      * @return updated
      */
     @PostMapping
-    public ResponseEntity<Result<CompanyInfo>> insertCompanyInfo(@RequestParam(required = false) MultipartFile image,
-                                                                 @RequestParam(name = "company") @NotEmpty String companyJson) {
-        final CompanyInfo toInsert = JacksonUtil.deserialize(companyJson, new TypeReference<>() {
+    public ResponseEntity<Result<Company>> insertCompanyInfo(@RequestParam(required = false) MultipartFile image,
+                                                             @RequestParam(name = "company") @NotEmpty String companyJson) {
+        final Company toInsert = JacksonUtil.deserialize(companyJson, new TypeReference<>() {
         });
         if (toInsert == null || StringUtils.isBlank(toInsert.getCompanyName())) {
             return ResponseEntityUtil.fail(ResponseEntityUtil.ILLEGAL_ARGUMENTS_FAIL_CODE,
                     "invalid companyInfo",
                     HttpStatus.BAD_REQUEST);
         }
-        return companyInfoService.commitAndInsert(toInsert, image) ?
+        return companyService.commitAndInsert(toInsert, image) ?
                 ResponseEntityUtil.success(HttpStatus.CREATED) :
                 ResponseEntityUtil.fail(ResponseEntityUtil.INTERNAL_EXCEPTION_FAIL_CODE, HttpStatus.INTERNAL_SERVER_ERROR);
     }

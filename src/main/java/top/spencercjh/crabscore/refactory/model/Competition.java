@@ -11,13 +11,16 @@ import lombok.experimental.Accessors;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@ApiModel(value = "CompetitionInfo")
+/**
+ * @author MyBatisCodeHelperPro
+ */
+@ApiModel(value = "Competition")
 @Accessors(chain = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName(value = "rxpb.rxpb_competition_info")
-public class CompetitionInfo {
+@TableName(value = "rxpb.rxpb_competition")
+public class Competition {
     public static final String COL_ID = "id";
     public static final String COL_COMPETITION_YEAR = "competition_year";
     public static final String COL_VAR_FATNESS_M = "var_fatness_m";

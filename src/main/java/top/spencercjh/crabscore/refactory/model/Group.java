@@ -8,33 +8,46 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
-@ApiModel(value = "UserInfo")
+/**
+ * @author MyBatisCodeHelperPro
+ */
+@ApiModel(value = "Group")
 @Accessors(chain = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName(value = "rxpb.rxpb_user_info")
-public class UserInfo {
+@TableName(value = "rxpb.rxpb_group")
+public class Group {
     public static final String COL_ID = "id";
-    public static final String COL_COMPETITION_ID = "competition_id";
     public static final String COL_COMPANY_ID = "company_id";
-    public static final String COL_ROLE_ID = "role_id";
-    public static final String COL_USER_NAME = "user_name";
-    public static final String COL_PASSWORD = "password";
-    public static final String COL_DISPLAY_NAME = "display_name";
-    public static final String COL_STATUS = "status";
-    public static final String COL_EMAIL = "email";
+    public static final String COL_COMPETITION_ID = "competition_id";
+    public static final String COL_FATNESS_SCORE_M = "fatness_score_m";
+    public static final String COL_QUALITY_SCORE_M = "quality_score_m";
+    public static final String COL_TASTE_SCORE_M = "taste_score_m";
+    public static final String COL_FATNESS_SCORE_F = "fatness_score_f";
+    public static final String COL_QUALITY_SCORE_F = "quality_score_f";
+    public static final String COL_TASTE_SCORE_F = "taste_score_f";
     public static final String COL_AVATAR_URL = "avatar_url";
     public static final String COL_VERSION = "version";
     public static final String COL_CREATE_DATE = "create_date";
     public static final String COL_CREATE_USER = "create_user";
     public static final String COL_UPDATE_DATE = "update_date";
     public static final String COL_UPDATE_USER = "update_user";
+    /**
+     * 组ID
+     */
     @TableId(value = "id", type = IdType.AUTO)
-    @ApiModelProperty(value = "")
+    @ApiModelProperty(value = "组ID")
     private Integer id;
+    /**
+     * 参赛单位id
+     */
+    @TableField(value = "company_id")
+    @ApiModelProperty(value = "参赛单位id")
+    private Integer companyId;
     /**
      * 比赛ID
      */
@@ -42,44 +55,41 @@ public class UserInfo {
     @ApiModelProperty(value = "比赛ID")
     private Integer competitionId;
     /**
-     * 对应的参选单位
+     * 雄蟹肥满度评分
      */
-    @TableField(value = "company_id")
-    @ApiModelProperty(value = "对应的参选单位")
-    private Integer companyId;
+    @TableField(value = "fatness_score_m")
+    @ApiModelProperty(value = "雄蟹肥满度评分")
+    private BigDecimal fatnessScoreM;
     /**
-     * 角色ID
+     * 雄蟹种质评分
      */
-    @TableField(value = "role_id")
-    @ApiModelProperty(value = "角色ID")
-    private Integer roleId;
+    @TableField(value = "quality_score_m")
+    @ApiModelProperty(value = "雄蟹种质评分")
+    private BigDecimal qualityScoreM;
     /**
-     * 用户名,登录名
+     * 雄蟹口感评分
      */
-    @TableField(value = "user_name")
-    @ApiModelProperty(value = "用户名,登录名")
-    private String userName;
+    @TableField(value = "taste_score_m")
+    @ApiModelProperty(value = "雄蟹口感评分")
+    private BigDecimal tasteScoreM;
     /**
-     * 密码
+     * 雌蟹肥满度评分
      */
-    @TableField(value = "password")
-    @ApiModelProperty(value = "密码")
-    private String password;
+    @TableField(value = "fatness_score_f")
+    @ApiModelProperty(value = "雌蟹肥满度评分")
+    private BigDecimal fatnessScoreF;
     /**
-     * 显示名称，姓名或单位名
+     * 雌蟹种质评分
      */
-    @TableField(value = "display_name")
-    @ApiModelProperty(value = "显示名称，姓名或单位名")
-    private String displayName;
+    @TableField(value = "quality_score_f")
+    @ApiModelProperty(value = "雌蟹种质评分")
+    private BigDecimal qualityScoreF;
     /**
-     * 用户状态 1：可用 0：禁用
+     * 雌蟹口感评分
      */
-    @TableField(value = "status")
-    @ApiModelProperty(value = "用户状态 1：可用 0：禁用")
-    private Byte status;
-    @TableField(value = "email")
-    @ApiModelProperty(value = "")
-    private String email;
+    @TableField(value = "taste_score_f")
+    @ApiModelProperty(value = "雌蟹口感评分")
+    private BigDecimal tasteScoreF;
     /**
      * 小组图标URL
      */

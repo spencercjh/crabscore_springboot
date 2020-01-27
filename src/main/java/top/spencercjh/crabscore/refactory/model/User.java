@@ -8,43 +8,36 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
-@ApiModel(value = "GroupInfo")
+/**
+ * @author MyBatisCodeHelperPro
+ */
+@ApiModel(value = "UserInfo")
 @Accessors(chain = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName(value = "rxpb.rxpb_group_info")
-public class GroupInfo {
+@TableName(value = "rxpb.rxpb_user")
+public class User {
     public static final String COL_ID = "id";
-    public static final String COL_COMPANY_ID = "company_id";
     public static final String COL_COMPETITION_ID = "competition_id";
-    public static final String COL_FATNESS_SCORE_M = "fatness_score_m";
-    public static final String COL_QUALITY_SCORE_M = "quality_score_m";
-    public static final String COL_TASTE_SCORE_M = "taste_score_m";
-    public static final String COL_FATNESS_SCORE_F = "fatness_score_f";
-    public static final String COL_QUALITY_SCORE_F = "quality_score_f";
-    public static final String COL_TASTE_SCORE_F = "taste_score_f";
+    public static final String COL_COMPANY_ID = "company_id";
+    public static final String COL_ROLE_ID = "role_id";
+    public static final String COL_USER_NAME = "user_name";
+    public static final String COL_PASSWORD = "password";
+    public static final String COL_DISPLAY_NAME = "display_name";
+    public static final String COL_STATUS = "status";
+    public static final String COL_EMAIL = "email";
     public static final String COL_AVATAR_URL = "avatar_url";
     public static final String COL_VERSION = "version";
     public static final String COL_CREATE_DATE = "create_date";
     public static final String COL_CREATE_USER = "create_user";
     public static final String COL_UPDATE_DATE = "update_date";
     public static final String COL_UPDATE_USER = "update_user";
-    /**
-     * 组ID
-     */
     @TableId(value = "id", type = IdType.AUTO)
-    @ApiModelProperty(value = "组ID")
+    @ApiModelProperty(value = "")
     private Integer id;
-    /**
-     * 参赛单位id
-     */
-    @TableField(value = "company_id")
-    @ApiModelProperty(value = "参赛单位id")
-    private Integer companyId;
     /**
      * 比赛ID
      */
@@ -52,41 +45,44 @@ public class GroupInfo {
     @ApiModelProperty(value = "比赛ID")
     private Integer competitionId;
     /**
-     * 雄蟹肥满度评分
+     * 对应的参选单位
      */
-    @TableField(value = "fatness_score_m")
-    @ApiModelProperty(value = "雄蟹肥满度评分")
-    private BigDecimal fatnessScoreM;
+    @TableField(value = "company_id")
+    @ApiModelProperty(value = "对应的参选单位")
+    private Integer companyId;
     /**
-     * 雄蟹种质评分
+     * 角色ID
      */
-    @TableField(value = "quality_score_m")
-    @ApiModelProperty(value = "雄蟹种质评分")
-    private BigDecimal qualityScoreM;
+    @TableField(value = "role_id")
+    @ApiModelProperty(value = "角色ID")
+    private Integer roleId;
     /**
-     * 雄蟹口感评分
+     * 用户名,登录名
      */
-    @TableField(value = "taste_score_m")
-    @ApiModelProperty(value = "雄蟹口感评分")
-    private BigDecimal tasteScoreM;
+    @TableField(value = "user_name")
+    @ApiModelProperty(value = "用户名,登录名")
+    private String userName;
     /**
-     * 雌蟹肥满度评分
+     * 密码
      */
-    @TableField(value = "fatness_score_f")
-    @ApiModelProperty(value = "雌蟹肥满度评分")
-    private BigDecimal fatnessScoreF;
+    @TableField(value = "password")
+    @ApiModelProperty(value = "密码")
+    private String password;
     /**
-     * 雌蟹种质评分
+     * 显示名称，姓名或单位名
      */
-    @TableField(value = "quality_score_f")
-    @ApiModelProperty(value = "雌蟹种质评分")
-    private BigDecimal qualityScoreF;
+    @TableField(value = "display_name")
+    @ApiModelProperty(value = "显示名称，姓名或单位名")
+    private String displayName;
     /**
-     * 雌蟹口感评分
+     * 用户状态 1：可用 0：禁用
      */
-    @TableField(value = "taste_score_f")
-    @ApiModelProperty(value = "雌蟹口感评分")
-    private BigDecimal tasteScoreF;
+    @TableField(value = "status")
+    @ApiModelProperty(value = "用户状态 1：可用 0：禁用")
+    private Byte status;
+    @TableField(value = "email")
+    @ApiModelProperty(value = "")
+    private String email;
     /**
      * 小组图标URL
      */

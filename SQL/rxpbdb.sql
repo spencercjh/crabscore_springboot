@@ -1,6 +1,6 @@
 create schema rxpb collate utf8mb4_0900_ai_ci;
 
-create table rxpb_company_info
+create table rxpb_company
 (
     id             int(11) unsigned auto_increment
         primary key,
@@ -17,9 +17,9 @@ create table rxpb_company_info
     comment '企业信息表';
 
 create index rxpb_company_info_competition_id_index
-    on rxpb_company_info (competition_id);
+    on rxpb_company (competition_id);
 
-create table rxpb_competition_info
+create table rxpb_competition
 (
     id               int(11) unsigned auto_increment
         primary key,
@@ -47,7 +47,7 @@ create table rxpb_competition_info
 )
     comment '大赛信息表';
 
-create table rxpb_crab_info
+create table rxpb_crab
 (
     id             int unsigned auto_increment
         primary key,
@@ -67,15 +67,15 @@ create table rxpb_crab_info
     comment '蟹基本信息表,肥满度表';
 
 create index rxpb_crab_info_competition_id_index
-    on rxpb_crab_info (competition_id);
+    on rxpb_crab (competition_id);
 
 create index rxpb_crab_info_crab_sex_index
-    on rxpb_crab_info (crab_sex);
+    on rxpb_crab (crab_sex);
 
 create index rxpb_crab_info_group_id_index
-    on rxpb_crab_info (group_id);
+    on rxpb_crab (group_id);
 
-create table rxpb_group_info
+create table rxpb_group
 (
     id              int unsigned auto_increment comment '组ID'
         primary key,
@@ -96,12 +96,12 @@ create table rxpb_group_info
     comment '组信息数表';
 
 create index rxpb_group_info_company_id_index
-    on rxpb_group_info (company_id);
+    on rxpb_group (company_id);
 
 create index rxpb_group_info_competition_id_index
-    on rxpb_group_info (competition_id);
+    on rxpb_group (competition_id);
 
-create table rxpb_role_info
+create table rxpb_role
 (
     id          int(11) unsigned auto_increment comment '"角色ID:1：管理员
  2：评委 3：工作人员 4:参选单位"
@@ -116,7 +116,7 @@ create table rxpb_role_info
     comment '用户组信息表';
 
 create index rxpb_role_info_role_name_index
-    on rxpb_role_info (role_name);
+    on rxpb_role (role_name);
 
 create table rxpb_score_quality
 (
@@ -186,7 +186,7 @@ create index rxpb_score_taste_group_id_index
 create index rxpb_score_taste_judges_id_index
     on rxpb_score_taste (judges_id);
 
-create table rxpb_user_info
+create table rxpb_user
 (
     id             int(11) unsigned auto_increment
         primary key,
@@ -207,11 +207,11 @@ create table rxpb_user_info
     comment '用户信息表';
 
 create index rxpb_user_info_company_id_index
-    on rxpb_user_info (company_id);
+    on rxpb_user (company_id);
 
 create index rxpb_user_info_competition_id_index
-    on rxpb_user_info (competition_id);
+    on rxpb_user (competition_id);
 
 create index rxpb_user_info_display_name_index
-    on rxpb_user_info (display_name);
+    on rxpb_user (display_name);
 

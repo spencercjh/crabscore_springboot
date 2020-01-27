@@ -3,6 +3,7 @@ package top.spencercjh.crabscore.refactory.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +26,7 @@ public class JacksonUtil {
      * @param <T>
      * @return
      */
+    @Nullable
     public static <T> T deserialize(String body, TypeReference<T> typeRef) {
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -35,6 +37,7 @@ public class JacksonUtil {
         return null;
     }
 
+    @Nullable
     public static <T> String serialize(T instance) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {

@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import top.spencercjh.crabscore.refactory.model.CrabInfo;
-import top.spencercjh.crabscore.refactory.service.CrabInfoService;
+import top.spencercjh.crabscore.refactory.model.Crab;
+import top.spencercjh.crabscore.refactory.service.CrabService;
 
 import java.util.List;
 
@@ -17,16 +17,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  */
 @Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class CrabInfoServiceImplTest {
+class CrabServiceImplTest {
     @Autowired
-    private CrabInfoService crabInfoService;
+    private CrabService crabService;
 
     @Test
     void list() {
-        final List<CrabInfo> pageResult = crabInfoService.list();
-        for (CrabInfo crabInfo : pageResult) {
-            log.debug(crabInfo.toString());
-            assertNotNull(crabInfo);
+        final List<Crab> pageResult = crabService.list();
+        for (Crab crab : pageResult) {
+            log.debug(crab.toString());
+            assertNotNull(crab);
         }
     }
 }

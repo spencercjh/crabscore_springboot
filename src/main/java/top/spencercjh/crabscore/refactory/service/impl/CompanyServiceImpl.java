@@ -10,49 +10,49 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import top.spencercjh.crabscore.refactory.mapper.CompanyInfoMapper;
-import top.spencercjh.crabscore.refactory.model.CompanyInfo;
+import top.spencercjh.crabscore.refactory.model.Company;
 import top.spencercjh.crabscore.refactory.service.BaseUploadFileService;
-import top.spencercjh.crabscore.refactory.service.CompanyInfoService;
+import top.spencercjh.crabscore.refactory.service.CompanyService;
 
 /**
  * @author MyBatisCodeHelperPro
  */
 @Transactional(rollbackFor = Exception.class)
 @Service
-public class CompanyInfoServiceImpl extends ServiceImpl<CompanyInfoMapper, CompanyInfo> implements
-        CompanyInfoService, BaseUploadFileService {
+public class CompanyServiceImpl extends ServiceImpl<CompanyInfoMapper, Company> implements
+        CompanyService, BaseUploadFileService {
     @Value("${crabScore.root}")
     private String rootDirectory;
     @Value("${crabScore.companyInfo}")
     private String companyInfoDirectory;
 
     @Override
-    public IPage<CompanyInfo> pageQuery(String companyName, Integer competitionId, Long page, Long size) {
-        final QueryWrapper<CompanyInfo> queryWrapper = new QueryWrapper<>();
+    public IPage<Company> pageQuery(String companyName, Integer competitionId, Long page, Long size) {
+        final QueryWrapper<Company> queryWrapper = new QueryWrapper<>();
         if (StringUtils.isNotBlank(companyName)) {
-            queryWrapper.like(CompanyInfo.COL_COMPANY_NAME, companyName + "%");
+            queryWrapper.like(Company.COL_COMPANY_NAME, companyName + "%");
         }
         if (competitionId != null) {
-            queryWrapper.eq(CompanyInfo.COL_COMPETITION_ID, competitionId);
+            queryWrapper.eq(Company.COL_COMPETITION_ID, competitionId);
         }
         return page(new Page<>(page, size), queryWrapper);
     }
 
     @Override
-    public boolean commitAndUpdate(CompanyInfo companyInfo, MultipartFile image) {
+    public boolean commitAndUpdate(Company companyInfo, MultipartFile image) {
         commitImage(companyInfo, image);
         // TODO update user
         return updateById(companyInfo);
     }
 
     @Override
-    public boolean commitAndInsert(CompanyInfo companyInfo, MultipartFile image) {
+    public boolean commitAndInsert(Company companyInfo, MultipartFile image) {
         commitImage(companyInfo, image);
         // TODO create user
         return save(companyInfo);
     }
 
-    private void commitImage(CompanyInfo companyInfo, MultipartFile image) {
+    private void commitImage(Company companyInfo, MultipartFile image) {
         if (image != null) {
             String url = parsePathToUrl(saveFile(image, companyInfoDirectory), rootDirectory);
             companyInfo.setAvatarUrl(url);

@@ -7,26 +7,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
 
-import java.math.BigDecimal;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-@ApiModel(value = "CrabInfo")
+/**
+ * @author MyBatisCodeHelperPro
+ */
+@ApiModel(value = "Company")
 @Accessors(chain = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName(value = "rxpb.rxpb_crab_info")
-public class CrabInfo {
+@TableName(value = "rxpb.rxpb_company")
+public class Company {
     public static final String COL_ID = "id";
+    public static final String COL_COMPANY_NAME = "company_name";
     public static final String COL_COMPETITION_ID = "competition_id";
-    public static final String COL_GROUP_ID = "group_id";
-    public static final String COL_CRAB_SEX = "crab_sex";
-    public static final String COL_CRAB_LABEL = "crab_label";
-    public static final String COL_CRAB_WEIGHT = "crab_weight";
-    public static final String COL_CRAB_LENGTH = "crab_length";
-    public static final String COL_CRAB_FATNESS = "crab_fatness";
     public static final String COL_AVATAR_URL = "avatar_url";
     public static final String COL_VERSION = "version";
     public static final String COL_CREATE_DATE = "create_date";
@@ -37,50 +35,26 @@ public class CrabInfo {
     @ApiModelProperty(value = "")
     private Integer id;
     /**
-     * 比赛ID
+     * 参选单位名: UNIQUE
+     */
+    @TableField(value = "company_name")
+    @ApiModelProperty(value = "参选单位名: UNIQUE")
+    @NotEmpty
+    private String companyName;
+    /**
+     * 参赛企业所属的比赛,同一企业在不同的赛事中保持独立
      */
     @TableField(value = "competition_id")
-    @ApiModelProperty(value = "比赛ID")
+    @ApiModelProperty(value = "参赛企业所属的比赛,同一企业在不同的赛事中保持独立")
+    @NotNull
     private Integer competitionId;
-    @TableField(value = "group_id")
-    @ApiModelProperty(value = "")
-    private Integer groupId;
     /**
-     * 0:雌 1：雄
-     */
-    @TableField(value = "crab_sex")
-    @ApiModelProperty(value = "0:雌 1：雄")
-    private SexEnum crabSex;
-    /**
-     * 四位的蟹标识
-     */
-    @TableField(value = "crab_label")
-    @ApiModelProperty(value = "四位的蟹标识")
-    private String crabLabel;
-    /**
-     * 体重
-     */
-    @TableField(value = "crab_weight")
-    @ApiModelProperty(value = "体重")
-    private BigDecimal crabWeight;
-    /**
-     * 壳长
-     */
-    @TableField(value = "crab_length")
-    @ApiModelProperty(value = "壳长")
-    private BigDecimal crabLength;
-    /**
-     * 肥满度
-     */
-    @TableField(value = "crab_fatness")
-    @ApiModelProperty(value = "肥满度")
-    private BigDecimal crabFatness;
-    /**
-     * 螃蟹图片URL
+     * 参选单位头像URL
      */
     @TableField(value = "avatar_url")
-    @ApiModelProperty(value = "螃蟹图片URL")
+    @ApiModelProperty(value = "参选单位头像URL")
     private String avatarUrl;
+
     @Version
     @TableField(value = "version")
     @ApiModelProperty(value = "", example = "2020-01-01 00:00:00")

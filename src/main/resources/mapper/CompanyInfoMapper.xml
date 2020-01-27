@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.spencercjh.crabscore.refactory.mapper.CompanyInfoMapper">
-    <resultMap id="BaseResultMap" type="top.spencercjh.crabscore.refactory.model.CompanyInfo">
+    <resultMap id="BaseResultMap" type="top.spencercjh.crabscore.refactory.model.Company">
         <!--@mbg.generated-->
-        <!--@Table rxpb.rxpb_company_info-->
+        <!--@Table rxpb.rxpb_company-->
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="company_name" jdbcType="VARCHAR" property="companyName"/>
         <result column="competition_id" jdbcType="INTEGER" property="competitionId"/>

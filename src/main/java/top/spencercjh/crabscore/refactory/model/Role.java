@@ -10,13 +10,16 @@ import lombok.experimental.Accessors;
 
 import java.util.Date;
 
-@ApiModel(value = "RoleInfo")
+/**
+ * @author MyBatisCodeHelperPro
+ */
+@ApiModel(value = "Role")
 @Accessors(chain = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName(value = "rxpb.rxpb_role_info")
-public class RoleInfo {
+@TableName(value = "rxpb.rxpb_role")
+public class Role {
     public static final String COL_ID = "id";
     public static final String COL_ROLE_NAME = "role_name";
     public static final String COL_VERSION = "version";

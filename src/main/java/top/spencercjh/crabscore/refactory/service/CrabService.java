@@ -1,12 +1,12 @@
 package top.spencercjh.crabscore.refactory.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import top.spencercjh.crabscore.refactory.model.ScoreQuality;
+import top.spencercjh.crabscore.refactory.model.Crab;
 
 /**
  * @author MyBatisCodeHelperPro
  */
-public interface ScoreQualityService extends IService<ScoreQuality> {
+public interface CrabService extends IService<Crab> {
 
 
 }

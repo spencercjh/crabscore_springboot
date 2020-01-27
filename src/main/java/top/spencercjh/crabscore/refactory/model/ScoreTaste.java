@@ -11,6 +11,9 @@ import lombok.experimental.Accessors;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * @author MyBatisCodeHelperPro
+ */
 @ApiModel(value = "ScoreTaste")
 @Accessors(chain = true)
 @Data
