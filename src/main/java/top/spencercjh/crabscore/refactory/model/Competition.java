@@ -46,10 +46,10 @@ public class Competition {
     @ApiModelProperty(value = "")
     private Integer id;
     /**
-     * 赛事的年份 yyyy
+     * 赛事的年份
      */
     @TableField(value = "competition_year")
-    @ApiModelProperty(value = "赛事的年份 yyyy")
+    @ApiModelProperty(value = "赛事的年份")
     private String competitionYear;
     /**
      * 雄蟹肥满度参数

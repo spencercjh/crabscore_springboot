@@ -27,4 +27,5 @@ mybatis-plus:
   type-enums-package: top.spencercjh.crabscore.refactory.model.enums
 crabScore:
   root:
-  companyInfo:
+  company:
+  competition:

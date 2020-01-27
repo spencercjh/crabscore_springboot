@@ -8,7 +8,7 @@ import top.spencercjh.crabscore.refactory.model.Company;
 /**
  * @author MyBatisCodeHelperPro
  */
-public interface CompanyService extends IService<Company> {
+public interface CompanyService extends IService<Company>, BaseUploadFileService {
 
     /**
      * 分页查询

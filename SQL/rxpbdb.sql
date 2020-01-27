@@ -36,7 +36,7 @@ create table rxpb_competition
     result_quality   tinyint          default 0                                                   not null comment '1:允许查看排名,0不允许查看排名',
     result_taste     tinyint          default 0                                                   not null comment '1:允许查看排名,0不允许查看排名',
     note             varchar(225)     default '备注'                                                not null comment '注备',
-    status           tinyint          default 1                                                   not null comment '1：可用 0：禁用',
+    status           tinyint          default 0                                                   not null comment '1：可用 0：禁用',
     avatar_url       varchar(255)     default 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg' null comment '大赛默认图标URL',
     version          timestamp        default CURRENT_TIMESTAMP                                   not null,
     create_date      datetime         default CURRENT_TIMESTAMP                                   not null comment '数据创建日期',
