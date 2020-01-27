@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import top.spencercjh.crabscore.refactory.mapper.CompetitionInfoMapper;
+import top.spencercjh.crabscore.refactory.mapper.CompetitionMapper;
 import top.spencercjh.crabscore.refactory.model.Competition;
 import top.spencercjh.crabscore.refactory.service.CompetitionService;
 
@@ -18,7 +18,7 @@ import top.spencercjh.crabscore.refactory.service.CompetitionService;
  */
 @Transactional(rollbackFor = Exception.class)
 @Service
-public class CompetitionServiceImpl extends ServiceImpl<CompetitionInfoMapper, Competition>
+public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Competition>
         implements CompetitionService {
 
     @Value("${crabScore.root}")

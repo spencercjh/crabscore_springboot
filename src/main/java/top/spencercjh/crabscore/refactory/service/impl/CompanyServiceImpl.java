@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import top.spencercjh.crabscore.refactory.mapper.CompanyInfoMapper;
+import top.spencercjh.crabscore.refactory.mapper.CompanyMapper;
 import top.spencercjh.crabscore.refactory.model.Company;
 import top.spencercjh.crabscore.refactory.service.CompanyService;
 
@@ -18,7 +18,7 @@ import top.spencercjh.crabscore.refactory.service.CompanyService;
  */
 @Transactional(rollbackFor = Exception.class)
 @Service
-public class CompanyServiceImpl extends ServiceImpl<CompanyInfoMapper, Company> implements CompanyService {
+public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> implements CompanyService {
     @Value("${crabScore.root}")
     private String rootDirectory;
     @Value("${crabScore.company}")

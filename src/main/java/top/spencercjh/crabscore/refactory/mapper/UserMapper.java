@@ -5,5 +5,5 @@ import org.apache.ibatis.annotations.Mapper;
 import top.spencercjh.crabscore.refactory.model.User;
 
 @Mapper
-public interface UserInfoMapper extends BaseMapper<User> {
+public interface UserMapper extends BaseMapper<User> {
 }
