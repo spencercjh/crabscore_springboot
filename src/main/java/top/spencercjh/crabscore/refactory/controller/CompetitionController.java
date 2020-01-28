@@ -31,7 +31,7 @@ public class CompetitionController {
     /**
      * Instantiates a new Competition controller.
      *
-     * @param competitionService the competition service
+     * @param competitionService the competition service;
      */
     public CompetitionController(CompetitionService competitionService) {
         this.competitionService = competitionService;
@@ -40,8 +40,8 @@ public class CompetitionController {
     /**
      * Gets detail.
      *
-     * @param id the id
-     * @return the detail
+     * @param id the id;
+     * @return the detail;
      */
     @GetMapping("/{id}")
     public ResponseEntity<Result<Competition>> getDetail(@PathVariable @Positive Integer id) {
@@ -54,11 +54,11 @@ public class CompetitionController {
     /**
      * List search response entity.
      *
-     * @param year   the year
-     * @param status the status
-     * @param page   the page
-     * @param size   the size
-     * @return the response entity
+     * @param year   the year;
+     * @param status the status;
+     * @param page   the page;
+     * @param size   the size;
+     * @return the response entity;
      */
     @GetMapping
     public ResponseEntity<Result<IPage<Competition>>> listSearch(
@@ -75,9 +75,9 @@ public class CompetitionController {
     /**
      * Update competition response entity.
      *
-     * @param image           the image
-     * @param competitionJson the competition json
-     * @return the response entity
+     * @param image           the image;
+     * @param competitionJson the competition json;
+     * @return the response entity;
      */
     @PutMapping
     public ResponseEntity<Result<Competition>> updateCompetition(
@@ -99,8 +99,8 @@ public class CompetitionController {
     /**
      * Delete competition response entity.
      *
-     * @param id the id
-     * @return the response entity
+     * @param id the id;
+     * @return the response entity;
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Result<Object>> deleteCompetition(@PathVariable @Positive Integer id) {
@@ -112,9 +112,9 @@ public class CompetitionController {
     /**
      * Insert competition response entity.
      *
-     * @param image           the image
-     * @param competitionJson the competition json
-     * @return the response entity
+     * @param image           the image;
+     * @param competitionJson the competition json;
+     * @return the response entity;
      */
     @PostMapping
     public ResponseEntity<Result<Competition>> insertCompetition(@RequestParam(required = false) MultipartFile image,

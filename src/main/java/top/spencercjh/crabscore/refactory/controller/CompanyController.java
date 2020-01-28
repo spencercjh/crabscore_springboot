@@ -31,7 +31,7 @@ public class CompanyController {
     /**
      * Instantiates a new Company controller.
      *
-     * @param companyService the company service
+     * @param companyService the company service;
      */
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
@@ -40,8 +40,8 @@ public class CompanyController {
     /**
      * Gets detail.
      *
-     * @param id the id
-     * @return the detail
+     * @param id the id;
+     * @return the detail;
      */
     @GetMapping("/{id}")
     public ResponseEntity<Result<Company>> getDetail(@PathVariable @Positive Integer id) {
@@ -54,11 +54,11 @@ public class CompanyController {
     /**
      * List search response entity.
      *
-     * @param size          the size
-     * @param page          the page
-     * @param companyName   the company name
-     * @param competitionId the competition id
-     * @return the response entity
+     * @param size          the size;
+     * @param page          the page;
+     * @param companyName   the company name;
+     * @param competitionId the competition id;
+     * @return the response entity;
      */
     @GetMapping
     public ResponseEntity<Result<IPage<Company>>> listSearch(
@@ -75,9 +75,9 @@ public class CompanyController {
     /**
      * Update company info response entity.
      *
-     * @param image       the image
-     * @param companyJson the company json
-     * @return the response entity
+     * @param image       the image;
+     * @param companyJson the company json;
+     * @return the response entity;
      */
     @PutMapping
     public ResponseEntity<Result<Company>> updateCompanyInfo(@RequestParam(required = false) MultipartFile image,
@@ -98,8 +98,8 @@ public class CompanyController {
     /**
      * Delete company info response entity.
      *
-     * @param id the id
-     * @return the response entity
+     * @param id the id;
+     * @return the response entity;
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Result<Object>> deleteCompanyInfo(@PathVariable @Positive Integer id) {
@@ -111,9 +111,9 @@ public class CompanyController {
     /**
      * Insert company info response entity.
      *
-     * @param image       the image
-     * @param companyJson the company json
-     * @return the response entity
+     * @param image       the image;
+     * @param companyJson the company json;
+     * @return the response entity;
      */
     @PostMapping
     public ResponseEntity<Result<Company>> insertCompanyInfo(@RequestParam(required = false) MultipartFile image,
