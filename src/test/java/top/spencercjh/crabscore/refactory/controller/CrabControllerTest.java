@@ -141,7 +141,6 @@ class CrabControllerTest {
                 .file(new MockMultipartFile("image", "QQ图片20171115233745.jpg", null,
                         Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg"))))
                 .param("crab", JacksonUtil.serialize(new Crab()
-                        // a non-existent id
                         .setId(209)
                         .setGroupId(99)
                         .setCompetitionId(99)
@@ -161,6 +160,7 @@ class CrabControllerTest {
     void failedUpdate() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.multipart(URL_TEMPLATE)
                 .param("crab", JacksonUtil.serialize(new Crab()
+                        // a non-existent id
                         .setId(1)
                         .setGroupId(99)
                         .setCompetitionId(99)
