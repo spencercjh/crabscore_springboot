@@ -12,12 +12,12 @@ I hope to take this opportunity of refactoring an old project to complete my gra
 
 Relative to the previous version:
 
-* Use Mybatis Plus to replace generated mybatis dynamic SQL in XML file;
-* Use optimistic lock to guarantee concurrency conflict during data updating;
-* Use `@Async` to speed ​​up some processes and many `TODO` or `FIXME` feature;
-* To simplify object storage, I perform this feature inside the service instead of using third-party services. For more information, please check `top.spencercjh.*CrabScore*.refactory.service.BaseUploadFileService` . These codes reference some businesses codes I wrote during my internship;
+* Use *Mybatis Plus* to replace generated mybatis dynamic SQL in XML file and implement CRUD **as fast as possible**;
+* Use **optimistic lock** (`@Version` annotation in *Mybatis Plus* ) to guarantee concurrency conflict during data updating;
+* Use `@Async` to speed ​​up some processes and many `TODO` or `FIXME` feature by **asynchronous operation**;
+* To simplify **object storage**, I perform this feature inside the service instead of using third-party services(such as OBS). For more information, please check `top.spencercjh.CrabScore.refactory.service.BaseUploadFileService` . These codes reference some businesses codes I wrote during my internship;
 * Constrain NPEs using `org.jetbrains.annotations`. 
-* Implement REST specifications **more correctly** than before.
+* Implement **RESTful** Api **more correctly** than before.
 
 ## To Do in Feature
 
@@ -61,7 +61,7 @@ All codes need to be tested!
 └─src
   ├─main
   │  ├─java
-  │  │  └─top.spencercjh.*CrabScore*.refactory
+  │  │  └─top.spencercjh.crabScore.refactory
   │  │   ├─config
   │  │   ├─controller # controller
   │  │   ├─mapper # dao
@@ -78,6 +78,6 @@ All codes need to be tested!
   │      └─templates
   └─test
       ├─java
-      │  └─top.spencercjh.*CrabScore*.refactory
+      │  └─top.spencercjh.crabScore.refactory
       └─resources
 ```
