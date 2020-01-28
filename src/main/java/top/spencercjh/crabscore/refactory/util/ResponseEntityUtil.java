@@ -129,6 +129,17 @@ final public class ResponseEntityUtil {
 
     @NotNull
     @Contract("_, _ -> new")
+    public static <T> ResponseEntity<Result<T>> success(T data, HttpStatus httpStatus) {
+        return new ResponseEntity<>(new Result.ResultBuilder<T>()
+                .setCode(SUCCESS_COMMON_CODE)
+                .setData(data)
+                .setStatus(SUCCESS_STATUS)
+                .setMessage(SUCCESS_COMMON_MESSAGE)
+                .build(), httpStatus);
+    }
+
+    @NotNull
+    @Contract("_, _ -> new")
     public static <T> ResponseEntity<Result<T>> success(int code, HttpStatus httpStatus) {
         return new ResponseEntity<>(new Result.ResultBuilder<T>()
                 .setCode(code)

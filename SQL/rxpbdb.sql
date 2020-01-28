@@ -54,7 +54,7 @@ create table rxpb_crab
     competition_id int(11) unsigned default 1                                                   not null comment '比赛ID',
     group_id       int unsigned                                                                 not null,
     crab_sex       tinyint          default -1                                                  not null comment '0:雌 1：雄',
-    crab_label     varchar(10)      default '空标识'                                               not null comment '四位的蟹标识',
+    crab_label     varchar(32)      default '空标识'                                               not null comment '四位的蟹标识',
     crab_weight    decimal(19, 4)   default 0.0000                                              not null comment '体重',
     crab_length    decimal(19, 4)   default 0.0000                                              not null comment '壳长',
     crab_fatness   decimal(19, 4)   default 0.0000                                              not null comment '肥满度',

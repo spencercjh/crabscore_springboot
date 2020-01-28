@@ -2,6 +2,7 @@ package top.spencercjh.crabscore.refactory.model.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.fasterxml.jackson.annotation.JsonValue;
+import lombok.Getter;
 
 /**
  * 螃蟹性别
@@ -9,20 +10,25 @@ import com.fasterxml.jackson.annotation.JsonValue;
  * @author Spencer
  * @date 2020/1/25
  */
+@Getter
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 public enum SexEnum {
     /**
      * 雌性 0
      */
-    FEMALE(0, "雌性"),
+    FEMALE(0, "FEMALE"),
     /**
      * 雄性 1
      */
-    MALE(1, "雄性");
+    MALE(1, "MALE"),
+    /**
+     * 未知 -1
+     */
+    UNKNOWN(-1, "UNKNOWN");
 
     @EnumValue
-    @JsonValue
     private final int code;
+    @JsonValue
     private final String description;
 
     SexEnum(int code, String description) {

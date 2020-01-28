@@ -19,8 +19,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 
 /**
- * @author Spencer
- * @date 2020/1/25
+ * The type Company controller.
  */
 @RestController
 @RequestMapping("/companies")
@@ -29,15 +28,20 @@ import javax.validation.constraints.Positive;
 public class CompanyController {
     private final CompanyService companyService;
 
+    /**
+     * Instantiates a new Company controller.
+     *
+     * @param companyService the company service
+     */
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
 
     /**
-     * 详情
+     * Gets detail.
      *
-     * @param id id
-     * @return detail
+     * @param id the id
+     * @return the detail
      */
     @GetMapping("/{id}")
     public ResponseEntity<Result<Company>> getDetail(@PathVariable @Positive Integer id) {
@@ -48,13 +52,13 @@ public class CompanyController {
     }
 
     /**
-     * 列表
+     * List search response entity.
      *
-     * @param size          size;
-     * @param page          page;
-     * @param companyName   company name;
-     * @param competitionId competition id;
-     * @return list
+     * @param size          the size
+     * @param page          the page
+     * @param companyName   the company name
+     * @param competitionId the competition id
+     * @return the response entity
      */
     @GetMapping
     public ResponseEntity<Result<IPage<Company>>> listSearch(
@@ -69,11 +73,11 @@ public class CompanyController {
     }
 
     /**
-     * 修改
+     * Update company info response entity.
      *
-     * @param image       image;
-     * @param companyJson toUpdate;
-     * @return updated
+     * @param image       the image
+     * @param companyJson the company json
+     * @return the response entity
      */
     @PutMapping
     public ResponseEntity<Result<Company>> updateCompanyInfo(@RequestParam(required = false) MultipartFile image,
@@ -91,6 +95,12 @@ public class CompanyController {
                         HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * Delete company info response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Result<Object>> deleteCompanyInfo(@PathVariable @Positive Integer id) {
         return companyService.removeById(id) ?
@@ -99,11 +109,11 @@ public class CompanyController {
     }
 
     /**
-     * 新增
+     * Insert company info response entity.
      *
-     * @param image       image;
-     * @param companyJson toInsert;
-     * @return updated
+     * @param image       the image
+     * @param companyJson the company json
+     * @return the response entity
      */
     @PostMapping
     public ResponseEntity<Result<Company>> insertCompanyInfo(@RequestParam(required = false) MultipartFile image,
@@ -116,7 +126,7 @@ public class CompanyController {
                     HttpStatus.BAD_REQUEST);
         }
         return companyService.commitAndInsert(toInsert, image) ?
-                ResponseEntityUtil.success(HttpStatus.CREATED) :
+                ResponseEntityUtil.success(toInsert, HttpStatus.CREATED) :
                 ResponseEntityUtil.fail(ResponseEntityUtil.INTERNAL_EXCEPTION_FAIL_CODE, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

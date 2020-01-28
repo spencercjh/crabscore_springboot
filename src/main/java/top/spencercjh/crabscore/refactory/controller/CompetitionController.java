@@ -19,8 +19,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 
 /**
- * @author Spencer
- * @date 2020/1/27
+ * The type Competition controller.
  */
 @RestController
 @RequestMapping("/competitions")
@@ -29,10 +28,21 @@ import javax.validation.constraints.Positive;
 public class CompetitionController {
     private final CompetitionService competitionService;
 
+    /**
+     * Instantiates a new Competition controller.
+     *
+     * @param competitionService the competition service
+     */
     public CompetitionController(CompetitionService competitionService) {
         this.competitionService = competitionService;
     }
 
+    /**
+     * Gets detail.
+     *
+     * @param id the id
+     * @return the detail
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Result<Competition>> getDetail(@PathVariable @Positive Integer id) {
         final Competition competition = competitionService.getById(id);
@@ -41,6 +51,15 @@ public class CompetitionController {
                 ResponseEntityUtil.success(competition);
     }
 
+    /**
+     * List search response entity.
+     *
+     * @param year   the year
+     * @param status the status
+     * @param page   the page
+     * @param size   the size
+     * @return the response entity
+     */
     @GetMapping
     public ResponseEntity<Result<IPage<Competition>>> listSearch(
             @RequestParam(required = false) String year,
@@ -53,6 +72,13 @@ public class CompetitionController {
                 ResponseEntityUtil.success(pageResult);
     }
 
+    /**
+     * Update competition response entity.
+     *
+     * @param image           the image
+     * @param competitionJson the competition json
+     * @return the response entity
+     */
     @PutMapping
     public ResponseEntity<Result<Competition>> updateCompetition(
             @RequestParam(required = false) MultipartFile image,
@@ -70,6 +96,12 @@ public class CompetitionController {
                         HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * Delete competition response entity.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Result<Object>> deleteCompetition(@PathVariable @Positive Integer id) {
         return competitionService.removeById(id) ?
@@ -77,6 +109,13 @@ public class CompetitionController {
                 ResponseEntityUtil.fail(ResponseEntityUtil.INTERNAL_EXCEPTION_FAIL_CODE, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * Insert competition response entity.
+     *
+     * @param image           the image
+     * @param competitionJson the competition json
+     * @return the response entity
+     */
     @PostMapping
     public ResponseEntity<Result<Competition>> insertCompetition(@RequestParam(required = false) MultipartFile image,
                                                                  @RequestParam(name = "competition") @NotEmpty String competitionJson) {
@@ -88,7 +127,7 @@ public class CompetitionController {
                     HttpStatus.BAD_REQUEST);
         }
         return competitionService.commitAndInsert(toInsert, image) ?
-                ResponseEntityUtil.success(HttpStatus.CREATED) :
+                ResponseEntityUtil.success(toInsert, HttpStatus.CREATED) :
                 ResponseEntityUtil.fail(ResponseEntityUtil.INTERNAL_EXCEPTION_FAIL_CODE, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
