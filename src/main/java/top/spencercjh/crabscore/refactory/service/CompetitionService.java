@@ -2,6 +2,8 @@ package top.spencercjh.crabscore.refactory.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.web.multipart.MultipartFile;
 import top.spencercjh.crabscore.refactory.model.Competition;
 
@@ -18,7 +20,8 @@ public interface CompetitionService extends IService<Competition>, BaseUploadFil
      * @param size   大小;
      * @return 列表
      */
-    IPage<Competition> pageQuery(String year, Byte status, Long page, Long size);
+    @NotNull
+    IPage<Competition> pageQuery(@Nullable String year, @Nullable Byte status, @NotNull Long page, Long size);
 
     /**
      * 更新资料
@@ -27,7 +30,7 @@ public interface CompetitionService extends IService<Competition>, BaseUploadFil
      * @param image       头像;
      * @return 更新后对象;
      */
-    boolean commitAndUpdate(Competition competition, MultipartFile image);
+    boolean commitAndUpdate(@NotNull Competition competition, @Nullable MultipartFile image);
 
     /**
      * 新增资料
@@ -36,5 +39,5 @@ public interface CompetitionService extends IService<Competition>, BaseUploadFil
      * @param image       头像;
      * @return 更新后对象;
      */
-    boolean commitAndInsert(Competition competition, MultipartFile image);
+    boolean commitAndInsert(@NotNull Competition competition, @Nullable MultipartFile image);
 }

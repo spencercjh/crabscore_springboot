@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +28,7 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
 
     @NotNull
     @Override
-    public IPage<Company> pageQuery(String companyName, Integer competitionId, @NotNull Long page, @NotNull Long size) {
+    public IPage<Company> pageQuery(@Nullable String companyName, @Nullable Integer competitionId, @NotNull Long page, @NotNull Long size) {
         final QueryWrapper<Company> queryWrapper = new QueryWrapper<>();
         if (StringUtils.isNotBlank(companyName)) {
             queryWrapper.like(Company.COL_COMPANY_NAME, companyName + "%");
@@ -39,20 +40,20 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
     }
 
     @Override
-    public boolean commitAndUpdate(@NotNull Company companyInfo, MultipartFile image) {
+    public boolean commitAndUpdate(@NotNull Company companyInfo, @Nullable MultipartFile image) {
         commitImage(companyInfo, image);
         // TODO update user
         return updateById(companyInfo);
     }
 
     @Override
-    public boolean commitAndInsert(@NotNull Company companyInfo, MultipartFile image) {
+    public boolean commitAndInsert(@NotNull Company companyInfo, @Nullable MultipartFile image) {
         commitImage(companyInfo, image);
         // TODO create user
         return save(companyInfo);
     }
 
-    private void commitImage(@NotNull Company companyInfo, MultipartFile image) {
+    private void commitImage(@NotNull Company companyInfo, @Nullable MultipartFile image) {
         if (image != null) {
             String url = parsePathToUrl(saveFile(image, companyInfoDirectory), rootDirectory);
             companyInfo.setAvatarUrl(url);

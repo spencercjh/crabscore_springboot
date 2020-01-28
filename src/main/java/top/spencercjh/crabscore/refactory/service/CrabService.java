@@ -2,6 +2,8 @@ package top.spencercjh.crabscore.refactory.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.web.multipart.MultipartFile;
 import top.spencercjh.crabscore.refactory.model.Crab;
 import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
@@ -24,7 +26,9 @@ public interface CrabService extends IService<Crab>, BaseUploadFileService {
      * @param size          大小;
      * @return page result;
      */
-    IPage<Crab> pageQuery(Integer competitionId, Integer groupId, SexEnum sex, Date beginTime, Date endTime, Long page, Long size);
+    @NotNull
+    IPage<Crab> pageQuery(@Nullable Integer competitionId, @Nullable Integer groupId, @Nullable SexEnum sex,
+                          @Nullable Date beginTime, @Nullable Date endTime, @NotNull Long page, @NotNull Long size);
 
     /**
      * 更新资料
@@ -33,7 +37,7 @@ public interface CrabService extends IService<Crab>, BaseUploadFileService {
      * @param image 头像;
      * @return 更新后对象;
      */
-    boolean commitAndUpdate(Crab crab, MultipartFile image);
+    boolean commitAndUpdate(@NotNull Crab crab, @Nullable MultipartFile image);
 
     /**
      * 新增资料
@@ -42,5 +46,5 @@ public interface CrabService extends IService<Crab>, BaseUploadFileService {
      * @param image 头像;
      * @return 更新后对象;
      */
-    boolean commitAndInsert(Crab crab, MultipartFile image);
+    boolean commitAndInsert(@NotNull Crab crab, @Nullable MultipartFile image);
 }

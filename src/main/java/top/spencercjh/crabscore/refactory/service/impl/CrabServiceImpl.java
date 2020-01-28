@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,8 +31,8 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
 
     @NotNull
     @Override
-    public IPage<Crab> pageQuery(Integer competitionId, Integer groupId, SexEnum sex, Date beginTime,
-                                 Date endTime, @NotNull Long page, @NotNull Long size) {
+    public IPage<Crab> pageQuery(@Nullable Integer competitionId, @Nullable Integer groupId, @Nullable SexEnum sex,
+                                 @Nullable Date beginTime, @Nullable Date endTime, @NotNull Long page, @NotNull Long size) {
         final QueryWrapper<Crab> queryWrapper = new QueryWrapper<>();
         if (competitionId != null) {
             queryWrapper.eq(Crab.COL_COMPETITION_ID, competitionId);
@@ -53,20 +54,20 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
     }
 
     @Override
-    public boolean commitAndUpdate(@NotNull Crab crab, MultipartFile image) {
+    public boolean commitAndUpdate(@NotNull Crab crab, @Nullable MultipartFile image) {
         commitImage(crab, image);
         // TODO update user
         return updateById(crab);
     }
 
     @Override
-    public boolean commitAndInsert(@NotNull Crab crab, MultipartFile image) {
+    public boolean commitAndInsert(@NotNull Crab crab, @Nullable MultipartFile image) {
         commitImage(crab, image);
         // TODO create user
         return save(crab);
     }
 
-    private void commitImage(@NotNull Crab crab, MultipartFile image) {
+    private void commitImage(@NotNull Crab crab, @Nullable MultipartFile image) {
         if (image != null) {
             String url = parsePathToUrl(saveFile(image, crabDirectory), rootDirectory);
             crab.setAvatarUrl(url);

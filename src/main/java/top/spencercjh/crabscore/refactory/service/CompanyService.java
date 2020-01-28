@@ -2,6 +2,8 @@ package top.spencercjh.crabscore.refactory.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.web.multipart.MultipartFile;
 import top.spencercjh.crabscore.refactory.model.Company;
 
@@ -19,7 +21,8 @@ public interface CompanyService extends IService<Company>, BaseUploadFileService
      * @param size          大小;
      * @return 列表
      */
-    IPage<Company> pageQuery(String companyName, Integer competitionId, Long page, Long size);
+    @NotNull
+    IPage<Company> pageQuery(@Nullable String companyName, @Nullable Integer competitionId, @NotNull Long page, @NotNull Long size);
 
     /**
      * 更新资料
@@ -28,7 +31,7 @@ public interface CompanyService extends IService<Company>, BaseUploadFileService
      * @param image       头像
      * @return 更新后对象
      */
-    boolean commitAndUpdate(Company companyInfo, MultipartFile image);
+    boolean commitAndUpdate(@NotNull Company companyInfo, @Nullable MultipartFile image);
 
     /**
      * 新增资料
@@ -37,5 +40,5 @@ public interface CompanyService extends IService<Company>, BaseUploadFileService
      * @param image       头像
      * @return 更新后对象
      */
-    boolean commitAndInsert(Company companyInfo, MultipartFile image);
+    boolean commitAndInsert(@NotNull Company companyInfo, @Nullable MultipartFile image);
 }

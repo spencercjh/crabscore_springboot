@@ -6,10 +6,12 @@ I hope to take this opportunity of refactoring an old project to complete my gra
 
 It's a third main version of CrabScore. Relative to the previous version:
 
-* I use Mybatis Plus to replace generated mybatis dynamic SQL in XML file
-* use optimistic lock to guarantee concurrency conflict during data updating
-* use `@Async` to speed ​​up some processes and many `TODO` or `FIXME` feature.
-* To simplify object storage, I perform this feature inside the service instead of using third-party services. For more information, please check `top.spencercjh.crabscore.refactory.service.BaseUploadFileService` . These codes reference some businesses codes I wrote during my internship.
+* Use Mybatis Plus to replace generated mybatis dynamic SQL in XML file;
+* Use optimistic lock to guarantee concurrency conflict during data updating;
+* Use `@Async` to speed ​​up some processes and many `TODO` or `FIXME` feature;
+* To simplify object storage, I perform this feature inside the service instead of using third-party services. For more information, please check `top.spencercjh.crabscore.refactory.service.BaseUploadFileService` . These codes reference some businesses codes I wrote during my internship;
+* Constrain NPEs using `org.jetbrains.annotations`. 
+* Implement REST specifications **more correctly** than before.
 
 ## To Do in Feature
 
@@ -30,9 +32,13 @@ Detail Dependencies Information in `pom.xml`
 
 ## Conventions
 
+* org.jetbrains.annotations
+
+Use it to constrain NPEs.
+
 * Test
 
-There is only service unit test in code form. I perform api test by *Swagger UI* .
+All codes need to be tested!
 
 * RESTful Api, reference
 

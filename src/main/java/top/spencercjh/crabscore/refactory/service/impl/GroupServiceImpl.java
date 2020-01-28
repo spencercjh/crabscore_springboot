@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +27,7 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
 
     @NotNull
     @Override
-    public IPage<Group> pageQuery(Integer companyId, Integer competitionId, @NotNull Long page, @NotNull Long size) {
+    public IPage<Group> pageQuery(@Nullable Integer companyId, @Nullable Integer competitionId, @NotNull Long page, @NotNull Long size) {
         final QueryWrapper<Group> queryWrapper = new QueryWrapper<>();
         if (companyId != null) {
             queryWrapper.eq(Group.COL_COMPANY_ID, companyId);
@@ -38,20 +39,20 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
     }
 
     @Override
-    public boolean commitAndUpdate(@NotNull Group group, MultipartFile image) {
+    public boolean commitAndUpdate(@NotNull Group group, @Nullable MultipartFile image) {
         commitImage(group, image);
         // TODO update user
         return updateById(group);
     }
 
     @Override
-    public boolean commitAndInsert(@NotNull Group group, MultipartFile image) {
+    public boolean commitAndInsert(@NotNull Group group, @Nullable MultipartFile image) {
         commitImage(group, image);
         // TODO create user
         return save(group);
     }
 
-    private void commitImage(@NotNull Group group, MultipartFile image) {
+    private void commitImage(@NotNull Group group, @Nullable MultipartFile image) {
         if (image != null) {
             group.setAvatarUrl(parsePathToUrl(saveFile(image, groupDirectory), rootDirectory));
         }

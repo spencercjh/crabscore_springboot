@@ -2,6 +2,8 @@ package top.spencercjh.crabscore.refactory.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.web.multipart.MultipartFile;
 import top.spencercjh.crabscore.refactory.model.Group;
 
@@ -20,7 +22,8 @@ public interface GroupService extends IService<Group>, BaseUploadFileService {
      * @param size          the size;
      * @return page
      */
-    IPage<Group> pageQuery(Integer companyId, Integer competitionId, Long page, Long size);
+    @NotNull
+    IPage<Group> pageQuery(@Nullable Integer companyId, @Nullable Integer competitionId, @NotNull Long page, @NotNull Long size);
 
     /**
      * Commit image and update group.
@@ -29,7 +32,7 @@ public interface GroupService extends IService<Group>, BaseUploadFileService {
      * @param image the image;
      * @return the boolean;
      */
-    boolean commitAndUpdate(Group group, MultipartFile image);
+    boolean commitAndUpdate(@NotNull Group group, @Nullable MultipartFile image);
 
     /**
      * Commit image and insert group.
@@ -38,5 +41,5 @@ public interface GroupService extends IService<Group>, BaseUploadFileService {
      * @param image the image;
      * @return the boolean;
      */
-    boolean commitAndInsert(Group group, MultipartFile image);
+    boolean commitAndInsert(@NotNull Group group, @Nullable MultipartFile image);
 }
