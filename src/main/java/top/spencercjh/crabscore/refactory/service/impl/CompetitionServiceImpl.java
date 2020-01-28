@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,8 +27,9 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
     @Value("${crabScore.competition}")
     private String competitionDirectory;
 
+    @NotNull
     @Override
-    public IPage<Competition> pageQuery(String year, Byte status, Long page, Long size) {
+    public IPage<Competition> pageQuery(String year, Byte status, @NotNull Long page, @NotNull Long size) {
         final QueryWrapper<Competition> queryWrapper = new QueryWrapper<>();
         if (StringUtils.isNotBlank(year)) {
             queryWrapper.like(Competition.COL_COMPETITION_YEAR, year + "%");
@@ -39,20 +41,20 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
     }
 
     @Override
-    public boolean commitAndUpdate(Competition competition, MultipartFile image) {
+    public boolean commitAndUpdate(@NotNull Competition competition, MultipartFile image) {
         commitImage(competition, image);
         // TODO update user
         return updateById(competition);
     }
 
     @Override
-    public boolean commitAndInsert(Competition competition, MultipartFile image) {
+    public boolean commitAndInsert(@NotNull Competition competition, MultipartFile image) {
         commitImage(competition, image);
         // TODO create user
         return save(competition);
     }
 
-    private void commitImage(Competition competition, MultipartFile image) {
+    private void commitImage(@NotNull Competition competition, MultipartFile image) {
         if (image != null) {
             String url = parsePathToUrl(saveFile(image, competitionDirectory), rootDirectory);
             competition.setAvatarUrl(url);

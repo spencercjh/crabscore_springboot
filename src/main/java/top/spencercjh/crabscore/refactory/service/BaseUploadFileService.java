@@ -4,6 +4,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.TestOnly;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,8 @@ import java.util.*;
 
 /**
  * 所有涉及到文件上传的业务逻辑
+ * <p>
+ * TODO 存储文件和通过文件生成URL可以解耦,将IO操作解耦转异步,提升性能
  *
  * @author Spencer
  * @date 12/11/2019
@@ -170,25 +173,36 @@ public interface BaseUploadFileService {
         try (final InputStream in = multipartFile.getInputStream()) {
             // 默认情况使用NIO Channel存储，部分特殊情况比如Junit时需要使用普通IO
             if (in instanceof FileInputStream) {
-                try (
-                        final FileChannel inputFileChannel = ((FileInputStream) in).getChannel();
-                        final FileOutputStream os = new FileOutputStream(filePath);
-                        final FileChannel outputFileChannel = os.getChannel()
-                ) {
-                    inputFileChannel.transferTo(0, inputFileChannel.size(), outputFileChannel);
-                    return filePath;
-                } catch (IOException e) {
-                    return null;
-                }
+                return saveFileByNIO(filePath, (FileInputStream) in);
             } else {
-                try (final OutputStream outputStream = new FileOutputStream(new File(filePath))) {
-                    IOUtils.copy(in, outputStream);
-                    return filePath;
-                } catch (IOException e) {
-                    logger.error(e.getMessage());
-                    return null;
-                }
+                return saveFileByBIO(filePath, in);
             }
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+            return null;
+        }
+    }
+
+    @Nullable
+    private String saveFileByNIO(String filePath, FileInputStream in) {
+        try (
+                final FileChannel inputFileChannel = in.getChannel();
+                final FileOutputStream os = new FileOutputStream(filePath);
+                final FileChannel outputFileChannel = os.getChannel()
+        ) {
+            inputFileChannel.transferTo(0, inputFileChannel.size(), outputFileChannel);
+            return filePath;
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    @TestOnly
+    @Nullable
+    private String saveFileByBIO(String filePath, InputStream in) {
+        try (final OutputStream outputStream = new FileOutputStream(new File(filePath))) {
+            IOUtils.copy(in, outputStream);
+            return filePath;
         } catch (IOException e) {
             logger.error(e.getMessage());
             return null;
