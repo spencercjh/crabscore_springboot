@@ -10,8 +10,10 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import top.spencercjh.crabscore.refactory.model.Crab;
+import top.spencercjh.crabscore.refactory.model.Group;
 import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
 import top.spencercjh.crabscore.refactory.service.CrabService;
+import top.spencercjh.crabscore.refactory.service.GroupService;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,6 +21,8 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,16 +36,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class CrabServiceImplTest {
     @Autowired
     private CrabService crabService;
+    @Autowired
+    private GroupService groupService;
 
     //    @Test
     void mockData() {
-        int amount = 100;
-        for (int i = 0; i < amount; i++) {
-            crabService.save(new Crab()
-                    .setCompetitionId(1)
-                    .setGroupId(i % 10)
+        final List<Group> allGroup = groupService.list();
+        for (Group group : allGroup) {
+            IntStream.range(0, 10).forEach(i -> crabService.save(new Crab()
+                    .setCrabLabel("Mock Data")
                     .setCrabSex(i % 2 == 0 ? SexEnum.FEMALE : SexEnum.MALE)
-                    .setCrabLabel("测试标签"));
+                    .setGroupId(group.getId())
+                    .setCompetitionId(1)));
         }
     }
 
