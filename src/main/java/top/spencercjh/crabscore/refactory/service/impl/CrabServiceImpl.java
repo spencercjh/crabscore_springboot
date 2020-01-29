@@ -11,11 +11,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import top.spencercjh.crabscore.refactory.mapper.CrabMapper;
+import top.spencercjh.crabscore.refactory.mapper.ScoreQualityMapper;
+import top.spencercjh.crabscore.refactory.mapper.ScoreTasteMapper;
 import top.spencercjh.crabscore.refactory.model.Crab;
+import top.spencercjh.crabscore.refactory.model.ScoreQuality;
+import top.spencercjh.crabscore.refactory.model.ScoreTaste;
 import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
+import top.spencercjh.crabscore.refactory.model.vo.CrabVo;
 import top.spencercjh.crabscore.refactory.service.CrabService;
 
+import javax.annotation.Resource;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 /**
  * @author MyBatisCodeHelperPro
@@ -28,11 +35,15 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
     private String rootDirectory;
     @Value("${crabScore.crab}")
     private String crabDirectory;
+    @Resource
+    private ScoreQualityMapper scoreQualityMapper;
+    @Resource
+    private ScoreTasteMapper scoreTasteMapper;
 
     @NotNull
     @Override
-    public IPage<Crab> pageQuery(@Nullable Integer competitionId, @Nullable Integer groupId, @Nullable SexEnum sex,
-                                 @Nullable Date beginTime, @Nullable Date endTime, @NotNull Long page, @NotNull Long size) {
+    public IPage<CrabVo> pageQuery(@Nullable Integer competitionId, @Nullable Integer groupId, @Nullable SexEnum sex,
+                                   @Nullable Date beginTime, @Nullable Date endTime, @NotNull Long page, @NotNull Long size) {
         final QueryWrapper<Crab> queryWrapper = new QueryWrapper<>();
         if (competitionId != null) {
             queryWrapper.eq(Crab.COL_COMPETITION_ID, competitionId);
@@ -50,7 +61,12 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
         } else if (endTime != null) {
             queryWrapper.le(Crab.COL_CREATE_DATE, endTime);
         }
-        return page(new Page<>(page, size), queryWrapper);
+        final Page<Crab> crabPage = getBaseMapper().selectPage(new Page<>(page, size), queryWrapper);
+        return new Page<CrabVo>(crabPage.getCurrent(), crabPage.getSize(), crabPage.getTotal(), crabPage.isSearchCount())
+                .setRecords(crabPage.getRecords().stream().map((Crab crab) -> new CrabVo(crab,
+                        scoreTasteMapper.selectOne(new QueryWrapper<ScoreTaste>().eq(ScoreTaste.COL_CRAB_ID, crab.getId())),
+                        scoreQualityMapper.selectOne(new QueryWrapper<ScoreQuality>().eq(ScoreQuality.COL_CRAB_ID, crab.getId()))))
+                        .collect(Collectors.toList()));
     }
 
     @Override

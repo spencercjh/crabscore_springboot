@@ -15,7 +15,7 @@ import java.util.Date;
 /**
  * @author MyBatisCodeHelperPro
  */
-@ApiModel(value = "CrabInfo")
+@ApiModel(value = "Crab")
 @Accessors(chain = true)
 @Data
 @AllArgsConstructor

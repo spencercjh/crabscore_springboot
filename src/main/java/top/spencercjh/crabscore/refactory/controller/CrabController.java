@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import top.spencercjh.crabscore.refactory.model.Crab;
 import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
+import top.spencercjh.crabscore.refactory.model.vo.CrabVo;
 import top.spencercjh.crabscore.refactory.model.vo.Result;
 import top.spencercjh.crabscore.refactory.service.CrabService;
 import top.spencercjh.crabscore.refactory.util.JacksonUtil;
@@ -72,7 +73,7 @@ public class CrabController {
      * @return the response entity;
      */
     @GetMapping
-    public ResponseEntity<Result<IPage<Crab>>> listSearch(
+    public ResponseEntity<Result<IPage<CrabVo>>> listSearch(
             @RequestParam(required = false) @Positive Integer competitionId,
             @RequestParam(required = false) @Positive Integer groupId,
             @RequestParam(required = false) SexEnum sex,
@@ -80,7 +81,7 @@ public class CrabController {
             @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date endTime,
             @RequestParam(required = false, defaultValue = "1") @Positive Long page,
             @RequestParam(required = false, defaultValue = "15") @Positive Long size) {
-        final IPage<Crab> pageResult = crabService.pageQuery(competitionId, groupId, sex, beginTime, endTime, page, size);
+        final IPage<CrabVo> pageResult = crabService.pageQuery(competitionId, groupId, sex, beginTime, endTime, page, size);
         return pageResult.getRecords().isEmpty() ?
                 ResponseEntityUtil.fail(HttpStatus.NOT_FOUND) :
                 ResponseEntityUtil.success(pageResult);

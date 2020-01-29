@@ -27,7 +27,7 @@ class ScoreTasteServiceImplTest {
     @Autowired
     private ScoreTasteService scoreTasteService;
 
-    @Test
+    //    @Test
     void mockData() {
         crabService.list().forEach(crab -> scoreTasteService.save(new ScoreTaste()
                 .setCompetitionId(crab.getCompetitionId())

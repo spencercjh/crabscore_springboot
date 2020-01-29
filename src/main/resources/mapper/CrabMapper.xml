@@ -18,9 +18,97 @@
         <result column="create_user" jdbcType="INTEGER" property="createUser"/>
         <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
     </resultMap>
+    <resultMap id="CrabVoResultMap" type="top.spencercjh.crabscore.refactory.model.vo.CrabVo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="competition_id" jdbcType="INTEGER" property="competitionId"/>
+        <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+        <result column="crab_sex" jdbcType="TINYINT" property="crabSex"/>
+        <result column="crab_label" jdbcType="VARCHAR" property="crabLabel"/>
+        <result column="crab_weight" jdbcType="DECIMAL" property="crabWeight"/>
+        <result column="crab_length" jdbcType="DECIMAL" property="crabLength"/>
+        <result column="crab_fatness" jdbcType="DECIMAL" property="crabFatness"/>
+        <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl"/>
+        <result column="version" jdbcType="TIMESTAMP" property="version"/>
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
+        <result column="create_user" jdbcType="INTEGER" property="createUser"/>
+        <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
+        <association property="scoreQuality" javaType="top.spencercjh.crabscore.refactory.model.ScoreQuality"
+                     select="selectScoreQualityByCrabId" column="id"/>
+        <association property="scoreTaste" javaType="top.spencercjh.crabscore.refactory.model.ScoreTaste"
+                     select="selectScoreTasteByCrabId" column="id"/>
+    </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
         id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
         avatar_url, version, create_date, create_user, update_user
     </sql>
+    <select id="selectCrabVo" resultMap="CrabVoResultMap">
+        select crab.id, crab.competition_id, crab.group_id, crab.crab_sex, crab.crab_label, crab.crab_weight,
+        crab.crab_length, crab.crab_fatness, crab.avatar_url, crab.version, crab.create_date, crab.create_user,
+        crab.update_user, quality.id, quality.competition_id, quality.crab_id, quality.group_id, quality.judges_id,
+        quality.score_fin, quality.score_bts, quality.score_fts, quality.score_ec, quality.score_dscc,
+        quality.score_bbyzt, quality.version, quality.create_date, quality.create_user, quality.update_user, taste.id,
+        taste.competition_id, taste.crab_id, taste.group_id, taste.judges_id, taste.score_fin, taste.score_ygys,
+        taste.score_sys, taste.score_ghys, taste.score_xwxw, taste.score_gh, taste.score_fbjr, taste.score_bzjr,
+        taste.version, taste.create_date, taste.create_user, taste.update_user
+        from rxpb_crab crab
+        left join rxpb_score_quality quality on crab.id=quality.crab_id
+        left join rxpb_score_taste taste on crab.id=taste.crab_id
+        <where>
+            <if test="competitionId != null">
+                crab.competition_id=#{competitionId}
+            </if>
+            <if test="groupId!=null">
+                and crab.group_id=#{groupId}
+            </if>
+            <if test="sex != null">
+                and crab.crab_sex=#{sex}
+            </if>
+            <if test="beginTime != null and endTime != null">
+                and crab.create_date between #{beginTime} and #{endTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectScoreQualityByCrabId" resultType="top.spencercjh.crabscore.refactory.model.ScoreQuality">
+        select id,
+        competition_id,
+        crab_id,
+        group_id,
+        judges_id,
+        score_fin,
+        score_bts,
+        score_fts,
+        score_ec,
+        score_dscc,
+        score_bbyzt,
+        version,
+        create_date,
+        create_user,
+        update_user
+        from rxpb_score_quality
+        where crab_id = #{crabId}
+    </select>
+
+    <select id="selectScoreTasteByCrabId" resultType="top.spencercjh.crabscore.refactory.model.ScoreTaste">
+        select id,
+        competition_id,
+        crab_id,
+        group_id,
+        judges_id,
+        score_fin,
+        score_ygys,
+        score_sys,
+        score_ghys,
+        score_xwxw,
+        score_gh,
+        score_fbjr,
+        score_bzjr,
+        version,
+        create_date,
+        create_user,
+        update_user
+        from rxpb_score_taste
+        where crab_id = #{crabId}
+    </select>
 </mapper>

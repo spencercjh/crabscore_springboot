@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.web.multipart.MultipartFile;
 import top.spencercjh.crabscore.refactory.model.Crab;
 import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
+import top.spencercjh.crabscore.refactory.model.vo.CrabVo;
 
 import java.util.Date;
 
@@ -27,8 +28,8 @@ public interface CrabService extends IService<Crab>, BaseUploadFileService {
      * @return page result;
      */
     @NotNull
-    IPage<Crab> pageQuery(@Nullable Integer competitionId, @Nullable Integer groupId, @Nullable SexEnum sex,
-                          @Nullable Date beginTime, @Nullable Date endTime, @NotNull Long page, @NotNull Long size);
+    IPage<CrabVo> pageQuery(@Nullable Integer competitionId, @Nullable Integer groupId, @Nullable SexEnum sex,
+                            @Nullable Date beginTime, @Nullable Date endTime, @NotNull Long page, @NotNull Long size);
 
     /**
      * 更新资料

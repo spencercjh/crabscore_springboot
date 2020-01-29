@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import top.spencercjh.crabscore.refactory.model.Crab;
 import top.spencercjh.crabscore.refactory.model.Group;
 import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
+import top.spencercjh.crabscore.refactory.model.vo.CrabVo;
 import top.spencercjh.crabscore.refactory.service.CrabService;
 import top.spencercjh.crabscore.refactory.service.GroupService;
 
@@ -61,7 +62,7 @@ class CrabServiceImplTest {
         // page
         final long page = 2;
         final long size = 10;
-        final IPage<Crab> pageResult = crabService.pageQuery(null, null, null,
+        final IPage<CrabVo> pageResult = crabService.pageQuery(null, null, null,
                 null, null, page, size);
         assertEquals(size, pageResult.getRecords().size());
         assertEquals(page, pageResult.getCurrent());
@@ -72,7 +73,7 @@ class CrabServiceImplTest {
         });
         // search competitionId
         final int competitionId = 99;
-        IPage<Crab> searchResult = crabService.pageQuery(competitionId, null, null,
+        IPage<CrabVo> searchResult = crabService.pageQuery(competitionId, null, null,
                 null, null, 1L, 100L);
         searchResult.getRecords().forEach(crab -> {
             assertNotNull(crab);
@@ -100,6 +101,27 @@ class CrabServiceImplTest {
             assertNotNull(crab.getCrabSex());
             assertEquals(sex, crab.getCrabSex());
         });
+    }
+
+    @Test
+    void pageQueryNewFeature() {
+        final long size = 1000L;
+        final long page = 1L;
+        final IPage<CrabVo> crabIPage = crabService.pageQuery(null, null, null,
+                null, null, page, size);
+        assertNotNull(crabIPage);
+        log.debug(crabIPage.toString());
+        assertEquals(page, crabIPage.getCurrent());
+        assertEquals(size, crabIPage.getSize());
+        crabIPage.getRecords().forEach(crabVo -> {
+            assertNotNull(crabVo);
+            log.debug(crabVo.toString());
+            assertNotNull(crabVo.getScoreQuality());
+            assertNotNull(crabVo.getScoreTaste());
+            assertEquals(crabVo.getId(), crabVo.getScoreTaste().getCrabId());
+            assertEquals(crabVo.getId(), crabVo.getScoreQuality().getCrabId());
+        });
+
     }
 
     @Transactional
