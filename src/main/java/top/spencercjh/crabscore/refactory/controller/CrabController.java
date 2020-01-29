@@ -165,7 +165,7 @@ public class CrabController {
     }
 
     /**
-     * Insert crab response entity.
+     * Insert score information while inserting crab.
      * <p>
      * Insert one crab with an image (or without) or insert same crab without image in {@code repeat} times;
      *
@@ -192,7 +192,7 @@ public class CrabController {
             for (int i = 0; i < repeat; i++) {
                 toBatchInsert.add(toInsert);
             }
-            return crabService.saveBatch(toBatchInsert) ?
+            return crabService.saveCrabAndScoreBatch(toBatchInsert) ?
                     ResponseEntityUtil.success(toBatchInsert, HttpStatus.CREATED) :
                     ResponseEntityUtil.fail(ResponseEntityUtil.INTERNAL_EXCEPTION_FAIL_CODE, HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -10,8 +10,11 @@ import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
 import top.spencercjh.crabscore.refactory.model.vo.CrabVo;
 
 import java.util.Date;
+import java.util.List;
 
 /**
+ * The interface Crab service.
+ *
  * @author MyBatisCodeHelperPro
  */
 public interface CrabService extends IService<Crab>, BaseUploadFileService {
@@ -33,19 +36,33 @@ public interface CrabService extends IService<Crab>, BaseUploadFileService {
 
     /**
      * 更新资料
+     * <p>
+     * TODO Asynchronous
      *
      * @param crab  螃蟹;
      * @param image 头像;
-     * @return 更新后对象;
+     * @return 更新后对象 ;
      */
     boolean commitAndUpdate(@NotNull Crab crab, @Nullable MultipartFile image);
 
     /**
-     * 新增资料
+     * 新增资料 同时会插入两种Score
+     * <p>
+     * TODO Asynchronous
      *
      * @param crab  螃蟹;
      * @param image 头像;
-     * @return 更新后对象;
+     * @return 更新后对象 ;
      */
     boolean commitAndInsert(@NotNull Crab crab, @Nullable MultipartFile image);
+
+    /**
+     * Save crab and score batch.
+     * <p>
+     * TODO Asynchronous
+     *
+     * @param toBatchInsert the to batch insert;
+     * @return the boolean;
+     */
+    boolean saveCrabAndScoreBatch(List<Crab> toBatchInsert);
 }

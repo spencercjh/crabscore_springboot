@@ -22,6 +22,7 @@ import top.spencercjh.crabscore.refactory.service.CrabService;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -64,8 +65,10 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
         final Page<Crab> crabPage = getBaseMapper().selectPage(new Page<>(page, size), queryWrapper);
         return new Page<CrabVo>(crabPage.getCurrent(), crabPage.getSize(), crabPage.getTotal(), crabPage.isSearchCount())
                 .setRecords(crabPage.getRecords().stream().map((Crab crab) -> new CrabVo(crab,
-                        scoreTasteMapper.selectOne(new QueryWrapper<ScoreTaste>().eq(ScoreTaste.COL_CRAB_ID, crab.getId())),
-                        scoreQualityMapper.selectOne(new QueryWrapper<ScoreQuality>().eq(ScoreQuality.COL_CRAB_ID, crab.getId()))))
+                        scoreTasteMapper.selectOne(new QueryWrapper<ScoreTaste>()
+                                .eq(ScoreTaste.COL_CRAB_ID, crab.getId())),
+                        scoreQualityMapper.selectOne(new QueryWrapper<ScoreQuality>()
+                                .eq(ScoreQuality.COL_CRAB_ID, crab.getId()))))
                         .collect(Collectors.toList()));
     }
 
@@ -81,6 +84,36 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
         commitImage(crab, image);
         // TODO create user
         return save(crab);
+    }
+
+    @Override
+    public boolean save(Crab entity) {
+        return super.save(entity) && saveScoreQuality(entity) && saveScoreTaste(entity);
+    }
+
+    @Override
+    public boolean saveCrabAndScoreBatch(List<Crab> toBatchInsert) {
+        try {
+            toBatchInsert.forEach(this::save);
+            return true;
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e.getCause());
+            return false;
+        }
+    }
+
+    private boolean saveScoreTaste(@NotNull Crab crab) {
+        return scoreTasteMapper.insert(new ScoreTaste()
+                .setGroupId(crab.getGroupId())
+                .setCrabId(crab.getId())
+                .setCompetitionId(crab.getCompetitionId())) == 1;
+    }
+
+    private boolean saveScoreQuality(@NotNull Crab crab) {
+        return scoreQualityMapper.insert(new ScoreQuality()
+                .setGroupId(crab.getGroupId())
+                .setCrabId(crab.getId())
+                .setCompetitionId(crab.getCompetitionId())) == 1;
     }
 
     private void commitImage(@NotNull Crab crab, @Nullable MultipartFile image) {

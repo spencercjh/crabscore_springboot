@@ -11,14 +11,19 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import top.spencercjh.crabscore.refactory.model.Crab;
 import top.spencercjh.crabscore.refactory.model.Group;
+import top.spencercjh.crabscore.refactory.model.ScoreQuality;
+import top.spencercjh.crabscore.refactory.model.ScoreTaste;
 import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
 import top.spencercjh.crabscore.refactory.model.vo.CrabVo;
 import top.spencercjh.crabscore.refactory.service.CrabService;
 import top.spencercjh.crabscore.refactory.service.GroupService;
+import top.spencercjh.crabscore.refactory.service.ScoreQualityService;
+import top.spencercjh.crabscore.refactory.service.ScoreTasteService;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -36,6 +41,10 @@ class CrabServiceImplTest {
     private CrabService crabService;
     @Autowired
     private GroupService groupService;
+    @Autowired
+    private ScoreTasteService scoreTasteService;
+    @Autowired
+    private ScoreQualityService scoreQualityService;
 
     //    @Test
     void mockData() {
@@ -151,10 +160,35 @@ class CrabServiceImplTest {
                         Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg")))));
         final Crab actual = crabService.getOne(
                 new QueryWrapper<Crab>().eq(Crab.COL_CRAB_LABEL, insertLabel));
+        assertEquals(actual.getId(), toInsert.getId());
         assertEquals(insertLabel, toInsert.getCrabLabel());
         assertEquals(insertLabel, actual.getCrabLabel());
         assertTrue(actual.getAvatarUrl().contains("20171115233745"));
+        // check two score
+        assertNotNull(scoreQualityService.getOne(new QueryWrapper<ScoreQuality>().eq(ScoreQuality.COL_CRAB_ID, actual.getId())));
+        assertNotNull(scoreTasteService.getOne(new QueryWrapper<ScoreTaste>().eq(ScoreTaste.COL_CRAB_ID, actual.getId())));
         // no file
         assertTrue(crabService.commitAndInsert(new Crab().setCompetitionId(99).setGroupId(99).setCrabLabel("NEW"), null));
+    }
+
+    @Transactional
+    @Test
+    void saveCrabAndScoreBatch() {
+        int repeat = 10;
+        final List<Crab> crabs = new ArrayList<>(repeat + 1);
+        final int groupId = 1000;
+        final Crab toInsert = new Crab().setGroupId(groupId).setCrabSex(SexEnum.MALE).setCompetitionId(groupId);
+        for (int i = 0; i < repeat; i++) {
+            crabs.add(toInsert);
+        }
+        assertTrue(crabService.saveCrabAndScoreBatch(crabs));
+        // check crab
+        assertEquals(repeat, crabService.list(
+                new QueryWrapper<Crab>().eq(Crab.COL_GROUP_ID, groupId).eq(Crab.COL_COMPETITION_ID, groupId)).size());
+        // check score
+        assertEquals(repeat, scoreQualityService.list(
+                new QueryWrapper<ScoreQuality>().eq(Crab.COL_GROUP_ID, groupId).eq(Crab.COL_COMPETITION_ID, groupId)).size());
+        assertEquals(repeat, scoreTasteService.list(
+                new QueryWrapper<ScoreTaste>().eq(Crab.COL_GROUP_ID, groupId).eq(Crab.COL_COMPETITION_ID, groupId)).size());
     }
 }

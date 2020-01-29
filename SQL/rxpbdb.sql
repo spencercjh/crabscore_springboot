@@ -125,7 +125,7 @@ create table rxpb_score_quality
     competition_id int(11) unsigned default 1                 not null comment '比赛ID',
     crab_id        int unsigned                               not null comment '对应的螃蟹id',
     group_id       int unsigned                               not null comment '螃蟹对应的小组id',
-    judges_id      int(11) unsigned                           not null comment '打分的评委id',
+    judges_id      int(11) unsigned default 0                 not null comment '打分的评委id',
     score_fin      decimal(19, 4)   default 0.0000            not null comment '最终给分',
     score_bts      decimal(19, 4)   default 0.0000            not null comment '体色(背)',
     score_fts      decimal(19, 4)   default 0.0000            not null comment '体色(腹)',
@@ -158,7 +158,7 @@ create table rxpb_score_taste
     competition_id int(11) unsigned default 1                 not null comment '比赛ID',
     crab_id        int unsigned                               not null comment '对应的螃蟹id',
     group_id       int unsigned                               not null comment '螃蟹对应的小组id',
-    judges_id      int(11) unsigned                           not null,
+    judges_id      int(11) unsigned default 0                 not null,
     score_fin      decimal(19, 4)   default 0.0000            not null comment '最终给分',
     score_ygys     decimal(19, 4)   default 0.0000            not null comment '蟹盖颜色',
     score_sys      decimal(19, 4)   default 0.0000            not null comment '鳃颜色',
@@ -214,4 +214,3 @@ create index rxpb_user_info_competition_id_index
 
 create index rxpb_user_info_display_name_index
     on rxpb_user (display_name);
-
