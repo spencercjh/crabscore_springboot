@@ -24,7 +24,7 @@ public class ScoreTaste {
     public static final String COL_ID = "id";
     public static final String COL_COMPETITION_ID = "competition_id";
     public static final String COL_GROUP_ID = "group_id";
-    public static final String COL_CRAB_SEX = "crab_sex";
+    public static final String COL_CRAB_ID = "crab_id";
     public static final String COL_JUDGES_ID = "judges_id";
     public static final String COL_SCORE_FIN = "score_fin";
     public static final String COL_SCORE_YGYS = "score_ygys";
@@ -51,12 +51,9 @@ public class ScoreTaste {
     @TableField(value = "group_id")
     @ApiModelProperty(value = "")
     private Integer groupId;
-    /**
-     * 0:雌 1：雄
-     */
-    @TableField(value = "crab_sex")
-    @ApiModelProperty(value = " 0:雌 1：雄")
-    private Byte crabSex;
+    @TableField(value = "crab_id")
+    @ApiModelProperty(value = "对应的螃蟹id")
+    private Integer crabId;
     @TableField(value = "judges_id")
     @ApiModelProperty(value = "")
     private Integer judgesId;

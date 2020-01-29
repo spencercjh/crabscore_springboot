@@ -123,9 +123,9 @@ create table rxpb_score_quality
     id             int(11) unsigned auto_increment
         primary key,
     competition_id int(11) unsigned default 1                 not null comment '比赛ID',
-    group_id       int unsigned                               not null,
-    crab_sex       tinyint          default -1                not null comment ' 0:雌 1：雄',
-    judges_id      int(11) unsigned                           not null,
+    crab_id        int unsigned                               not null comment '对应的螃蟹id',
+    group_id       int unsigned                               not null comment '螃蟹对应的小组id',
+    judges_id      int(11) unsigned                           not null comment '打分的评委id',
     score_fin      decimal(19, 4)   default 0.0000            not null comment '最终给分',
     score_bts      decimal(19, 4)   default 0.0000            not null comment '体色(背)',
     score_fts      decimal(19, 4)   default 0.0000            not null comment '体色(腹)',
@@ -142,8 +142,8 @@ create table rxpb_score_quality
 create index rxpb_score_quality_competition_id_index
     on rxpb_score_quality (competition_id);
 
-create index rxpb_score_quality_crab_sex_index
-    on rxpb_score_quality (crab_sex);
+create index rxpb_score_quality_crab_id_index
+    on rxpb_score_quality (crab_id);
 
 create index rxpb_score_quality_group_id_index
     on rxpb_score_quality (group_id);
@@ -156,8 +156,8 @@ create table rxpb_score_taste
     id             int(11) unsigned auto_increment
         primary key,
     competition_id int(11) unsigned default 1                 not null comment '比赛ID',
-    group_id       int unsigned                               not null,
-    crab_sex       tinyint          default -1                not null comment ' 0:雌 1：雄',
+    crab_id        int unsigned                               not null comment '对应的螃蟹id',
+    group_id       int unsigned                               not null comment '螃蟹对应的小组id',
     judges_id      int(11) unsigned                           not null,
     score_fin      decimal(19, 4)   default 0.0000            not null comment '最终给分',
     score_ygys     decimal(19, 4)   default 0.0000            not null comment '蟹盖颜色',
@@ -177,8 +177,8 @@ create table rxpb_score_taste
 create index rxpb_score_taste_competition_id_index
     on rxpb_score_taste (competition_id);
 
-create index rxpb_score_taste_crab_sex_index
-    on rxpb_score_taste (crab_sex);
+create index rxpb_score_taste_crab_id_index
+    on rxpb_score_taste (crab_id);
 
 create index rxpb_score_taste_group_id_index
     on rxpb_score_taste (group_id);
@@ -191,7 +191,7 @@ create table rxpb_user
     id             int(11) unsigned auto_increment
         primary key,
     competition_id int(11) unsigned default 1                                                   not null comment '比赛ID',
-    company_id     int(11) unsigned                                                             null comment '对应的参选单位',
+    company_id     int(11) unsigned default 0                                                   null comment '对应的参选单位',
     role_id        int(11) unsigned                                                             not null comment '角色ID',
     user_name      varchar(45)                                                                  not null comment '用户名,登录名',
     password       varchar(45)                                                                  not null comment '密码',

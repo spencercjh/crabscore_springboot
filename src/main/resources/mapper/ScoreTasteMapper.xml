@@ -7,7 +7,7 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="competition_id" jdbcType="INTEGER" property="competitionId"/>
         <result column="group_id" jdbcType="INTEGER" property="groupId"/>
-        <result column="crab_sex" jdbcType="TINYINT" property="crabSex"/>
+        <result column="crab_id" jdbcType="INTEGER" property="crabId"/>
         <result column="judges_id" jdbcType="INTEGER" property="judgesId"/>
         <result column="score_fin" jdbcType="DECIMAL" property="scoreFin"/>
         <result column="score_ygys" jdbcType="DECIMAL" property="scoreYgys"/>
@@ -24,7 +24,7 @@
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
-        id, competition_id, group_id, crab_sex, judges_id, score_fin, score_ygys, score_sys,
+        id, competition_id, group_id, crab_id, judges_id, score_fin, score_ygys, score_sys,
         score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user
     </sql>
 </mapper>

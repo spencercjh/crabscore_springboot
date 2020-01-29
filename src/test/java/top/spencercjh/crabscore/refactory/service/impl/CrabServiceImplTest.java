@@ -18,9 +18,6 @@ import top.spencercjh.crabscore.refactory.service.GroupService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -60,7 +57,7 @@ class CrabServiceImplTest {
     }
 
     @Test
-    void pageQuery() throws ParseException {
+    void pageQuery() {
         // page
         final long page = 2;
         final long size = 10;
@@ -102,37 +99,6 @@ class CrabServiceImplTest {
             log.debug(crab.toString());
             assertNotNull(crab.getCrabSex());
             assertEquals(sex, crab.getCrabSex());
-        });
-        // search time range
-        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        final Date beginTime = simpleDateFormat.parse("2020-01-01 00:00:00");
-        final Date endTime = simpleDateFormat.parse("2020-01-05 00:00:00");
-        searchResult = crabService.pageQuery(null, null, null,
-                beginTime, endTime, 1L, 100L);
-        searchResult.getRecords().forEach(crab -> {
-            assertNotNull(crab);
-            log.debug(crab.toString());
-            assertNotNull(crab.getCreateDate());
-            assertTrue(crab.getCreateDate().before(endTime));
-            assertTrue(crab.getCreateDate().after(beginTime));
-        });
-        // search time after
-        final Date futureTime = simpleDateFormat.parse("2021-01-01 00:00:00");
-        searchResult = crabService.pageQuery(null, null, null,
-                futureTime, null, 1L, 100L);
-        searchResult.getRecords().forEach(crab -> {
-            assertNotNull(crab);
-            log.debug(crab.toString());
-            assertNotNull(crab.getCreateDate());
-            assertTrue(crab.getCreateDate().after(futureTime));
-        });
-        searchResult = crabService.pageQuery(null, null, null,
-                null, futureTime, 1L, 100L);
-        searchResult.getRecords().forEach(crab -> {
-            assertNotNull(crab);
-            log.debug(crab.toString());
-            assertNotNull(crab.getCreateDate());
-            assertTrue(crab.getCreateDate().before(futureTime));
         });
     }
 
