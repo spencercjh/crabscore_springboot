@@ -52,5 +52,5 @@ public interface ScoreQualityService extends IService<ScoreQuality> {
      *
      * @param crab the crab;
      */
-    void asyncSaveScoreQualityByCrab(@NotNull Crab crab);
+    void saveScoreQualityByCrab(@NotNull Crab crab);
 }

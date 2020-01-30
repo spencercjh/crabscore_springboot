@@ -16,6 +16,7 @@ import top.spencercjh.crabscore.refactory.model.ScoreQuality;
 import top.spencercjh.crabscore.refactory.model.ScoreTaste;
 import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
 import top.spencercjh.crabscore.refactory.model.vo.CrabVo;
+import top.spencercjh.crabscore.refactory.service.AsyncScoreService;
 import top.spencercjh.crabscore.refactory.service.CrabService;
 import top.spencercjh.crabscore.refactory.service.ScoreQualityService;
 import top.spencercjh.crabscore.refactory.service.ScoreTasteService;
@@ -35,14 +36,16 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
 
     private final ScoreQualityService scoreQualityService;
     private final ScoreTasteService scoreTasteService;
+    private final AsyncScoreService asyncScoreService;
     @Value("${crabScore.root}")
     private String rootDirectory;
     @Value("${crabScore.crab}")
     private String crabDirectory;
 
-    public CrabServiceImpl(ScoreQualityService scoreQualityService, ScoreTasteService scoreTasteService) {
+    public CrabServiceImpl(ScoreQualityService scoreQualityService, ScoreTasteService scoreTasteService, AsyncScoreService asyncScoreService) {
         this.scoreQualityService = scoreQualityService;
         this.scoreTasteService = scoreTasteService;
+        this.asyncScoreService = asyncScoreService;
     }
 
     @NotNull
@@ -93,20 +96,15 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
     public boolean save(Crab entity) {
         // TODO create user
         final boolean saveResult = super.save(entity);
-        scoreQualityService.asyncSaveScoreQualityByCrab(entity);
-        scoreTasteService.asyncSaveScoreTasteByCrab(entity);
+        asyncScoreService.asyncSaveScoresByCrab(entity);
         return saveResult;
     }
 
     @Override
     public boolean saveCrabAndScoreBatch(List<Crab> toBatchInsert) {
-        try {
-            toBatchInsert.forEach(this::save);
-            return true;
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e.getCause());
-            return false;
-        }
+        final boolean saveCrabResult = super.saveBatch(toBatchInsert);
+        toBatchInsert.forEach(asyncScoreService::asyncSaveScoresByCrab);
+        return saveCrabResult;
     }
 
     private void commitImage(@NotNull Crab crab, @Nullable MultipartFile image) {
@@ -118,15 +116,18 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
 
     @Override
     public boolean removeById(Serializable id) {
-        scoreQualityService.deleteScoreQualityByCrabId(id);
-        scoreTasteService.deleteScoreTasteByCrabId(id);
+        asyncScoreService.asyncDeleteScoresByCrab(id);
         return super.removeById(id);
     }
 
     @Override
     public boolean removeByIds(Collection<? extends Serializable> idList) {
         try {
-            idList.forEach(this::removeById);
+            idList.forEach(id -> {
+                if (!removeById(id)) {
+                    throw new RuntimeException("删除Crab及其Scores失败,Id为" + id);
+                }
+            });
             return true;
         } catch (Exception e) {
             logger.error(e.getMessage(), e.getCause());

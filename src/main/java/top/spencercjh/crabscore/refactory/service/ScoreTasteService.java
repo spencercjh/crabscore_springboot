@@ -52,5 +52,5 @@ public interface ScoreTasteService extends IService<ScoreTaste> {
      *
      * @param crab the crab;
      */
-    void asyncSaveScoreTasteByCrab(@NotNull Crab crab);
+    void saveScoreTasteByCrab(@NotNull Crab crab);
 }
