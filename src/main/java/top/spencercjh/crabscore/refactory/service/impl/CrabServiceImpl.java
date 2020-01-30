@@ -11,16 +11,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import top.spencercjh.crabscore.refactory.mapper.CrabMapper;
-import top.spencercjh.crabscore.refactory.mapper.ScoreQualityMapper;
-import top.spencercjh.crabscore.refactory.mapper.ScoreTasteMapper;
 import top.spencercjh.crabscore.refactory.model.Crab;
 import top.spencercjh.crabscore.refactory.model.ScoreQuality;
 import top.spencercjh.crabscore.refactory.model.ScoreTaste;
 import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
 import top.spencercjh.crabscore.refactory.model.vo.CrabVo;
 import top.spencercjh.crabscore.refactory.service.CrabService;
+import top.spencercjh.crabscore.refactory.service.ScoreQualityService;
+import top.spencercjh.crabscore.refactory.service.ScoreTasteService;
 
-import javax.annotation.Resource;
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,14 +33,17 @@ import java.util.stream.Collectors;
 @Service
 public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements CrabService {
 
+    private final ScoreQualityService scoreQualityService;
+    private final ScoreTasteService scoreTasteService;
     @Value("${crabScore.root}")
     private String rootDirectory;
     @Value("${crabScore.crab}")
     private String crabDirectory;
-    @Resource
-    private ScoreQualityMapper scoreQualityMapper;
-    @Resource
-    private ScoreTasteMapper scoreTasteMapper;
+
+    public CrabServiceImpl(ScoreQualityService scoreQualityService, ScoreTasteService scoreTasteService) {
+        this.scoreQualityService = scoreQualityService;
+        this.scoreTasteService = scoreTasteService;
+    }
 
     @NotNull
     @Override
@@ -65,9 +69,9 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
         final Page<Crab> crabPage = getBaseMapper().selectPage(new Page<>(page, size), queryWrapper);
         return new Page<CrabVo>(crabPage.getCurrent(), crabPage.getSize(), crabPage.getTotal(), crabPage.isSearchCount())
                 .setRecords(crabPage.getRecords().stream().map((Crab crab) -> new CrabVo(crab,
-                        scoreTasteMapper.selectOne(new QueryWrapper<ScoreTaste>()
+                        scoreTasteService.getOne(new QueryWrapper<ScoreTaste>()
                                 .eq(ScoreTaste.COL_CRAB_ID, crab.getId())),
-                        scoreQualityMapper.selectOne(new QueryWrapper<ScoreQuality>()
+                        scoreQualityService.getOne(new QueryWrapper<ScoreQuality>()
                                 .eq(ScoreQuality.COL_CRAB_ID, crab.getId()))))
                         .collect(Collectors.toList()));
     }
@@ -82,13 +86,15 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
     @Override
     public boolean commitAndInsert(@NotNull Crab crab, @Nullable MultipartFile image) {
         commitImage(crab, image);
-        // TODO create user
         return save(crab);
     }
 
     @Override
     public boolean save(Crab entity) {
-        return super.save(entity) && saveScoreQuality(entity) && saveScoreTaste(entity);
+        // TODO create user
+        return super.save(entity) &&
+                scoreQualityService.saveScoreQualityByCrab(entity) &&
+                scoreTasteService.saveScoreTasteByCrab(entity);
     }
 
     @Override
@@ -102,24 +108,28 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
         }
     }
 
-    private boolean saveScoreTaste(@NotNull Crab crab) {
-        return scoreTasteMapper.insert(new ScoreTaste()
-                .setGroupId(crab.getGroupId())
-                .setCrabId(crab.getId())
-                .setCompetitionId(crab.getCompetitionId())) == 1;
-    }
-
-    private boolean saveScoreQuality(@NotNull Crab crab) {
-        return scoreQualityMapper.insert(new ScoreQuality()
-                .setGroupId(crab.getGroupId())
-                .setCrabId(crab.getId())
-                .setCompetitionId(crab.getCompetitionId())) == 1;
-    }
-
     private void commitImage(@NotNull Crab crab, @Nullable MultipartFile image) {
         if (image != null) {
             String url = parsePathToUrl(saveFile(image, crabDirectory), rootDirectory);
             crab.setAvatarUrl(url);
+        }
+    }
+
+    @Override
+    public boolean removeById(Serializable id) {
+        return super.removeById(id) &&
+                scoreQualityService.deleteScoreQualityByCrabId(id) &&
+                scoreTasteService.deleteScoreTasteByCrabId(id);
+    }
+
+    @Override
+    public boolean removeByIds(Collection<? extends Serializable> idList) {
+        try {
+            idList.forEach(this::removeById);
+            return true;
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e.getCause());
+            return false;
         }
     }
 }

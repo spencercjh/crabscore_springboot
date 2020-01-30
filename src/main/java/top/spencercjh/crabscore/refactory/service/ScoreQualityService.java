@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import top.spencercjh.crabscore.refactory.model.Crab;
 import top.spencercjh.crabscore.refactory.model.ScoreQuality;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -37,4 +39,20 @@ public interface ScoreQualityService extends IService<ScoreQuality> {
                                   @Nullable Date endTime,
                                   @NotNull Long page,
                                   @NotNull Long size);
+
+    /**
+     * Delete score quality by crab id.
+     *
+     * @param crabId the crab id;
+     * @return the boolean;
+     */
+    boolean deleteScoreQualityByCrabId(@NotNull Serializable crabId);
+
+    /**
+     * Save score quality by crab.
+     *
+     * @param crab the crab;
+     * @return the boolean;
+     */
+    boolean saveScoreQualityByCrab(@NotNull Crab crab);
 }

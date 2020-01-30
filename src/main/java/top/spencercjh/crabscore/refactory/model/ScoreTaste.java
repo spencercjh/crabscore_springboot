@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -45,15 +46,19 @@ public class ScoreTaste {
     /**
      * 比赛ID
      */
+    @NotNull
     @TableField(value = "competition_id")
     @ApiModelProperty(value = "比赛ID")
     private Integer competitionId;
+    @NotNull
     @TableField(value = "group_id")
     @ApiModelProperty(value = "")
     private Integer groupId;
+    @NotNull
     @TableField(value = "crab_id")
     @ApiModelProperty(value = "对应的螃蟹id")
     private Integer crabId;
+    @NotNull
     @TableField(value = "judges_id")
     @ApiModelProperty(value = "")
     private Integer judgesId;

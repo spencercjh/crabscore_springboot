@@ -13,6 +13,7 @@ import top.spencercjh.crabscore.refactory.model.Crab;
 import top.spencercjh.crabscore.refactory.model.ScoreQuality;
 import top.spencercjh.crabscore.refactory.service.ScoreQualityService;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -53,5 +54,18 @@ public class ScoreQualityServiceImpl extends ServiceImpl<ScoreQualityMapper, Sco
             queryWrapper.le(Crab.COL_CREATE_DATE, endTime);
         }
         return page(new Page<>(page, size), queryWrapper);
+    }
+
+    @Override
+    public boolean deleteScoreQualityByCrabId(@NotNull Serializable crabId) {
+        return remove(new QueryWrapper<ScoreQuality>().eq(ScoreQuality.COL_CRAB_ID, crabId));
+    }
+
+    @Override
+    public boolean saveScoreQualityByCrab(@NotNull Crab crab) {
+        return save(new ScoreQuality()
+                .setGroupId(crab.getGroupId())
+                .setCrabId(crab.getId())
+                .setCompetitionId(crab.getCompetitionId()));
     }
 }
