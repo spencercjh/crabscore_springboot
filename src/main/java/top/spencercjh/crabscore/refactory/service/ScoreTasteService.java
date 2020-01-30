@@ -44,15 +44,13 @@ public interface ScoreTasteService extends IService<ScoreTaste> {
      * Delete score taste by crab id.
      *
      * @param crabId the crab id;
-     * @return the boolean;
      */
-    boolean deleteScoreTasteByCrabId(@NotNull Serializable crabId);
+    void deleteScoreTasteByCrabId(@NotNull Serializable crabId);
 
     /**
      * Save score taste by crab.
      *
      * @param crab the crab;
-     * @return the boolean;
      */
-    boolean saveScoreTasteByCrab(@NotNull Crab crab);
+    void asyncSaveScoreTasteByCrab(@NotNull Crab crab);
 }

@@ -92,9 +92,10 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
     @Override
     public boolean save(Crab entity) {
         // TODO create user
-        return super.save(entity) &&
-                scoreQualityService.saveScoreQualityByCrab(entity) &&
-                scoreTasteService.saveScoreTasteByCrab(entity);
+        final boolean saveResult = super.save(entity);
+        scoreQualityService.asyncSaveScoreQualityByCrab(entity);
+        scoreTasteService.asyncSaveScoreTasteByCrab(entity);
+        return saveResult;
     }
 
     @Override
@@ -117,9 +118,9 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
 
     @Override
     public boolean removeById(Serializable id) {
-        return super.removeById(id) &&
-                scoreQualityService.deleteScoreQualityByCrabId(id) &&
-                scoreTasteService.deleteScoreTasteByCrabId(id);
+        scoreQualityService.deleteScoreQualityByCrabId(id);
+        scoreTasteService.deleteScoreTasteByCrabId(id);
+        return super.removeById(id);
     }
 
     @Override

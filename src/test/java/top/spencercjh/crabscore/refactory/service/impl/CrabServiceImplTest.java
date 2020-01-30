@@ -58,13 +58,20 @@ class CrabServiceImplTest {
         }
     }
 
+    /**
+     * The deletion of scores runs in multiple threads and don't be rolled back!
+     */
     @Transactional
     @Test
     void removeById() {
         final int toDelete = 210;
         assertTrue(crabService.removeById(toDelete));
+        // check two score
+        assertNull(scoreQualityService.getOne(new QueryWrapper<ScoreQuality>().eq(ScoreQuality.COL_CRAB_ID, toDelete)));
+        assertNull(scoreTasteService.getOne(new QueryWrapper<ScoreTaste>().eq(ScoreTaste.COL_CRAB_ID, toDelete)));
         assertFalse(crabService.removeById(toDelete));
     }
+
 
     @Test
     void pageQuery() {
@@ -150,6 +157,23 @@ class CrabServiceImplTest {
         assertTrue(crabService.commitAndUpdate(toUpdate, null));
     }
 
+    /**
+     * The insertion of scores runs in multiple threads and don't be rolled back!
+     */
+    @Transactional
+    @Test
+    void save() {
+        final Crab entity = new Crab()
+                .setCompetitionId(1000)
+                .setGroupId(1000)
+                .setCrabSex(SexEnum.MALE)
+                .setCrabLabel("异步测试");
+        assertTrue(crabService.save(entity));
+        // check two score
+        assertNotNull(scoreQualityService.getOne(new QueryWrapper<ScoreQuality>().eq(ScoreQuality.COL_CRAB_ID, entity.getId())));
+        assertNotNull(scoreTasteService.getOne(new QueryWrapper<ScoreTaste>().eq(ScoreTaste.COL_CRAB_ID, entity.getId())));
+    }
+
     @Transactional
     @Test
     void commitAndInsert() throws IOException {
@@ -170,6 +194,7 @@ class CrabServiceImplTest {
         // no file
         assertTrue(crabService.commitAndInsert(new Crab().setCompetitionId(99).setGroupId(99).setCrabLabel("NEW"), null));
     }
+
 
     @Transactional
     @Test

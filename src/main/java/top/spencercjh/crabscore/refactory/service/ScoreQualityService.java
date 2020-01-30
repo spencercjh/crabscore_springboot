@@ -44,15 +44,13 @@ public interface ScoreQualityService extends IService<ScoreQuality> {
      * Delete score quality by crab id.
      *
      * @param crabId the crab id;
-     * @return the boolean;
      */
-    boolean deleteScoreQualityByCrabId(@NotNull Serializable crabId);
+    void deleteScoreQualityByCrabId(@NotNull Serializable crabId);
 
     /**
      * Save score quality by crab.
      *
      * @param crab the crab;
-     * @return the boolean;
      */
-    boolean saveScoreQualityByCrab(@NotNull Crab crab);
+    void asyncSaveScoreQualityByCrab(@NotNull Crab crab);
 }

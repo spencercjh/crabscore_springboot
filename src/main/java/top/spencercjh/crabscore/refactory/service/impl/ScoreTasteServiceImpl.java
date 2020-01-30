@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.spencercjh.crabscore.refactory.mapper.ScoreTasteMapper;
@@ -50,14 +51,16 @@ public class ScoreTasteServiceImpl extends ServiceImpl<ScoreTasteMapper, ScoreTa
         return page(new Page<>(page, size), queryWrapper);
     }
 
+    @Async("asyncThreadPool")
     @Override
-    public boolean deleteScoreTasteByCrabId(@NotNull Serializable crabId) {
-        return remove(new QueryWrapper<ScoreTaste>().eq(ScoreTaste.COL_CRAB_ID, crabId));
+    public void deleteScoreTasteByCrabId(@NotNull Serializable crabId) {
+        remove(new QueryWrapper<ScoreTaste>().eq(ScoreTaste.COL_CRAB_ID, crabId));
     }
 
+    @Async("asyncThreadPool")
     @Override
-    public boolean saveScoreTasteByCrab(@NotNull Crab crab) {
-        return save(new ScoreTaste()
+    public void asyncSaveScoreTasteByCrab(@NotNull Crab crab) {
+        save(new ScoreTaste()
                 .setGroupId(crab.getGroupId())
                 .setCrabId(crab.getId())
                 .setCompetitionId(crab.getCompetitionId()));
