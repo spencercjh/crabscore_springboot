@@ -190,7 +190,7 @@ public class CrabController {
         if (repeat != null) {
             List<Crab> toBatchInsert = new ArrayList<>(repeat + 1);
             for (int i = 0; i < repeat; i++) {
-                toBatchInsert.add(toInsert);
+                toBatchInsert.add(toInsert.clone());
             }
             return crabService.saveCrabAndScoreBatch(toBatchInsert) ?
                     ResponseEntityUtil.success(toBatchInsert, HttpStatus.CREATED) :

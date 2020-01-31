@@ -152,7 +152,6 @@ class CrabServiceImplTest {
             assertEquals(crabVo.getId(), crabVo.getScoreTaste().getCrabId());
             assertEquals(crabVo.getId(), crabVo.getScoreQuality().getCrabId());
         });
-
     }
 
     @Transactional
@@ -177,23 +176,29 @@ class CrabServiceImplTest {
      */
     @Transactional
     @Test
-    void save() {
+    void save() throws InterruptedException {
+        final int competitionId = 90010;
         final Crab entity = new Crab()
-                .setCompetitionId(1000)
-                .setGroupId(1000)
+                .setCompetitionId(competitionId)
+                .setGroupId(competitionId)
                 .setCrabSex(SexEnum.MALE)
                 .setCrabLabel("异步测试");
         assertTrue(crabService.save(entity));
+        Thread.sleep(5000);
         // check two score
         assertNotNull(scoreQualityService.getOne(new QueryWrapper<ScoreQuality>().eq(ScoreQuality.COL_CRAB_ID, entity.getId())));
         assertNotNull(scoreTasteService.getOne(new QueryWrapper<ScoreTaste>().eq(ScoreTaste.COL_CRAB_ID, entity.getId())));
+        // rollback manually
+        asyncScoreService.asyncDeleteScoresByCrab(entity.getId());
+        Thread.sleep(5000);
     }
 
     @Transactional
     @Test
-    void commitAndInsert() throws IOException {
-        final String insertLabel = "Insert Test";
-        final Crab toInsert = new Crab().setGroupId(99).setCompetitionId(99).setCrabLabel(insertLabel);
+    void commitAndInsert() throws IOException, InterruptedException {
+        final String insertLabel = "commitAndInsert";
+        final int groupId = 90020;
+        final Crab toInsert = new Crab().setGroupId(groupId).setCompetitionId(groupId).setCrabLabel(insertLabel);
         assertTrue(crabService.commitAndInsert(toInsert,
                 new MockMultipartFile("image", "QQ图片20171115233745.jpg", null,
                         Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg")))));
@@ -203,11 +208,17 @@ class CrabServiceImplTest {
         assertEquals(insertLabel, toInsert.getCrabLabel());
         assertEquals(insertLabel, actual.getCrabLabel());
         assertTrue(actual.getAvatarUrl().contains("20171115233745"));
-        // check two score
-        assertNotNull(scoreQualityService.getOne(new QueryWrapper<ScoreQuality>().eq(ScoreQuality.COL_CRAB_ID, actual.getId())));
-        assertNotNull(scoreTasteService.getOne(new QueryWrapper<ScoreTaste>().eq(ScoreTaste.COL_CRAB_ID, actual.getId())));
+        // rollback manually
+        Thread.sleep(5000);
+        asyncScoreService.asyncDeleteScoresByCrab(actual.getId());
+        Thread.sleep(5000);
         // no file
-        assertTrue(crabService.commitAndInsert(new Crab().setCompetitionId(99).setGroupId(99).setCrabLabel("NEW"), null));
+        final Crab newCrab = new Crab().setCompetitionId(99).setGroupId(99).setCrabLabel("NEW");
+        assertTrue(crabService.commitAndInsert(newCrab, null));
+        // rollback manually
+        Thread.sleep(5000);
+        asyncScoreService.asyncDeleteScoresByCrab(newCrab.getId());
+        Thread.sleep(5000);
     }
 
     @NotNull

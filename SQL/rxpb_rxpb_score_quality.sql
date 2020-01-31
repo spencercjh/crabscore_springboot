@@ -1,36 +1,135 @@
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (1, 99, 209, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (2, 99, 210, 100, 100, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (3, 99, 211, 100, 100, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (4, 1, 348, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (5, 1, 349, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (6, 1, 350, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (7, 1, 351, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (8, 1, 352, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (9, 1, 353, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (10, 1, 354, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (11, 1, 355, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (12, 1, 356, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (13, 1, 357, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (14, 1, 358, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (15, 1, 359, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (16, 1, 360, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (17, 1, 361, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (18, 1, 362, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (19, 1, 363, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (20, 1, 364, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (21, 1, 365, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (22, 1, 366, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (23, 1, 367, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (24, 1, 368, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (25, 1, 369, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (26, 1, 370, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (27, 1, 371, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (28, 1, 372, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (29, 1, 373, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (30, 1, 374, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (31, 1, 375, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (32, 1, 376, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (33, 1, 377, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (1, 0, 0, 0, 0, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-31 08:27:21', '2020-01-31 08:27:21', 0,
+        0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (2, 0, 0, 0, 0, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-31 08:27:21', '2020-01-31 08:27:21', 0,
+        0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (3, 0, 0, 0, 0, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-31 08:27:21', '2020-01-31 08:27:21', 0,
+        0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (4, 1, 348, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (5, 1, 349, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (6, 1, 350, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (7, 1, 351, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (8, 1, 352, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (9, 1, 353, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (10, 1, 354, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (11, 1, 355, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (12, 1, 356, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:35', '2020-01-30 02:18:35',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (13, 1, 357, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (14, 1, 358, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (15, 1, 359, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (16, 1, 360, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (17, 1, 361, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (18, 1, 362, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (19, 1, 363, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (20, 1, 364, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (21, 1, 365, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (22, 1, 366, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (23, 1, 367, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (24, 1, 368, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (25, 1, 369, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (26, 1, 370, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (27, 1, 371, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (28, 1, 372, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (29, 1, 373, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (30, 1, 374, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (31, 1, 375, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (32, 1, 376, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
+INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts,
+                                     score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user)
+VALUES (33, 1, 377, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36',
+        0, 0);
 INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (34, 1, 378, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
 INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (35, 1, 379, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
 INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (36, 1, 380, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:36', '2020-01-30 02:18:36', 0, 0);
@@ -541,23 +640,3 @@ INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judg
 INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (541, 1, 885, 54, 54, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:40', '2020-01-30 02:18:40', 0, 0);
 INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (542, 1, 886, 54, 54, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:40', '2020-01-30 02:18:40', 0, 0);
 INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (543, 1, 887, 54, 54, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:40', '2020-01-30 02:18:40', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (544, 99, 891, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:40', '2020-01-30 02:18:40', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (545, 99, 892, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:40', '2020-01-30 02:18:40', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (546, 99, 893, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:40', '2020-01-30 02:18:40', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (547, 99, 894, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:40', '2020-01-30 02:18:40', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (548, 99, 895, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:40', '2020-01-30 02:18:40', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (549, 99, 896, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:40', '2020-01-30 02:18:40', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (550, 99, 897, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:40', '2020-01-30 02:18:40', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (551, 99, 898, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:40', '2020-01-30 02:18:40', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (552, 99, 899, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:40', '2020-01-30 02:18:40', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (553, 99, 900, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:40', '2020-01-30 02:18:40', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (554, 99, 904, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:41', '2020-01-30 02:18:41', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (555, 99, 905, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:41', '2020-01-30 02:18:41', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (556, 99, 906, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:41', '2020-01-30 02:18:41', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (557, 99, 907, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:41', '2020-01-30 02:18:41', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (558, 99, 908, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:41', '2020-01-30 02:18:41', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (559, 99, 909, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:41', '2020-01-30 02:18:41', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (560, 99, 910, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:41', '2020-01-30 02:18:41', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (561, 99, 911, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:41', '2020-01-30 02:18:41', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (562, 99, 912, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:41', '2020-01-30 02:18:41', 0, 0);
-INSERT INTO rxpb.rxpb_score_quality (id, competition_id, crab_id, group_id, judges_id, score_fin, score_bts, score_fts, score_ec, score_dscc, score_bbyzt, version, create_date, create_user, update_user) VALUES (563, 99, 913, 99, 99, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 02:18:41', '2020-01-30 02:18:41', 0, 0);

@@ -1,5 +1,7 @@
 package top.spencercjh.crabscore.refactory.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -12,7 +14,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import top.spencercjh.crabscore.refactory.model.Crab;
+import top.spencercjh.crabscore.refactory.model.ScoreQuality;
+import top.spencercjh.crabscore.refactory.model.ScoreTaste;
 import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
+import top.spencercjh.crabscore.refactory.service.CrabService;
+import top.spencercjh.crabscore.refactory.service.ScoreQualityService;
+import top.spencercjh.crabscore.refactory.service.ScoreTasteService;
 import top.spencercjh.crabscore.refactory.util.JacksonUtil;
 
 import java.nio.file.Files;
@@ -31,8 +38,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class CrabControllerTest {
     public static final String URL_TEMPLATE = "/crabs";
+    public static final int GROUP_ID = 90000;
     @Autowired
     private MockMvc mockMvc;
+    @Autowired
+    private CrabService crabService;
+    @Autowired
+    private ScoreQualityService scoreQualityService;
+    @Autowired
+    private ScoreTasteService scoreTasteService;
+
+    @AfterEach
+    void rollback() {
+        // Rollback manually
+        scoreQualityService.remove(new QueryWrapper<ScoreQuality>().eq(ScoreQuality.COL_GROUP_ID, GROUP_ID));
+        scoreTasteService.remove(new QueryWrapper<ScoreTaste>().eq(ScoreTaste.COL_GROUP_ID, GROUP_ID));
+        crabService.remove(new QueryWrapper<Crab>().eq(Crab.COL_GROUP_ID, GROUP_ID));
+    }
 
     @Transactional
     @Test
@@ -40,9 +62,9 @@ class CrabControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.multipart(URL_TEMPLATE)
                 .param("repeat", "10")
                 .param("crab", JacksonUtil.serialize(new Crab()
-                        .setCrabLabel("BATCH INSERT TEST")
-                        .setGroupId(99)
-                        .setCompetitionId(99)
+                        .setCrabLabel("successBatchInsert")
+                        .setGroupId(GROUP_ID)
+                        .setCompetitionId(GROUP_ID)
                         .setCrabSex(SexEnum.MALE))))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.data").isArray())
@@ -56,13 +78,14 @@ class CrabControllerTest {
                 .file(new MockMultipartFile("image", "QQ图片20171115233745.jpg", null,
                         Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg"))))
                 .param("crab", JacksonUtil.serialize(new Crab()
-                        .setCrabLabel("BATCH INSERT TEST")
-                        .setGroupId(99)
-                        .setCompetitionId(99)
+                        .setCrabLabel("successSingleInsert")
+                        .setGroupId(GROUP_ID)
+                        .setCompetitionId(GROUP_ID)
                         .setCrabSex(SexEnum.MALE))))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.data").isMap())
-                .andDo(print());
+                .andDo(print())
+                .andReturn();
     }
 
     @Transactional
@@ -102,11 +125,11 @@ class CrabControllerTest {
     @Test
     void successDeleteByGroupId() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE)
-                .param("groupId", "100"))
+                .param("groupId", "0"))
                 .andExpect(status().isOk())
                 .andDo(print());
         mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE)
-                .param("groupId", "100"))
+                .param("groupId", "0"))
                 .andExpect(status().isInternalServerError())
                 .andDo(print());
     }
@@ -115,12 +138,12 @@ class CrabControllerTest {
     @Test
     void successDeleteByGroupIdAndSex() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE)
-                .param("groupId", "100")
+                .param("groupId", "0")
                 .param("sex", SexEnum.MALE.getDescription()))
                 .andExpect(status().isOk())
                 .andDo(print());
         mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE)
-                .param("groupId", "100")
+                .param("groupId", "0")
                 .param("sex", SexEnum.MALE.getDescription()))
                 .andExpect(status().isInternalServerError())
                 .andDo(print());

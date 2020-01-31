@@ -21,7 +21,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "rxpb.rxpb_crab")
-public class Crab {
+public class Crab implements Cloneable {
     public static final String COL_ID = "id";
     public static final String COL_COMPETITION_ID = "competition_id";
     public static final String COL_GROUP_ID = "group_id";
@@ -106,4 +106,14 @@ public class Crab {
     @TableField(value = "update_user")
     @ApiModelProperty(value = "数据更新用户")
     private Integer updateUser;
+
+    @Override
+    public Crab clone() {
+        try {
+            return (Crab) super.clone();
+        } catch (CloneNotSupportedException ignore) {
+            ignore.printStackTrace();
+            return this;
+        }
+    }
 }

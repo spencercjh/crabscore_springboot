@@ -76,6 +76,7 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
                                 .eq(ScoreTaste.COL_CRAB_ID, crab.getId())),
                         scoreQualityService.getOne(new QueryWrapper<ScoreQuality>()
                                 .eq(ScoreQuality.COL_CRAB_ID, crab.getId()))))
+                        .filter(crabVo -> crabVo.getScoreQuality() != null && crabVo.getScoreTaste() != null)
                         .collect(Collectors.toList()));
     }
 
