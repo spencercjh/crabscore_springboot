@@ -52,7 +52,7 @@ class CompanyServiceImplTest {
         // competitionId search
         final int competitionId = 99;
         final IPage<Company> searchResult = companyService.pageQuery(null, competitionId, 1L, 100L);
-        assertEquals(1, searchResult.getRecords().size());
+        assertEquals(2, searchResult.getRecords().size());
         assertEquals(competitionId, searchResult.getRecords().get(0).getCompetitionId());
     }
 
