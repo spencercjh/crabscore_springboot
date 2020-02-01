@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 /**
+ * The type Jackson util.
+ *
  * @author Spencer
  */
 public class JacksonUtil {
@@ -21,10 +23,10 @@ public class JacksonUtil {
     /**
      * https://stackoverflow.com/questions/42947213/how-to-completely-deserialize-json-into-a-generic-list
      *
-     * @param body
-     * @param typeRef
-     * @param <T>
-     * @return
+     * @param <T>     the type parameter
+     * @param body    the body
+     * @param typeRef the type ref
+     * @return t
      */
     @Nullable
     public static <T> T deserialize(String body, TypeReference<T> typeRef) {
@@ -37,6 +39,13 @@ public class JacksonUtil {
         return null;
     }
 
+    /**
+     * Serialize string.
+     *
+     * @param <T>      the type parameter
+     * @param instance the instance
+     * @return the string
+     */
     @Nullable
     public static <T> String serialize(T instance) {
         ObjectMapper objectMapper = new ObjectMapper();
