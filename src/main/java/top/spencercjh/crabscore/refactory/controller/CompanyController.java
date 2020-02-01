@@ -86,7 +86,7 @@ public class CompanyController {
         });
         if (toUpdate == null || toUpdate.getId() == null) {
             return ResponseEntityUtil.fail(ResponseEntityUtil.ILLEGAL_ARGUMENTS_FAIL_CODE,
-                    "invalid companyInfo",
+                    "invalid company",
                     HttpStatus.BAD_REQUEST);
         }
         return companyService.commitAndUpdate(toUpdate, image) ?

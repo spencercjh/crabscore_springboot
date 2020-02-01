@@ -100,10 +100,9 @@ public class CrabController {
             @RequestParam(name = "crab") @NotEmpty String crabJson) {
         final Crab toUpdate = JacksonUtil.deserialize(crabJson, new TypeReference<>() {
         });
-        if (toUpdate == null || toUpdate.getId() == null || toUpdate.getCompetitionId() == null ||
-                toUpdate.getGroupId() == null) {
+        if (toUpdate == null || toUpdate.getId() == null) {
             return ResponseEntityUtil.fail(ResponseEntityUtil.ILLEGAL_ARGUMENTS_FAIL_CODE,
-                    "invalid competition",
+                    "invalid crab",
                     HttpStatus.BAD_REQUEST);
         }
         return crabService.commitAndUpdate(toUpdate, image) ?

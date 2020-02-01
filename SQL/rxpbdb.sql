@@ -214,3 +214,9 @@ create index rxpb_user_info_competition_id_index
 
 create index rxpb_user_info_display_name_index
     on rxpb_user (display_name);
+
+create index rxpb_user_role_id_index
+    on rxpb_user (role_id);
+
+create index rxpb_user_user_name_index
+    on rxpb_user (user_name);

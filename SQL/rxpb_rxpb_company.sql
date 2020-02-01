@@ -41,14 +41,47 @@ INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, ver
 INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user, update_user) VALUES (41, '江苏水仙实业有限公司 ', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29', '2020-01-25 13:32:40', 0, 0);
 INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user, update_user) VALUES (42, '上海市瑞华实业公司', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29', '2020-01-25 13:32:40', 0, 0);
 INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user, update_user) VALUES (43, '重庆渔乐园水产养殖有限公司', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29', '2020-01-25 13:32:40', 0, 0);
-INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user, update_user) VALUES (44, '安徽省宣城市金水源农业综合开发有限公司', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29', '2020-01-25 13:32:40', 0, 0);
-INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user, update_user) VALUES (45, '湖北汉川天歌螃蟹养殖专业合作社', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29', '2020-01-25 13:32:40', 0, 0);
-INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user, update_user) VALUES (46, '昆山市锦溪镇新东方水产养殖农民专业合作社', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29', '2020-01-25 13:32:40', 0, 0);
-INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user, update_user) VALUES (47, '安徽省蒙城县远大河蟹养殖合作社', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29', '2020-01-25 13:32:40', 0, 0);
-INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user, update_user) VALUES (48, '江苏省太仓市十八湾生态水产养殖专业合作社', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29', '2020-01-25 13:32:40', 0, 0);
-INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user, update_user) VALUES (49, '江西省进贤县陶氏生态水产有限公司', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29', '2020-01-25 13:32:40', 0, 0);
-INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user, update_user) VALUES (50, '上海沪宝水产养殖专业合作社', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29', '2020-01-25 13:32:40', 0, 0);
-INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user, update_user) VALUES (51, '台湾苗栗县政府', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29', '2020-01-25 13:32:40', 0, 0);
-INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user, update_user) VALUES (52, '台湾苗栗大闸蟹养殖协会', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29', '2020-01-25 13:32:40', 0, 0);
-INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user, update_user) VALUES (53, '删除测试', 99, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-27 02:05:35', '2020-01-27 02:05:35', 0, 0);
-INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user, update_user) VALUES (54, '更新测试', 1, 'http://localhost:8080/companyInfo/%7D%29VH9%7DCY7K1M%7D9%60I2IBS%25GA.png', '2020-01-27 02:09:16', '2020-01-27 02:09:16', 0, 0);
+INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user,
+                               update_user)
+VALUES (44, '安徽省宣城市金水源农业综合开发有限公司', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29',
+        '2020-01-25 13:32:40', 0, 0);
+INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user,
+                               update_user)
+VALUES (45, '湖北汉川天歌螃蟹养殖专业合作社', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29',
+        '2020-01-25 13:32:40', 0, 0);
+INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user,
+                               update_user)
+VALUES (46, '昆山市锦溪镇新东方水产养殖农民专业合作社', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29',
+        '2020-01-25 13:32:40', 0, 0);
+INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user,
+                               update_user)
+VALUES (47, '安徽省蒙城县远大河蟹养殖合作社', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29',
+        '2020-01-25 13:32:40', 0, 0);
+INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user,
+                               update_user)
+VALUES (48, '江苏省太仓市十八湾生态水产养殖专业合作社', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29',
+        '2020-01-25 13:32:40', 0, 0);
+INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user,
+                               update_user)
+VALUES (49, '江西省进贤县陶氏生态水产有限公司', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29',
+        '2020-01-25 13:32:40', 0, 0);
+INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user,
+                               update_user)
+VALUES (50, '上海沪宝水产养殖专业合作社', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29',
+        '2020-01-25 13:32:40', 0, 0);
+INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user,
+                               update_user)
+VALUES (51, '台湾苗栗县政府', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29',
+        '2020-01-25 13:32:40', 0, 0);
+INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user,
+                               update_user)
+VALUES (52, '台湾苗栗大闸蟹养殖协会', 1, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-25 18:46:29',
+        '2020-01-25 13:32:40', 0, 0);
+INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user,
+                               update_user)
+VALUES (53, '删除测试', 99, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-27 02:05:35',
+        '2020-01-27 02:05:35', 0, 0);
+INSERT INTO rxpb.rxpb_company (id, company_name, competition_id, avatar_url, version, create_date, create_user,
+                               update_user)
+VALUES (54, '更新测试', 99, 'http://localhost:8080/companyInfo/%7D%29VH9%7DCY7K1M%7D9%60I2IBS%25GA.png',
+        '2020-01-27 02:09:16', '2020-01-27 02:09:16', 0, 0);

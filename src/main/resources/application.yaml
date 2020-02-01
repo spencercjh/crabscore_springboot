@@ -35,3 +35,4 @@ async:
   corePoolSize:
   maxPoolSize:
   queueCapacity:
+  user:

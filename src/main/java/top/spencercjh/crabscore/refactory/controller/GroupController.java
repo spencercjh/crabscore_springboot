@@ -88,10 +88,9 @@ public class GroupController {
             @RequestParam(name = "group") @NotEmpty String groupJson) {
         final Group toUpdate = JacksonUtil.deserialize(groupJson, new TypeReference<>() {
         });
-        if (toUpdate == null || toUpdate.getId() == null || toUpdate.getCompanyId() == null ||
-                toUpdate.getCompetitionId() == null) {
+        if (toUpdate == null || toUpdate.getId() == null) {
             return ResponseEntityUtil.fail(ResponseEntityUtil.ILLEGAL_ARGUMENTS_FAIL_CODE,
-                    "invalid competition",
+                    "invalid group",
                     HttpStatus.BAD_REQUEST);
         }
         return groupService.commitAndUpdate(toUpdate, image) ?
