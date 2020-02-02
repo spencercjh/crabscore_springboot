@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,9 +21,11 @@ import javax.validation.constraints.Positive;
 
 /**
  * The type Competition controller.
+ *
+ * @author Spencer
  */
 @RestController
-@RequestMapping("/competitions")
+@RequestMapping("/api/competitions")
 @Validated
 @Slf4j
 public class CompetitionController {
@@ -43,6 +46,7 @@ public class CompetitionController {
      * @param id the id;
      * @return the detail;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping("/{id}")
     public ResponseEntity<Result<Competition>> getDetail(@PathVariable @Positive Integer id) {
         final Competition competition = competitionService.getById(id);
@@ -60,6 +64,7 @@ public class CompetitionController {
      * @param size   the size;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping
     public ResponseEntity<Result<IPage<Competition>>> listSearch(
             @RequestParam(required = false) String year,
@@ -79,6 +84,7 @@ public class CompetitionController {
      * @param competitionJson the competition json;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @PutMapping
     public ResponseEntity<Result<Competition>> updateCompetition(
             @RequestParam(required = false) MultipartFile image,
@@ -102,6 +108,7 @@ public class CompetitionController {
      * @param id the id;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Result<Object>> deleteCompetition(@PathVariable @Positive Integer id) {
         return competitionService.removeById(id) ?
@@ -116,6 +123,7 @@ public class CompetitionController {
      * @param competitionJson the competition json;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @PostMapping
     public ResponseEntity<Result<Competition>> insertCompetition(@RequestParam(required = false) MultipartFile image,
                                                                  @RequestParam(name = "competition") @NotEmpty String competitionJson) {

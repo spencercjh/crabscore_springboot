@@ -1,175 +1,46 @@
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (209, 0, 0, -1, '更新测试', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-27 21:52:53', '2020-01-27 21:52:53', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (210, 0, 0, 1, '删除测试', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-27 21:52:53', '2020-01-27 21:52:53', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (211, 0, 0, 0, '删除测试', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 00:08:22', '2020-01-28 00:08:22', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (348, 1, 1, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (349, 1, 1, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (350, 1, 1, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (351, 1, 1, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (352, 1, 1, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (353, 1, 1, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (354, 1, 1, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (355, 1, 1, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (356, 1, 1, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (357, 1, 1, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (358, 1, 2, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (359, 1, 2, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (360, 1, 2, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (361, 1, 2, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (362, 1, 2, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (363, 1, 2, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (364, 1, 2, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (365, 1, 2, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (366, 1, 2, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (367, 1, 2, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (368, 1, 3, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (369, 1, 3, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (370, 1, 3, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (371, 1, 3, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (372, 1, 3, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (373, 1, 3, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (374, 1, 3, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (375, 1, 3, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (376, 1, 3, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (377, 1, 3, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (378, 1, 4, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (379, 1, 4, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (380, 1, 4, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (381, 1, 4, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (382, 1, 4, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (383, 1, 4, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (384, 1, 4, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (385, 1, 4, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (386, 1, 4, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
-INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness,
-                            avatar_url, version, create_date, create_user, update_user)
-VALUES (387, 1, 4, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
-        '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (209, 0, 0, -1, '更新测试', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-27 21:52:53', '2020-01-27 21:52:53', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (210, 0, 0, 1, '删除测试', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-27 21:52:53', '2020-01-27 21:52:53', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (211, 0, 0, 0, '删除测试', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 00:08:22', '2020-01-28 00:08:22', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (348, 1, 1, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (349, 1, 1, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (350, 1, 1, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (351, 1, 1, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (352, 1, 1, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (353, 1, 1, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (354, 1, 1, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (355, 1, 1, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (356, 1, 1, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (357, 1, 1, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (358, 1, 2, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (359, 1, 2, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (360, 1, 2, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (361, 1, 2, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (362, 1, 2, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (363, 1, 2, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (364, 1, 2, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (365, 1, 2, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (366, 1, 2, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (367, 1, 2, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (368, 1, 3, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (369, 1, 3, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (370, 1, 3, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (371, 1, 3, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (372, 1, 3, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (373, 1, 3, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (374, 1, 3, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (375, 1, 3, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (376, 1, 3, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (377, 1, 3, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (378, 1, 4, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (379, 1, 4, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (380, 1, 4, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (381, 1, 4, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (382, 1, 4, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (383, 1, 4, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (384, 1, 4, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (385, 1, 4, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (386, 1, 4, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
+INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (387, 1, 4, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
 INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (388, 1, 5, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
 INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (389, 1, 5, 1, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);
 INSERT INTO rxpb.rxpb_crab (id, competition_id, group_id, crab_sex, crab_label, crab_weight, crab_length, crab_fatness, avatar_url, version, create_date, create_user, update_user) VALUES (390, 1, 5, 0, 'Mock Data', 0.0000, 0.0000, 0.0000, 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-01-28 23:16:54', '2020-01-28 23:16:54', 0, 0);

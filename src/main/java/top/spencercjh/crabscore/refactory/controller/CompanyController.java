@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,9 +21,11 @@ import javax.validation.constraints.Positive;
 
 /**
  * The type Company controller.
+ *
+ * @author Spencer
  */
 @RestController
-@RequestMapping("/companies")
+@RequestMapping("/api/companies")
 @Validated
 @Slf4j
 public class CompanyController {
@@ -43,6 +46,7 @@ public class CompanyController {
      * @param id the id;
      * @return the detail;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping("/{id}")
     public ResponseEntity<Result<Company>> getDetail(@PathVariable @Positive Integer id) {
         final Company detail = companyService.getById(id);
@@ -60,6 +64,7 @@ public class CompanyController {
      * @param competitionId the competition id;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping
     public ResponseEntity<Result<IPage<Company>>> listSearch(
             @RequestParam(required = false, defaultValue = "15") @Positive Long size,
@@ -79,6 +84,7 @@ public class CompanyController {
      * @param companyJson the company json;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @PutMapping
     public ResponseEntity<Result<Company>> updateCompanyInfo(@RequestParam(required = false) MultipartFile image,
                                                              @RequestParam(name = "company") @NotEmpty String companyJson) {
@@ -101,6 +107,7 @@ public class CompanyController {
      * @param id the id;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Result<Object>> deleteCompanyInfo(@PathVariable @Positive Integer id) {
         return companyService.removeById(id) ?
@@ -115,6 +122,7 @@ public class CompanyController {
      * @param companyJson the company json;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @PostMapping
     public ResponseEntity<Result<Company>> insertCompanyInfo(@RequestParam(required = false) MultipartFile image,
                                                              @RequestParam(name = "company") @NotEmpty String companyJson) {

@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,7 +32,7 @@ import java.util.List;
  * @date 2020 /1/27
  */
 @RestController
-@RequestMapping("/crabs")
+@RequestMapping("/api/crabs")
 @Validated
 @Slf4j
 public class CrabController {
@@ -52,6 +53,7 @@ public class CrabController {
      * @param id the id;
      * @return the detail;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping("/{id}")
     public ResponseEntity<Result<Crab>> getDetail(@PathVariable @Positive Integer id) {
         final Crab crab = crabService.getById(id);
@@ -72,6 +74,7 @@ public class CrabController {
      * @param size          the size;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('staff','admin')")
     @GetMapping
     public ResponseEntity<Result<IPage<CrabVo>>> listSearch(
             @RequestParam(required = false) @Positive Integer competitionId,
@@ -94,6 +97,7 @@ public class CrabController {
      * @param crabJson the crab json;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @PutMapping
     public ResponseEntity<Result<Crab>> commitAndUpdate(
             @RequestParam(required = false) MultipartFile image,
@@ -118,6 +122,7 @@ public class CrabController {
      * @param id the id;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Result<Object>> deleteCrab(@PathVariable @Positive Integer id) {
         return crabService.removeById(id) ?
@@ -135,6 +140,7 @@ public class CrabController {
      * @param sex     the sex;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @DeleteMapping
     public ResponseEntity<Result<Object>> deleteCrabs(@RequestParam(required = false) List<Integer> ids,
                                                       @RequestParam(required = false) Integer groupId,
@@ -173,6 +179,7 @@ public class CrabController {
      * @param repeat   the repeat;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @PostMapping
     public ResponseEntity<Result<Object>> insertCrab(
             @RequestParam(required = false) MultipartFile image,

@@ -15,13 +15,6 @@ import java.util.concurrent.Executor;
 @EnableAsync
 @Component
 public class AsyncConfig {
-    /*@Value("#{new Integer('${async.corePoolSize}')}")
-    private Integer corePoolSize;
-    @Value("#{new Integer('${async.maxPoolSize')}")
-    private Integer maxPoolSize;
-    @Value("#{new Integer('${async.queueCapacity')}")
-    private Integer queueCapacity;*/
-
     @Value("${async.corePoolSize}")
     private Integer corePoolSize;
     @Value("${async.maxPoolSize}")

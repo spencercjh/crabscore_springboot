@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +25,7 @@ import javax.validation.constraints.Positive;
  * @date 2020/2/1
  */
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 @Validated
 @Slf4j
 public class UserController {
@@ -34,6 +35,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping("/{id}")
     public ResponseEntity<Result<User>> getDetail(@PathVariable @Positive Integer id) {
         final User user = userService.getById(id);
@@ -42,6 +44,7 @@ public class UserController {
                 ResponseEntityUtil.success(user);
     }
 
+    @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping
     public ResponseEntity<Result<IPage<UserVo>>> listSearch(
             @RequestParam(required = false) @Positive Integer companyId,
@@ -58,6 +61,7 @@ public class UserController {
                 ResponseEntityUtil.success(pageQuery);
     }
 
+    @PreAuthorize("hasAnyAuthority('admin')")
     @PutMapping
     public ResponseEntity<Result<User>> updateUser(@RequestParam(required = false) MultipartFile image,
                                                    @RequestParam(name = "user") @NotEmpty String userJson) {
@@ -74,6 +78,7 @@ public class UserController {
                         HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @PreAuthorize("hasAnyAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Result<User>> deleteUser(@PathVariable @Positive Integer id) {
         return userService.removeById(id) ?
@@ -81,6 +86,7 @@ public class UserController {
                 ResponseEntityUtil.fail(ResponseEntityUtil.INTERNAL_EXCEPTION_FAIL_CODE, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @PreAuthorize("hasAnyAuthority('admin')")
     @PostMapping
     public ResponseEntity<Result<User>> insertUser(@RequestParam(required = false) MultipartFile image,
                                                    @RequestParam(name = "user") @NotEmpty String userJson) {

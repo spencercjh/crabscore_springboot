@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import top.spencercjh.crabscore.refactory.model.ScoreTaste;
@@ -21,7 +22,7 @@ import javax.validation.constraints.Positive;
  * @date 2020 /1/30
  */
 @RestController
-@RequestMapping("/tasteScores")
+@RequestMapping("/api/tasteScores")
 @Validated
 @Slf4j
 public class ScoreTasteController {
@@ -42,6 +43,7 @@ public class ScoreTasteController {
      * @param id the id;
      * @return the detail;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping("/{id}")
     public ResponseEntity<Result<ScoreTaste>> getDetail(@PathVariable @Positive Integer id) {
         final ScoreTaste scoreTaste = scoreTasteService.getById(id);
@@ -56,6 +58,7 @@ public class ScoreTasteController {
      * @param toUpdate the to update;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @PutMapping
     public ResponseEntity<Result<ScoreTaste>> updateScoreTaste(@RequestBody @NotNull @javax.validation.constraints.NotNull
                                                                @Valid ScoreTaste toUpdate) {

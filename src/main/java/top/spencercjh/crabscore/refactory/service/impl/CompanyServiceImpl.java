@@ -8,9 +8,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import top.spencercjh.crabscore.refactory.config.security.AuthUtils;
 import top.spencercjh.crabscore.refactory.mapper.CompanyMapper;
 import top.spencercjh.crabscore.refactory.model.Company;
 import top.spencercjh.crabscore.refactory.service.CompanyService;
@@ -42,7 +44,10 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
     @Override
     public boolean commitAndUpdate(@NotNull Company companyInfo, @Nullable MultipartFile image) {
         commitImage(companyInfo, image);
-        // TODO update user
+        final Authentication authentication = AuthUtils.getAuthentication();
+        if (authentication != null) {
+            // TODO update user
+        }
         return updateById(companyInfo);
     }
 

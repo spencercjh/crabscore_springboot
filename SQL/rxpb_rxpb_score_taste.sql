@@ -1,218 +1,46 @@
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (1, 0, 0, 0, 0, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-31 08:28:50',
-        '2020-01-31 08:28:50', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (2, 0, 0, 0, 0, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-31 08:28:50',
-        '2020-01-31 08:28:50', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (3, 0, 0, 0, 0, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-31 08:28:50',
-        '2020-01-31 08:28:50', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (4, 1, 348, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (5, 1, 349, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (6, 1, 350, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (7, 1, 351, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (8, 1, 352, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (9, 1, 353, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (10, 1, 354, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (11, 1, 355, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (12, 1, 356, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (13, 1, 357, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (14, 1, 358, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (15, 1, 359, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (16, 1, 360, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (17, 1, 361, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (18, 1, 362, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (19, 1, 363, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (20, 1, 364, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (21, 1, 365, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (22, 1, 366, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (23, 1, 367, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (24, 1, 368, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (25, 1, 369, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (26, 1, 370, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (27, 1, 371, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (28, 1, 372, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (29, 1, 373, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (30, 1, 374, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (31, 1, 375, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (32, 1, 376, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (33, 1, 377, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (34, 1, 378, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (35, 1, 379, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (36, 1, 380, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (37, 1, 381, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (38, 1, 382, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (39, 1, 383, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (40, 1, 384, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (41, 1, 385, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20',
-        '2020-01-30 03:00:20', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (42, 1, 386, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:21',
-        '2020-01-30 03:00:21', 0, 0);
-INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys,
-                                   score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date,
-                                   create_user, update_user)
-VALUES (43, 1, 387, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:21',
-        '2020-01-30 03:00:21', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (1, 0, 0, 0, 0, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-31 08:28:50', '2020-01-31 08:28:50', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (2, 0, 0, 0, 0, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-31 08:28:50', '2020-01-31 08:28:50', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (3, 0, 0, 0, 0, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-31 08:28:50', '2020-01-31 08:28:50', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (4, 1, 348, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (5, 1, 349, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (6, 1, 350, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (7, 1, 351, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (8, 1, 352, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (9, 1, 353, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (10, 1, 354, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (11, 1, 355, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (12, 1, 356, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (13, 1, 357, 1, 1, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (14, 1, 358, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (15, 1, 359, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (16, 1, 360, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (17, 1, 361, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (18, 1, 362, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (19, 1, 363, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (20, 1, 364, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (21, 1, 365, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (22, 1, 366, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (23, 1, 367, 2, 2, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (24, 1, 368, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (25, 1, 369, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (26, 1, 370, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (27, 1, 371, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (28, 1, 372, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (29, 1, 373, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (30, 1, 374, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (31, 1, 375, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (32, 1, 376, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (33, 1, 377, 3, 3, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (34, 1, 378, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (35, 1, 379, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (36, 1, 380, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (37, 1, 381, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (38, 1, 382, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (39, 1, 383, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (40, 1, 384, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (41, 1, 385, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:20', '2020-01-30 03:00:20', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (42, 1, 386, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:21', '2020-01-30 03:00:21', 0, 0);
+INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (43, 1, 387, 4, 4, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:21', '2020-01-30 03:00:21', 0, 0);
 INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (44, 1, 388, 5, 5, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:21', '2020-01-30 03:00:21', 0, 0);
 INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (45, 1, 389, 5, 5, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:21', '2020-01-30 03:00:21', 0, 0);
 INSERT INTO rxpb.rxpb_score_taste (id, competition_id, crab_id, group_id, judges_id, score_fin, score_ygys, score_sys, score_ghys, score_xwxw, score_gh, score_fbjr, score_bzjr, version, create_date, create_user, update_user) VALUES (46, 1, 390, 5, 5, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, '2020-01-30 03:00:21', '2020-01-30 03:00:21', 0, 0);

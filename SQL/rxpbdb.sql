@@ -194,7 +194,7 @@ create table rxpb_user
     company_id     int(11) unsigned default 0                                                   null comment '对应的参选单位',
     role_id        int(11) unsigned                                                             not null comment '角色ID',
     user_name      varchar(45)                                                                  not null comment '用户名,登录名',
-    password       varchar(45)                                                                  not null comment '密码',
+    password       varchar(60)                                                                  not null comment '密码',
     display_name   varchar(45)      default '未命名用户'                                             not null comment '显示名称，姓名或单位名',
     status         tinyint          default 0                                                   not null comment '用户状态 1：可用 0：禁用',
     email          varchar(45)                                                                  null,

@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import top.spencercjh.crabscore.refactory.model.ScoreQuality;
@@ -19,7 +20,7 @@ import javax.validation.constraints.Positive;
  * @date 2020/1/30
  */
 @RestController
-@RequestMapping("/qualityScores")
+@RequestMapping("/api/qualityScores")
 @Validated
 @Slf4j
 public class ScoreQualityController {
@@ -29,6 +30,7 @@ public class ScoreQualityController {
         this.scoreQualityService = scoreQualityService;
     }
 
+    @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping("/{id}")
     public ResponseEntity<Result<ScoreQuality>> getDetail(@PathVariable @Positive Integer id) {
         final ScoreQuality scoreQuality = scoreQualityService.getById(id);
@@ -37,6 +39,7 @@ public class ScoreQualityController {
                 ResponseEntityUtil.success(scoreQuality);
     }
 
+    @PreAuthorize("hasAnyAuthority('admin')")
     @PutMapping
     public ResponseEntity<Result<ScoreQuality>> updateScoreQuality(@RequestBody @NotNull @javax.validation.constraints.NotNull
                                                                    @Valid ScoreQuality toUpdate) {

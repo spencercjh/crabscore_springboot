@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +25,7 @@ import javax.validation.constraints.Positive;
  * @date 2020 /1/28
  */
 @RestController
-@RequestMapping("/groups")
+@RequestMapping("/api/groups")
 @Validated
 @Slf4j
 public class GroupController {
@@ -45,6 +46,7 @@ public class GroupController {
      * @param id the id;
      * @return the detail;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping("/{id}")
     public ResponseEntity<Result<Group>> getDetail(@PathVariable @Positive Integer id) {
         final Group group = groupService.getById(id);
@@ -62,6 +64,7 @@ public class GroupController {
      * @param size          the size;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @GetMapping
     public ResponseEntity<Result<IPage<Group>>> listSearch(
             @RequestParam(required = false) @Positive Integer companyId,
@@ -82,6 +85,7 @@ public class GroupController {
      * @param groupJson the group json;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @PutMapping
     public ResponseEntity<Result<Group>> updateGroup(
             @RequestParam(required = false) MultipartFile image,
@@ -105,6 +109,7 @@ public class GroupController {
      * @param id the id;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Result<Object>> deleteGroup(@PathVariable @Positive Integer id) {
         return groupService.removeById(id) ?
@@ -119,6 +124,7 @@ public class GroupController {
      * @param groupJson the group json;
      * @return the response entity;
      */
+    @PreAuthorize("hasAnyAuthority('admin')")
     @PostMapping
     public ResponseEntity<Result<Group>> insertGroup(@RequestParam(required = false) MultipartFile image,
                                                      @RequestParam(name = "group") @NotEmpty String groupJson) {

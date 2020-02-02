@@ -40,6 +40,14 @@ class UserServiceImplTest {
     private CompanyService companyService;
 
     //    @Test
+    void modifyPassword() {
+        userService.list().forEach(user -> {
+            user.setPassword("123456");
+            userService.updateById(user);
+        });
+    }
+
+    //    @Test
     void mockData() {
         // mock company users data
         companyService.list(new QueryWrapper<Company>().eq(Company.COL_COMPETITION_ID, MOCK_DATA_COMPETITION))
