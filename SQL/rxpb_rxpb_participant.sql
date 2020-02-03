@@ -212,17 +212,17 @@ VALUES (108, 1, 0, 1, 'emeiqp', '123456', '申纯', 1, 'usz107n81nsezip@googlema
         'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-02-03 01:50:25', '2020-02-01 06:09:53', '0', '0');
 INSERT INTO rxpb.rxpb_participant (id, competition_id, company_id, role_id, username, password, display_name, status,
                                    email, avatar_url, version, create_date, create_user, update_user)
-VALUES (109, 1, 0, 2, 'salkwe', '123456', '丰园', 0, '1cfbjccb9etmaav@foxmail.com',
+VALUES (109, 1, 0, 2, 'salkwe', '123456', '丰园', 1, '1cfbjccb9etmaav@foxmail.com',
         'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-02-03 01:50:25', '2020-02-01 06:09:53', '0', '0');
 INSERT INTO rxpb.rxpb_participant (id, competition_id, company_id, role_id, username, password, display_name, status,
                                    email, avatar_url, version, create_date, create_user, update_user)
-VALUES (110, 1, 0, 3, 'tg65oo', '123456', '公芸香', 0, 'yxm8cbjp8femibn@qq.com',
+VALUES (110, 1, 0, 3, 'tg65oo', '123456', '公芸香', 1, 'yxm8cbjp8femibn@qq.com',
         'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg', '2020-02-03 01:50:25', '2020-02-01 06:09:53', '0', '0');
 INSERT INTO rxpb.rxpb_participant (id, competition_id, company_id, role_id, username, password, display_name, status,
                                    email, avatar_url, version, create_date, create_user, update_user)
-VALUES (111, 1, 0, 0, '删除测试', '123456', '删除测试显示名', 0, '删除测试', 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
+VALUES (111, 1, 99, 4, 'delete', '123456', '删除测试显示名', 1, '删除测试', 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
         '2020-02-03 01:50:25', '2020-02-01 16:03:12', '0', '0');
 INSERT INTO rxpb.rxpb_participant (id, competition_id, company_id, role_id, username, password, display_name, status,
                                    email, avatar_url, version, create_date, create_user, update_user)
-VALUES (112, 1, 0, 0, '更新测试', '123456', '更新测试显示名', 0, '更新测试', 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
+VALUES (112, 1, 54, 4, 'update', '123456', '更新测试显示名', 1, '更新测试', 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg',
         '2020-02-03 01:50:25', '2020-02-01 16:03:12', '0', '0');

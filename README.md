@@ -1,5 +1,7 @@
 # *CrabScore*-Refactory
 
+[![time tracker](https://wakatime.com/badge/github/spencercjh/crabscore_springboot.svg)](https://wakatime.com/badge/github/spencercjh/crabscore_springboot)
+
 It's a third main version of *CrabScore*.
 
 The last time I push on *CrabScore* was over a year ago (November 2018).
