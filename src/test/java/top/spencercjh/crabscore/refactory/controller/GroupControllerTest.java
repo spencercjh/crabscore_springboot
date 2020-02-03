@@ -2,6 +2,7 @@ package top.spencercjh.crabscore.refactory.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
@@ -29,13 +30,28 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 class GroupControllerTest {
-    public static final String URL_TEMPLATE = "/groups";
+    public static final String URL_TEMPLATE = "/api/groups";
     @Autowired
     private MockMvc mockMvc;
+    @Value("${testOnly.token.admin}")
+    private String adminToken;
+
+    @Value("${testOnly.token.company}")
+    private String companyToken;
+
+    @Test
+    void getCurrent() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/current")
+                .header("Authorization", companyToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data").isMap())
+                .andDo(print());
+    }
 
     @Test
     void successGetDetail() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/1")
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -43,14 +59,16 @@ class GroupControllerTest {
 
     @Test
     void notFoundGetDetail() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/999"))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/999")
+                .header("Authorization", adminToken))
                 .andExpect(status().isNotFound())
                 .andDo(print());
     }
 
     @Test
     void listSearch() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE)
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -59,7 +77,8 @@ class GroupControllerTest {
     @Test
     void notFoundListSearch() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE)
-                .param("companyId", "1000"))
+                .param("companyId", "1000")
+                .header("Authorization", adminToken))
                 .andExpect(status().isNotFound())
                 .andDo(print());
     }
@@ -77,7 +96,8 @@ class GroupControllerTest {
                 .with((MockHttpServletRequest request) -> {
                     request.setMethod(HttpMethod.PUT.name());
                     return request;
-                }))
+                })
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -95,7 +115,8 @@ class GroupControllerTest {
                 .with((MockHttpServletRequest request) -> {
                     request.setMethod(HttpMethod.PUT.name());
                     return request;
-                }))
+                })
+                .header("Authorization", adminToken))
                 .andExpect(status().isInternalServerError())
                 .andDo(print());
     }
@@ -110,7 +131,8 @@ class GroupControllerTest {
                 .with((MockHttpServletRequest request) -> {
                     request.setMethod(HttpMethod.PUT.name());
                     return request;
-                }))
+                })
+                .header("Authorization", adminToken))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
     }
@@ -118,7 +140,8 @@ class GroupControllerTest {
     @Transactional
     @Test
     void successDeleteGroup() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/55"))
+        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/55")
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
@@ -126,7 +149,8 @@ class GroupControllerTest {
     @Transactional
     @Test
     void failedDeleteGroup() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/999"))
+        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/999")
+                .header("Authorization", adminToken))
                 .andExpect(status().isInternalServerError())
                 .andDo(print());
     }
@@ -139,7 +163,8 @@ class GroupControllerTest {
                         Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg"))))
                 .param("group", JacksonUtil.serialize(new Group()
                         .setCompanyId(99)
-                        .setCompetitionId(99))))
+                        .setCompetitionId(99)))
+                .header("Authorization", adminToken))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -152,7 +177,8 @@ class GroupControllerTest {
                 .file(new MockMultipartFile("image", "QQ图片20171115233745.jpg", null,
                         Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg"))))
                 .param("group", JacksonUtil.serialize(new Group()
-                        .setCompetitionId(99))))
+                        .setCompetitionId(99)))
+                .header("Authorization", adminToken))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
     }

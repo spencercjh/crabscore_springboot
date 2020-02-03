@@ -5,8 +5,10 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import top.spencercjh.crabscore.refactory.config.security.AuthUtils;
 import top.spencercjh.crabscore.refactory.model.ScoreQuality;
 import top.spencercjh.crabscore.refactory.model.vo.Result;
 import top.spencercjh.crabscore.refactory.service.ScoreQualityService;
@@ -30,7 +32,7 @@ public class ScoreQualityController {
         this.scoreQualityService = scoreQualityService;
     }
 
-    @PreAuthorize("hasAnyAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','judege','staff')")
     @GetMapping("/{id}")
     public ResponseEntity<Result<ScoreQuality>> getDetail(@PathVariable @Positive Integer id) {
         final ScoreQuality scoreQuality = scoreQualityService.getById(id);
@@ -39,7 +41,7 @@ public class ScoreQualityController {
                 ResponseEntityUtil.success(scoreQuality);
     }
 
-    @PreAuthorize("hasAnyAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','judge')")
     @PutMapping
     public ResponseEntity<Result<ScoreQuality>> updateScoreQuality(@RequestBody @NotNull @javax.validation.constraints.NotNull
                                                                    @Valid ScoreQuality toUpdate) {
@@ -48,7 +50,11 @@ public class ScoreQualityController {
                     "invalid competition",
                     HttpStatus.BAD_REQUEST);
         }
-        return scoreQualityService.updateById(toUpdate) ?
+        final Authentication authentication = AuthUtils.getAuthentication();
+        assert authentication != null;
+        return scoreQualityService.updateById(toUpdate
+                .setUpdateUser(authentication.getName())
+                .setJudgeUsername(authentication.getName())) ?
                 ResponseEntityUtil.success(toUpdate) :
                 ResponseEntityUtil.fail(ResponseEntityUtil.INTERNAL_EXCEPTION_FAIL_CODE, HttpStatus.INTERNAL_SERVER_ERROR);
     }

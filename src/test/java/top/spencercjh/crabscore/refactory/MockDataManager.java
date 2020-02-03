@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author Spencer
  * @date 2020/2/1
  */
-public class MockDataManager {
+public final class MockDataManager {
     private static final int USERNAME_LENGTH = 6;
     private static final ThreadLocalRandom THREAD_LOCAL_RANDOM = ThreadLocalRandom.current();
     private static final String[] phonePrefix = "134,135,136,137,138,139,150,151,152,157,158,159,130,131,132,155,156,133,153".split(",");

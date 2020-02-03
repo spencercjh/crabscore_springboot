@@ -8,9 +8,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import top.spencercjh.crabscore.refactory.config.security.AuthUtils;
 import top.spencercjh.crabscore.refactory.model.Crab;
 import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
 import top.spencercjh.crabscore.refactory.model.vo.CrabVo;
@@ -47,19 +49,30 @@ public class CrabController {
         this.crabService = crabService;
     }
 
+    @PreAuthorize("hasAnyAuthority('admin','company')")
+    @GetMapping("/current")
+    public ResponseEntity<Result<List<CrabVo>>> getCurrent() {
+        final Authentication authentication = AuthUtils.getAuthentication();
+        assert authentication != null;
+        final List<CrabVo> currentCrabs = crabService.getCurrentCrabs(authentication.getName());
+        return currentCrabs.isEmpty() ?
+                ResponseEntityUtil.fail(HttpStatus.NOT_FOUND) :
+                ResponseEntityUtil.success(currentCrabs);
+    }
+
     /**
      * Gets detail.
      *
      * @param id the id;
      * @return the detail;
      */
-    @PreAuthorize("hasAnyAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','staff','judge')")
     @GetMapping("/{id}")
-    public ResponseEntity<Result<Crab>> getDetail(@PathVariable @Positive Integer id) {
+    public ResponseEntity<Result<CrabVo>> getDetail(@PathVariable @Positive Integer id) {
         final Crab crab = crabService.getById(id);
         return crab == null ?
                 ResponseEntityUtil.fail(HttpStatus.NOT_FOUND) :
-                ResponseEntityUtil.success(crab);
+                ResponseEntityUtil.success(crabService.wrapCrab(crab));
     }
 
     /**
@@ -74,7 +87,7 @@ public class CrabController {
      * @param size          the size;
      * @return the response entity;
      */
-    @PreAuthorize("hasAnyAuthority('staff','admin')")
+    @PreAuthorize("hasAnyAuthority('admin','staff','judge')")
     @GetMapping
     public ResponseEntity<Result<IPage<CrabVo>>> listSearch(
             @RequestParam(required = false) @Positive Integer competitionId,
@@ -97,7 +110,7 @@ public class CrabController {
      * @param crabJson the crab json;
      * @return the response entity;
      */
-    @PreAuthorize("hasAnyAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','staff')")
     @PutMapping
     public ResponseEntity<Result<Crab>> commitAndUpdate(
             @RequestParam(required = false) MultipartFile image,
@@ -122,7 +135,7 @@ public class CrabController {
      * @param id the id;
      * @return the response entity;
      */
-    @PreAuthorize("hasAnyAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','staff')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Result<Object>> deleteCrab(@PathVariable @Positive Integer id) {
         return crabService.removeById(id) ?
@@ -140,7 +153,7 @@ public class CrabController {
      * @param sex     the sex;
      * @return the response entity;
      */
-    @PreAuthorize("hasAnyAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','staff')")
     @DeleteMapping
     public ResponseEntity<Result<Object>> deleteCrabs(@RequestParam(required = false) List<Integer> ids,
                                                       @RequestParam(required = false) Integer groupId,
@@ -179,7 +192,7 @@ public class CrabController {
      * @param repeat   the repeat;
      * @return the response entity;
      */
-    @PreAuthorize("hasAnyAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','staff')")
     @PostMapping
     public ResponseEntity<Result<Object>> insertCrab(
             @RequestParam(required = false) MultipartFile image,

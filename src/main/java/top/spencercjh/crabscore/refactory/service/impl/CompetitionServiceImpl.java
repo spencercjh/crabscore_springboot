@@ -57,7 +57,7 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
         return save(competition);
     }
 
-    public void setupAuthor(@NotNull Competition competition) {
+    private void setupAuthor(@NotNull Competition competition) {
         final Authentication authentication = AuthUtils.getAuthentication();
         if (authentication != null) {
             final String name = authentication.getName();

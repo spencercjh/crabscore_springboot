@@ -82,7 +82,12 @@ public class ParticipantServiceImpl extends ServiceImpl<ParticipantMapper, Parti
         return save(participant);
     }
 
-    public void setupAuthor(@NotNull Participant participant) {
+    @Override
+    public Participant getOneByUsername(@NotNull String username) {
+        return getOne(new QueryWrapper<Participant>().eq(Participant.COL_USERNAME, username));
+    }
+
+    private void setupAuthor(@NotNull Participant participant) {
         final Authentication authentication = AuthUtils.getAuthentication();
         if (authentication != null) {
             final String name = authentication.getName();

@@ -33,6 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (participant == null) {
             throw new UsernameNotFoundException("该用户不存在");
         }
-        return new Account(participant.getUsername(), participant.getPassword(), Collections.singleton(new RoleAuthority(roleService.getById(participant.getRoleId()).getRoleName())));
+        return new Account(participant.getUsername(), participant.getPassword(),
+                Collections.singleton(new RoleAuthority(roleService.getById(participant.getRoleId()).getRoleName())));
     }
 }

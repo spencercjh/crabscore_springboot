@@ -2,6 +2,7 @@ package top.spencercjh.crabscore.refactory.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -26,13 +27,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 class ScoreQualityControllerTest {
-    public static final String URL_TEMPLATE = "/qualityScores";
+    public static final String URL_TEMPLATE = "/api/qualityScores";
     @Autowired
     private MockMvc mockMvc;
+    @Value("${testOnly.token.admin}")
+    private String adminToken;
 
     @Test
     void successGetDetail() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/1")
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -40,7 +44,8 @@ class ScoreQualityControllerTest {
 
     @Test
     void failedGetDetail() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/999"))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/999")
+                .header("Authorization", adminToken))
                 .andExpect(status().isNotFound())
                 .andDo(print());
     }
@@ -54,8 +59,9 @@ class ScoreQualityControllerTest {
                         .setGroupId(999)
                         .setCompetitionId(999)
                         .setCrabId(999)
-                        .setJudgesId(999))))
-                .contentType(MediaType.APPLICATION_JSON))
+                        .setJudgeUsername("TEST"))))
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -69,8 +75,9 @@ class ScoreQualityControllerTest {
                         .setGroupId(999)
                         .setCompetitionId(999)
                         .setCrabId(999)
-                        .setJudgesId(999))))
-                .contentType(MediaType.APPLICATION_JSON))
+                        .setJudgeUsername("TEST"))))
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("Authorization", adminToken))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
     }

@@ -7,9 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import top.spencercjh.crabscore.refactory.config.security.AuthUtils;
 import top.spencercjh.crabscore.refactory.model.Participant;
 import top.spencercjh.crabscore.refactory.model.vo.ParticipantVo;
 import top.spencercjh.crabscore.refactory.model.vo.Result;
@@ -33,6 +35,37 @@ public class ParticipantController {
 
     public ParticipantController(ParticipantService participantService) {
         this.participantService = participantService;
+    }
+
+    @PreAuthorize("hasAnyAuthority('admin','staff','judge','company')")
+    @GetMapping("/current")
+    public ResponseEntity<Result<Participant>> getCurrent() {
+        final Authentication authentication = AuthUtils.getAuthentication();
+        assert authentication != null;
+        final Participant currentParticipant = participantService.getOneByUsername(authentication.getName());
+        return currentParticipant == null ?
+                ResponseEntityUtil.fail(HttpStatus.FORBIDDEN) :
+                ResponseEntityUtil.success(currentParticipant);
+    }
+
+    @PreAuthorize("hasAnyAuthority('admin','staff','judge','company')")
+    @PutMapping("/current")
+    public ResponseEntity<Result<Participant>> updateCurrent(@RequestParam(required = false) MultipartFile image,
+                                                             @RequestParam(name = "user") @NotEmpty String userJson) {
+        final Participant toUpdate = JacksonUtil.deserialize(userJson, new TypeReference<>() {
+        });
+        if (toUpdate == null) {
+            return ResponseEntityUtil.fail(ResponseEntityUtil.ILLEGAL_ARGUMENTS_FAIL_CODE,
+                    "invalid user",
+                    HttpStatus.BAD_REQUEST);
+        }
+        final Authentication authentication = AuthUtils.getAuthentication();
+        assert authentication != null;
+        final Participant currentParticipant = participantService.getOneByUsername(authentication.getName());
+        return participantService.commitAndUpdate(toUpdate.setId(currentParticipant.getId()), image) ?
+                ResponseEntityUtil.success(toUpdate) :
+                ResponseEntityUtil.fail(ResponseEntityUtil.INTERNAL_EXCEPTION_FAIL_CODE,
+                        HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @PreAuthorize("hasAnyAuthority('admin')")

@@ -29,7 +29,7 @@ public interface CompanyService extends IService<Company>, BaseUploadFileService
      *
      * @param companyInfo 参选单位
      * @param image       头像
-     * @return 更新后对象
+     * @return success
      */
     boolean commitAndUpdate(@NotNull Company companyInfo, @Nullable MultipartFile image);
 
@@ -38,7 +38,25 @@ public interface CompanyService extends IService<Company>, BaseUploadFileService
      *
      * @param companyInfo 参选单位
      * @param image       头像
-     * @return 更新后对象
+     * @return success
      */
     boolean commitAndInsert(@NotNull Company companyInfo, @Nullable MultipartFile image);
+
+    /**
+     * 查找用户绑定的参选单位
+     *
+     * @param username 用户名;
+     * @return Company;
+     */
+    Company getOneByUsername(@NotNull String username);
+
+    /**
+     * 修改用户绑定的参选单位
+     *
+     * @param username 用户名;
+     * @param toUpdate 参选单位;
+     * @param image    头像;
+     * @return success
+     */
+    boolean updateByUsername(@NotNull String username, @NotNull Company toUpdate, @Nullable MultipartFile image);
 }

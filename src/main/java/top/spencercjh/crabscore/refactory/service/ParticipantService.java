@@ -34,4 +34,12 @@ public interface ParticipantService extends IService<Participant>, BaseUploadFil
      * @return the boolean;
      */
     boolean commitAndInsert(@NotNull Participant participant, @Nullable MultipartFile image);
+
+    /**
+     * 根据用户名查询用户
+     *
+     * @param username 用户名;
+     * @return 用户;
+     */
+    Participant getOneByUsername(@NotNull String username);
 }

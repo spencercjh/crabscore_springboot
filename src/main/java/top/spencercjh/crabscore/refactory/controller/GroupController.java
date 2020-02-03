@@ -6,9 +6,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import top.spencercjh.crabscore.refactory.config.security.AuthUtils;
 import top.spencercjh.crabscore.refactory.model.Group;
 import top.spencercjh.crabscore.refactory.model.vo.Result;
 import top.spencercjh.crabscore.refactory.service.GroupService;
@@ -40,13 +42,24 @@ public class GroupController {
         this.groupService = groupService;
     }
 
+    @PreAuthorize("hasAnyAuthority('admin','company')")
+    @GetMapping("/current")
+    public ResponseEntity<Result<Group>> getCurrent() {
+        final Authentication authentication = AuthUtils.getAuthentication();
+        assert authentication != null;
+        final Group current = groupService.getCurrent(authentication.getName());
+        return current == null ?
+                ResponseEntityUtil.fail(HttpStatus.NOT_FOUND) :
+                ResponseEntityUtil.success(current);
+    }
+
     /**
      * Gets detail.
      *
      * @param id the id;
      * @return the detail;
      */
-    @PreAuthorize("hasAnyAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','staff')")
     @GetMapping("/{id}")
     public ResponseEntity<Result<Group>> getDetail(@PathVariable @Positive Integer id) {
         final Group group = groupService.getById(id);
@@ -64,7 +77,7 @@ public class GroupController {
      * @param size          the size;
      * @return the response entity;
      */
-    @PreAuthorize("hasAnyAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','staff')")
     @GetMapping
     public ResponseEntity<Result<IPage<Group>>> listSearch(
             @RequestParam(required = false) @Positive Integer companyId,
@@ -85,7 +98,7 @@ public class GroupController {
      * @param groupJson the group json;
      * @return the response entity;
      */
-    @PreAuthorize("hasAnyAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','staff')")
     @PutMapping
     public ResponseEntity<Result<Group>> updateGroup(
             @RequestParam(required = false) MultipartFile image,
@@ -109,7 +122,7 @@ public class GroupController {
      * @param id the id;
      * @return the response entity;
      */
-    @PreAuthorize("hasAnyAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','staff')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Result<Object>> deleteGroup(@PathVariable @Positive Integer id) {
         return groupService.removeById(id) ?
@@ -124,7 +137,7 @@ public class GroupController {
      * @param groupJson the group json;
      * @return the response entity;
      */
-    @PreAuthorize("hasAnyAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','staff')")
     @PostMapping
     public ResponseEntity<Result<Group>> insertGroup(@RequestParam(required = false) MultipartFile image,
                                                      @RequestParam(name = "group") @NotEmpty String groupJson) {

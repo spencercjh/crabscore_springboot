@@ -20,7 +20,7 @@ public interface GroupService extends IService<Group>, BaseUploadFileService {
      * @param competitionId the competition id;
      * @param page          the page;
      * @param size          the size;
-     * @return page
+     * @return page page
      */
     @NotNull
     IPage<Group> pageQuery(@Nullable Integer companyId, @Nullable Integer competitionId, @NotNull Long page, @NotNull Long size);
@@ -42,4 +42,13 @@ public interface GroupService extends IService<Group>, BaseUploadFileService {
      * @return the boolean;
      */
     boolean commitAndInsert(@NotNull Group group, @Nullable MultipartFile image);
+
+    /**
+     * Gets current.
+     *
+     * @param username the username;
+     * @return current;
+     */
+    @Nullable
+    Group getCurrent(@NotNull String username);
 }

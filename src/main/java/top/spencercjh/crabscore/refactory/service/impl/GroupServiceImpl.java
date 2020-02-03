@@ -13,9 +13,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import top.spencercjh.crabscore.refactory.config.security.AuthUtils;
+import top.spencercjh.crabscore.refactory.mapper.CompetitionMapper;
 import top.spencercjh.crabscore.refactory.mapper.GroupMapper;
+import top.spencercjh.crabscore.refactory.mapper.ParticipantMapper;
+import top.spencercjh.crabscore.refactory.model.Competition;
 import top.spencercjh.crabscore.refactory.model.Group;
+import top.spencercjh.crabscore.refactory.model.Participant;
 import top.spencercjh.crabscore.refactory.service.GroupService;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author MyBatisCodeHelperPro
@@ -27,6 +34,12 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
     private String rootDirectory;
     @Value("${crabScore.group}")
     private String groupDirectory;
+    @Resource
+    private ParticipantMapper participantMapper;
+    @Resource
+    private GroupMapper groupMapper;
+    @Resource
+    private CompetitionMapper competitionMapper;
 
     @NotNull
     @Override
@@ -48,7 +61,7 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
         return updateById(group);
     }
 
-    public void setupAuthor(@NotNull Group group) {
+    private void setupAuthor(@NotNull Group group) {
         final Authentication authentication = AuthUtils.getAuthentication();
         if (authentication != null) {
             final String name = authentication.getName();
@@ -61,6 +74,32 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
         commitImage(group, image);
         setupAuthor(group);
         return save(group);
+    }
+
+    @Nullable
+    @Override
+    public Group getCurrent(@NotNull String username) {
+        final Participant currentUser = participantMapper.selectOne(
+                new QueryWrapper<Participant>().eq(Participant.COL_USERNAME, username));
+        if (currentUser == null) {
+            log.error("当前用户为空");
+            return null;
+        }
+        final List<Competition> currentCompetitions = competitionMapper.selectList(
+                new QueryWrapper<Competition>().eq(Competition.COL_STATUS, 1));
+        if (currentCompetitions.isEmpty()) {
+            log.error("当前大赛为空");
+            return null;
+        }
+        final Competition currentCompetition = currentCompetitions.get(0);
+        final Group currentGroup = groupMapper.selectOne(new QueryWrapper<Group>()
+                .eq(Group.COL_COMPANY_ID, currentUser.getCompanyId())
+                .eq(Group.COL_COMPETITION_ID, currentCompetition.getId()));
+        if (currentGroup == null) {
+            log.error("用户所绑定的参选单位的小组为空");
+            return null;
+        }
+        return currentGroup;
     }
 
     private void commitImage(@NotNull Group group, @Nullable MultipartFile image) {

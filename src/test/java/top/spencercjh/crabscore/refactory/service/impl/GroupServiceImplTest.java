@@ -114,4 +114,12 @@ class GroupServiceImplTest {
         // no file
         assertTrue(groupService.commitAndInsert(new Group().setCompetitionId(999).setCompanyId(999), null));
     }
+
+    @Test
+    void getCurrent() {
+        String username = "update";
+        assertNotNull(groupService.getCurrent(username));
+        username = "delete";
+        assertNull(groupService.getCurrent(username));
+    }
 }

@@ -30,7 +30,7 @@ public class ScoreQualityServiceImpl extends ServiceImpl<ScoreQualityMapper, Sco
     @NotNull
     public IPage<ScoreQuality> pageQuery(@Nullable Integer groupId,
                                          @Nullable Integer competitionId,
-                                         @Nullable Integer judgeId,
+                                         @Nullable String judgeUsername,
                                          @Nullable Integer crabId,
                                          @Nullable Date beginTime,
                                          @Nullable Date endTime,
@@ -43,8 +43,8 @@ public class ScoreQualityServiceImpl extends ServiceImpl<ScoreQualityMapper, Sco
         if (competitionId != null) {
             queryWrapper.eq(ScoreQuality.COL_COMPETITION_ID, competitionId);
         }
-        if (judgeId != null) {
-            queryWrapper.eq(ScoreQuality.COL_JUDGES_ID, judgeId);
+        if (StringUtils.isNotBlank(judgeUsername)) {
+            queryWrapper.eq(ScoreQuality.COL_JUDGE_USERNAME, judgeUsername);
         }
         if (crabId != null) {
             queryWrapper.eq(ScoreQuality.COL_CRAB_ID, crabId);

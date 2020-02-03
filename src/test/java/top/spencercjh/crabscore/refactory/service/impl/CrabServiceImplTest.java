@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -253,5 +254,24 @@ class CrabServiceImplTest {
                 new QueryWrapper<ScoreTaste>().eq(Crab.COL_GROUP_ID, groupId).eq(Crab.COL_COMPETITION_ID, groupId)).size());
         // Manually delete the added Scores
         crabIdList.forEach(crabId -> asyncScoreService.asyncDeleteScoresByCrab(crabId));
+    }
+
+    @Test
+    void getCurrentCrabs() throws Exception {
+        String companyUsername = "m6wwwj";
+        List<CrabVo> currentCrabs = crabService.getCurrentCrabs(companyUsername);
+        assertNotNull(currentCrabs);
+        assertEquals(10, currentCrabs.size());
+        currentCrabs.forEach(crabVo -> {
+            assertNotNull(crabVo);
+            log.debug(crabVo.toString());
+            assertEquals(1, crabVo.getGroupId());
+            assertEquals(1, crabVo.getScoreQuality().getGroupId());
+            assertEquals(1, crabVo.getScoreTaste().getGroupId());
+        });
+        // failed
+        companyUsername = "delete";
+        currentCrabs = crabService.getCurrentCrabs(companyUsername);
+        assertEquals(Collections.emptyList(), currentCrabs);
     }
 }

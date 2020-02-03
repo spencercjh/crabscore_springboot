@@ -33,7 +33,7 @@ class ScoreQualityServiceImplTest {
                 .setCompetitionId(crab.getCompetitionId())
                 .setCrabId(crab.getId())
                 .setGroupId(crab.getGroupId())
-                .setJudgesId(crab.getGroupId())));
+                .setJudgeUsername("TEST")));
     }
 
     @Test
@@ -68,12 +68,12 @@ class ScoreQualityServiceImplTest {
         // judgeId search
         final int judgeId = 48;
         searchResult = scoreQualityService.pageQuery(null, null,
-                judgeId, null, null, null, 1L, 100L);
+                String.valueOf(judgeId), null, null, null, 1L, 100L);
         searchResult.getRecords().forEach(scoreQuality -> {
             assertNotNull(scoreQuality);
             log.debug(scoreQuality.toString());
-            assertNotNull(scoreQuality.getJudgesId());
-            assertEquals(judgeId, scoreQuality.getJudgesId());
+            assertNotNull(scoreQuality.getJudgeUsername());
+            assertEquals(String.valueOf(judgeId), scoreQuality.getJudgeUsername());
         });
         // crabId search
         final int crabId = 520;

@@ -22,7 +22,7 @@ public interface ScoreTasteService extends IService<ScoreTaste> {
      *
      * @param groupId       the group id;
      * @param competitionId the competition id;
-     * @param judgeId       the judge id;
+     * @param judgeUsername the judge id;
      * @param crabId        the crab id;
      * @param beginTime     the begin time;
      * @param endTime       the end time;
@@ -33,7 +33,7 @@ public interface ScoreTasteService extends IService<ScoreTaste> {
     @NotNull
     IPage<ScoreTaste> pageQuery(@Nullable Integer groupId,
                                 @Nullable Integer competitionId,
-                                @Nullable Integer judgeId,
+                                @Nullable String judgeUsername,
                                 @Nullable Integer crabId,
                                 @Nullable Date beginTime,
                                 @Nullable Date endTime,

@@ -33,7 +33,7 @@ class ScoreTasteServiceImplTest {
                 .setCompetitionId(crab.getCompetitionId())
                 .setCrabId(crab.getId())
                 .setGroupId(crab.getGroupId())
-                .setJudgesId(crab.getGroupId())));
+                .setJudgeUsername("TEST")));
     }
 
 
@@ -69,12 +69,12 @@ class ScoreTasteServiceImplTest {
         // judgeId search
         final int judgeId = 48;
         searchResult = scoreTasteService.pageQuery(null, null,
-                judgeId, null, null, null, 1L, 100L);
+                String.valueOf(judgeId), null, null, null, 1L, 100L);
         searchResult.getRecords().forEach(ScoreTaste -> {
             assertNotNull(ScoreTaste);
             log.debug(ScoreTaste.toString());
-            assertNotNull(ScoreTaste.getJudgesId());
-            assertEquals(judgeId, ScoreTaste.getJudgesId());
+            assertNotNull(ScoreTaste.getJudgeUsername());
+            assertEquals(String.valueOf(judgeId), ScoreTaste.getJudgeUsername());
         });
         // crabId search
         final int crabId = 520;

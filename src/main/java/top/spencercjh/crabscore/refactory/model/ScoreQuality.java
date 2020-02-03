@@ -25,7 +25,7 @@ public class ScoreQuality {
     public static final String COL_COMPETITION_ID = "competition_id";
     public static final String COL_GROUP_ID = "group_id";
     public static final String COL_CRAB_ID = "crab_id";
-    public static final String COL_JUDGES_ID = "judges_id";
+    public static final String COL_JUDGE_USERNAME = "judge_username";
     public static final String COL_SCORE_FIN = "score_fin";
     public static final String COL_SCORE_BTS = "score_bts";
     public static final String COL_SCORE_FTS = "score_fts";
@@ -52,9 +52,9 @@ public class ScoreQuality {
     @TableField(value = "crab_id")
     @ApiModelProperty(value = "对应的螃蟹id")
     private Integer crabId;
-    @TableField(value = "judges_id")
+    @TableField(value = "judge_username")
     @ApiModelProperty(value = "")
-    private Integer judgesId;
+    private String judgeUsername;
     /**
      * 最终给分
      */

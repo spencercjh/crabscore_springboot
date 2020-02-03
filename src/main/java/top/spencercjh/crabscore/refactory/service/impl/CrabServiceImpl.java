@@ -13,10 +13,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import top.spencercjh.crabscore.refactory.config.security.AuthUtils;
+import top.spencercjh.crabscore.refactory.mapper.CompetitionMapper;
 import top.spencercjh.crabscore.refactory.mapper.CrabMapper;
-import top.spencercjh.crabscore.refactory.model.Crab;
-import top.spencercjh.crabscore.refactory.model.ScoreQuality;
-import top.spencercjh.crabscore.refactory.model.ScoreTaste;
+import top.spencercjh.crabscore.refactory.mapper.GroupMapper;
+import top.spencercjh.crabscore.refactory.mapper.ParticipantMapper;
+import top.spencercjh.crabscore.refactory.model.*;
 import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
 import top.spencercjh.crabscore.refactory.model.vo.CrabVo;
 import top.spencercjh.crabscore.refactory.service.AsyncScoreService;
@@ -24,8 +25,10 @@ import top.spencercjh.crabscore.refactory.service.CrabService;
 import top.spencercjh.crabscore.refactory.service.ScoreQualityService;
 import top.spencercjh.crabscore.refactory.service.ScoreTasteService;
 
+import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,6 +47,12 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
     private String rootDirectory;
     @Value("${crabScore.crab}")
     private String crabDirectory;
+    @Resource
+    private ParticipantMapper participantMapper;
+    @Resource
+    private GroupMapper groupMapper;
+    @Resource
+    private CompetitionMapper competitionMapper;
 
     public CrabServiceImpl(ScoreQualityService scoreQualityService, ScoreTasteService scoreTasteService, AsyncScoreService asyncScoreService) {
         this.scoreQualityService = scoreQualityService;
@@ -74,13 +83,48 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
         }
         final Page<Crab> crabPage = getBaseMapper().selectPage(new Page<>(page, size), queryWrapper);
         return new Page<CrabVo>(crabPage.getCurrent(), crabPage.getSize(), crabPage.getTotal(), crabPage.isSearchCount())
-                .setRecords(crabPage.getRecords().stream().map((Crab crab) -> new CrabVo(crab,
-                        scoreTasteService.getOne(new QueryWrapper<ScoreTaste>()
-                                .eq(ScoreTaste.COL_CRAB_ID, crab.getId())),
-                        scoreQualityService.getOne(new QueryWrapper<ScoreQuality>()
-                                .eq(ScoreQuality.COL_CRAB_ID, crab.getId()))))
+                .setRecords(crabPage.getRecords().stream().map(this::wrapCrab)
                         .filter(crabVo -> crabVo.getScoreQuality() != null && crabVo.getScoreTaste() != null)
                         .collect(Collectors.toList()));
+    }
+
+    @Override
+    @NotNull
+    public CrabVo wrapCrab(@NotNull Crab crab) {
+        return new CrabVo(crab,
+                scoreTasteService.getOne(new QueryWrapper<ScoreTaste>()
+                        .eq(ScoreTaste.COL_CRAB_ID, crab.getId())),
+                scoreQualityService.getOne(new QueryWrapper<ScoreQuality>()
+                        .eq(ScoreQuality.COL_CRAB_ID, crab.getId())));
+    }
+
+    @NotNull
+    @Override
+    public List<CrabVo> getCurrentCrabs(@NotNull String username) {
+        final Participant currentUser = participantMapper.selectOne(
+                new QueryWrapper<Participant>().eq(Participant.COL_USERNAME, username));
+        if (currentUser == null) {
+            log.error("当前用户为空");
+            return Collections.emptyList();
+        }
+        final List<Competition> currentCompetitions = competitionMapper.selectList(
+                new QueryWrapper<Competition>().eq(Competition.COL_STATUS, 1));
+        if (currentCompetitions.isEmpty()) {
+            log.error("当前大赛为空");
+            return Collections.emptyList();
+        }
+        final Competition currentCompetition = currentCompetitions.get(0);
+        final Group currentGroup = groupMapper.selectOne(new QueryWrapper<Group>()
+                .eq(Group.COL_COMPANY_ID, currentUser.getCompanyId())
+                .eq(Group.COL_COMPETITION_ID, currentCompetition.getId()));
+        if (currentGroup == null) {
+            log.error("用户所绑定的参选单位的小组为空");
+            return Collections.emptyList();
+        }
+        final List<Crab> crabs = getBaseMapper().selectList(new QueryWrapper<Crab>().eq(Crab.COL_GROUP_ID, currentGroup.getId()));
+        return crabs.stream().map(this::wrapCrab)
+                .filter(crabVo -> crabVo.getScoreQuality() != null && crabVo.getScoreTaste() != null)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -90,12 +134,13 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
         return updateById(crab);
     }
 
-    public void setupAuthor(@NotNull Crab crab) {
+    private Crab setupAuthor(@NotNull Crab crab) {
         final Authentication authentication = AuthUtils.getAuthentication();
         if (authentication != null) {
             final String name = authentication.getName();
             crab.setUpdateUser(StringUtils.isBlank(name) ? "ERROR" : name);
         }
+        return crab;
     }
 
     @Override
@@ -115,7 +160,7 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
     @Override
     public boolean saveCrabAndScoreBatch(List<Crab> toBatchInsert) {
         final boolean saveCrabResult = super.saveBatch(toBatchInsert);
-        toBatchInsert.forEach(asyncScoreService::asyncSaveScoresByCrab);
+        toBatchInsert.forEach(crab -> asyncScoreService.asyncSaveScoresByCrab(setupAuthor(crab)));
         return saveCrabResult;
     }
 

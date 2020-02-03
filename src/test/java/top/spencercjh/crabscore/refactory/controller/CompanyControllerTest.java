@@ -2,6 +2,7 @@ package top.spencercjh.crabscore.refactory.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
@@ -29,13 +30,73 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 class CompanyControllerTest {
-    public static final String URL_TEMPLATE = "/companies";
+    public static final String URL_TEMPLATE = "/api/companies";
     @Autowired
     private MockMvc mockMvc;
 
+    @Value("${testOnly.token.admin}")
+    private String adminToken;
+
+    @Value("${testOnly.token.company}")
+    private String companyToken;
+
+    @Test
+    void successGetCurrent() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/current")
+                .header("Authorization", companyToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data").isMap())
+                .andDo(print());
+    }
+
+    @Test
+    void notFoundGetCurrent() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/current")
+                .header("Authorization", adminToken))
+                .andExpect(status().isNotFound())
+                .andDo(print());
+    }
+
+    @Transactional
+    @Test
+    void successUpdateCurrent() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.multipart(URL_TEMPLATE + "/current")
+                .file(new MockMultipartFile("image", "QQ图片20171115233745.jpg", null,
+                        Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg"))))
+                .param("company", JacksonUtil.serialize(new Company()
+                        .setCompanyName("UPDATE TEST")))
+                .with((MockHttpServletRequest request) -> {
+                    request.setMethod(HttpMethod.PUT.name());
+                    return request;
+                })
+                .header("Authorization", companyToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data").isMap())
+                .andDo(print());
+    }
+
+    @Transactional
+    @Test
+    void errorUpdateCurrent() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.multipart(URL_TEMPLATE + "/current")
+                .file(new MockMultipartFile("image", "QQ图片20171115233745.jpg", null,
+                        Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg"))))
+                .param("company", JacksonUtil.serialize(new Company()
+                        .setCompanyName("UPDATE TEST")))
+                .with((MockHttpServletRequest request) -> {
+                    request.setMethod(HttpMethod.PUT.name());
+                    return request;
+                })
+                .header("Authorization", adminToken))
+                .andExpect(status().isInternalServerError())
+                .andDo(print());
+    }
+
+
     @Test
     void successGetDetail() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/1")
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -43,14 +104,16 @@ class CompanyControllerTest {
 
     @Test
     void notFoundGetDetail() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/999"))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/999")
+                .header("Authorization", adminToken))
                 .andExpect(status().isNotFound())
                 .andDo(print());
     }
 
     @Test
     void successListSearch() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE)
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -59,7 +122,8 @@ class CompanyControllerTest {
     @Test
     void notFoundListSearch() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE)
-                .param("companyName", "123"))
+                .param("companyName", "123")
+                .header("Authorization", adminToken))
                 .andExpect(status().isNotFound())
                 .andDo(print());
     }
@@ -74,7 +138,8 @@ class CompanyControllerTest {
                 .with((MockHttpServletRequest request) -> {
                     request.setMethod(HttpMethod.PUT.name());
                     return request;
-                }))
+                })
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -88,7 +153,8 @@ class CompanyControllerTest {
                 .with((MockHttpServletRequest request) -> {
                     request.setMethod(HttpMethod.PUT.name());
                     return request;
-                }))
+                })
+                .header("Authorization", adminToken))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
     }
@@ -101,7 +167,8 @@ class CompanyControllerTest {
                 .with((MockHttpServletRequest request) -> {
                     request.setMethod(HttpMethod.PUT.name());
                     return request;
-                }))
+                })
+                .header("Authorization", adminToken))
                 .andExpect(status().isInternalServerError())
                 .andDo(print());
     }
@@ -109,7 +176,8 @@ class CompanyControllerTest {
     @Transactional
     @Test
     void successDeleteCompanyInfo() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/53"))
+        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/53")
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
@@ -117,7 +185,8 @@ class CompanyControllerTest {
     @Transactional
     @Test
     void failedDeleteCompanyInfo() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/999"))
+        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/999")
+                .header("Authorization", adminToken))
                 .andExpect(status().isInternalServerError())
                 .andDo(print());
     }
@@ -128,7 +197,8 @@ class CompanyControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.multipart(URL_TEMPLATE)
                 .file(new MockMultipartFile("image", "QQ图片20171115233745.jpg", null,
                         Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg"))))
-                .param("company", JacksonUtil.serialize(new Company().setCompanyName("INSERT TEST"))))
+                .param("company", JacksonUtil.serialize(new Company().setCompanyName("INSERT TEST")))
+                .header("Authorization", adminToken))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -139,7 +209,8 @@ class CompanyControllerTest {
     void badRequestInsertCompanyInfo() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.multipart(URL_TEMPLATE)
                 // blank name
-                .param("company", JacksonUtil.serialize(new Company().setCompanyName(""))))
+                .param("company", JacksonUtil.serialize(new Company().setCompanyName("")))
+                .header("Authorization", adminToken))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
     }

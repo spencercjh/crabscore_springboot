@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
@@ -37,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 class CrabControllerTest {
-    public static final String URL_TEMPLATE = "/crabs";
+    public static final String URL_TEMPLATE = "/api/crabs";
     public static final int GROUP_ID = 90000;
     @Autowired
     private MockMvc mockMvc;
@@ -48,12 +49,26 @@ class CrabControllerTest {
     @Autowired
     private ScoreTasteService scoreTasteService;
 
+    @Value("${testOnly.token.admin}")
+    private String adminToken;
+    @Value("${testOnly.token.company}")
+    private String companyToken;
+
     @AfterEach
     void rollback() {
         // Rollback manually
         scoreQualityService.remove(new QueryWrapper<ScoreQuality>().eq(ScoreQuality.COL_GROUP_ID, GROUP_ID));
         scoreTasteService.remove(new QueryWrapper<ScoreTaste>().eq(ScoreTaste.COL_GROUP_ID, GROUP_ID));
         crabService.remove(new QueryWrapper<Crab>().eq(Crab.COL_GROUP_ID, GROUP_ID));
+    }
+
+    @Test
+    void successGetCurrent() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/current")
+                .header("Authorization", companyToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data").isArray())
+                .andDo(print());
     }
 
     @Transactional
@@ -65,7 +80,8 @@ class CrabControllerTest {
                         .setCrabLabel("successBatchInsert")
                         .setGroupId(GROUP_ID)
                         .setCompetitionId(GROUP_ID)
-                        .setCrabSex(SexEnum.MALE))))
+                        .setCrabSex(SexEnum.MALE)))
+                .header("Authorization", adminToken))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.data").isArray())
                 .andDo(print());
@@ -81,7 +97,8 @@ class CrabControllerTest {
                         .setCrabLabel("successSingleInsert")
                         .setGroupId(GROUP_ID)
                         .setCompetitionId(GROUP_ID)
-                        .setCrabSex(SexEnum.MALE))))
+                        .setCrabSex(SexEnum.MALE)))
+                .header("Authorization", adminToken))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print())
@@ -92,7 +109,8 @@ class CrabControllerTest {
     @Test
     void badRequestInsert() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.multipart(URL_TEMPLATE)
-                .param("crab", "{}"))
+                .param("crab", "{}")
+                .header("Authorization", adminToken))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
     }
@@ -100,10 +118,12 @@ class CrabControllerTest {
     @Transactional
     @Test
     void successDeleteById() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/210"))
+        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/210")
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andDo(print());
-        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/210"))
+        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/210")
+                .header("Authorization", adminToken))
                 .andExpect(status().isInternalServerError())
                 .andDo(print());
     }
@@ -112,11 +132,13 @@ class CrabControllerTest {
     @Test
     void successDeleteByIds() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE)
-                .param("ids", "210", "211"))
+                .param("ids", "210", "211")
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andDo(print());
         mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE)
-                .param("ids", "210", "211"))
+                .param("ids", "210", "211")
+                .header("Authorization", adminToken))
                 .andExpect(status().isInternalServerError())
                 .andDo(print());
     }
@@ -125,11 +147,13 @@ class CrabControllerTest {
     @Test
     void successDeleteByGroupId() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE)
-                .param("groupId", "0"))
+                .param("groupId", "0")
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andDo(print());
         mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE)
-                .param("groupId", "0"))
+                .param("groupId", "0")
+                .header("Authorization", adminToken))
                 .andExpect(status().isInternalServerError())
                 .andDo(print());
     }
@@ -139,12 +163,14 @@ class CrabControllerTest {
     void successDeleteByGroupIdAndSex() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE)
                 .param("groupId", "0")
-                .param("sex", SexEnum.MALE.getDescription()))
+                .param("sex", SexEnum.MALE.getDescription())
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andDo(print());
         mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE)
                 .param("groupId", "0")
-                .param("sex", SexEnum.MALE.getDescription()))
+                .param("sex", SexEnum.MALE.getDescription())
+                .header("Authorization", adminToken))
                 .andExpect(status().isInternalServerError())
                 .andDo(print());
     }
@@ -152,7 +178,8 @@ class CrabControllerTest {
     @Transactional
     @Test
     void badRequestDelete() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE))
+        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE)
+                .header("Authorization", adminToken))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
     }
@@ -172,7 +199,8 @@ class CrabControllerTest {
                 .with((MockHttpServletRequest request) -> {
                     request.setMethod(HttpMethod.PUT.name());
                     return request;
-                }))
+                })
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -192,7 +220,8 @@ class CrabControllerTest {
                 .with((MockHttpServletRequest request) -> {
                     request.setMethod(HttpMethod.PUT.name());
                     return request;
-                }))
+                })
+                .header("Authorization", adminToken))
                 .andExpect(status().isInternalServerError())
                 .andDo(print());
     }
@@ -207,7 +236,8 @@ class CrabControllerTest {
                 .with((MockHttpServletRequest request) -> {
                     request.setMethod(HttpMethod.PUT.name());
                     return request;
-                }))
+                })
+                .header("Authorization", adminToken))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
     }
@@ -219,7 +249,8 @@ class CrabControllerTest {
      */
     @Test
     void listSearch() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE)
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -233,14 +264,16 @@ class CrabControllerTest {
     @Test
     void notFoundListSearch() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE)
-                .param("groupId", "1000"))
+                .param("groupId", "1000")
+                .header("Authorization", adminToken))
                 .andExpect(status().isNotFound())
                 .andDo(print());
     }
 
     @Test
     void getDetail() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/209"))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/209")
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -248,7 +281,8 @@ class CrabControllerTest {
 
     @Test
     void notFoundGetDetail() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/1")
+                .header("Authorization", adminToken))
                 .andExpect(status().isNotFound())
                 .andDo(print());
     }

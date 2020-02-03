@@ -88,4 +88,24 @@ class CompanyServiceImplTest {
         // no file
         assertTrue(companyService.commitAndInsert(new Company().setCompanyName("NEW"), null));
     }
+
+    @Test
+    void getOneByUsername() {
+        assertNotNull(companyService.getOneByUsername("update"));
+        assertNull(companyService.getOneByUsername("123"));
+    }
+
+    @Transactional
+    @Test
+    void updateByUsername() throws IOException {
+        final String participantName = "update";
+        final String updatedName = "Update Test";
+        final Company toUpdate = new Company().setCompanyName(updatedName);
+        assertTrue(companyService.updateByUsername(participantName, toUpdate,
+                new MockMultipartFile("image", "QQ图片20171115233745.jpg", null,
+                        Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg")))));
+        assertFalse(companyService.updateByUsername("123", toUpdate,
+                new MockMultipartFile("image", "QQ图片20171115233745.jpg", null,
+                        Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg")))));
+    }
 }

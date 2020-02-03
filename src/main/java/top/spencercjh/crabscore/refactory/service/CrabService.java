@@ -37,7 +37,6 @@ public interface CrabService extends IService<Crab>, BaseUploadFileService {
     /**
      * 更新资料
      * <p>
-     * TODO Asynchronous
      *
      * @param crab  螃蟹;
      * @param image 头像;
@@ -48,7 +47,6 @@ public interface CrabService extends IService<Crab>, BaseUploadFileService {
     /**
      * 新增资料 同时会插入两种Score
      * <p>
-     * TODO Asynchronous
      *
      * @param crab  螃蟹;
      * @param image 头像;
@@ -59,10 +57,21 @@ public interface CrabService extends IService<Crab>, BaseUploadFileService {
     /**
      * Save crab and score batch.
      * <p>
-     * TODO Asynchronous
      *
      * @param toBatchInsert the to batch insert;
      * @return the boolean;
      */
     boolean saveCrabAndScoreBatch(List<Crab> toBatchInsert);
+
+    /**
+     * 将DO包装成VO
+     *
+     * @param crab;
+     * @return Crab Vo;
+     */
+    @NotNull
+    CrabVo wrapCrab(@NotNull Crab crab);
+
+    @NotNull
+    List<CrabVo> getCurrentCrabs(@NotNull String username);
 }

@@ -2,6 +2,7 @@ package top.spencercjh.crabscore.refactory.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
@@ -29,35 +30,53 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class CompetitionControllerTest {
 
-    public static final String URL_TEMPLATE = "/competitions";
+    public static final String URL_TEMPLATE = "/api/competitions";
     @Autowired
     private MockMvc mockMvc;
 
+    @Value("${testOnly.token.admin}")
+    private String adminToken;
+
+    @Test
+    void successGetCurrent() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/current")
+                .header("Authorization", adminToken))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data").isArray())
+                .andDo(print());
+    }
+
     @Test
     void successGetDetail() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/1"))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/1")
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
     }
 
     @Test
     void notFoundGetDetail() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/999"))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE + "/999")
+                .header("Authorization", adminToken))
                 .andExpect(status().isNotFound())
                 .andDo(print());
     }
 
     @Test
     void successListSearch() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE)
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
     }
 
     @Test
     void notFoundListSearch() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get(URL_TEMPLATE)
-                .param("year", "123456"))
+                .param("year", "123456")
+                .header("Authorization", adminToken))
                 .andExpect(status().isNotFound())
                 .andDo(print());
     }
@@ -74,7 +93,8 @@ class CompetitionControllerTest {
                 .with(request -> {
                     request.setMethod(HttpMethod.PUT.name());
                     return request;
-                }))
+                })
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -90,7 +110,8 @@ class CompetitionControllerTest {
                 .with(request -> {
                     request.setMethod(HttpMethod.PUT.name());
                     return request;
-                }))
+                })
+                .header("Authorization", adminToken))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
     }
@@ -106,7 +127,8 @@ class CompetitionControllerTest {
                 .with(request -> {
                     request.setMethod(HttpMethod.PUT.name());
                     return request;
-                }))
+                })
+                .header("Authorization", adminToken))
                 .andExpect(status().isInternalServerError())
                 .andDo(print());
     }
@@ -114,14 +136,16 @@ class CompetitionControllerTest {
     @Transactional
     @Test
     void successDeleteCompetition() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/13"))
+        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/13")
+                .header("Authorization", adminToken))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
 
     @Test
     void failedDeleteCompetition() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/999"))
+        mockMvc.perform(MockMvcRequestBuilders.delete(URL_TEMPLATE + "/999")
+                .header("Authorization", adminToken))
                 .andExpect(status().isInternalServerError())
                 .andDo(print());
     }
@@ -133,7 +157,8 @@ class CompetitionControllerTest {
                 .file(new MockMultipartFile("image", "QQ图片20171115233745.jpg", null,
                         Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg"))))
                 .param("competition", JacksonUtil.serialize(new Competition()
-                        .setCompetitionYear("Update Test"))))
+                        .setCompetitionYear("Update Test")))
+                .header("Authorization", adminToken))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.data").isMap())
                 .andDo(print());
@@ -144,7 +169,8 @@ class CompetitionControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.multipart(URL_TEMPLATE)
                 .param("competition", JacksonUtil.serialize(new Competition()
                         // blank year
-                        .setCompetitionYear(""))))
+                        .setCompetitionYear("")))
+                .header("Authorization", adminToken))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
     }

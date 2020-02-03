@@ -1,5 +1,6 @@
 package top.spencercjh.crabscore.refactory.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.fasterxml.jackson.core.type.TypeReference;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import top.spencercjh.crabscore.refactory.util.ResponseEntityUtil;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
+import java.util.List;
 
 /**
  * The type Competition controller.
@@ -38,6 +40,15 @@ public class CompetitionController {
      */
     public CompetitionController(CompetitionService competitionService) {
         this.competitionService = competitionService;
+    }
+
+    @PreAuthorize("hasAnyAuthority('admin','staff','judge','company')")
+    @GetMapping("/current")
+    public ResponseEntity<Result<List<Competition>>> getCurrent() {
+        final List<Competition> competitionList = competitionService.list(new QueryWrapper<Competition>().eq(Competition.COL_STATUS, 1));
+        return competitionList.isEmpty() ?
+                ResponseEntityUtil.fail(HttpStatus.NOT_FOUND) :
+                ResponseEntityUtil.success(competitionList);
     }
 
     /**
@@ -138,5 +149,4 @@ public class CompetitionController {
                 ResponseEntityUtil.success(toInsert, HttpStatus.CREATED) :
                 ResponseEntityUtil.fail(ResponseEntityUtil.INTERNAL_EXCEPTION_FAIL_CODE, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 }

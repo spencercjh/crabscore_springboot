@@ -45,10 +45,10 @@
     <select id="selectCrabVo" resultMap="CrabVoResultMap">
         select crab.id, crab.competition_id, crab.group_id, crab.crab_sex, crab.crab_label, crab.crab_weight,
         crab.crab_length, crab.crab_fatness, crab.avatar_url, crab.version, crab.create_date, crab.create_user,
-        crab.update_user, quality.id, quality.competition_id, quality.crab_id, quality.group_id, quality.judges_id,
+        crab.update_user, quality.id, quality.competition_id, quality.crab_id, quality.group_id, quality.judge_username,
         quality.score_fin, quality.score_bts, quality.score_fts, quality.score_ec, quality.score_dscc,
         quality.score_bbyzt, quality.version, quality.create_date, quality.create_user, quality.update_user, taste.id,
-        taste.competition_id, taste.crab_id, taste.group_id, taste.judges_id, taste.score_fin, taste.score_ygys,
+        taste.competition_id, taste.crab_id, taste.group_id, taste.judge_username, taste.score_fin, taste.score_ygys,
         taste.score_sys, taste.score_ghys, taste.score_xwxw, taste.score_gh, taste.score_fbjr, taste.score_bzjr,
         taste.version, taste.create_date, taste.create_user, taste.update_user
         from rxpb_crab crab
@@ -75,7 +75,7 @@
         competition_id,
         crab_id,
         group_id,
-        judges_id,
+        judge_username,
         score_fin,
         score_bts,
         score_fts,
@@ -95,7 +95,7 @@
         competition_id,
         crab_id,
         group_id,
-        judges_id,
+        judge_username,
         score_fin,
         score_ygys,
         score_sys,

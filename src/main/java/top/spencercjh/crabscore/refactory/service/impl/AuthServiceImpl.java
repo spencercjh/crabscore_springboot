@@ -38,7 +38,9 @@ public class AuthServiceImpl implements AuthService {
         // 生成令牌并返回给客户端
         final JwtAuthenticationToken result = new JwtAuthenticationToken(username, password,
                 authentication.getAuthorities(), generateToken(authentication));
-        result.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        if (request != null) {
+            result.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        }
         return result;
     }
 }

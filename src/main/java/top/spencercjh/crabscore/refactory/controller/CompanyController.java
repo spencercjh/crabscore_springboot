@@ -7,9 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import top.spencercjh.crabscore.refactory.config.security.AuthUtils;
 import top.spencercjh.crabscore.refactory.model.Company;
 import top.spencercjh.crabscore.refactory.model.vo.Result;
 import top.spencercjh.crabscore.refactory.service.CompanyService;
@@ -40,6 +42,38 @@ public class CompanyController {
         this.companyService = companyService;
     }
 
+    @PreAuthorize("hasAnyAuthority('company','admin')")
+    @GetMapping("/current")
+    public ResponseEntity<Result<Company>> getCurrent() {
+        final Authentication authentication = AuthUtils.getAuthentication();
+        assert authentication != null;
+        final Company current = companyService.getOneByUsername(authentication.getName());
+        return current == null ?
+                ResponseEntityUtil.fail(HttpStatus.NOT_FOUND) :
+                ResponseEntityUtil.success(current);
+    }
+
+    @PreAuthorize("hasAnyAuthority('company','admin')")
+    @PutMapping("/current")
+    public ResponseEntity<Result<Company>> updateCurrent(@RequestParam(required = false) MultipartFile image,
+                                                         @RequestParam(name = "company") @NotEmpty String companyJson) {
+        final Company toUpdate = JacksonUtil.deserialize(companyJson, new TypeReference<>() {
+        });
+        if (toUpdate == null) {
+            return ResponseEntityUtil.fail(ResponseEntityUtil.ILLEGAL_ARGUMENTS_FAIL_CODE,
+                    "invalid company",
+                    HttpStatus.BAD_REQUEST);
+        }
+        final Authentication authentication = AuthUtils.getAuthentication();
+        if (authentication == null) {
+            return ResponseEntityUtil.fail(HttpStatus.FORBIDDEN);
+        }
+        return companyService.updateByUsername(authentication.getName(), toUpdate, image) ?
+                ResponseEntityUtil.success(toUpdate) :
+                ResponseEntityUtil.fail(ResponseEntityUtil.INTERNAL_EXCEPTION_FAIL_CODE,
+                        HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     /**
      * Gets detail.
      *
@@ -53,6 +87,7 @@ public class CompanyController {
         return detail == null ?
                 ResponseEntityUtil.fail(HttpStatus.NOT_FOUND) :
                 ResponseEntityUtil.success(detail);
+
     }
 
     /**
@@ -84,7 +119,7 @@ public class CompanyController {
      * @param companyJson the company json;
      * @return the response entity;
      */
-    @PreAuthorize("hasAnyAuthority('admin')")
+    @PreAuthorize("hasAnyAuthority('admin','company')")
     @PutMapping
     public ResponseEntity<Result<Company>> updateCompanyInfo(@RequestParam(required = false) MultipartFile image,
                                                              @RequestParam(name = "company") @NotEmpty String companyJson) {

@@ -29,7 +29,9 @@ public class ScoreTasteServiceImpl extends ServiceImpl<ScoreTasteMapper, ScoreTa
 
     @NotNull
     @Override
-    public IPage<ScoreTaste> pageQuery(@Nullable Integer groupId, @Nullable Integer competitionId, @Nullable Integer judgeId, @Nullable Integer crabId, @Nullable Date beginTime, @Nullable Date endTime, @NotNull Long page, @NotNull Long size) {
+    public IPage<ScoreTaste> pageQuery(@Nullable Integer groupId, @Nullable Integer competitionId,
+                                       @Nullable String judgeUsername, @Nullable Integer crabId, @Nullable Date beginTime,
+                                       @Nullable Date endTime, @NotNull Long page, @NotNull Long size) {
         final QueryWrapper<ScoreTaste> queryWrapper = new QueryWrapper<>();
         if (groupId != null) {
             queryWrapper.eq(ScoreQuality.COL_GROUP_ID, groupId);
@@ -37,8 +39,8 @@ public class ScoreTasteServiceImpl extends ServiceImpl<ScoreTasteMapper, ScoreTa
         if (competitionId != null) {
             queryWrapper.eq(ScoreQuality.COL_COMPETITION_ID, competitionId);
         }
-        if (judgeId != null) {
-            queryWrapper.eq(ScoreQuality.COL_JUDGES_ID, judgeId);
+        if (StringUtils.isNotBlank(judgeUsername)) {
+            queryWrapper.eq(ScoreQuality.COL_JUDGE_USERNAME, judgeUsername);
         }
         if (crabId != null) {
             queryWrapper.eq(ScoreQuality.COL_CRAB_ID, crabId);
