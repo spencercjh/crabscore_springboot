@@ -18,6 +18,7 @@ Relative to the previous version:
 * To simplify **object storage**, I perform this feature inside the service instead of using third-party services(such as OBS). For more information, please check `top.spencercjh.CrabScore.refactory.service.BaseUploadFileService` . These codes reference some businesses codes I wrote during my internship;
 * Constrain NPEs using `org.jetbrains.annotations`. 
 * Implement **RESTful** Api **more correctly** than before.
+* Use *Spring Security* to implement authentication and authorization.
 
 ## To Do in Feature
 
@@ -35,6 +36,8 @@ Detail Dependencies Information in `pom.xml`
 * *Mybatis Plus* Boot Starter 3.3.1 (inline with *Mybatis* 2.0.3)
 * *Springfox Swagger* 2.9.2
 * *Junit Jupiter* 5.5.2
+* Spring Boot Starter *Security*
+* *Spring Security Oauth2*
 
 ## Conventions
 
