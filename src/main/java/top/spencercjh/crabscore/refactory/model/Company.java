@@ -3,9 +3,7 @@ package top.spencercjh.crabscore.refactory.model;
 import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotEmpty;
@@ -15,13 +13,15 @@ import java.util.Date;
 /**
  * @author MyBatisCodeHelperPro
  */
+@EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "Company")
 @Accessors(chain = true)
 @Data
+@ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "rxpb.rxpb_company")
-public class Company {
+public class Company extends BaseModel {
     public static final String COL_ID = "id";
     public static final String COL_COMPANY_NAME = "company_name";
     public static final String COL_COMPETITION_ID = "competition_id";
@@ -70,11 +70,11 @@ public class Company {
      */
     @TableField(value = "create_user")
     @ApiModelProperty(value = "数据创建用户")
-    private Integer createUser;
+    private String createUser;
     /**
      * 数据更新用户
      */
     @TableField(value = "update_user")
     @ApiModelProperty(value = "数据更新用户")
-    private Integer updateUser;
+    private String updateUser;
 }

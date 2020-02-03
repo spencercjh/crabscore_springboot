@@ -125,11 +125,11 @@ public class ScoreTaste {
      */
     @TableField(value = "create_user")
     @ApiModelProperty(value = "数据创建用户")
-    private Integer createUser;
+    private String createUser;
     /**
      * 数据更新用户
      */
     @TableField(value = "update_user")
     @ApiModelProperty(value = "数据更新用户")
-    private Integer updateUser;
+    private String updateUser;
 }

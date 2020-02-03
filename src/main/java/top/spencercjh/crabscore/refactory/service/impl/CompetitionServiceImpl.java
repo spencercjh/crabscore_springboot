@@ -8,9 +8,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import top.spencercjh.crabscore.refactory.config.security.AuthUtils;
 import top.spencercjh.crabscore.refactory.mapper.CompetitionMapper;
 import top.spencercjh.crabscore.refactory.model.Competition;
 import top.spencercjh.crabscore.refactory.service.CompetitionService;
@@ -44,15 +46,23 @@ public class CompetitionServiceImpl extends ServiceImpl<CompetitionMapper, Compe
     @Override
     public boolean commitAndUpdate(@NotNull Competition competition, @Nullable MultipartFile image) {
         commitImage(competition, image);
-        // TODO update user
+        setupAuthor(competition);
         return updateById(competition);
     }
 
     @Override
     public boolean commitAndInsert(@NotNull Competition competition, @Nullable MultipartFile image) {
         commitImage(competition, image);
-        // TODO create user
+        setupAuthor(competition);
         return save(competition);
+    }
+
+    public void setupAuthor(@NotNull Competition competition) {
+        final Authentication authentication = AuthUtils.getAuthentication();
+        if (authentication != null) {
+            final String name = authentication.getName();
+            competition.setCreateUser(StringUtils.isBlank(name) ? "ERROR" : name);
+        }
     }
 
     private void commitImage(@NotNull Competition competition, @Nullable MultipartFile image) {

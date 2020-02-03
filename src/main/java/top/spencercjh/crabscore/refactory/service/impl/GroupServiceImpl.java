@@ -4,12 +4,15 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import top.spencercjh.crabscore.refactory.config.security.AuthUtils;
 import top.spencercjh.crabscore.refactory.mapper.GroupMapper;
 import top.spencercjh.crabscore.refactory.model.Group;
 import top.spencercjh.crabscore.refactory.service.GroupService;
@@ -41,14 +44,22 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
     @Override
     public boolean commitAndUpdate(@NotNull Group group, @Nullable MultipartFile image) {
         commitImage(group, image);
-        // TODO update user
+        setupAuthor(group);
         return updateById(group);
+    }
+
+    public void setupAuthor(@NotNull Group group) {
+        final Authentication authentication = AuthUtils.getAuthentication();
+        if (authentication != null) {
+            final String name = authentication.getName();
+            group.setUpdateUser(StringUtils.isBlank(name) ? "ERROR" : name);
+        }
     }
 
     @Override
     public boolean commitAndInsert(@NotNull Group group, @Nullable MultipartFile image) {
         commitImage(group, image);
-        // TODO create user
+        setupAuthor(group);
         return save(group);
     }
 

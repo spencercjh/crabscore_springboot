@@ -1,27 +1,29 @@
 package top.spencercjh.crabscore.refactory.model;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.Accessors;
 import top.spencercjh.crabscore.refactory.model.enums.SexEnum;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * @author MyBatisCodeHelperPro
  */
+@EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "Crab")
 @Accessors(chain = true)
 @Data
+@ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "rxpb.rxpb_crab")
-public class Crab implements Cloneable {
+public class Crab extends BaseModel implements Cloneable {
     public static final String COL_ID = "id";
     public static final String COL_COMPETITION_ID = "competition_id";
     public static final String COL_GROUP_ID = "group_id";
@@ -78,34 +80,6 @@ public class Crab implements Cloneable {
     @TableField(value = "crab_fatness")
     @ApiModelProperty(value = "肥满度")
     private BigDecimal crabFatness;
-    /**
-     * 螃蟹图片URL
-     */
-    @TableField(value = "avatar_url")
-    @ApiModelProperty(value = "螃蟹图片URL")
-    private String avatarUrl;
-    @Version
-    @TableField(value = "version")
-    @ApiModelProperty(value = "", example = "2020-01-01 00:00:00")
-    private Date version;
-    /**
-     * 数据创建日期
-     */
-    @TableField(value = "create_date")
-    @ApiModelProperty(value = "数据创建日期", example = "2020-01-01 00:00:00")
-    private Date createDate;
-    /**
-     * 数据创建用户
-     */
-    @TableField(value = "create_user")
-    @ApiModelProperty(value = "数据创建用户")
-    private Integer createUser;
-    /**
-     * 数据更新用户
-     */
-    @TableField(value = "update_user")
-    @ApiModelProperty(value = "数据更新用户")
-    private Integer updateUser;
 
     @Override
     public Crab clone() {

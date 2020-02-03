@@ -11,7 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import top.spencercjh.crabscore.refactory.model.User;
+import top.spencercjh.crabscore.refactory.model.Participant;
 import top.spencercjh.crabscore.refactory.util.JacksonUtil;
 
 import java.nio.file.Files;
@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ActiveProfiles("local")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-class UserControllerTest {
+class ParticipantControllerTest {
     public static final String URL_TEMPLATE = "/users";
     @Autowired
     private MockMvc mockMvc;
@@ -70,11 +70,11 @@ class UserControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.multipart(URL_TEMPLATE)
                 .file(new MockMultipartFile("image", "QQ图片20171115233745.jpg", null,
                         Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg"))))
-                .param("user", JacksonUtil.serialize(new User()
+                .param("user", JacksonUtil.serialize(new Participant()
                         .setId(112)
                         .setCompetitionId(0)
                         .setCompanyId(0)
-                        .setUserName("commitAndUpdateUser")))
+                        .setUsername("commitAndUpdateUser")))
                 .with((MockHttpServletRequest request) -> {
                     request.setMethod(HttpMethod.PUT.name());
                     return request;
@@ -90,10 +90,10 @@ class UserControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.multipart(URL_TEMPLATE)
                 .file(new MockMultipartFile("image", "QQ图片20171115233745.jpg", null,
                         Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg"))))
-                .param("user", JacksonUtil.serialize(new User()
+                .param("user", JacksonUtil.serialize(new Participant()
                         .setCompetitionId(0)
                         .setCompanyId(0)
-                        .setUserName("commitAndUpdateUser")))
+                        .setUsername("commitAndUpdateUser")))
                 .with((MockHttpServletRequest request) -> {
                     request.setMethod(HttpMethod.PUT.name());
                     return request;
@@ -124,11 +124,11 @@ class UserControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.multipart(URL_TEMPLATE)
                 .file(new MockMultipartFile("image", "QQ图片20171115233745.jpg", null,
                         Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg"))))
-                .param("user", JacksonUtil.serialize(new User()
+                .param("user", JacksonUtil.serialize(new Participant()
                         .setCompanyId(0)
                         .setCompetitionId(0)
                         .setRoleId(0)
-                        .setUserName("CommitAndInsertUser")
+                        .setUsername("CommitAndInsertUser")
                         .setPassword("CommitAndInsertUser"))))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.data").isMap())
@@ -141,10 +141,10 @@ class UserControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.multipart(URL_TEMPLATE)
                 .file(new MockMultipartFile("image", "QQ图片20171115233745.jpg", null,
                         Files.readAllBytes(Paths.get("src", "test", "resources", "QQ图片20171115233745.jpg"))))
-                .param("user", JacksonUtil.serialize(new User()
+                .param("user", JacksonUtil.serialize(new Participant()
                         .setCompanyId(0)
                         .setCompetitionId(0)
-                        .setUserName("CommitAndInsertUser")
+                        .setUsername("CommitAndInsertUser")
                         .setPassword("CommitAndInsertUser"))))
                 .andExpect(status().isBadRequest())
                 .andDo(print());

@@ -8,8 +8,8 @@
         <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
         <result column="version" jdbcType="TIMESTAMP" property="version"/>
         <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
-        <result column="create_user" jdbcType="INTEGER" property="createUser"/>
-        <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
+        <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
+        <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->

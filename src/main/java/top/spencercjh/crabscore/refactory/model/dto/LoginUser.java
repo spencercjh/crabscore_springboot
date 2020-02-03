@@ -1,6 +1,7 @@
 package top.spencercjh.crabscore.refactory.model.dto;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,8 +19,10 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginUser {
+    @ApiModelProperty(example = "emeiqp")
     @NotEmpty
     private String username;
+    @ApiModelProperty(example = "123456")
     @NotEmpty
     private String password;
 }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="top.spencercjh.crabscore.refactory.mapper.UserMapper">
-    <resultMap id="BaseResultMap" type="top.spencercjh.crabscore.refactory.model.User">
+<mapper namespace="top.spencercjh.crabscore.refactory.mapper.ParticipantMapper">
+    <resultMap id="BaseResultMap" type="top.spencercjh.crabscore.refactory.model.Participant">
         <!--@mbg.generated-->
-        <!--@Table rxpb.rxpb_user-->
+        <!--@Table rxpb.rxpb_participant-->
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="competition_id" jdbcType="INTEGER" property="competitionId"/>
         <result column="company_id" jdbcType="INTEGER" property="companyId"/>
         <result column="role_id" jdbcType="INTEGER" property="roleId"/>
-        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="display_name" jdbcType="VARCHAR" property="displayName"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
@@ -16,12 +16,12 @@
         <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl"/>
         <result column="version" jdbcType="TIMESTAMP" property="version"/>
         <result column="create_date" jdbcType="TIMESTAMP" property="createDate"/>
-        <result column="create_user" jdbcType="INTEGER" property="createUser"/>
-        <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
+        <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
+        <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
-        id, competition_id, company_id, role_id, user_name, `password`, display_name, `status`,
+        id, competition_id, company_id, role_id, username, `password`, display_name, `status`,
         email, avatar_url, version, create_date, create_user, update_user
     </sql>
 </mapper>

@@ -44,18 +44,23 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
     @Override
     public boolean commitAndUpdate(@NotNull Company companyInfo, @Nullable MultipartFile image) {
         commitImage(companyInfo, image);
-        final Authentication authentication = AuthUtils.getAuthentication();
-        if (authentication != null) {
-            // TODO update user
-        }
+        setupAuthor(companyInfo);
         return updateById(companyInfo);
     }
 
     @Override
     public boolean commitAndInsert(@NotNull Company companyInfo, @Nullable MultipartFile image) {
         commitImage(companyInfo, image);
-        // TODO create user
+        setupAuthor(companyInfo);
         return save(companyInfo);
+    }
+
+    public void setupAuthor(@NotNull Company companyInfo) {
+        final Authentication authentication = AuthUtils.getAuthentication();
+        if (authentication != null) {
+            final String name = authentication.getName();
+            companyInfo.setCreateUser(StringUtils.isBlank(name) ? "ERROR" : name);
+        }
     }
 
     private void commitImage(@NotNull Company companyInfo, @Nullable MultipartFile image) {

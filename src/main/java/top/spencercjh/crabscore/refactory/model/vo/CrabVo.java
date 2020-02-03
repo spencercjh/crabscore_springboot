@@ -25,8 +25,12 @@ public class CrabVo extends Crab {
 
     public CrabVo(@NotNull Crab crab, ScoreTaste scoreTaste, ScoreQuality scoreQuality) {
         super(crab.getId(), crab.getCompetitionId(), crab.getGroupId(), crab.getCrabSex(), crab.getCrabLabel(),
-                crab.getCrabWeight(), crab.getCrabLength(), crab.getCrabFatness(), crab.getAvatarUrl(), crab.getVersion(),
-                crab.getCreateDate(), crab.getCreateUser(), crab.getUpdateUser());
+                crab.getCrabWeight(), crab.getCrabLength(), crab.getCrabFatness());
+        this.setUpdateUser(crab.getUpdateUser())
+                .setAvatarUrl(crab.getAvatarUrl())
+                .setCreateDate(crab.getCreateDate())
+                .setCreateUser(crab.getCreateUser())
+                .setVersion(crab.getVersion());
         this.scoreTaste = scoreTaste;
         this.scoreQuality = scoreQuality;
     }

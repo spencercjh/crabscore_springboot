@@ -4,10 +4,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import top.spencercjh.crabscore.refactory.config.security.AuthUtils;
 import top.spencercjh.crabscore.refactory.mapper.ScoreQualityMapper;
 import top.spencercjh.crabscore.refactory.model.Crab;
 import top.spencercjh.crabscore.refactory.model.ScoreQuality;
@@ -63,9 +66,15 @@ public class ScoreQualityServiceImpl extends ServiceImpl<ScoreQualityMapper, Sco
 
     @Override
     public void saveScoreQualityByCrab(@NotNull Crab crab) {
-        save(new ScoreQuality()
+        final ScoreQuality entity = new ScoreQuality()
                 .setGroupId(crab.getGroupId())
                 .setCrabId(crab.getId())
-                .setCompetitionId(crab.getCompetitionId()));
+                .setCompetitionId(crab.getCompetitionId());
+        final Authentication authentication = AuthUtils.getAuthentication();
+        if (authentication != null) {
+            final String name = authentication.getName();
+            entity.setCreateUser(StringUtils.isBlank(name) ? "ERROR" : name);
+        }
+        save(entity);
     }
 }

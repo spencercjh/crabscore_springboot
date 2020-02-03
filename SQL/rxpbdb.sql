@@ -9,8 +9,8 @@ create table rxpb_company
     avatar_url     varchar(255)     default 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg' null comment '参选单位头像URL',
     version        timestamp        default CURRENT_TIMESTAMP                                   not null,
     create_date    datetime         default CURRENT_TIMESTAMP                                   not null comment '数据创建日期',
-    create_user    int(11) unsigned default 0                                                   null comment '数据创建用户',
-    update_user    int(11) unsigned default 0                                                   null comment '数据更新用户',
+    create_user    varchar(45)                                                                  null comment '数据创建用户',
+    update_user    varchar(45)      default '0'                                                 null comment '数据更新用户',
     constraint unique_index_company_name
         unique (company_name)
 )
@@ -23,25 +23,25 @@ create table rxpb_competition
 (
     id               int(11) unsigned auto_increment
         primary key,
-    competition_year varchar(45)                                                                  not null comment '赛事的年份 yyyy',
-    var_fatness_m    decimal(19, 4)   default 0.0000                                              not null comment '雄蟹肥满度参数',
-    var_fatness_f    decimal(19, 4)   default 0.0000                                              not null comment '雌蟹肥满度参数',
-    var_weight_m     decimal(19, 4)   default 0.0000                                              not null comment '雄蟹体重参数',
-    var_weight_f     decimal(19, 4)   default 0.0000                                              not null comment '雌蟹体重参数',
-    var_mfatness_sd  decimal(19, 4)   default 0.0000                                              not null comment '雄蟹肥满度标准差参数',
-    var_mweight_sd   decimal(19, 4)   default 0.0000                                              not null comment '雄蟹体重参数',
-    var_ffatness_sd  decimal(19, 4)   default 0.0000                                              not null comment '雌蟹肥满度标准差参数',
-    var_fweight_sd   decimal(19, 4)   default 0.0000                                              not null comment '雌蟹体重标准差参数',
-    result_fatness   tinyint          default 0                                                   not null comment '1:允许查看排名,0不允许查看排名',
-    result_quality   tinyint          default 0                                                   not null comment '1:允许查看排名,0不允许查看排名',
-    result_taste     tinyint          default 0                                                   not null comment '1:允许查看排名,0不允许查看排名',
-    note             varchar(225)     default '备注'                                                not null comment '注备',
-    status           tinyint          default 0                                                   not null comment '1：可用 0：禁用',
-    avatar_url       varchar(255)     default 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg' null comment '大赛默认图标URL',
-    version          timestamp        default CURRENT_TIMESTAMP                                   not null,
-    create_date      datetime         default CURRENT_TIMESTAMP                                   not null comment '数据创建日期',
-    create_user      int(11) unsigned default 0                                                   null comment '数据创建用户',
-    update_user      int(11) unsigned default 0                                                   null comment '数据更新用户',
+    competition_year varchar(45)                                                                not null comment '赛事的年份 yyyy',
+    var_fatness_m    decimal(19, 4) default 0.0000                                              not null comment '雄蟹肥满度参数',
+    var_fatness_f    decimal(19, 4) default 0.0000                                              not null comment '雌蟹肥满度参数',
+    var_weight_m     decimal(19, 4) default 0.0000                                              not null comment '雄蟹体重参数',
+    var_weight_f     decimal(19, 4) default 0.0000                                              not null comment '雌蟹体重参数',
+    var_mfatness_sd  decimal(19, 4) default 0.0000                                              not null comment '雄蟹肥满度标准差参数',
+    var_mweight_sd   decimal(19, 4) default 0.0000                                              not null comment '雄蟹体重参数',
+    var_ffatness_sd  decimal(19, 4) default 0.0000                                              not null comment '雌蟹肥满度标准差参数',
+    var_fweight_sd   decimal(19, 4) default 0.0000                                              not null comment '雌蟹体重标准差参数',
+    result_fatness   tinyint        default 0                                                   not null comment '1:允许查看排名,0不允许查看排名',
+    result_quality   tinyint        default 0                                                   not null comment '1:允许查看排名,0不允许查看排名',
+    result_taste     tinyint        default 0                                                   not null comment '1:允许查看排名,0不允许查看排名',
+    note             varchar(225)   default '备注'                                                not null comment '注备',
+    status           tinyint        default 0                                                   not null comment '1：可用 0：禁用',
+    avatar_url       varchar(255)   default 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg' null comment '大赛默认图标URL',
+    version          timestamp      default CURRENT_TIMESTAMP                                   not null,
+    create_date      datetime       default CURRENT_TIMESTAMP                                   not null comment '数据创建日期',
+    create_user      varchar(45)                                                                null comment '数据创建用户',
+    update_user      varchar(45)                                                                null comment '数据更新用户',
     constraint unique_index_competition_year
         unique (competition_year)
 )
@@ -61,8 +61,8 @@ create table rxpb_crab
     avatar_url     varchar(255)     default 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg' null comment '螃蟹图片URL',
     version        timestamp        default CURRENT_TIMESTAMP                                   not null,
     create_date    datetime         default CURRENT_TIMESTAMP                                   not null comment '数据创建日期',
-    create_user    int(11) unsigned default 0                                                   null comment '数据创建用户',
-    update_user    int(11) unsigned default 0                                                   null comment '数据更新用户'
+    create_user    varchar(45)                                                                  null comment '数据创建用户',
+    update_user    varchar(45)                                                                  null comment '数据更新用户'
 )
     comment '蟹基本信息表,肥满度表';
 
@@ -90,8 +90,8 @@ create table rxpb_group
     avatar_url      varchar(255)     default 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg' null comment '小组图标URL',
     version         timestamp        default CURRENT_TIMESTAMP                                   not null,
     create_date     datetime         default CURRENT_TIMESTAMP                                   not null comment '数据创建日期',
-    create_user     int(11) unsigned default 0                                                   null comment '数据创建用户',
-    update_user     int(11) unsigned default 0                                                   null comment '数据更新用户'
+    create_user     varchar(45)                                                                  null comment '数据创建用户',
+    update_user     varchar(45)                                                                  null comment '数据更新用户'
 )
     comment '组信息数表';
 
@@ -101,17 +101,51 @@ create index rxpb_group_info_company_id_index
 create index rxpb_group_info_competition_id_index
     on rxpb_group (competition_id);
 
+create table rxpb_participant
+(
+    id             int(11) unsigned auto_increment
+        primary key,
+    competition_id int(11) unsigned default 1                                                   not null comment '比赛ID',
+    company_id     int(11) unsigned default 0                                                   null comment '对应的参选单位',
+    role_id        int(11) unsigned                                                             not null comment '角色ID',
+    username       varchar(45)                                                                  not null comment '用户名,登录名',
+    password       varchar(60)                                                                  not null comment '密码',
+    display_name   varchar(45)      default '未命名用户'                                             not null comment '显示名称，姓名或单位名',
+    status         tinyint          default 0                                                   not null comment '用户状态 1：可用 0：禁用',
+    email          varchar(45)                                                                  null,
+    avatar_url     varchar(255)     default 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg' null comment '小组图标URL',
+    version        timestamp        default CURRENT_TIMESTAMP                                   not null,
+    create_date    datetime         default CURRENT_TIMESTAMP                                   not null comment '数据创建日期',
+    create_user    varchar(45)                                                                  null comment '数据创建用户',
+    update_user    varchar(45)                                                                  null comment '数据更新用户',
+    constraint rxpb_participant_username_uindex
+        unique (username)
+)
+    comment '用户信息表';
+
+create index rxpb_participant_company_id_index
+    on rxpb_participant (company_id);
+
+create index rxpb_participant_competition_id_index
+    on rxpb_participant (competition_id);
+
+create index rxpb_participant_display_name_index
+    on rxpb_participant (display_name);
+
+create index rxpb_participant_role_id_index
+    on rxpb_participant (role_id);
+
 create table rxpb_role
 (
     id          int(11) unsigned auto_increment comment '"角色ID:1：管理员
  2：评委 3：工作人员 4:参选单位"
 '
         primary key,
-    role_name   varchar(15)      default 'empty name'      not null,
-    version     timestamp        default CURRENT_TIMESTAMP not null,
-    create_date datetime         default CURRENT_TIMESTAMP not null comment '数据创建日期',
-    create_user int(11) unsigned default 0                 null comment '数据创建用户',
-    update_user int(11) unsigned default 0                 null comment '数据更新用户'
+    role_name   varchar(15) default 'empty name'      not null,
+    version     timestamp   default CURRENT_TIMESTAMP not null,
+    create_date datetime    default CURRENT_TIMESTAMP not null comment '数据创建日期',
+    create_user varchar(45)                           null comment '数据创建用户',
+    update_user varchar(45)                           null comment '数据更新用户'
 )
     comment '用户组信息表';
 
@@ -134,8 +168,8 @@ create table rxpb_score_quality
     score_bbyzt    decimal(19, 4)   default 0.0000            not null comment '背部疣状突',
     version        timestamp        default CURRENT_TIMESTAMP not null,
     create_date    datetime         default CURRENT_TIMESTAMP not null comment '数据创建日期',
-    create_user    int(11) unsigned default 0                 null comment '数据创建用户',
-    update_user    int(11) unsigned default 0                 null comment '数据更新用户'
+    create_user    varchar(45)                                null comment '数据创建用户',
+    update_user    varchar(45)                                null comment '数据更新用户'
 )
     comment '种质评分表';
 
@@ -169,8 +203,8 @@ create table rxpb_score_taste
     score_bzjr     decimal(19, 4)   default 0.0000            not null comment '第二、三步足肌肉',
     version        timestamp        default CURRENT_TIMESTAMP not null,
     create_date    datetime         default CURRENT_TIMESTAMP not null comment '数据创建日期',
-    create_user    int(11) unsigned default 0                 null comment '数据创建用户',
-    update_user    int(11) unsigned default 0                 null comment '数据更新用户'
+    create_user    varchar(45)                                null comment '数据创建用户',
+    update_user    varchar(45)                                null comment '数据更新用户'
 )
     comment '口感奖评分表' charset = sjis;
 
@@ -186,37 +220,3 @@ create index rxpb_score_taste_group_id_index
 create index rxpb_score_taste_judges_id_index
     on rxpb_score_taste (judges_id);
 
-create table rxpb_user
-(
-    id             int(11) unsigned auto_increment
-        primary key,
-    competition_id int(11) unsigned default 1                                                   not null comment '比赛ID',
-    company_id     int(11) unsigned default 0                                                   null comment '对应的参选单位',
-    role_id        int(11) unsigned                                                             not null comment '角色ID',
-    user_name      varchar(45)                                                                  not null comment '用户名,登录名',
-    password       varchar(60)                                                                  not null comment '密码',
-    display_name   varchar(45)      default '未命名用户'                                             not null comment '显示名称，姓名或单位名',
-    status         tinyint          default 0                                                   not null comment '用户状态 1：可用 0：禁用',
-    email          varchar(45)                                                                  null,
-    avatar_url     varchar(255)     default 'https://i.loli.net/2020/01/25/4a6thSfB5AZXmNk.jpg' null comment '小组图标URL',
-    version        timestamp        default CURRENT_TIMESTAMP                                   not null,
-    create_date    datetime         default CURRENT_TIMESTAMP                                   not null comment '数据创建日期',
-    create_user    int(11) unsigned default 0                                                   null comment '数据创建用户',
-    update_user    int(11) unsigned default 0                                                   null comment '数据更新用户'
-)
-    comment '用户信息表';
-
-create index rxpb_user_info_company_id_index
-    on rxpb_user (company_id);
-
-create index rxpb_user_info_competition_id_index
-    on rxpb_user (competition_id);
-
-create index rxpb_user_info_display_name_index
-    on rxpb_user (display_name);
-
-create index rxpb_user_role_id_index
-    on rxpb_user (role_id);
-
-create index rxpb_user_user_name_index
-    on rxpb_user (user_name);

@@ -4,12 +4,15 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import top.spencercjh.crabscore.refactory.config.security.AuthUtils;
 import top.spencercjh.crabscore.refactory.mapper.CrabMapper;
 import top.spencercjh.crabscore.refactory.model.Crab;
 import top.spencercjh.crabscore.refactory.model.ScoreQuality;
@@ -83,19 +86,27 @@ public class CrabServiceImpl extends ServiceImpl<CrabMapper, Crab> implements Cr
     @Override
     public boolean commitAndUpdate(@NotNull Crab crab, @Nullable MultipartFile image) {
         commitImage(crab, image);
-        // TODO update user
+        setupAuthor(crab);
         return updateById(crab);
+    }
+
+    public void setupAuthor(@NotNull Crab crab) {
+        final Authentication authentication = AuthUtils.getAuthentication();
+        if (authentication != null) {
+            final String name = authentication.getName();
+            crab.setUpdateUser(StringUtils.isBlank(name) ? "ERROR" : name);
+        }
     }
 
     @Override
     public boolean commitAndInsert(@NotNull Crab crab, @Nullable MultipartFile image) {
         commitImage(crab, image);
+        setupAuthor(crab);
         return save(crab);
     }
 
     @Override
     public boolean save(Crab entity) {
-        // TODO create user
         final boolean saveResult = super.save(entity);
         asyncScoreService.asyncSaveScoresByCrab(entity);
         return saveResult;

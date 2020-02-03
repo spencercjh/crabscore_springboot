@@ -1,26 +1,28 @@
 package top.spencercjh.crabscore.refactory.model;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * @author MyBatisCodeHelperPro
  */
+@EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "Group")
 @Accessors(chain = true)
 @Data
+@ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName(value = "rxpb.rxpb_group")
-public class Group {
+public class Group extends BaseModel {
     public static final String COL_ID = "id";
     public static final String COL_COMPANY_ID = "company_id";
     public static final String COL_COMPETITION_ID = "competition_id";
@@ -90,32 +92,4 @@ public class Group {
     @TableField(value = "taste_score_f")
     @ApiModelProperty(value = "雌蟹口感评分")
     private BigDecimal tasteScoreF;
-    /**
-     * 小组图标URL
-     */
-    @TableField(value = "avatar_url")
-    @ApiModelProperty(value = "小组图标URL")
-    private String avatarUrl;
-    @Version
-    @TableField(value = "version")
-    @ApiModelProperty(value = "", example = "2020-01-01 00:00:00")
-    private Date version;
-    /**
-     * 数据创建日期
-     */
-    @TableField(value = "create_date")
-    @ApiModelProperty(value = "数据创建日期", example = "2020-01-01 00:00:00")
-    private Date createDate;
-    /**
-     * 数据创建用户
-     */
-    @TableField(value = "create_user")
-    @ApiModelProperty(value = "数据创建用户")
-    private Integer createUser;
-    /**
-     * 数据更新用户
-     */
-    @TableField(value = "update_user")
-    @ApiModelProperty(value = "数据更新用户")
-    private Integer updateUser;
 }
