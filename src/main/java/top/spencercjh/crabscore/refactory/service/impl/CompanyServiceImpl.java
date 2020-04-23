@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -34,8 +33,6 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
     private String companyInfoDirectory;
     @Resource
     private ParticipantMapper participantMapper;
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
 
     @NotNull
     @Override

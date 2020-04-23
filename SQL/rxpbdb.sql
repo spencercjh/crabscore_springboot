@@ -1,4 +1,4 @@
-create schema rxpb collate utf8mb4_0900_ai_ci;
+create database rxpb collate utf8mb4_0900_ai_ci;
 
 create table rxpb_company
 (
